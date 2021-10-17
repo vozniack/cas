@@ -30,6 +30,16 @@ class UserController(val userService: UserService, val userMapper: UserMapper) {
         userService.update(id, userMapper.mapToEntity(userDto)).map(userMapper::mapToDto)
             .switchIfEmpty(Mono.error(ConflictException()))
 
+    @PutMapping("/{id}/email")
+    fun updateEmail(@PathVariable id: String, @RequestBody email: String): Mono<UserDto> =
+        userService.updateEmail(id, email).map(userMapper::mapToDto)
+            .switchIfEmpty(Mono.error(ConflictException()))
+
+    @PutMapping("/{id}/password")
+    fun updatePassword(@PathVariable id: String, @RequestBody password: String): Mono<UserDto> =
+        userService.updatePassword(id, password).map(userMapper::mapToDto)
+            .switchIfEmpty(Mono.error(ConflictException()))
+
     @DeleteMapping("/{id}")
     fun delete(@PathVariable id: String) = userService.delete(id)
 }

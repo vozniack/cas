@@ -15,14 +15,17 @@ class UserService(val userRepository: UserRepository) {
 
     fun create(user: User): Mono<User> = userRepository.save(user)
 
-    fun update(id: String, user: User): Mono<User> {
-        return findById(id).map { oldUser ->
-            oldUser.apply {
-                firstName = user.firstName
-                lastName = user.lastName
-            }
-        }.flatMap(userRepository::save)
-    }
+    fun update(id: String, user: User): Mono<User> = findById(id)
+        .map { oldUser -> oldUser.copy(firstName = user.firstName, lastName = user.lastName) }
+        .flatMap(userRepository::save)
+
+    fun updateEmail(id: String, email: String): Mono<User> = findById(id)
+        .map { user -> user.copy(email = email) }
+        .flatMap(userRepository::save)
+
+    fun updatePassword(id: String, password: String): Mono<User> = findById(id)
+        .map { user -> user.copy(password = password) }
+        .flatMap(userRepository::save)
 
     fun delete(id: String) = userRepository.deleteById(id)
 }
