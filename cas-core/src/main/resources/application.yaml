@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: cas-core
+  r2dbc:
+    url: r2dbc:postgres://localhost:5432
+    username: postgres
+    password: root
