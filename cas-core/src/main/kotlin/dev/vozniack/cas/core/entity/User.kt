@@ -1,17 +1,20 @@
 package dev.vozniack.cas.core.entity
 
-import org.springframework.data.annotation.Id
-import org.springframework.data.relational.core.mapping.Table
 import java.util.*
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
+import javax.persistence.Table
 
-@Table("users")
-data class User(
+@Entity
+@Table(name = "users")
+class User(
 
-    @Id var id: UUID?,
+    @Id @GeneratedValue var id: UUID? = null,
 
-    var email: String,
-    var password: String,
+    var email: String = "",
+    var password: String = "",
 
-    var firstName: String,
-    var lastName: String,
+    var firstName: String = "",
+    var lastName: String = "",
 )

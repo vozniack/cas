@@ -1,31 +1,33 @@
 package dev.vozniack.cas.core.service
 
+import dev.vozniack.cas.core.api.v1.dto.request.UserEmailRequestDto
+import dev.vozniack.cas.core.api.v1.dto.request.UserPasswordRequestDto
 import dev.vozniack.cas.core.entity.User
+import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.UserRepository
 import org.springframework.stereotype.Service
-import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
+import java.util.*
 
 @Service
 class UserService(val userRepository: UserRepository) {
 
-    fun findById(id: String): Mono<User> = userRepository.findById(id)
+    fun findById(id: UUID): User = userRepository.findById(id).orElseThrow { NotFoundException() }
 
-    fun findAll(): Flux<User> = userRepository.findAll()
+    fun findAll(): MutableIterable<User> = userRepository.findAll()
 
-    fun create(user: User): Mono<User> = userRepository.save(user)
+    fun create(user: User): User = userRepository.save(user)
 
-    fun update(id: String, user: User): Mono<User> = findById(id)
-        .map { oldUser -> oldUser.copy(firstName = user.firstName, lastName = user.lastName) }
-        .flatMap(userRepository::save)
+    fun update(id: UUID, user: User): User = userRepository.save(
+        findById(id).apply { firstName = user.firstName; lastName = user.lastName }
+    )
 
-    fun updateEmail(id: String, email: String): Mono<User> = findById(id)
-        .map { user -> user.copy(email = email) }
-        .flatMap(userRepository::save)
+    fun updateEmail(id: UUID, request: UserEmailRequestDto): User = userRepository.save(
+        findById(id).apply { email = request.email }
+    )
 
-    fun updatePassword(id: String, password: String): Mono<User> = findById(id)
-        .map { user -> user.copy(password = password) }
-        .flatMap(userRepository::save)
+    fun updatePassword(id: UUID, request: UserPasswordRequestDto): User = userRepository.save(
+        findById(id).apply { password = request.password }
+    )
 
-    fun delete(id: String) = userRepository.deleteById(id)
+    fun delete(id: UUID) = userRepository.deleteById(id)
 }

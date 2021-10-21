@@ -1,7 +1,18 @@
 spring:
   application:
     name: cas-core
-  r2dbc:
-    url: r2dbc:postgres://localhost:5432
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: root
+
+    jpa:
+      hibernate:
+        ddl-auto: validate
+
+  flyway:
+    url: jdbc:postgresql://localhost:5432/postgres
+    user: postgres
+    password: root
+    table: schema_version
