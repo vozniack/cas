@@ -11,9 +11,9 @@ import java.util.*
 @Service
 class UserService(val userRepository: UserRepository) {
 
-    fun findById(id: UUID): User = userRepository.findById(id).orElseThrow { NotFoundException() }
-
     fun findAll(): MutableIterable<User> = userRepository.findAll()
+
+    fun findById(id: UUID): User = userRepository.findById(id).orElseThrow { NotFoundException() }
 
     fun create(user: User): User = userRepository.save(user)
 
@@ -29,5 +29,5 @@ class UserService(val userRepository: UserRepository) {
         findById(id).apply { password = request.password }
     )
 
-    fun delete(id: UUID) = userRepository.deleteById(id)
+    fun delete(id: UUID) = userRepository.delete(findById(id))
 }

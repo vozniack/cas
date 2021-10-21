@@ -1,8 +1,8 @@
-package dev.vozniack.cas.core.api.v1.dto
+package dev.vozniack.cas.core.api.v1.dto.entity
 
 import java.util.*
 
-data class UserDto(
+class UserDto(
 
     val id: UUID?,
 
@@ -11,4 +11,6 @@ data class UserDto(
 
     val firstName: String,
     val lastName: String,
+
+    val groups: List<GroupDto>
 )

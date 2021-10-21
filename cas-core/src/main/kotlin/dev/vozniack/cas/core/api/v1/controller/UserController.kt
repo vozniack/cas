@@ -1,22 +1,26 @@
 package dev.vozniack.cas.core.api.v1.controller
 
-import dev.vozniack.cas.core.api.v1.dto.UserDto
+import dev.vozniack.cas.core.api.v1.dto.entity.UserDto
 import dev.vozniack.cas.core.api.v1.dto.request.UserEmailRequestDto
 import dev.vozniack.cas.core.api.v1.dto.request.UserPasswordRequestDto
-import dev.vozniack.cas.core.api.v1.mapper.UserMapper
+import dev.vozniack.cas.core.api.v1.mapper.Mapper
+import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.service.UserService
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RestController
 @RequestMapping("/api/v1/users")
-class UserController(val userService: UserService, val userMapper: UserMapper) {
-
-    @GetMapping("/{id}")
-    fun getById(@PathVariable id: UUID): UserDto = userMapper.mapToDto(userService.findById(id))
+class UserController(
+    val userService: UserService,
+    val userMapper: Mapper<User, UserDto>,
+) {
 
     @GetMapping
     fun getAll(): List<UserDto> = userService.findAll().map(userMapper::mapToDto)
+
+    @GetMapping("/{id}")
+    fun getById(@PathVariable id: UUID): UserDto = userMapper.mapToDto(userService.findById(id))
 
     @PostMapping
     fun create(@RequestBody userDto: UserDto): UserDto =
