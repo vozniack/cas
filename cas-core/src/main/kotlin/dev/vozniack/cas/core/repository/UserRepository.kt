@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-interface UserRepository : PagingAndSortingRepository<User, UUID>
+interface UserRepository : PagingAndSortingRepository<User, UUID> {
+
+    fun findAllByGroupsId(id: UUID): List<User>
+}

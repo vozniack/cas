@@ -12,12 +12,4 @@ class Group(
 
     var name: String = "",
     var description: String = "",
-
-    @ManyToMany
-    @JoinTable(
-        name = "user_groups",
-        joinColumns = [JoinColumn(name = "group_id")],
-        inverseJoinColumns = [JoinColumn(name = "user_id")]
-    )
-    var users: List<User> = listOf(),
 )

@@ -11,10 +11,10 @@ class User(
     var id: UUID? = null,
 
     var email: String = "",
-    var password: String = "",
+    var password: String? = null,
 
-    var firstName: String = "",
-    var lastName: String = "",
+    var firstName: String? = null,
+    var lastName: String? = null,
 
     @ManyToMany
     @JoinTable(

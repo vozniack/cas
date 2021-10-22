@@ -7,10 +7,10 @@ class UserDto(
     val id: UUID?,
 
     val email: String,
-    val password: String,
+    val password: String?,
 
-    val firstName: String,
-    val lastName: String,
+    val firstName: String?,
+    val lastName: String?,
 
-    val groups: List<GroupDto>
+    val groups: List<GroupDto> = listOf(),
 )

@@ -30,6 +30,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
+    testImplementation("io.zonky.test:embedded-database-spring-test:2.1.1")
     testImplementation("org.springframework.boot:spring-boot-starter-test:2.5.5")
 }
 
