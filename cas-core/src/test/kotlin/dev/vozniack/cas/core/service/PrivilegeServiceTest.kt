@@ -7,10 +7,12 @@ import dev.vozniack.cas.core.repository.PrivilegeRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
+import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
 class PrivilegeServiceTest @Autowired constructor(
@@ -18,22 +20,22 @@ class PrivilegeServiceTest @Autowired constructor(
     private val privilegeRepository: PrivilegeRepository,
 ) : CasCoreAbstractTest() {
 
+    @BeforeEach
     @AfterEach
-    fun tearDown() {
-        privilegeRepository.deleteAll()
-    }
+    fun tearDown() = privilegeRepository.deleteAll()
 
     @Test
+    @Transactional
     fun `find list of all privileges`() {
-        privilegeRepository.saveAll(listOf(
-            Privilege(name = "First privilege", code = "FIRST_PRIVILEGE"),
-            Privilege(name = "Second privilege", code = "SECOND_PRIVILEGE")
-        ))
+        val firstParent = privilegeRepository.save(Privilege(name = "First privilege", code = "FIRST_PRIVILEGE"))
+        privilegeRepository.save(Privilege(name = "Second privilege", code = "SECOND_PRIVILEGE"))
+        privilegeRepository.save(Privilege(name = "Third privilege", code = "THIRD_PRIVILEGE"))
+        privilegeRepository.save(Privilege(name = "Child privilege", code = "CHILD_PRIVILEGE", parent = firstParent))
 
         val privileges = privilegeService.findAll(PageRequest.ofSize(1024))
 
         assertThat(privileges).isInstanceOf(Page::class.java)
-        assertThat(privileges.content.size).isEqualTo(2)
+        assertThat(privileges.content.size).isEqualTo(3) // only parents are visible
     }
 
     @Test
@@ -55,7 +57,7 @@ class PrivilegeServiceTest @Autowired constructor(
         val parentPrivilege = privilegeRepository.save(Privilege(name = "Parent privilege",
             code = "PARENT_PRIVILEGE", description = "Parent privilege set"))
 
-        val privilege = privilegeRepository.save(Privilege(name = "Privilege", code = "PRIVILEGE",
+        val privilege = privilegeService.create(Privilege(name = "Privilege", code = "PRIVILEGE",
             description = "Privilege set", parent = parentPrivilege, privileges = listOf(
                 Privilege(name = "First privilege", code = "FIRST_PRIVILEGE"),
                 Privilege(name = "Second privilege", code = "SECOND_PRIVILEGE")
