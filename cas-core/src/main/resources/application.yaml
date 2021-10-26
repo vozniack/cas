@@ -7,9 +7,9 @@ spring:
     username: postgres
     password: root
 
-    jpa:
-      hibernate:
-        ddl-auto: validate
+  jpa:
+    hibernate:
+      ddl-auto: validate
 
   flyway:
     url: jdbc:postgresql://localhost:5432/postgres

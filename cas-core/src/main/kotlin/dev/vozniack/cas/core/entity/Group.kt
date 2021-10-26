@@ -16,4 +16,12 @@ class Group(
 
     var name: String = "",
     var description: String = "",
+
+    @ManyToMany
+    @JoinTable(
+        name = "group_privileges",
+        joinColumns = [JoinColumn(name = "group_id")],
+        inverseJoinColumns = [JoinColumn(name = "privilege_id")]
+    )
+    var privileges: List<Privilege> = listOf(),
 )

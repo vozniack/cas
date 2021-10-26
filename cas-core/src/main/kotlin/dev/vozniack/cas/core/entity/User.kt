@@ -23,4 +23,12 @@ class User(
         inverseJoinColumns = [JoinColumn(name = "group_id")]
     )
     var groups: List<Group> = listOf(),
+
+    @ManyToMany
+    @JoinTable(
+        name = "user_privileges",
+        joinColumns = [JoinColumn(name = "user_id")],
+        inverseJoinColumns = [JoinColumn(name = "privilege_id")]
+    )
+    var privileges: List<Privilege> = listOf(),
 )
