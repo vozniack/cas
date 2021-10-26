@@ -13,6 +13,8 @@ CREATE TABLE groups
 (
     id          UUID         NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
 
+    type        VARCHAR(255) NOT NULL             DEFAULT 'EXTERNAL',
+
     name        VARCHAR(255) NOT NULL UNIQUE,
     description VARCHAR(1024)
 );
@@ -29,8 +31,8 @@ CREATE TABLE user_groups
 INSERT INTO users (id, email, password, first_name, last_name)
 VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', 'john.doe@cas.dev', 'pass123!', 'John', 'Doe');
 
-INSERT INTO groups(id, name, description)
-VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', 'Administrator', 'CAS-Core management group');
+INSERT INTO groups(id, type, name, description)
+VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', 'INTERNAL', 'Administrator', 'CAS-Core management group');
 
 INSERT INTO user_groups(user_id, group_id)
 VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', '98fa7b2c-6caa-4852-b632-e5c05b507021');

@@ -5,6 +5,7 @@ import dev.vozniack.cas.core.api.v1.dto.entity.GroupDto
 import dev.vozniack.cas.core.api.v1.dto.entity.UserDto
 import dev.vozniack.cas.core.entity.Group
 import dev.vozniack.cas.core.entity.User
+import dev.vozniack.cas.core.types.GroupType
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.assertj.core.api.Assertions.assertThat
@@ -38,8 +39,8 @@ class UserMapperTest @Autowired constructor(
     @Test
     fun `map dto to entity`() {
         val userDto = UserDto(id = UUID.randomUUID(), email = "john.doe@cas.dev", password = "pass123!",
-            firstName = "John", lastName = "Doe",
-            groups = listOf(GroupDto(id = UUID.randomUUID(), name = "Group", description = "Desccription"))
+            firstName = "John", lastName = "Doe", groups = listOf(GroupDto(id = UUID.randomUUID(),
+                type = GroupType.EXTERNAL, name = "Group", description = "Description"))
         )
 
         val user = userMapper.mapToEntity(userDto)
