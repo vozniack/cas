@@ -6,6 +6,8 @@ import dev.vozniack.cas.core.api.v1.mapper.Mapper
 import dev.vozniack.cas.core.entity.Group
 import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.service.GroupService
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
@@ -18,7 +20,7 @@ class GroupController(
 ) {
 
     @GetMapping
-    fun getAll(): List<GroupDto> = groupService.findAll().map(groupMapper::mapToDto)
+    fun getAll(pageable: Pageable): Page<GroupDto> = groupService.findAll(pageable).map(groupMapper::mapToDto)
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: UUID): GroupDto = groupMapper.mapToDto(groupService.findById(id))

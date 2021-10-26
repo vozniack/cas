@@ -11,6 +11,11 @@ spring:
     hibernate:
       ddl-auto: validate
 
+  data:
+    web:
+      pageable:
+        default-page-size: 64
+
   flyway:
     url: jdbc:postgresql://localhost:5432/postgres
     user: postgres

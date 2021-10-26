@@ -4,6 +4,8 @@ import dev.vozniack.cas.core.api.v1.dto.entity.PrivilegeDto
 import dev.vozniack.cas.core.api.v1.mapper.Mapper
 import dev.vozniack.cas.core.entity.Privilege
 import dev.vozniack.cas.core.service.PrivilegeService
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
@@ -15,7 +17,7 @@ class PrivilegeController(
 ) {
 
     @GetMapping
-    fun getAll(): List<PrivilegeDto> = privilegeService.findAll().map(privilegeMapper::mapToDto)
+    fun getAll(pageable: Pageable): Page<PrivilegeDto> = privilegeService.findAll(pageable).map(privilegeMapper::mapToDto)
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: UUID): PrivilegeDto = privilegeMapper.mapToDto(privilegeService.findById(id))

@@ -68,10 +68,10 @@ CREATE TABLE group_privileges
 /* Values */
 
 INSERT INTO users (id, email, password, first_name, last_name)
-VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', 'administrator@cas.dev', null, null, null);
+VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', 'administrator@cas.dev', 'admin123!', 'John', 'Doe');
 
 INSERT INTO groups (id, type, name, description)
-VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', 'INTERNAL', 'Manager', null);
+VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', 'INTERNAL', 'Manager', 'Management group');
 
 INSERT INTO user_groups (user_id, group_id)
 VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', '98fa7b2c-6caa-4852-b632-e5c05b507021');

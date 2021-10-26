@@ -9,6 +9,8 @@ import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
 import java.util.*
 
 class PrivilegeServiceTest @Autowired constructor(
@@ -28,10 +30,10 @@ class PrivilegeServiceTest @Autowired constructor(
             Privilege(name = "Second privilege", code = "SECOND_PRIVILEGE")
         ))
 
-        val privileges = privilegeService.findAll()
+        val privileges = privilegeService.findAll(PageRequest.ofSize(1024))
 
-        assertThat(privileges).isInstanceOf(List::class.java)
-        assertThat(privileges.toList().size).isEqualTo(2)
+        assertThat(privileges).isInstanceOf(Page::class.java)
+        assertThat(privileges.content.size).isEqualTo(2)
     }
 
     @Test

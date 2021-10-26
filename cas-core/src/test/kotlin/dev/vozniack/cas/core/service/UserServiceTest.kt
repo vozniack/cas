@@ -6,11 +6,13 @@ import dev.vozniack.cas.core.api.v1.dto.request.UserPasswordRequestDto
 import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.UserRepository
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
 import java.util.*
 
 class UserServiceTest @Autowired constructor(
@@ -28,10 +30,10 @@ class UserServiceTest @Autowired constructor(
         userRepository.save(User(email = "john.doe1@cas.dev", groups = listOf()))
         userRepository.save(User(email = "john.doe2@cas.dev", groups = listOf()))
 
-        val users = userService.findAll()
+        val users = userService.findAll(PageRequest.ofSize(1024))
 
-        assertThat(users).isInstanceOf(List::class.java)
-        assertThat(users.toList().size).isEqualTo(2)
+        assertThat(users).isInstanceOf(Page::class.java)
+        assertThat(users.content.size).isEqualTo(2)
     }
 
     @Test

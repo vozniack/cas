@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
 import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
@@ -32,10 +34,10 @@ class GroupServiceTest @Autowired constructor(
             Group(name = "Second group", description = "Description"))
         )
 
-        val groups = groupService.findAll()
+        val groups = groupService.findAll(PageRequest.ofSize(1024))
 
-        assertThat(groups).isInstanceOf(List::class.java)
-        assertThat(groups.toList().size).isEqualTo(2)
+        assertThat(groups).isInstanceOf(Page::class.java)
+        assertThat(groups.content.size).isEqualTo(2)
     }
 
     @Test

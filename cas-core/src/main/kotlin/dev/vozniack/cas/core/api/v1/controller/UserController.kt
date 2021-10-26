@@ -6,6 +6,8 @@ import dev.vozniack.cas.core.api.v1.dto.request.UserPasswordRequestDto
 import dev.vozniack.cas.core.api.v1.mapper.Mapper
 import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.service.UserService
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
@@ -17,7 +19,7 @@ class UserController(
 ) {
 
     @GetMapping
-    fun getAll(): List<UserDto> = userService.findAll().map(userMapper::mapToDto)
+    fun getAll(pageable: Pageable): Page<UserDto> = userService.findAll(pageable).map(userMapper::mapToDto)
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: UUID): UserDto = userMapper.mapToDto(userService.findById(id))
