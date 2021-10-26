@@ -18,7 +18,10 @@ class UserService(val userRepository: UserRepository) {
     fun create(user: User): User = userRepository.save(user)
 
     fun update(id: UUID, user: User): User = userRepository.save(
-        findById(id).apply { firstName = user.firstName; lastName = user.lastName }
+        findById(id).apply {
+            firstName = user.firstName
+            lastName = user.lastName
+        }
     )
 
     fun updateEmail(id: UUID, request: UserEmailRequestDto): User = userRepository.save(

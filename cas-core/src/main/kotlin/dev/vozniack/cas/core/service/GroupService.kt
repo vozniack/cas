@@ -20,7 +20,10 @@ class GroupService(private val groupRepository: GroupRepository, private val use
     fun create(group: Group): Group = groupRepository.save(group)
 
     fun update(id: UUID, group: Group): Group = groupRepository.save(
-        findById(id).apply { name = group.name; description = group.description }
+        findById(id).apply {
+            name = group.name
+            description = group.description
+        }
     )
 
     fun delete(id: UUID) = groupRepository.delete(findById(id))
