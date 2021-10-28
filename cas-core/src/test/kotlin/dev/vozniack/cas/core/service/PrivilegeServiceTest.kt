@@ -2,6 +2,7 @@ package dev.vozniack.cas.core.service
 
 import dev.vozniack.cas.core.CasCoreAbstractTest
 import dev.vozniack.cas.core.entity.Privilege
+import dev.vozniack.cas.core.exception.ConflictException
 import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.PrivilegeRepository
 import dev.vozniack.cas.core.types.ScopeType
@@ -135,11 +136,20 @@ class PrivilegeServiceTest @Autowired constructor(
 
     @Test
     fun `delete privilege`() {
-        val privilege = privilegeRepository.save(Privilege(name = "Privilege", code = "PRIVILEGE",
-            description = "Privilege set"))
+        val privilege = privilegeRepository.save(Privilege(scope = ScopeType.EXTERNAL, name = "Privilege",
+            code = "PRIVILEGE", description = "Privilege set"))
 
         privilegeService.delete(privilege.id!!)
         assertThat(privilegeRepository.findById(privilege.id!!)).isEmpty
+    }
+
+    @Test
+    fun `delete internal privilege`() {
+        val privilege = privilegeRepository.save(Privilege(scope = ScopeType.INTERNAL, name = "Privilege",
+            code = "PRIVILEGE", description = "Privilege set"))
+
+        assertThatThrownBy { privilegeService.delete(privilege.id!!) }
+            .isInstanceOf(ConflictException::class.java)
     }
 
     @Test

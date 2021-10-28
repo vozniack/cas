@@ -1,8 +1,10 @@
 package dev.vozniack.cas.core.service
 
 import dev.vozniack.cas.core.entity.Privilege
+import dev.vozniack.cas.core.exception.ConflictException
 import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.PrivilegeRepository
+import dev.vozniack.cas.core.types.ScopeType
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
@@ -27,5 +29,8 @@ class PrivilegeService(private val privilegeRepository: PrivilegeRepository) {
         }
     )
 
-    fun delete(id: UUID) = privilegeRepository.delete(findById(id))
+    fun delete(id: UUID) = privilegeRepository.delete(
+        Optional.ofNullable(findById(id).takeIf { privilege -> privilege.scope == ScopeType.EXTERNAL })
+            .orElseThrow { ConflictException("Can't delete internal privilege") }
+    )
 }
