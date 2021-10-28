@@ -1,10 +1,13 @@
 package dev.vozniack.cas.core.api.v1.dto.entity
 
+import dev.vozniack.cas.core.types.ScopeType
 import java.util.*
 
 class UserDto(
 
     val id: UUID?,
+
+    val scope: ScopeType,
 
     val email: String,
     val password: String?,

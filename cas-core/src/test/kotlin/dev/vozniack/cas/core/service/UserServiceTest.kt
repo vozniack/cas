@@ -6,6 +6,7 @@ import dev.vozniack.cas.core.api.v1.dto.request.UserPasswordRequestDto
 import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.UserRepository
+import dev.vozniack.cas.core.types.ScopeType
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.AfterEach
@@ -54,11 +55,12 @@ class UserServiceTest @Autowired constructor(
 
     @Test
     fun `create user`() {
-        val user = userService.create(User(email = "john.doe@cas.dev", password = "pass123!",
-            firstName = "John", lastName = "Doe"))
+        val user = userService.create(User(scope = ScopeType.INTERNAL, email = "john.doe@cas.dev",
+            password = "pass123!", firstName = "John", lastName = "Doe"))
 
         assertThat(user).isNotNull
         assertThat(user.id).isNotNull
+        assertThat(user.scope).isEqualTo(ScopeType.INTERNAL)
         assertThat(user.email).isEqualTo("john.doe@cas.dev")
         assertThat(user.password).isEqualTo("pass123!") // #todo after password encryption
         assertThat(user.firstName).isEqualTo("John")
@@ -67,16 +69,17 @@ class UserServiceTest @Autowired constructor(
 
     @Test
     fun `update user personal data`() {
-        val user = userRepository.save(User(email = "john.doe@cas.dev", password = "pass123!",
-            firstName = "John", lastName = "Doe"))
+        val user = userRepository.save(User(scope = ScopeType.INTERNAL, email = "john.doe@cas.dev",
+            password = "pass123!", firstName = "John", lastName = "Doe"))
 
         user.apply {
-            firstName = "Updated John"; lastName = "Updated Doe"
+            scope = ScopeType.EXTERNAL; firstName = "Updated John"; lastName = "Updated Doe"
             email = "updated.john.updated.doe@cas.dev"; password = "updatedPass123!"
         }
 
         val savedUser = userService.update(user.id!!, user)
 
+        assertThat(savedUser.scope).isEqualTo(ScopeType.INTERNAL)
         assertThat(savedUser.firstName).isEqualTo("Updated John")
         assertThat(savedUser.lastName).isEqualTo("Updated Doe")
         assertThat(savedUser.email).isEqualTo("john.doe@cas.dev")

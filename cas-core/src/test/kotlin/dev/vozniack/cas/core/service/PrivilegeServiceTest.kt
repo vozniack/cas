@@ -4,6 +4,7 @@ import dev.vozniack.cas.core.CasCoreAbstractTest
 import dev.vozniack.cas.core.entity.Privilege
 import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.PrivilegeRepository
+import dev.vozniack.cas.core.types.ScopeType
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.AfterEach
@@ -57,17 +58,20 @@ class PrivilegeServiceTest @Autowired constructor(
         val parentPrivilege = privilegeRepository.save(Privilege(name = "Parent privilege",
             code = "PARENT_PRIVILEGE", description = "Parent privilege set"))
 
-        val privilege = privilegeService.create(Privilege(name = "Privilege", code = "PRIVILEGE",
-            description = "Privilege set", parent = parentPrivilege, privileges = listOf(
+        val privilege = privilegeService.create(Privilege(name = "Privilege", scope = ScopeType.INTERNAL,
+            code = "PRIVILEGE", description = "Privilege set", index = 0,
+            parent = parentPrivilege, privileges = listOf(
                 Privilege(name = "First privilege", code = "FIRST_PRIVILEGE"),
                 Privilege(name = "Second privilege", code = "SECOND_PRIVILEGE")
             )))
 
         assertThat(privilege).isNotNull
         assertThat(privilege.id).isNotNull
+        assertThat(privilege.scope).isEqualTo(ScopeType.INTERNAL)
         assertThat(privilege.name).isEqualTo("Privilege")
         assertThat(privilege.code).isEqualTo("PRIVILEGE")
         assertThat(privilege.description).isEqualTo("Privilege set")
+        assertThat(privilege.index).isEqualTo(0)
         assertThat(privilege.parent?.id).isEqualTo(parentPrivilege.id)
 
         // children exist but not persisted (there is only CascadeType.REMOVE)
@@ -82,18 +86,23 @@ class PrivilegeServiceTest @Autowired constructor(
         val parentPrivilege = privilegeRepository.save(Privilege(name = "Parent privilege",
             code = "PARENT_PRIVILEGE", description = "Parent privilege set"))
 
-        val privilege = privilegeRepository.save(Privilege(name = "Privilege", code = "PRIVILEGE",
-            description = "Privilege set", parent = parentPrivilege))
+        val privilege = privilegeRepository.save(Privilege(scope = ScopeType.INTERNAL, name = "Privilege",
+            code = "PRIVILEGE", description = "Privilege set", index = 0, parent = parentPrivilege))
 
-        privilege.apply { name = "Edited privilege"; code = "EDITED_PRIVILEGE"; description = "Edited privilege set" }
+        privilege.apply {
+            scope = ScopeType.EXTERNAL; name = "Edited privilege"; code = "EDITED_PRIVILEGE"
+            description = "Edited privilege set"; index = 1
+        }
 
         val updatedPrivilege = privilegeService.update(privilege.id!!, privilege)
 
         assertThat(updatedPrivilege).isNotNull
         assertThat(updatedPrivilege.id).isEqualTo(privilege.id)
+        assertThat(updatedPrivilege.scope).isEqualTo(ScopeType.INTERNAL)
         assertThat(updatedPrivilege.name).isEqualTo("Edited privilege")
         assertThat(updatedPrivilege.code).isEqualTo("EDITED_PRIVILEGE")
         assertThat(updatedPrivilege.description).isEqualTo("Edited privilege set")
+        assertThat(updatedPrivilege.index).isEqualTo(1)
         assertThat(updatedPrivilege.parent?.id).isEqualTo(parentPrivilege.id)
     }
 

@@ -1,5 +1,6 @@
 package dev.vozniack.cas.core.entity
 
+import dev.vozniack.cas.core.types.ScopeType
 import java.util.*
 import javax.persistence.*
 
@@ -9,6 +10,9 @@ class User(
 
     @Id @GeneratedValue
     var id: UUID? = null,
+
+    @Enumerated(EnumType.STRING)
+    var scope: ScopeType = ScopeType.EXTERNAL,
 
     var email: String = "",
     var password: String? = null,

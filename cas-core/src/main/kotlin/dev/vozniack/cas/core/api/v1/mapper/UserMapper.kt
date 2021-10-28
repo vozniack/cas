@@ -9,6 +9,7 @@ class UserMapper(private val groupMapper: GroupMapper) : Mapper<User, UserDto> {
 
     override fun mapToDto(entity: User): UserDto = UserDto(
         entity.id,
+        entity.scope,
         entity.email,
         entity.password,
         entity.firstName,
@@ -18,6 +19,7 @@ class UserMapper(private val groupMapper: GroupMapper) : Mapper<User, UserDto> {
 
     override fun mapToEntity(dto: UserDto): User = User(
         dto.id,
+        dto.scope,
         dto.email,
         dto.password,
         dto.firstName,

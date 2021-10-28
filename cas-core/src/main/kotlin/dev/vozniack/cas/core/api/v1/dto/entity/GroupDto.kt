@@ -1,13 +1,13 @@
 package dev.vozniack.cas.core.api.v1.dto.entity
 
-import dev.vozniack.cas.core.types.GroupType
+import dev.vozniack.cas.core.types.ScopeType
 import java.util.*
 
 class GroupDto(
 
     val id: UUID?,
 
-    val type: GroupType,
+    val scope: ScopeType,
 
     val name: String,
     val description: String,

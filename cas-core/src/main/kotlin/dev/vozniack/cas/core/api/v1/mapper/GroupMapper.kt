@@ -9,14 +9,14 @@ class GroupMapper : Mapper<Group, GroupDto> {
 
     override fun mapToDto(entity: Group): GroupDto = GroupDto(
         entity.id,
-        entity.type,
+        entity.scope,
         entity.name,
         entity.description
     )
 
     override fun mapToEntity(dto: GroupDto): Group = Group(
         dto.id,
-        dto.type,
+        dto.scope,
         dto.name,
         dto.description
     )

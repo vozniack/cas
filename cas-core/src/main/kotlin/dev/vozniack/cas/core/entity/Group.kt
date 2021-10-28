@@ -1,6 +1,6 @@
 package dev.vozniack.cas.core.entity
 
-import dev.vozniack.cas.core.types.GroupType
+import dev.vozniack.cas.core.types.ScopeType
 import java.util.*
 import javax.persistence.*
 
@@ -12,7 +12,7 @@ class Group(
     var id: UUID? = null,
 
     @Enumerated(EnumType.STRING)
-    var type: GroupType = GroupType.EXTERNAL,
+    var scope: ScopeType = ScopeType.EXTERNAL,
 
     var name: String = "",
     var description: String = "",

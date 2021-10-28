@@ -22,6 +22,7 @@ class PrivilegeService(private val privilegeRepository: PrivilegeRepository) {
             name = privilege.name
             code = privilege.code
             description = privilege.description
+            index = privilege.index
             parent = privilege.parent
         }
     )
