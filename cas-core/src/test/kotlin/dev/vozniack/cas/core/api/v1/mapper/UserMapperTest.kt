@@ -1,9 +1,9 @@
 package dev.vozniack.cas.core.api.v1.mapper
 
 import dev.vozniack.cas.core.CasCoreAbstractTest
-import dev.vozniack.cas.core.api.v1.dto.entity.GroupDto
+import dev.vozniack.cas.core.api.v1.dto.entity.RoleDto
 import dev.vozniack.cas.core.api.v1.dto.entity.UserDto
-import dev.vozniack.cas.core.entity.Group
+import dev.vozniack.cas.core.entity.Role
 import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.types.ScopeType
 import org.assertj.core.api.Assertions.assertThat
@@ -19,7 +19,7 @@ class UserMapperTest @Autowired constructor(
     fun `map entity to dto`() {
         val user = User(id = UUID.randomUUID(), scope = ScopeType.INTERNAL, email = "john.doe@cas.dev",
             password = "pass123!", firstName = "John", lastName = "Doe",
-            groups = listOf(Group(id = UUID.randomUUID(), name = "Group", description = "Description"))
+            roles = listOf(Role(id = UUID.randomUUID(), name = "ROLE", description = "Description"))
         )
 
         val userDto = userMapper.mapToDto(user)
@@ -31,18 +31,18 @@ class UserMapperTest @Autowired constructor(
         assertThat(userDto.firstName).isEqualTo(user.firstName)
         assertThat(userDto.lastName).isEqualTo(user.lastName)
 
-        assertThat(userDto.groups.size).isEqualTo(user.groups.size)
-        assertThat(userDto.groups[0].id).isEqualTo(user.groups[0].id)
-        assertThat(userDto.groups[0].name).isEqualTo(user.groups[0].name)
-        assertThat(userDto.groups[0].description).isEqualTo(user.groups[0].description)
+        assertThat(userDto.roles.size).isEqualTo(user.roles.size)
+        assertThat(userDto.roles[0].id).isEqualTo(user.roles[0].id)
+        assertThat(userDto.roles[0].name).isEqualTo(user.roles[0].name)
+        assertThat(userDto.roles[0].description).isEqualTo(user.roles[0].description)
     }
 
     @Test
     fun `map dto to entity`() {
         val userDto = UserDto(id = UUID.randomUUID(), scope = ScopeType.INTERNAL, email = "john.doe@cas.dev",
             password = "pass123!", firstName = "John", lastName = "Doe",
-            groups = listOf(GroupDto(id = UUID.randomUUID(), scope = ScopeType.INTERNAL, name = "Group",
-                description = "Description"))
+            roles = listOf(RoleDto(id = UUID.randomUUID(), scope = ScopeType.INTERNAL,
+                name = "ROLE", description = "Description"))
         )
 
         val user = userMapper.mapToEntity(userDto)
@@ -54,9 +54,9 @@ class UserMapperTest @Autowired constructor(
         assertThat(user.firstName).isEqualTo(userDto.firstName)
         assertThat(user.lastName).isEqualTo(userDto.lastName)
 
-        assertThat(user.groups.size).isEqualTo(userDto.groups.size)
-        assertThat(user.groups[0].id).isEqualTo(userDto.groups[0].id)
-        assertThat(user.groups[0].name).isEqualTo(userDto.groups[0].name)
-        assertThat(user.groups[0].description).isEqualTo(userDto.groups[0].description)
+        assertThat(user.roles.size).isEqualTo(userDto.roles.size)
+        assertThat(user.roles[0].id).isEqualTo(userDto.roles[0].id)
+        assertThat(user.roles[0].name).isEqualTo(userDto.roles[0].name)
+        assertThat(user.roles[0].description).isEqualTo(userDto.roles[0].description)
     }
 }

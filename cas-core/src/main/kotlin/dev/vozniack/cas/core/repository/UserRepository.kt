@@ -8,5 +8,5 @@ import java.util.*
 @Repository
 interface UserRepository : PagingAndSortingRepository<User, UUID> {
 
-    fun findAllByGroupsId(id: UUID): List<User>
+    fun findAllByRolesId(id: UUID): List<User>
 }

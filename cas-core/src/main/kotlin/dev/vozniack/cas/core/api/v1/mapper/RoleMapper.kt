@@ -1,13 +1,13 @@
 package dev.vozniack.cas.core.api.v1.mapper
 
-import dev.vozniack.cas.core.api.v1.dto.entity.GroupDto
-import dev.vozniack.cas.core.entity.Group
+import dev.vozniack.cas.core.api.v1.dto.entity.RoleDto
+import dev.vozniack.cas.core.entity.Role
 import org.springframework.stereotype.Component
 
 @Component
-class GroupMapper : Mapper<Group, GroupDto> {
+class RoleMapper : Mapper<Role, RoleDto> {
 
-    override fun mapToDto(entity: Group): GroupDto = GroupDto(
+    override fun mapToDto(entity: Role): RoleDto = RoleDto(
         entity.id,
         entity.scope,
         entity.name,
@@ -16,7 +16,7 @@ class GroupMapper : Mapper<Group, GroupDto> {
         entity.updatedAt
     )
 
-    override fun mapToEntity(dto: GroupDto): Group = Group(
+    override fun mapToEntity(dto: RoleDto): Role = Role(
         dto.id,
         dto.scope,
         dto.name,

@@ -16,7 +16,7 @@ class UserDto(
     val firstName: String?,
     val lastName: String?,
 
-    val groups: List<GroupDto> = listOf(),
+    val roles: List<RoleDto> = listOf(),
 
     val createdAt: LocalDateTime? = null,
     val updatedAt: LocalDateTime? = null

@@ -16,7 +16,7 @@ CREATE TABLE users
     updated_at TIMESTAMP NOT NULL DEFAULT now()
 );
 
-CREATE TABLE groups
+CREATE TABLE roles
 (
     id          UUID         NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
 
@@ -49,13 +49,13 @@ CREATE TABLE privileges
     CONSTRAINT privilege_parent_fk FOREIGN KEY (parent_id) REFERENCES privileges (id)
 );
 
-CREATE TABLE user_groups
+CREATE TABLE user_roles
 (
     user_id  UUID NOT NULL,
-    group_id UUID NOT NULL,
-    PRIMARY KEY (user_id, group_id),
-    CONSTRAINT user_group_user_fk FOREIGN KEY (user_id) REFERENCES users (id),
-    CONSTRAINT user_group_group_fk FOREIGN KEY (group_id) REFERENCES groups (id)
+    role_id UUID NOT NULL,
+    PRIMARY KEY (user_id, role_id),
+    CONSTRAINT user_role_user_fk FOREIGN KEY (user_id) REFERENCES users (id),
+    CONSTRAINT user_role_role_fk FOREIGN KEY (role_id) REFERENCES roles (id)
 );
 
 CREATE TABLE user_privileges
@@ -69,26 +69,26 @@ CREATE TABLE user_privileges
     CONSTRAINT user_privilege_privilege_fk FOREIGN KEY (privilege_id) REFERENCES privileges (id)
 );
 
-CREATE TABLE group_privileges
+CREATE TABLE role_privileges
 (
-    group_id     UUID NOT NULL,
+    role_id     UUID NOT NULL,
     privilege_id UUID NOT NULL,
 
-    PRIMARY KEY (group_id, privilege_id),
+    PRIMARY KEY (role_id, privilege_id),
 
-    CONSTRAINT group_privilege_group_fk FOREIGN KEY (group_id) REFERENCES groups (id),
-    CONSTRAINT group_privilege_privilege_fk FOREIGN KEY (privilege_id) REFERENCES privileges (id)
+    CONSTRAINT role_privilege_role_fk FOREIGN KEY (role_id) REFERENCES roles (id),
+    CONSTRAINT role_privilege_privilege_fk FOREIGN KEY (privilege_id) REFERENCES privileges (id)
 );
 
 /* Values */
 
 INSERT INTO users (id, scope, email, password, first_name, last_name)
-VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', 'INTERNAL', 'administrator@cas.dev', 'admin123!', 'John', 'Doe');
+VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', 'INTERNAL', 'admin@cas.dev', null, 'John', 'Doe');
 
-INSERT INTO groups (id, scope, name, description)
-VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', 'INTERNAL', 'Manager', 'Management group');
+INSERT INTO roles (id, scope, name, description)
+VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', 'INTERNAL', 'ADMINISTRATOR', 'Central Authorization System main role');
 
-INSERT INTO user_groups (user_id, group_id)
+INSERT INTO user_roles (user_id, role_id)
 VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', '98fa7b2c-6caa-4852-b632-e5c05b507021');
 
 INSERT INTO privileges (id, scope, name, code, description, index, parent_id)

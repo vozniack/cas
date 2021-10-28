@@ -1,9 +1,9 @@
 package dev.vozniack.cas.core.repository
 
-import dev.vozniack.cas.core.entity.Group
+import dev.vozniack.cas.core.entity.Role
 import org.springframework.data.repository.PagingAndSortingRepository
 import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-interface GroupRepository : PagingAndSortingRepository<Group, UUID>
+interface RoleRepository : PagingAndSortingRepository<Role, UUID>

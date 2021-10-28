@@ -4,7 +4,7 @@ import dev.vozniack.cas.core.types.ScopeType
 import java.time.LocalDateTime
 import java.util.*
 
-class GroupDto(
+class RoleDto(
 
     val id: UUID?,
 

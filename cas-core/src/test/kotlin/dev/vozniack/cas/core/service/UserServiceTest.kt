@@ -28,8 +28,8 @@ class UserServiceTest @Autowired constructor(
 
     @Test
     fun `find list of all users`() {
-        userRepository.save(User(email = "john.doe1@cas.dev", groups = listOf()))
-        userRepository.save(User(email = "john.doe2@cas.dev", groups = listOf()))
+        userRepository.save(User(email = "john.doe1@cas.dev", roles = listOf()))
+        userRepository.save(User(email = "john.doe2@cas.dev", roles = listOf()))
 
         val users = userService.findAll(PageRequest.ofSize(1024))
 

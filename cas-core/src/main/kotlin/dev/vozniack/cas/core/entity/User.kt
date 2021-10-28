@@ -23,11 +23,11 @@ class User(
 
     @ManyToMany
     @JoinTable(
-        name = "user_groups",
+        name = "user_roles",
         joinColumns = [JoinColumn(name = "user_id")],
-        inverseJoinColumns = [JoinColumn(name = "group_id")]
+        inverseJoinColumns = [JoinColumn(name = "role_id")]
     )
-    var groups: List<Group> = listOf(),
+    var roles: List<Role> = listOf(),
 
     @ManyToMany
     @JoinTable(

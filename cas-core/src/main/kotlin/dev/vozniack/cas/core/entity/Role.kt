@@ -6,8 +6,8 @@ import java.util.*
 import javax.persistence.*
 
 @Entity
-@Table(name = "groups")
-class Group(
+@Table(name = "roles")
+class Role(
 
     @Id @GeneratedValue
     var id: UUID? = null,
@@ -20,8 +20,8 @@ class Group(
 
     @ManyToMany
     @JoinTable(
-        name = "group_privileges",
-        joinColumns = [JoinColumn(name = "group_id")],
+        name = "role_privileges",
+        joinColumns = [JoinColumn(name = "role_id")],
         inverseJoinColumns = [JoinColumn(name = "privilege_id")]
     )
     var privileges: List<Privilege> = listOf(),
