@@ -11,13 +11,15 @@ class GroupMapper : Mapper<Group, GroupDto> {
         entity.id,
         entity.scope,
         entity.name,
-        entity.description
+        entity.description,
+        entity.createdAt,
+        entity.updatedAt
     )
 
     override fun mapToEntity(dto: GroupDto): Group = Group(
         dto.id,
         dto.scope,
         dto.name,
-        dto.description
+        dto.description,
     )
 }

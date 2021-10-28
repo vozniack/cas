@@ -19,7 +19,9 @@ class PrivilegeMapper(private val privilegeService: PrivilegeService) : Mapper<P
         Optional.ofNullable(entity.parent).map { parent -> parent.id }.orElse(null),
         Optional.ofNullable(entity.privileges)
             .map { privileges -> privileges.map { privilege -> mapToDto(privilege) } }
-            .orElse(null)
+            .orElse(null),
+        entity.createdAt,
+        entity.updatedAt
     )
 
     override fun mapToEntity(dto: PrivilegeDto): Privilege = Privilege(

@@ -65,6 +65,9 @@ class UserServiceTest @Autowired constructor(
         assertThat(user.password).isEqualTo("pass123!") // #todo after password encryption
         assertThat(user.firstName).isEqualTo("John")
         assertThat(user.lastName).isEqualTo("Doe")
+        assertThat(user.createdAt).isNotNull
+        assertThat(user.updatedAt).isNotNull
+        assertThat(user.createdAt).isEqualTo(user.updatedAt)
     }
 
     @Test
@@ -84,6 +87,8 @@ class UserServiceTest @Autowired constructor(
         assertThat(savedUser.lastName).isEqualTo("Updated Doe")
         assertThat(savedUser.email).isEqualTo("john.doe@cas.dev")
         assertThat(savedUser.password).isEqualTo("pass123!") // #todo after password encryption
+        assertThat(savedUser.createdAt).isBefore(savedUser.updatedAt)
+
     }
 
     @Test

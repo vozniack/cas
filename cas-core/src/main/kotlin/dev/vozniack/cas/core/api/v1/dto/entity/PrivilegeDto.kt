@@ -1,6 +1,7 @@
 package dev.vozniack.cas.core.api.v1.dto.entity
 
 import dev.vozniack.cas.core.types.ScopeType
+import java.time.LocalDateTime
 import java.util.*
 
 class PrivilegeDto(
@@ -18,4 +19,7 @@ class PrivilegeDto(
     var parentId: UUID?,
 
     var privileges: List<PrivilegeDto>?,
+
+    val createdAt: LocalDateTime? = null,
+    val updatedAt: LocalDateTime? = null
 )

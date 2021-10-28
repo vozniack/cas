@@ -10,7 +10,10 @@ CREATE TABLE users
     password   VARCHAR(255),
 
     first_name VARCHAR(255),
-    last_name  VARCHAR(255)
+    last_name  VARCHAR(255),
+
+    created_at TIMESTAMP NOT NULL DEFAULT now(),
+    updated_at TIMESTAMP NOT NULL DEFAULT now()
 );
 
 CREATE TABLE groups
@@ -20,7 +23,10 @@ CREATE TABLE groups
     scope       VARCHAR(255) NOT NULL             DEFAULT 'EXTERNAL',
 
     name        VARCHAR(255) NOT NULL UNIQUE,
-    description VARCHAR(1024)
+    description VARCHAR(1024),
+
+    created_at  TIMESTAMP NOT NULL DEFAULT now(),
+    updated_at  TIMESTAMP NOT NULL DEFAULT now()
 );
 
 CREATE TABLE privileges
@@ -36,6 +42,9 @@ CREATE TABLE privileges
     index       INT          NOT NULL,
 
     parent_id   UUID,
+
+    created_at  TIMESTAMP NOT NULL DEFAULT now(),
+    updated_at  TIMESTAMP NOT NULL DEFAULT now(),
 
     CONSTRAINT privilege_parent_fk FOREIGN KEY (parent_id) REFERENCES privileges (id)
 );

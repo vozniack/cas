@@ -1,6 +1,7 @@
 package dev.vozniack.cas.core.api.v1.dto.entity
 
 import dev.vozniack.cas.core.types.ScopeType
+import java.time.LocalDateTime
 import java.util.*
 
 class GroupDto(
@@ -11,4 +12,7 @@ class GroupDto(
 
     val name: String,
     val description: String,
+
+    val createdAt: LocalDateTime? = null,
+    val updatedAt: LocalDateTime? = null
 )

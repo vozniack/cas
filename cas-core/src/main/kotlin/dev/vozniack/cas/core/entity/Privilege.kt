@@ -1,5 +1,6 @@
 package dev.vozniack.cas.core.entity
 
+import dev.vozniack.cas.core.entity.common.Auditable
 import dev.vozniack.cas.core.types.ScopeType
 import java.util.*
 import javax.persistence.*
@@ -26,4 +27,5 @@ class Privilege(
 
     @OneToMany(mappedBy = "parent", cascade = [CascadeType.REMOVE])
     var privileges: List<Privilege>? = listOf(),
-)
+
+    ) : Auditable()

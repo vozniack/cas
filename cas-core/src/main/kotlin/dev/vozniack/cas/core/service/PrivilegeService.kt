@@ -17,7 +17,9 @@ class PrivilegeService(private val privilegeRepository: PrivilegeRepository) {
 
     fun findById(id: UUID): Privilege = privilegeRepository.findById(id).orElseThrow { NotFoundException() }
 
-    fun create(privilege: Privilege): Privilege = privilegeRepository.save(privilege)
+    fun create(privilege: Privilege): Privilege = privilegeRepository.save(
+        privilege.apply { scope = ScopeType.EXTERNAL }
+    )
 
     fun update(id: UUID, privilege: Privilege): Privilege = privilegeRepository.save(
         findById(id).apply {

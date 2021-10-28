@@ -78,6 +78,9 @@ class GroupServiceTest @Autowired constructor(
         assertThat(group.id).isNotNull
         assertThat(group.name).isEqualTo("Group")
         assertThat(group.description).isEqualTo("Description")
+        assertThat(group.createdAt).isNotNull
+        assertThat(group.updatedAt).isNotNull
+        assertThat(group.createdAt).isEqualTo(group.updatedAt)
     }
 
     @Test
@@ -91,6 +94,7 @@ class GroupServiceTest @Autowired constructor(
         assertThat(updatedGroup.id).isEqualTo(group.id)
         assertThat(updatedGroup.name).isEqualTo("Updated group")
         assertThat(updatedGroup.description).isEqualTo("Updated description")
+        assertThat(updatedGroup.createdAt).isBefore(updatedGroup.updatedAt)
     }
 
     @Test

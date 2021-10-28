@@ -14,7 +14,9 @@ class UserMapper(private val groupMapper: GroupMapper) : Mapper<User, UserDto> {
         entity.password,
         entity.firstName,
         entity.lastName,
-        entity.groups.map(groupMapper::mapToDto)
+        entity.groups.map(groupMapper::mapToDto),
+        entity.createdAt,
+        entity.updatedAt
     )
 
     override fun mapToEntity(dto: UserDto): User = User(

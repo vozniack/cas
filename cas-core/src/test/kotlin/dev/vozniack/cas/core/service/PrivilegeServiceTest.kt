@@ -68,12 +68,15 @@ class PrivilegeServiceTest @Autowired constructor(
 
         assertThat(privilege).isNotNull
         assertThat(privilege.id).isNotNull
-        assertThat(privilege.scope).isEqualTo(ScopeType.INTERNAL)
+        assertThat(privilege.scope).isEqualTo(ScopeType.EXTERNAL) // new privilege is always EXTERNAL
         assertThat(privilege.name).isEqualTo("Privilege")
         assertThat(privilege.code).isEqualTo("PRIVILEGE")
         assertThat(privilege.description).isEqualTo("Privilege set")
         assertThat(privilege.index).isEqualTo(0)
         assertThat(privilege.parent?.id).isEqualTo(parentPrivilege.id)
+        assertThat(privilege.createdAt).isNotNull
+        assertThat(privilege.updatedAt).isNotNull
+        assertThat(privilege.createdAt).isEqualTo(privilege.updatedAt)
 
         // children exist but not persisted (there is only CascadeType.REMOVE)
 
@@ -105,6 +108,7 @@ class PrivilegeServiceTest @Autowired constructor(
         assertThat(updatedPrivilege.description).isEqualTo("Edited privilege set")
         assertThat(updatedPrivilege.index).isEqualTo(1)
         assertThat(updatedPrivilege.parent?.id).isEqualTo(parentPrivilege.id)
+        assertThat(updatedPrivilege.createdAt).isBefore(updatedPrivilege.updatedAt)
     }
 
     @Test
