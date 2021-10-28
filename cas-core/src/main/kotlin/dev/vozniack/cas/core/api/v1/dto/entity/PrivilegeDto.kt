@@ -6,19 +6,19 @@ import java.util.*
 
 class PrivilegeDto(
 
-    var id: UUID?,
+    val id: UUID?,
 
     val scope: ScopeType,
 
-    var name: String,
-    var code: String,
-    var description: String?,
+    val name: String,
+    val code: String,
+    val description: String?,
 
-    var index: Int?,
+    val index: Int?,
 
-    var parentId: UUID?,
+    val parentId: UUID?,
 
-    var privileges: List<PrivilegeDto>?,
+    val privileges: List<PrivilegeDto>?,
 
     val createdAt: LocalDateTime? = null,
     val updatedAt: LocalDateTime? = null
