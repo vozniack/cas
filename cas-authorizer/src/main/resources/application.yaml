@@ -1,0 +1,11 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: cas-authorizer
+
+  r2dbc:
+    url: r2dbc:postgres://localhost:5432
+    username: postgres
+    password: root
