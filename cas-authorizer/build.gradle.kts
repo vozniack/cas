@@ -16,21 +16,19 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-data-r2dbc:2.5.5")
-	implementation("org.springframework.boot:spring-boot-starter-webflux:2.5.5")
+	implementation("org.springframework.boot:spring-boot-starter-actuator:2.5.5")
+	implementation("org.springframework.boot:spring-boot-starter-web:2.5.5")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.5.5")
+
+	implementation("org.postgresql:postgresql:42.2.24.jre7")
 
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0")
-	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.5")
 
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.5.2-native-mt")
 
-	runtimeOnly("io.r2dbc:r2dbc-postgresql:0.8.10.RELEASE")
-	runtimeOnly("org.postgresql:postgresql:42.2.24.jre7")
-
+	testImplementation("io.zonky.test:embedded-database-spring-test:2.1.1")
 	testImplementation("org.springframework.boot:spring-boot-starter-test:2.5.5")
-	testImplementation("io.projectreactor:reactor-test:3.4.11")
 }
 
 tasks.withType<KotlinCompile> {
