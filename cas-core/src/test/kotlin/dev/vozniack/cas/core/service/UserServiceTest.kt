@@ -14,11 +14,13 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
+import org.springframework.security.crypto.password.PasswordEncoder
 import java.util.*
 
 class UserServiceTest @Autowired constructor(
     private val userService: UserService,
     private val userRepository: UserRepository,
+    private val passwordEncoder: PasswordEncoder,
 ) : CasCoreAbstractTest() {
 
     @AfterEach
@@ -62,7 +64,7 @@ class UserServiceTest @Autowired constructor(
         assertThat(user.id).isNotNull
         assertThat(user.scope).isEqualTo(ScopeType.INTERNAL)
         assertThat(user.email).isEqualTo("john.doe@cas.dev")
-        assertThat(user.password).isEqualTo("pass123!") // #todo after password encryption
+        assertThat(passwordEncoder.matches(user.password, passwordEncoder.encode("pass123!")))
         assertThat(user.firstName).isEqualTo("John")
         assertThat(user.lastName).isEqualTo("Doe")
         assertThat(user.createdAt).isNotNull
@@ -73,7 +75,7 @@ class UserServiceTest @Autowired constructor(
     @Test
     fun `update user personal data`() {
         val user = userRepository.save(User(scope = ScopeType.INTERNAL, email = "john.doe@cas.dev",
-            password = "pass123!", firstName = "John", lastName = "Doe"))
+            password = passwordEncoder.encode("pass123!"), firstName = "John", lastName = "Doe"))
 
         user.apply {
             scope = ScopeType.EXTERNAL; firstName = "Updated John"; lastName = "Updated Doe"
@@ -86,7 +88,7 @@ class UserServiceTest @Autowired constructor(
         assertThat(savedUser.firstName).isEqualTo("Updated John")
         assertThat(savedUser.lastName).isEqualTo("Updated Doe")
         assertThat(savedUser.email).isEqualTo("john.doe@cas.dev")
-        assertThat(savedUser.password).isEqualTo("pass123!") // #todo after password encryption
+        assertThat(passwordEncoder.matches(savedUser.password, passwordEncoder.encode("pass123!")))
         assertThat(savedUser.createdAt).isBefore(savedUser.updatedAt)
 
     }
@@ -106,7 +108,7 @@ class UserServiceTest @Autowired constructor(
 
     @Test
     fun `update user email`() {
-        val user = userRepository.save(User(email = "john.doe@cas.dev", password = "pass123!",
+        val user = userRepository.save(User(email = "john.doe@cas.dev", password = passwordEncoder.encode("pass123!"),
             firstName = "John", lastName = "Doe"))
 
         val savedUser = userService.updateEmail(user.id!!, UserEmailRequestDto(email = "updated.john.doe@cas.dev"))
@@ -114,7 +116,7 @@ class UserServiceTest @Autowired constructor(
         assertThat(savedUser.firstName).isEqualTo("John")
         assertThat(savedUser.lastName).isEqualTo("Doe")
         assertThat(savedUser.email).isEqualTo("updated.john.doe@cas.dev")
-        assertThat(savedUser.password).isEqualTo("pass123!") // #todo after password encryption
+        assertThat(passwordEncoder.matches(savedUser.password, passwordEncoder.encode("updatedPass123!")))
     }
 
     @Test
@@ -126,7 +128,7 @@ class UserServiceTest @Autowired constructor(
 
     @Test
     fun `update user password`() {
-        val user = userRepository.save(User(email = "john.doe@cas.dev", password = "pass123!",
+        val user = userRepository.save(User(email = "john.doe@cas.dev", password = passwordEncoder.encode("pass123!"),
             firstName = "John", lastName = "Doe"))
 
         val savedUser = userService.updatePassword(user.id!!, UserPasswordRequestDto(password = "updatedPass123!"))
@@ -134,7 +136,7 @@ class UserServiceTest @Autowired constructor(
         assertThat(savedUser.firstName).isEqualTo("John")
         assertThat(savedUser.lastName).isEqualTo("Doe")
         assertThat(savedUser.email).isEqualTo("john.doe@cas.dev")
-        assertThat(savedUser.password).isEqualTo("updatedPass123!") // #todo after password encryption
+        assertThat(passwordEncoder.matches(savedUser.password, passwordEncoder.encode("updatedPass123!")))
     }
 
     @Test

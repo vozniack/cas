@@ -7,17 +7,18 @@ import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.UserRepository
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class UserService(val userRepository: UserRepository) {
+class UserService(private val userRepository: UserRepository, private val passwordEncoder: PasswordEncoder) {
 
     fun findAll(pageable: Pageable): Page<User> = userRepository.findAll(pageable)
 
     fun findById(id: UUID): User = userRepository.findById(id).orElseThrow { NotFoundException() }
 
-    fun create(user: User): User = userRepository.save(user)
+    fun create(user: User): User = userRepository.save(user.apply { password = passwordEncoder.encode(user.password) })
 
     fun update(id: UUID, user: User): User = userRepository.save(
         findById(id).apply {
@@ -31,7 +32,7 @@ class UserService(val userRepository: UserRepository) {
     )
 
     fun updatePassword(id: UUID, request: UserPasswordRequestDto): User = userRepository.save(
-        findById(id).apply { password = request.password }
+        findById(id).apply { password = passwordEncoder.encode(request.password) }
     )
 
     fun delete(id: UUID) = userRepository.delete(findById(id))
