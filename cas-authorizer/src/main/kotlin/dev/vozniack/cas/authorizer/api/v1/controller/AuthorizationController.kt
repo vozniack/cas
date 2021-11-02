@@ -13,5 +13,6 @@ import org.springframework.web.bind.annotation.RestController
 class AuthorizationController(private val authorizationService: AuthorizationService) {
 
     @PostMapping
-    fun login(@RequestBody loginRequest: LoginRequest): LoginResponse = authorizationService.login(loginRequest)
+    fun login(@RequestBody loginRequest: LoginRequest): LoginResponse =
+        LoginResponse(token = authorizationService.login(loginRequest))
 }
