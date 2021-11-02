@@ -9,17 +9,20 @@ import dev.vozniack.cas.authorizer.repository.UserRepository
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import java.nio.charset.StandardCharsets
+import java.util.*
 
 @Service
-class AuthorizationService(private val userRepository: UserRepository) {
+class AuthorizationService(private val userRepository: UserRepository, private val passwordEncoder: PasswordEncoder) {
 
     @Value("\${cas.security.jwt.secret}")
     lateinit var secret: String
 
     fun login(loginRequest: LoginRequest): String =
-        userRepository.findUserByEmailAndPassword(loginRequest.email, loginRequest.password)
+        userRepository.findUserByEmail(loginRequest.email)
+            .filter { user -> passwordEncoder.matches(loginRequest.password, user.password) }
             .map(this::buildToken)
             .orElseThrow { UnauthorizedException() }
 
@@ -29,6 +32,7 @@ class AuthorizationService(private val userRepository: UserRepository) {
             .addClaims(mapOf(Pair("roles", collectRoles(user))) as Map<String, Any>?)
             .addClaims(mapOf(Pair("privileges", collectPrivileges(user))) as Map<String, Any>?)
             .signWith(Keys.hmacShaKeyFor(secret.toByteArray(StandardCharsets.UTF_8)))
+            .setExpiration(Date(Date().time + (1000 * 60 * 60 * 12))) // 12 hours
             .compact()
     }
 

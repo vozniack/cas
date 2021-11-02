@@ -19,6 +19,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator:2.5.5")
 	implementation("org.springframework.boot:spring-boot-starter-web:2.5.5")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.5.5")
+	implementation("org.springframework.boot:spring-boot-starter-security:2.5.5")
 
 	implementation("org.postgresql:postgresql:42.2.24.jre7")
 
