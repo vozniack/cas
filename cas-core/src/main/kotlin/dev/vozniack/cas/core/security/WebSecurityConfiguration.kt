@@ -1,6 +1,5 @@
 package dev.vozniack.cas.core.security
 
-import dev.vozniack.cas.core.security.filter.AuthenticationFilter
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -35,7 +34,5 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter() {
     }
 
     @Bean
-    fun passwordEncoder(): PasswordEncoder {
-        return BCryptPasswordEncoder()
-    }
+    fun passwordEncoder(): PasswordEncoder = BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.`$2Y`, 10)
 }

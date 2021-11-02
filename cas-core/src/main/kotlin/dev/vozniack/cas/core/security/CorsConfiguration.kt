@@ -14,7 +14,9 @@ class CorsConfiguration {
         return UrlBasedCorsConfigurationSource().apply {
             registerCorsConfiguration("/**", CorsConfiguration()
                 .apply {
-                    allowCredentials = true; allowedOrigins = listOf("*"); allowedHeaders = listOf("*")
+                    allowCredentials = true
+                    allowedOrigins = listOf("*")
+                    allowedHeaders = listOf("*")
                     exposedHeaders = listOf("Authorization")
                     allowedMethods = listOf("GET", "POST", "PUT", "PATCH", "DELETE")
                 })

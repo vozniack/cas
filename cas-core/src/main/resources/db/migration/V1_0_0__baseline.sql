@@ -12,8 +12,8 @@ CREATE TABLE users
     first_name VARCHAR(255),
     last_name  VARCHAR(255),
 
-    created_at TIMESTAMP NOT NULL DEFAULT now(),
-    updated_at TIMESTAMP NOT NULL DEFAULT now()
+    created_at TIMESTAMP    NOT NULL             DEFAULT now(),
+    updated_at TIMESTAMP    NOT NULL             DEFAULT now()
 );
 
 CREATE TABLE roles
@@ -25,8 +25,8 @@ CREATE TABLE roles
     name        VARCHAR(255) NOT NULL UNIQUE,
     description VARCHAR(1024),
 
-    created_at  TIMESTAMP NOT NULL DEFAULT now(),
-    updated_at  TIMESTAMP NOT NULL DEFAULT now()
+    created_at  TIMESTAMP    NOT NULL             DEFAULT now(),
+    updated_at  TIMESTAMP    NOT NULL             DEFAULT now()
 );
 
 CREATE TABLE privileges
@@ -43,15 +43,15 @@ CREATE TABLE privileges
 
     parent_id   UUID,
 
-    created_at  TIMESTAMP NOT NULL DEFAULT now(),
-    updated_at  TIMESTAMP NOT NULL DEFAULT now(),
+    created_at  TIMESTAMP    NOT NULL             DEFAULT now(),
+    updated_at  TIMESTAMP    NOT NULL             DEFAULT now(),
 
     CONSTRAINT privilege_parent_fk FOREIGN KEY (parent_id) REFERENCES privileges (id)
 );
 
 CREATE TABLE user_roles
 (
-    user_id  UUID NOT NULL,
+    user_id UUID NOT NULL,
     role_id UUID NOT NULL,
     PRIMARY KEY (user_id, role_id),
     CONSTRAINT user_role_user_fk FOREIGN KEY (user_id) REFERENCES users (id),
@@ -71,7 +71,7 @@ CREATE TABLE user_privileges
 
 CREATE TABLE role_privileges
 (
-    role_id     UUID NOT NULL,
+    role_id      UUID NOT NULL,
     privilege_id UUID NOT NULL,
 
     PRIMARY KEY (role_id, privilege_id),
@@ -83,7 +83,8 @@ CREATE TABLE role_privileges
 /* Values */
 
 INSERT INTO users (id, scope, email, password, first_name, last_name)
-VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', 'INTERNAL', 'admin@cas.dev', null, 'John', 'Doe');
+VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', 'INTERNAL', 'admin@cas.dev',
+        '$2y$10$iSAQDDcM5LJDZyfUUtYgRemRg5TqEicwC.GkXtU7giOrZrMRXRfG.', 'John', 'Doe');
 
 INSERT INTO roles (id, scope, name, description)
 VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', 'INTERNAL', 'ADMINISTRATOR', 'Central Authorization System main role');

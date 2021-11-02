@@ -1,4 +1,4 @@
-package dev.vozniack.cas.core.security.filter
+package dev.vozniack.cas.core.security
 
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jws
