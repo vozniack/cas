@@ -1,3 +1,6 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: cas-core
@@ -21,3 +24,8 @@ spring:
     user: postgres
     password: root
     table: schema_version
+
+cas:
+  security:
+    jwt:
+      secret: 656uzf9s3JhPGu1HSj6nkhV8-Jc-TH43C5Wd5p_BH9Zfbq03n4hWMFlskVP6_tZScNWBOmUAmNxgPVTuOmv6lw

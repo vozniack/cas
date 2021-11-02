@@ -142,3 +142,8 @@ VALUES ('39798f2b-df6f-4239-9736-138b245b151c', 'INTERNAL', 'Login', 'LOGIN',
 
 INSERT INTO user_privileges (user_id, privilege_id)
 VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', '39798f2b-df6f-4239-9736-138b245b151c');
+
+INSERT INTO role_privileges (role_id, privilege_id)
+VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', '80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c'),
+       ('98fa7b2c-6caa-4852-b632-e5c05b507021', '4b2e19fa-79db-44b9-8bbf-6561a47b3cb9'),
+       ('98fa7b2c-6caa-4852-b632-e5c05b507021', '32cb0e0a-4368-447c-ad00-2affe47e7d1d');
