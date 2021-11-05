@@ -1,4 +1,4 @@
-package dev.vozniack.cas.authorizer.entity
+package dev.vozniack.cas.authorizer.entity.user
 
 import java.util.*
 import javax.persistence.*

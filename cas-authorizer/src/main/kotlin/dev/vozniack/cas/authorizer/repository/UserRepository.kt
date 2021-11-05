@@ -1,6 +1,6 @@
 package dev.vozniack.cas.authorizer.repository
 
-import dev.vozniack.cas.authorizer.entity.User
+import dev.vozniack.cas.authorizer.entity.user.User
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 import java.util.*
