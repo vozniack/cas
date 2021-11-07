@@ -1,10 +1,15 @@
 import {NgModule} from '@angular/core';
 import {FeatherModule} from 'angular-feather';
 
-import {User} from 'angular-feather/icons';
+import {Columns, Home, Key, Shield, User, Users} from 'angular-feather/icons';
 
 const icons = {
-  User
+  Shield,
+  User,
+  Home,
+  Users,
+  Columns,
+  Key
 };
 
 @NgModule({

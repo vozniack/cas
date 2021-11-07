@@ -3,7 +3,19 @@
 .sidebar-container {
   background: rgb(242, 244, 247);
 
-  padding: 40px;
+  padding: 24px 40px 40px 40px;
   width: 128px;
   height: 100vh;
+
+  .logo {
+    padding: 24px;
+    margin-bottom: 40px;
+    border-radius: 50%;
+
+    height: 40px;
+    width: 40px;
+
+    background: $primary;
+    color: $white;
+  }
 }

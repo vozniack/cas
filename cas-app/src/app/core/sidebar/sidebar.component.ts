@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {NAVIGATION_LINKS} from "./sidebar.const";
 
 @Component({
   selector: 'cas-sidebar',
@@ -6,4 +7,6 @@ import {Component} from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
+
+  navigationLinks = NAVIGATION_LINKS;
 }

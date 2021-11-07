@@ -1,2 +1,5 @@
-<div class="sidebar-container" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="16px">
+<div class="sidebar-container" fxLayout="column" fxLayoutAlign="start center">
+  <i-feather class="logo" name="shield"></i-feather>
+
+  <cas-sidebar-link *ngFor="let navigationLink of navigationLinks" [navigationLink]="navigationLink"></cas-sidebar-link>
 </div>

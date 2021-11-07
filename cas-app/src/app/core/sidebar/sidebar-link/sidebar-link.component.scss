@@ -1,0 +1,30 @@
+@import 'src/styles/variables';
+
+.navigation-link {
+
+  .icon {
+    color: $secondary;
+    padding: 24px;
+    margin-bottom: 12px;
+    border-radius: 32px;
+
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+
+      background: $secondary;
+      color: $white;
+    }
+  }
+
+  &.active .icon {
+    background: rgba($secondary, 0.9);
+    color: $white;
+
+    &:hover {
+      background: $secondary;
+      color: $white;
+    }
+  }
+}
