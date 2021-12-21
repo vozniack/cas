@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.security.crypto.password.PasswordEncoder
-import java.util.*
+import java.util.UUID
 
 class UserServiceTest @Autowired constructor(
     private val userService: UserService,

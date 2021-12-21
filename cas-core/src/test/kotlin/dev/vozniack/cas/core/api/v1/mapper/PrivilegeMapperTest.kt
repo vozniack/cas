@@ -2,24 +2,35 @@ package dev.vozniack.cas.core.api.v1.mapper
 
 import dev.vozniack.cas.core.CasCoreAbstractTest
 import dev.vozniack.cas.core.api.v1.dto.entity.PrivilegeDto
+import dev.vozniack.cas.core.entity.Organization
 import dev.vozniack.cas.core.entity.Privilege
+import dev.vozniack.cas.core.repository.OrganizationRepository
 import dev.vozniack.cas.core.repository.PrivilegeRepository
 import dev.vozniack.cas.core.types.ScopeType
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import java.util.*
+import java.util.UUID
 
 class PrivilegeMapperTest @Autowired constructor(
     private val privilegeMapper: Mapper<Privilege, PrivilegeDto>,
     private val privilegeRepository: PrivilegeRepository,
+    private val organizationRepository: OrganizationRepository
 ) : CasCoreAbstractTest() {
+
+    @AfterEach
+    fun tearDown() {
+        privilegeRepository.deleteAll()
+        organizationRepository.deleteAll()
+    }
 
     @Test
     fun `map entity to dto`() {
         val privilege = Privilege(
             id = UUID.randomUUID(), scope = ScopeType.INTERNAL, name = "Privilege", code = "PRIVILEGE",
             description = "Privilege set", index = 0,
+            organization = Organization(id = UUID.randomUUID(), name = "Organization", code = "ORG"),
             parent = Privilege(id = UUID.randomUUID(),
                 name = "Parent privilege", code = "PARENT_PRIVILEGE", description = "Parent privilege set"),
             privileges = listOf(
@@ -35,6 +46,7 @@ class PrivilegeMapperTest @Autowired constructor(
         assertThat(privilegeDto.code).isEqualTo(privilege.code)
         assertThat(privilegeDto.description).isEqualTo(privilege.description)
         assertThat(privilegeDto.index).isEqualTo(privilege.index)
+        assertThat(privilegeDto.organizationId).isEqualTo(privilege.organization?.id)
         assertThat(privilegeDto.parentId).isEqualTo(privilege.parent?.id)
         assertThat(privilegeDto.privileges?.size).isEqualTo(privilege.privileges?.size)
         assertThat(privilegeDto.privileges?.get(0)?.name).isEqualTo(privilege.privileges?.get(0)?.name)
@@ -43,19 +55,28 @@ class PrivilegeMapperTest @Autowired constructor(
 
     @Test
     fun `map dto to entity`() {
+        // organization need to exist in repository due to matching by id
+
+        val organization = organizationRepository.save(
+            Organization(id = UUID.randomUUID(), name = "Organization", code = "ORG")
+        )
+
         // parent need to exist in repository due to matching by id
 
         val parentPrivilege = privilegeRepository.save(Privilege(name = "Parent privilege",
-            code = "PARENT_PRIVILEGE", description = "Parent privilege set"))
+            code = "PARENT_PRIVILEGE", description = "Parent privilege set",
+            organization = organization))
 
         val privilegeDto = PrivilegeDto(id = UUID.randomUUID(), scope = ScopeType.INTERNAL,
             name = "Privilege", code = "PRIVILEGE", description = "Privilege set", index = 0,
-            parentId = parentPrivilege.id,
+            organizationId = organization.id, parentId = parentPrivilege.id,
             privileges = listOf(
                 PrivilegeDto(id = UUID.randomUUID(), scope = ScopeType.INTERNAL, name = "First privilege",
-                    code = "FIRST_PRIVILEGE", description = null, index = 0, parentId = null, privileges = null),
+                    code = "FIRST_PRIVILEGE", description = null, index = 0, organizationId = organization.id,
+                    parentId = null, privileges = null),
                 PrivilegeDto(id = UUID.randomUUID(), scope = ScopeType.INTERNAL, name = "Second privilege",
-                    code = "SECOND_PRIVILEGE", description = null, index = 1, parentId = null, privileges = null)
+                    code = "SECOND_PRIVILEGE", description = null, index = 1, organizationId = organization.id,
+                    parentId = null, privileges = null)
             ))
 
         val privilege = privilegeMapper.mapToEntity(privilegeDto)
@@ -66,6 +87,7 @@ class PrivilegeMapperTest @Autowired constructor(
         assertThat(privilege.code).isEqualTo(privilegeDto.code)
         assertThat(privilege.description).isEqualTo(privilegeDto.description)
         assertThat(privilege.index).isEqualTo(privilegeDto.index)
+        assertThat(privilege.organization?.id).isEqualTo(privilegeDto.organizationId)
         assertThat(privilege.parent?.id).isEqualTo(privilegeDto.parentId)
         assertThat(privilege.privileges).isNull()
     }

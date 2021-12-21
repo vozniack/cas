@@ -2,8 +2,17 @@ package dev.vozniack.cas.core.entity
 
 import dev.vozniack.cas.core.entity.common.Auditable
 import dev.vozniack.cas.core.types.ScopeType
-import java.util.*
-import javax.persistence.*
+import java.util.UUID
+import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.JoinTable
+import javax.persistence.ManyToMany
+import javax.persistence.ManyToOne
+import javax.persistence.Table
 
 @Entity
 @Table(name = "users")
@@ -20,6 +29,10 @@ class User(
 
     var firstName: String? = null,
     var lastName: String? = null,
+
+    @ManyToOne
+    @JoinColumn(name = "organization_id")
+    var organization: Organization? = null,
 
     @ManyToMany
     @JoinTable(

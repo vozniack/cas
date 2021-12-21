@@ -1,12 +1,9 @@
 package dev.vozniack.cas.core.repository
 
-import dev.vozniack.cas.core.entity.User
+import dev.vozniack.cas.core.entity.Organization
 import org.springframework.data.repository.PagingAndSortingRepository
 import org.springframework.stereotype.Repository
 import java.util.UUID
 
 @Repository
-interface UserRepository : PagingAndSortingRepository<User, UUID> {
-
-    fun findAllByRolesId(id: UUID): List<User>
-}
+interface OrganizationRepository : PagingAndSortingRepository<Organization, UUID>

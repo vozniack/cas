@@ -2,12 +2,16 @@ package dev.vozniack.cas.core.api.v1.mapper
 
 import dev.vozniack.cas.core.api.v1.dto.entity.PrivilegeDto
 import dev.vozniack.cas.core.entity.Privilege
+import dev.vozniack.cas.core.exception.NotFoundException
+import dev.vozniack.cas.core.service.OrganizationService
 import dev.vozniack.cas.core.service.PrivilegeService
 import org.springframework.stereotype.Component
-import java.util.*
 
 @Component
-class PrivilegeMapper(private val privilegeService: PrivilegeService) : Mapper<Privilege, PrivilegeDto> {
+class PrivilegeMapper(
+    private val privilegeService: PrivilegeService,
+    private val organizationService: OrganizationService,
+) : Mapper<Privilege, PrivilegeDto> {
 
     override fun mapToDto(entity: Privilege): PrivilegeDto = PrivilegeDto(
         entity.id,
@@ -16,10 +20,9 @@ class PrivilegeMapper(private val privilegeService: PrivilegeService) : Mapper<P
         entity.code,
         entity.description,
         entity.index,
-        Optional.ofNullable(entity.parent).map { parent -> parent.id }.orElse(null),
-        Optional.ofNullable(entity.privileges)
-            .map { privileges -> privileges.map { privilege -> mapToDto(privilege) } }
-            .orElse(null),
+        entity.organization?.id,
+        entity.parent?.id,
+        entity.privileges?.map { mapToDto(it) },
         entity.createdAt,
         entity.updatedAt
     )
@@ -31,9 +34,8 @@ class PrivilegeMapper(private val privilegeService: PrivilegeService) : Mapper<P
         dto.code,
         dto.description,
         dto.index,
-        Optional.ofNullable(dto.parentId)
-            .map { parentId -> privilegeService.findById(parentId) }
-            .orElse(null),
+        dto.organizationId?.let { organizationService.findById(it) } ?: throw NotFoundException(),
+        dto.parentId?.let { privilegeService.findById(it) } ?: throw NotFoundException(),
         null
     )
 }

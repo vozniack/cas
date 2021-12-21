@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
-import java.util.*
+import java.util.UUID
 
 @Service
 class UserService(private val userRepository: UserRepository, private val passwordEncoder: PasswordEncoder) {

@@ -8,7 +8,7 @@ import dev.vozniack.cas.core.repository.UserRepository
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
-import java.util.*
+import java.util.UUID
 
 @Service
 class RoleService(private val roleRepository: RoleRepository, private val userRepository: UserRepository) {

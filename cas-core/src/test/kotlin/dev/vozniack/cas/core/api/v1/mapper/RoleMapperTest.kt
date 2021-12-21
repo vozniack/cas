@@ -4,10 +4,10 @@ import dev.vozniack.cas.core.CasCoreAbstractTest
 import dev.vozniack.cas.core.api.v1.dto.entity.RoleDto
 import dev.vozniack.cas.core.entity.Role
 import dev.vozniack.cas.core.types.ScopeType
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.assertj.core.api.Assertions.assertThat
-import java.util.*
+import java.util.UUID
 
 class RoleMapperTest @Autowired constructor(
     private val roleMapper: Mapper<Role, RoleDto>,

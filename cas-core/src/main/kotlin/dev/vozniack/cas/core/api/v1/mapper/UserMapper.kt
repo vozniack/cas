@@ -2,10 +2,15 @@ package dev.vozniack.cas.core.api.v1.mapper
 
 import dev.vozniack.cas.core.api.v1.dto.entity.UserDto
 import dev.vozniack.cas.core.entity.User
+import dev.vozniack.cas.core.exception.NotFoundException
+import dev.vozniack.cas.core.service.OrganizationService
 import org.springframework.stereotype.Component
 
 @Component
-class UserMapper(private val roleMapper: RoleMapper) : Mapper<User, UserDto> {
+class UserMapper(
+    private val organizationService: OrganizationService,
+    private val roleMapper: RoleMapper,
+) : Mapper<User, UserDto> {
 
     override fun mapToDto(entity: User): UserDto = UserDto(
         entity.id,
@@ -14,7 +19,8 @@ class UserMapper(private val roleMapper: RoleMapper) : Mapper<User, UserDto> {
         entity.password,
         entity.firstName,
         entity.lastName,
-        entity.roles.map(roleMapper::mapToDto),
+        entity.organization?.id,
+        entity.roles.map { roleMapper.mapToDto(it) },
         entity.createdAt,
         entity.updatedAt
     )
@@ -26,6 +32,7 @@ class UserMapper(private val roleMapper: RoleMapper) : Mapper<User, UserDto> {
         dto.password,
         dto.firstName,
         dto.lastName,
-        dto.roles.map(roleMapper::mapToEntity)
+        dto.organizationId?.let { organizationService.findById(it) } ?: throw NotFoundException(),
+        dto.roles.map { roleMapper.mapToEntity(it) },
     )
 }

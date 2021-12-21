@@ -6,15 +6,15 @@ import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.RoleRepository
 import dev.vozniack.cas.core.repository.UserRepository
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.transaction.annotation.Transactional
-import java.util.*
+import java.util.UUID
 
 class RoleServiceTest @Autowired constructor(
     private val roleService: RoleService,

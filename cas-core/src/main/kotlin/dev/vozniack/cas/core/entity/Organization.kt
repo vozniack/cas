@@ -8,14 +8,12 @@ import javax.persistence.EnumType
 import javax.persistence.Enumerated
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.JoinTable
-import javax.persistence.ManyToMany
+import javax.persistence.OneToMany
 import javax.persistence.Table
 
 @Entity
-@Table(name = "roles")
-class Role(
+@Table(name = "organizations")
+class Organization(
 
     @Id @GeneratedValue
     var id: UUID? = null,
@@ -23,15 +21,14 @@ class Role(
     @Enumerated(EnumType.STRING)
     var scope: ScopeType = ScopeType.EXTERNAL,
 
-    var name: String = "",
-    var description: String = "",
+    var name: String? = null,
+    var code: String? = null,
+    var description: String? = null,
 
-    @ManyToMany
-    @JoinTable(
-        name = "role_privileges",
-        joinColumns = [JoinColumn(name = "role_id")],
-        inverseJoinColumns = [JoinColumn(name = "privilege_id")]
-    )
+    @OneToMany(mappedBy = "organization")
+    var users: List<User> = listOf(),
+
+    @OneToMany(mappedBy = "organization")
     var privileges: List<Privilege> = listOf(),
 
     ) : Auditable()

@@ -7,8 +7,15 @@ import dev.vozniack.cas.core.service.PrivilegeService
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.security.access.prepost.PreAuthorize
-import org.springframework.web.bind.annotation.*
-import java.util.*
+import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
+import java.util.UUID
 
 @RestController
 @RequestMapping("api/v1/privileges")
@@ -19,7 +26,8 @@ class PrivilegeController(
 
     @GetMapping
     @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasRole('ADMIN')")
-    fun getAll(pageable: Pageable): Page<PrivilegeDto> = privilegeService.findAll(pageable).map(privilegeMapper::mapToDto)
+    fun getAll(pageable: Pageable): Page<PrivilegeDto> =
+        privilegeService.findAll(pageable).map(privilegeMapper::mapToDto)
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasRole('ADMIN')")
