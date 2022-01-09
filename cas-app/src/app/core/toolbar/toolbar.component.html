@@ -1,4 +1,11 @@
 <div class="toolbar-container" fxLayout="row" fxLayoutAlign="space-between center">
-  <h1 class="text-primary">{{title}}</h1>
-  <i-feather class="icon left" name="user"></i-feather>
+
+  <div class="title-container" fxLayout="column" fxLayoutGap="2px">
+    <h2 class="text-primary">{{title}}</h2>
+    <h4 class="text-primary">{{subtitle}}</h4>
+  </div>
+
+  <div class="action-container" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="32px">
+    <i-feather class="icon left" name="user"></i-feather>
+  </div>
 </div>

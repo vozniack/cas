@@ -7,5 +7,6 @@ import {Component} from '@angular/core';
 })
 export class ToolbarComponent {
 
-  title = 'Page Title'
+  title = 'Dashboard'
+  subtitle = 'Manage your security'
 }

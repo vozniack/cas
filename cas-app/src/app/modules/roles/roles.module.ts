@@ -9,7 +9,6 @@ const COMPONENTS = [
 
 @NgModule({
   declarations: [...COMPONENTS],
-  exports: [...COMPONENTS],
   imports: [
     CommonModule,
     RolesRoutingModule

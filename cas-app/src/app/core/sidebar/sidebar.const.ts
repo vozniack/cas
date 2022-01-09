@@ -7,13 +7,18 @@ export const NAVIGATION_LINKS: NavigationLink[] = [
     link: ''
   },
   {
+    title: 'Organizations',
+    icon: 'briefcase',
+    link: 'organizations'
+  },
+  {
     title: 'Users',
     icon: 'users',
     link: 'users'
   },
   {
     title: 'Roles',
-    icon: 'columns',
+    icon: 'lock',
     link: 'roles'
   },
   {

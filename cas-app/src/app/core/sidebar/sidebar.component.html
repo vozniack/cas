@@ -1,5 +1,12 @@
-<div class="sidebar-container" fxLayout="column" fxLayoutAlign="start center">
-  <i-feather class="logo" name="shield"></i-feather>
+<div class="sidebar-container" fxLayout="column" fxLayoutAlign="space-between center">
 
-  <cas-sidebar-link *ngFor="let navigationLink of navigationLinks" [navigationLink]="navigationLink"></cas-sidebar-link>
+  <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="64px">
+    <i-feather class="logo" name=""></i-feather>
+
+    <div class="sidebar-navigation-container" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="4px">
+      <ng-container *ngFor="let navigationLink of navigationLinks">
+        <cas-sidebar-link [navigationLink]="navigationLink"></cas-sidebar-link>
+      </ng-container>
+    </div>
+  </div>
 </div>

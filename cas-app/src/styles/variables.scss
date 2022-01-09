@@ -2,9 +2,28 @@
  * Colors
  */
 
+/* Palette */
+
+$yellow: rgb(255, 207, 43);
+$orange: rgb(254, 147, 47);
+$red: rgb(218, 64, 68);
+$pink: rgb(245, 61, 116);
+$violet: rgb(127, 38, 246);
+$blue: rgb(47, 192, 255);
+$cyan: rgb(48, 223, 196);
+$green: rgb(151, 255, 47);
+
 $white: rgb(255, 255, 255);
+$black: rgb(0, 0, 0);
 
-$primary: rgb(53, 46, 76);
-$secondary: rgb(75, 154, 245);
+/* Usages */
 
-$container-light-gray: rgb(242, 244, 247);
+$primary: $blue;
+
+/* Background */
+
+$background-light: rgb(243, 243, 246);
+$background-dark: rgb(34, 37, 47);
+
+$content-background-light: rgba(255, 255, 255);
+$content-background-dark: rgb(22, 26, 32);

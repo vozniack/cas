@@ -1,21 +1,20 @@
 @import 'src/styles/variables';
 
 .sidebar-container {
-  background: rgb(242, 244, 247);
+  background: $background-dark;
 
-  padding: 24px 40px 40px 40px;
-  width: 128px;
+  width: 108px;
   height: 100vh;
 
   .logo {
+    margin-top: 24px;
+
     padding: 24px;
-    margin-bottom: 40px;
     border-radius: 50%;
 
-    height: 40px;
-    width: 40px;
+    height: 24px;
+    width: 24px;
 
-    background: $primary;
-    color: $white;
+    background: $white;
   }
 }

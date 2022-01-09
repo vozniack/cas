@@ -1,10 +1,13 @@
-<div fxLayout="row" fxLayoutGap="40px">
+<div fxLayout="row">
 
   <cas-sidebar></cas-sidebar>
 
-  <div class="full-width" fxLayout="column">
+  <div fxFlex="100" fxLayout="column">
     <cas-toolbar></cas-toolbar>
-    <router-outlet></router-outlet>
+
+    <div class="content-container">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 
 </div>

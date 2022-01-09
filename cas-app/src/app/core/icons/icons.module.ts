@@ -1,19 +1,10 @@
 import {NgModule} from '@angular/core';
 import {FeatherModule} from 'angular-feather';
 
-import {Columns, Home, Key, Shield, User, Users} from 'angular-feather/icons';
-
-const icons = {
-  Shield,
-  User,
-  Home,
-  Users,
-  Columns,
-  Key
-};
+import {allIcons} from 'angular-feather/icons';
 
 @NgModule({
-  imports: [FeatherModule.pick(icons)],
+  imports: [FeatherModule.pick(allIcons)],
   exports: [FeatherModule]
 })
 export class IconsModule {

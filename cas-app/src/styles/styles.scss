@@ -7,16 +7,39 @@
 body {
   margin: 0;
   padding: 0;
+
+  background: $background-dark;
+  font-family: 'Montserrat', sans-serif;
 }
 
-.full-width {
-  width: 100%;
-}
+/* Imports */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap');
 
 /*
- * Colors
+ * Fonts
  */
 
-.text-primary {
-  color: $primary;
+h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+h4 {
+  font-size: 14px;
+}
+
+h5 {
+  font-size: 12px;
 }
