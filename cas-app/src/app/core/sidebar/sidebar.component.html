@@ -4,8 +4,8 @@
     <i-feather class="logo" name=""></i-feather>
 
     <div class="sidebar-navigation-container" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="4px">
-      <ng-container *ngFor="let navigationLink of navigationLinks">
-        <cas-sidebar-link [navigationLink]="navigationLink"></cas-sidebar-link>
+      <ng-container *ngFor="let navigationState of navigationStates">
+        <cas-sidebar-link [navigationState]="navigationState"></cas-sidebar-link>
       </ng-container>
     </div>
   </div>

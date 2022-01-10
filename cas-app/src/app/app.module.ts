@@ -7,6 +7,8 @@ import {SidebarComponent} from "./core/sidebar/sidebar.component";
 import {SidebarLinkComponent} from './core/sidebar/sidebar-link/sidebar-link.component';
 import {ToolbarComponent} from "./core/toolbar/toolbar.component";
 import {IconsModule} from "./core/icons/icons.module";
+import {StoreModule} from "@ngrx/store";
+import {navigationReducer} from "./shared/store/navigation/navigation.reducers";
 
 @NgModule({
   declarations: [
@@ -19,7 +21,10 @@ import {IconsModule} from "./core/icons/icons.module";
     BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,
-    IconsModule
+    IconsModule,
+    StoreModule.forRoot({
+      navigation: navigationReducer
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

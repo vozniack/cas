@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NAVIGATION_LINKS} from "./sidebar.const";
+import {navigationStates} from "../../shared/store/navigation/navigation.const";
 
 @Component({
   selector: 'cas-sidebar',
@@ -8,5 +8,5 @@ import {NAVIGATION_LINKS} from "./sidebar.const";
 })
 export class SidebarComponent {
 
-  navigationLinks = NAVIGATION_LINKS;
+  navigationStates = navigationStates;
 }
