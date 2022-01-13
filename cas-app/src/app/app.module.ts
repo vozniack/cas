@@ -15,6 +15,8 @@ import {InputsModule} from "./shared/components/inputs/inputs.module";
 import {ControlsModule} from "./shared/components/controls/controls.module";
 import {TokenGuard} from "./core/auth/guard/token.guard";
 import {persistState} from "./shared/store/meta/persist.metareducer";
+import {AuthService} from "./core/auth/auth.service";
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import {persistState} from "./shared/store/meta/persist.metareducer";
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FlexLayoutModule,
     IconsModule,
     InputsModule,
@@ -40,6 +43,7 @@ import {persistState} from "./shared/store/meta/persist.metareducer";
       }),
   ],
   providers: [
+    AuthService,
     TokenGuard
   ],
   bootstrap: [AppComponent]
