@@ -7,11 +7,12 @@ import dev.vozniack.cas.core.types.ScopeType
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import java.time.LocalDateTime
 import java.util.UUID
 
 class OrganizationMapperTest @Autowired constructor(
     private val organizationMapper: Mapper<Organization, OrganizationDto>,
-): CasCoreAbstractTest() {
+) : CasCoreAbstractTest() {
 
     @Test
     fun `map entity to dto`() {
@@ -25,12 +26,15 @@ class OrganizationMapperTest @Autowired constructor(
         assertThat(organization.name).isEqualTo(organizationDto.name)
         assertThat(organization.code).isEqualTo(organizationDto.code)
         assertThat(organization.description).isEqualTo(organizationDto.description)
+        assertThat(organization.createdAt).isEqualTo(organizationDto.createdAt)
+        assertThat(organization.updatedAt).isEqualTo(organizationDto.updatedAt)
     }
 
     @Test
     fun `map dto to entity`() {
         val organizationDto = OrganizationDto(id = UUID.randomUUID(), scope = ScopeType.EXTERNAL, name = "Organization",
-            code = "ORG", description = "Organization description")
+            code = "ORG", description = "Organization description", createdAt = LocalDateTime.now(),
+            updatedAt = LocalDateTime.now())
 
         val organization = organizationMapper.mapToEntity(organizationDto)
 

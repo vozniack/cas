@@ -12,7 +12,9 @@ class OrganizationMapper : Mapper<Organization, OrganizationDto> {
         entity.scope,
         entity.name,
         entity.code,
-        entity.description
+        entity.description,
+        entity.createdAt,
+        entity.updatedAt
     )
 
     override fun mapToEntity(dto: OrganizationDto): Organization = Organization(
