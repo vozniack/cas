@@ -118,6 +118,7 @@ INSERT INTO privileges (id, scope, name, code, description, index, organization_
 VALUES ('39798f2b-df6f-4239-9736-138b245b151c', 'INTERNAL', 'Login', 'LOGIN',
         'Right to access the application', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
 
+
        ('9d31e72b-2d3a-4984-8e19-fec0b67857ef', 'INTERNAL', 'Manage account', 'MANAGE_ACCOUNT',
         'Right to manage own account', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
 
@@ -127,6 +128,7 @@ VALUES ('39798f2b-df6f-4239-9736-138b245b151c', 'INTERNAL', 'Login', 'LOGIN',
        ('fbf61743-c54b-446c-b5ef-addf083cd3c6', 'INTERNAL', 'Update password', 'UPDATE_PASSWORD',
         'Right to update own password', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5',
         '9d31e72b-2d3a-4984-8e19-fec0b67857ef'),
+
 
        ('80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c', 'INTERNAL', 'Manage users', 'MANAGE_USERS',
         'User management privilege set', 1, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
@@ -143,23 +145,45 @@ VALUES ('39798f2b-df6f-4239-9736-138b245b151c', 'INTERNAL', 'Login', 'LOGIN',
        ('81a06d5c-8e79-436c-80a7-aa4605c1eb2e', 'INTERNAL', 'Delete user', 'DELETE_USER',
         'Right to delete users', 3, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c'),
 
-       ('4b2e19fa-79db-44b9-8bbf-6561a47b3cb9', 'INTERNAL', 'Manage groups', 'MANAGE_GROUPS',
-        'Group management privilege set', 2, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
 
-       ('7eb13577-06b2-4b88-ad78-f1b99f951c6e', 'INTERNAL', 'Read group', 'READ_GROUP',
-        'Right to display groups', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '4b2e19fa-79db-44b9-8bbf-6561a47b3cb9'),
+       ('9b62cadc-bf60-4ea0-b239-7aae1ad7b9d7', 'INTERNAL', 'Manage organizations', 'MANAGE_ORGANIZATIONS',
+        'Organizations management privilege set', 3, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
 
-       ('0d4e60b3-48f1-470c-94b7-167edd97bb1b', 'INTERNAL', 'Create group', 'CREATE_GROUP',
-        'Right to create groups', 1, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '4b2e19fa-79db-44b9-8bbf-6561a47b3cb9'),
+       ('6393f416-38a7-4f62-94cc-b3f884d69358', 'INTERNAL', 'Read organizations', 'READ_ORGANIZATION',
+        'Right to display organizations', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5',
+        '9b62cadc-bf60-4ea0-b239-7aae1ad7b9d7'),
 
-       ('fe50c422-526b-4f7c-9482-8401cc704d25', 'INTERNAL', 'Update group', 'UPDATE_GROUP',
-        'Right to update groups', 2, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '4b2e19fa-79db-44b9-8bbf-6561a47b3cb9'),
+       ('8c6e5b1a-b901-4046-a224-e60de272a7bd', 'INTERNAL', 'Create organization', 'CREATE_ORGANIZATION',
+        'Right to create organizations', 1, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5',
+        '9b62cadc-bf60-4ea0-b239-7aae1ad7b9d7'),
 
-       ('59ce3239-abe4-4722-b408-6b01f4aca184', 'INTERNAL', 'Delete group', 'DELETE_GROUP',
-        'Right to delete groups', 3, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '4b2e19fa-79db-44b9-8bbf-6561a47b3cb9'),
+       ('2acf3d11-656b-4cf1-9f38-1b067c744c98', 'INTERNAL', 'Update organization', 'UPDATE_ORGANIZATION',
+        'Right to update organizations', 2, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5',
+        '9b62cadc-bf60-4ea0-b239-7aae1ad7b9d7'),
+
+       ('b5b29a88-73ff-456b-a98d-9ae5dd48f2e9', 'INTERNAL', 'Delete organization', 'DELETE_ORGANIZATION',
+        'Right to delete organizations', 3, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5',
+        '9b62cadc-bf60-4ea0-b239-7aae1ad7b9d7'),
+
+
+       ('4b2e19fa-79db-44b9-8bbf-6561a47b3cb9', 'INTERNAL', 'Manage roles', 'MANAGE_ROLES',
+        'Roles management privilege set', 3, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
+
+       ('7eb13577-06b2-4b88-ad78-f1b99f951c6e', 'INTERNAL', 'Read roles', 'READ_ROLE',
+        'Right to display roles', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '4b2e19fa-79db-44b9-8bbf-6561a47b3cb9'),
+
+       ('0d4e60b3-48f1-470c-94b7-167edd97bb1b', 'INTERNAL', 'Create role', 'CREATE_ROLE',
+        'Right to create roles', 1, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '4b2e19fa-79db-44b9-8bbf-6561a47b3cb9'),
+
+       ('fe50c422-526b-4f7c-9482-8401cc704d25', 'INTERNAL', 'Update role', 'UPDATE_ROLE',
+        'Right to update roles', 2, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '4b2e19fa-79db-44b9-8bbf-6561a47b3cb9'),
+
+       ('59ce3239-abe4-4722-b408-6b01f4aca184', 'INTERNAL', 'Delete role', 'DELETE_ROLE',
+        'Right to delete roles', 3, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '4b2e19fa-79db-44b9-8bbf-6561a47b3cb9'),
+
 
        ('32cb0e0a-4368-447c-ad00-2affe47e7d1d', 'INTERNAL', 'Manage privileges', 'MANAGE_PRIVILEGES',
-        'Privilege management privilege set', 3, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
+        'Privilege management privilege set', 4, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
 
        ('082493be-3d0c-4f12-8554-2e7cb87d76f9', 'INTERNAL', 'Read privilege', 'READ_PRIVILEGE',
         'Right to display privileges', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5',
@@ -182,6 +206,7 @@ VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', '39798f2b-df6f-4239-9736-138b245
 
 INSERT INTO role_privileges (role_id, privilege_id)
 VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', '80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c'),
+       ('98fa7b2c-6caa-4852-b632-e5c05b507021', '9b62cadc-bf60-4ea0-b239-7aae1ad7b9d7'),
        ('98fa7b2c-6caa-4852-b632-e5c05b507021', '4b2e19fa-79db-44b9-8bbf-6561a47b3cb9'),
        ('98fa7b2c-6caa-4852-b632-e5c05b507021', '32cb0e0a-4368-447c-ad00-2affe47e7d1d'),
        ('451adc34-f819-46d5-9e35-719ee343fb73', '9d31e72b-2d3a-4984-8e19-fec0b67857ef');
