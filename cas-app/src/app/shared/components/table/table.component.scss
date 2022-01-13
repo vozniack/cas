@@ -56,22 +56,6 @@
         font-weight: 400;
 
         background: rgba($background-dark, 0.5);
-
-        span.badge-primary {
-          padding: 4px 16px;
-          background: $primary;
-          border-radius: 12px;
-
-          font-weight: 600;
-        }
-
-        span.badge-secondary {
-          padding: 4px 16px;
-          background: $secondary;
-          border-radius: 12px;
-
-          font-weight: 600;
-        }
       }
     }
 

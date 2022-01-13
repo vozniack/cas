@@ -43,3 +43,21 @@ h4 {
 h5 {
   font-size: 12px;
 }
+
+/*
+ * Badge
+ */
+
+.badge {
+  padding: 4px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+
+  &.primary {
+    background: $primary;
+  }
+
+  &.secondary {
+    background: $secondary;
+  }
+}

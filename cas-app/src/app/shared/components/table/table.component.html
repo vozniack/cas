@@ -32,13 +32,13 @@
       <th *ngFor="let column of columns">
 
         <ng-container *ngIf="column.type == null">
-          <span [ngClass]="column.badge ? 'badge-' + column.badge : ''">
+          <span [ngClass]="column.badge ? 'badge ' + column.badge : ''">
             {{getFieldValue(row, column)}}
           </span>
         </ng-container>
 
         <ng-container *ngIf="column.type == columnType.DATE">
-          <span [ngClass]="column.badge ? 'badge-' + column.badge : ''">
+          <span [ngClass]="column.badge ? 'badge ' + column.badge : ''">
             {{getFieldValue(row, column) | date: 'MM-dd-YYYY, HH:mm:ss'}}
           </span>
         </ng-container>
