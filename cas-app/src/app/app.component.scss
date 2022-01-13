@@ -10,14 +10,10 @@
 
     background: $content-background-dark;
 
-    min-height: 512px; // #todo to remove
+    align-items: normal !important;
   }
 
   &.centered {
     height: 100vh;
   }
-}
-
-.centered-content-container {
-  height: 100vh;
 }

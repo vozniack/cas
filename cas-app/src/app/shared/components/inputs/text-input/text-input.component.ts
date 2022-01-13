@@ -19,6 +19,7 @@ export class TextInputComponent {
   @Input() icon: string = '';
 
   @Input() requiredLabel: boolean = false;
+  @Input() width: string = '100%';
 
   @Input() theme: 'primary' | 'secondary' = 'primary';
 

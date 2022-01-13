@@ -1,0 +1,37 @@
+<div class="table-container" fxLayout="column" fxLayoutGap="16px">
+
+  <div fxLayout="row" fxLayoutAlign="end center" @fadeInAnimation>
+    <cas-text-input [placeholder]="'Search...'" [icon]="'search'" [width]="'512px'"></cas-text-input>
+  </div>
+
+  <table *ngIf="columns" @fadeInAnimation>
+    <thead>
+    <tr>
+      <th *ngFor="let column of columns">
+        <span>{{column.label}}</span>
+      </th>
+    </tr>
+    </thead>
+
+    <tbody *ngIf="data" @fadeInAnimation>
+    <tr *ngFor="let row of data.content; let i = index">
+      <th *ngFor="let column of columns">
+
+        <ng-container *ngIf="column.type == null">
+          <span [ngClass]="column.badge ? 'badge-' + column.badge : ''">
+            {{getFieldValue(row, column)}}
+          </span>
+        </ng-container>
+
+        <ng-container *ngIf="column.type == columnType.DATE">
+          <span [ngClass]="column.badge ? 'badge-' + column.badge : ''">
+            {{getFieldValue(row, column) | date: 'MM-dd-YYYY, HH:mm:ss'}}
+          </span>
+        </ng-container>
+
+      </th>
+    </tr>
+    </tbody>
+
+  </table>
+</div>

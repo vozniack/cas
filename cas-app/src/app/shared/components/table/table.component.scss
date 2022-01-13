@@ -1,0 +1,53 @@
+@import 'src/styles/variables';
+
+.table-container {
+  width: 100%;
+
+  table {
+    width: 100%;
+
+    th {
+      background: $background-dark;
+      border-radius: 8px;
+    }
+
+    thead {
+      th {
+        color: $white;
+        font-size: 20px;
+        font-weight: 600;
+      }
+    }
+
+    tbody {
+      th {
+        color: $white;
+        font-size: 14px;
+        font-weight: 400;
+
+        background: rgba($background-dark, 0.5);
+
+        span.badge-primary {
+          padding: 4px 16px;
+          background: $primary;
+          border-radius: 12px;
+
+          font-weight: 600;
+        }
+
+        span.badge-secondary {
+          padding: 4px 16px;
+          background: $secondary;
+          border-radius: 12px;
+
+          font-weight: 600;
+        }
+      }
+    }
+
+    td, th {
+      text-align: left;
+      padding: 12px 24px;
+    }
+  }
+}

@@ -2,10 +2,11 @@
 
   <cas-sidebar *ngIf="logged"></cas-sidebar>
 
-  <div fxFlex="100" fxLayout="column">
+  <div fxLayout="column" fxFlex="100">
     <cas-toolbar *ngIf="logged"></cas-toolbar>
 
     <div class="content-container" [class.logged]="logged" [class.centered]="!logged"
+         [fxLayout]="logged ? 'column' : 'row'"
          [fxLayoutAlign]="logged ? 'start start' : 'center center'">
       <router-outlet></router-outlet>
     </div>
