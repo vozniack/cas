@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {TableComponent} from './table.component';
 import {FlexModule} from "@angular/flex-layout";
 import {InputsModule} from "../inputs/inputs.module";
+import {IconsModule} from "../../../core/icons/icons.module";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {InputsModule} from "../inputs/inputs.module";
   imports: [
     CommonModule,
     FlexModule,
-    InputsModule
+    InputsModule,
+    IconsModule
   ]
 })
 export class TableModule {

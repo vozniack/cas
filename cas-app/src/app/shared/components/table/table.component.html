@@ -8,7 +8,16 @@
     <thead>
     <tr>
       <th *ngFor="let column of columns">
-        <span>{{column.label}}</span>
+        <div fxLayout="row" fxLayoutAlign="space-between center" [class.sortable]="column.sortable"
+             (click)="sort(column)">
+          <span>{{column.label}}</span>
+
+          <i-feather name="arrow-up" class="icon"
+                     @fadeInAnimation @fadeOutAnimation
+                     [class.inverted]="requestParam?.sort?.direction === 'DESC'"
+                     *ngIf="requestParam?.sort?.field === column.field">
+          </i-feather>
+        </div>
       </th>
     </tr>
     </thead>

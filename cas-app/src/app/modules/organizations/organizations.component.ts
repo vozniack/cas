@@ -7,6 +7,7 @@ import {organizationColumns} from "./organizations.const";
 import {Organization} from "./organizations.interface";
 import {OrganizationsService} from "./organizations.service";
 import {Pageable} from "../../shared/model/pageable.interface";
+import {RequestParam} from "../../shared/model/request.interface";
 
 @Component({
   selector: 'cas-organizations',
@@ -17,6 +18,7 @@ export class OrganizationsComponent {
 
   data: Pageable<Organization> = {}
   columns = organizationColumns;
+  requestParam: RequestParam = {page: 0, size: 16};
 
   constructor(private organizationsService: OrganizationsService,
               private store: Store<NavigationState>,) {
@@ -25,7 +27,12 @@ export class OrganizationsComponent {
   }
 
   getOrganizations(): void {
-    this.organizationsService.getOrganizations({page: 0, size: 16})
+    this.organizationsService.getOrganizations(this.requestParam)
       .subscribe(response => this.data = response)
+  }
+
+  onRequestParamChange(requestParam: RequestParam): void {
+    this.requestParam = requestParam;
+    this.getOrganizations();
   }
 }

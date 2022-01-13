@@ -6,16 +6,46 @@
   table {
     width: 100%;
 
+    ::selection {
+      color: $white;
+      background: $background-dark;
+    }
+
     th {
       background: $background-dark;
       border-radius: 8px;
     }
 
     thead {
+
       th {
+        position: relative;
+
         color: $white;
         font-size: 20px;
         font-weight: 600;
+
+        .sortable:hover {
+          cursor: pointer;
+        }
+
+        span {
+          user-select: none
+        }
+
+        .icon {
+          position: absolute;
+          right: 16px;
+
+          color: $white;
+          width: 16px;
+
+          transition: transform 0.2s;
+
+          &.inverted {
+            transform: rotate(180deg);
+          }
+        }
       }
     }
 

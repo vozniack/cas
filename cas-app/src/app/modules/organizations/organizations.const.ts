@@ -3,16 +3,19 @@ import {ColumnType, TableColumn} from "../../shared/components/table/table.inter
 export const organizationColumns: TableColumn[] = [
   {
     label: 'Name',
-    field: 'name'
+    field: 'name',
+    sortable: true
   },
   {
     label: 'Code',
     field: 'code',
+    sortable: true,
     badge: 'primary'
   },
   {
     label: 'Description',
-    field: 'description'
+    field: 'description',
+    sortable: true
   },
   {
     label: 'Scope',
@@ -22,6 +25,7 @@ export const organizationColumns: TableColumn[] = [
   {
     label: 'Updated at',
     field: 'updatedAt',
+    sortable: true,
     type: ColumnType.DATE
   }
 ]
