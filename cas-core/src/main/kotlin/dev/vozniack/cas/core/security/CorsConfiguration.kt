@@ -1,25 +1,19 @@
 package dev.vozniack.cas.core.security
 
-import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.web.cors.CorsConfiguration
-import org.springframework.web.cors.CorsConfigurationSource
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource
+import org.springframework.web.servlet.config.annotation.CorsRegistry
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @Configuration
-class CorsConfiguration {
+class CorsConfiguration : WebMvcConfigurer {
 
-    @Bean
-    fun corsConfigurationSource(): CorsConfigurationSource {
-        return UrlBasedCorsConfigurationSource().apply {
-            registerCorsConfiguration("/**", CorsConfiguration()
-                .apply {
-                    allowCredentials = true
-                    allowedOrigins = listOf("*")
-                    allowedHeaders = listOf("*")
-                    exposedHeaders = listOf("Authorization")
-                    allowedMethods = listOf("GET", "POST", "PUT", "PATCH", "DELETE")
-                })
-        }
+    override fun addCorsMappings(registry: CorsRegistry) {
+        registry.addMapping("/api/**")
+            .allowedOrigins("*")
+            .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE")
+            .allowedHeaders("Content-Type", "X-Requested-With", "accept", "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers", "Access-Control-Allow-Origin", "Authorization")
+            .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "Authorization")
+            .allowCredentials(false)
+            .maxAge(3600)
     }
 }
