@@ -7,26 +7,41 @@ import {SidebarComponent} from "./core/sidebar/sidebar.component";
 import {SidebarLinkComponent} from './core/sidebar/sidebar-link/sidebar-link.component';
 import {ToolbarComponent} from "./core/toolbar/toolbar.component";
 import {IconsModule} from "./core/icons/icons.module";
-import {StoreModule} from "@ngrx/store";
+import {MetaReducer, StoreModule} from "@ngrx/store";
 import {navigationReducer} from "./shared/store/navigation/navigation.reducers";
+import {userReducer} from "./shared/store/user/user.reducers";
+import {LoginComponent} from './core/login/login.component';
+import {InputsModule} from "./shared/components/inputs/inputs.module";
+import {ControlsModule} from "./shared/components/controls/controls.module";
+import {TokenGuard} from "./core/auth/guard/token.guard";
+import {persistState} from "./shared/store/meta/persist.metareducer";
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     SidebarLinkComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,
     IconsModule,
+    InputsModule,
+    ControlsModule,
     StoreModule.forRoot({
-      navigation: navigationReducer
-    })
+        navigation: navigationReducer,
+        user: userReducer
+      },
+      {
+        metaReducers: [persistState as MetaReducer]
+      }),
   ],
-  providers: [],
+  providers: [
+    TokenGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

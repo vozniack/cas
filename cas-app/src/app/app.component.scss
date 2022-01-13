@@ -1,11 +1,23 @@
 @import 'src/styles/variables';
 
 .content-container {
-  margin: 0 24px 24px 0;
-  padding: 24px;
-
   border-radius: 16px;
-  background: $content-background-dark;
+  transition: background-color 0.2s ease-in-out;
 
-  min-height: 512px; // #todo to remove
+  &.logged {
+    margin: 0 24px 24px 0;
+    padding: 24px;
+
+    background: $content-background-dark;
+
+    min-height: 512px; // #todo to remove
+  }
+
+  &.centered {
+    height: 100vh;
+  }
+}
+
+.centered-content-container {
+  height: 100vh;
 }

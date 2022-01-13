@@ -1,0 +1,101 @@
+@import 'src/styles/variables';
+
+.text-input {
+
+  .label {
+    color: $white;
+
+    .name {
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .description {
+      font-size: 12px;
+      font-weight: 200;
+    }
+  }
+
+  .form {
+    width: 100%;
+
+    position: relative;
+    border-radius: 8px;
+    box-shadow: none;
+
+    transition: filter 0.2s ease-in-out;
+
+    &.theme-primary {
+      &:hover {
+        filter: drop-shadow(0 0 2px rgba($primary, 0.75));
+      }
+
+      input:focus, input:active {
+        filter: drop-shadow(0 0 2px rgba($primary, 0.5));
+      }
+    }
+
+    &.theme-secondary {
+      &:hover {
+        filter: drop-shadow(0 0 2px rgba($secondary, 0.75));
+      }
+
+      input:focus, input:active {
+        filter: drop-shadow(0 0 2px rgba($secondary, 0.5));
+      }
+    }
+
+    &.invalid {
+      filter: drop-shadow(0 0 2px rgba($red, 0.75));
+    }
+
+    input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input {
+      height: 40px;
+      width: 100%;
+      padding: 5px 20px;
+
+      background: $background-dark;
+
+      border-radius: 12px;
+      border: none;
+
+      box-sizing: border-box;
+
+      font-size: 18px;
+      color: $white;
+
+      &:focus {
+        outline: none;
+      }
+
+      &::placeholder {
+        font-size: 12px;
+        color: rgba($white, 0.4);
+      }
+    }
+
+    input:-webkit-autofill {
+      -webkit-text-fill-color: $white !important;
+      transition: background-color 5000s ease-in-out 0s;
+
+      &:hover, &:focus, &:active {
+        transition: background-color 5000s ease-in-out 0s;
+      }
+    }
+
+    .icon {
+      position: absolute;
+
+      top: 12px;
+      right: 12px;
+      width: 16px;
+
+      color: rgba($white, 0.5);
+    }
+  }
+}

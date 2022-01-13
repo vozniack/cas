@@ -1,6 +1,6 @@
 import {initializeNavigationState, SimpleNavigationState} from "./navigation.state";
 import {Action, createReducer, on} from "@ngrx/store";
-import {SET_NAVIGATION_STATE} from "./navigation.action";
+import {ACTION_SET_NAVIGATION} from "./navigation.actions";
 
 const initialState = initializeNavigationState();
 
@@ -9,7 +9,7 @@ export function navigationReducer(state: SimpleNavigationState = initialState, a
 }
 
 const _navigationReducer = createReducer(initialState,
-  on(SET_NAVIGATION_STATE, (state, newState) => onSetState(state, newState.navigationState))
+  on(ACTION_SET_NAVIGATION, (state, newState) => onSetState(state, newState.navigationState))
 )
 
 function onSetState(state: SimpleNavigationState, newState: SimpleNavigationState) {

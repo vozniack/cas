@@ -1,0 +1,82 @@
+@import 'src/styles/variables';
+
+button {
+  position: relative;
+
+  padding: 16px 32px;
+  border-radius: 12px;
+
+  outline: none;
+  border: none;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  transition: all 0.2s ease-in-out;
+
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    color: rgba($white, 0.5);
+
+    .icon {
+      color: rgba($white, 0.5);
+    }
+  }
+
+  .icon {
+    position: absolute;
+
+    color: $white;
+    width: 20px;
+
+    transition: color 0.2s ease-in-out;
+
+    &.left {
+      left: 16px;
+    }
+
+    &.right {
+      right: 16px;
+    }
+  }
+
+  /* Themes */
+
+  &.theme-primary {
+    color: $white;
+    background: rgba($primary, 1);
+
+    &:hover {
+      filter: drop-shadow(0 0 4px rgba($primary, 0.5));
+    }
+
+    &:disabled {
+      background: rgba($primary, 0.1);
+
+      &:hover {
+        filter: drop-shadow(0 0 4px rgba($primary, 0.25));
+      }
+    }
+  }
+
+  &.theme-secondary {
+    color: $white;
+    background: rgba($secondary, 1);
+
+    &:hover {
+      filter: drop-shadow(0 0 4px rgba($secondary, 0.5));
+    }
+
+    &:disabled {
+      background: rgba($secondary, 0.1);
+
+      &:hover {
+        filter: drop-shadow(0 0 4px rgba($secondary, 0.25));
+      }
+    }
+  }
+}

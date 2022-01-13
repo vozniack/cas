@@ -1,0 +1,29 @@
+<div class="login-container" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="40px">
+  <h1 class="title">Central Authorization System</h1>
+
+  <div class="form-container" fxLayout="column" fxLayoutGap="24px">
+    <cas-text-input
+      [control]="getControl('email')"
+      [id]="'email'"
+      [name]="'Email address'"
+      [icon]="'at-sign'">
+    </cas-text-input>
+
+    <cas-text-input
+      [control]="getControl('password')"
+      [id]="'password'"
+      [type]="'password'"
+      [name]="'Password'"
+      [icon]="'lock'">
+    </cas-text-input>
+  </div>
+
+  <div class="action-container" fxLayoutAlign="center center">
+    <cas-button
+      [disabled]="form.invalid"
+      [width]="'256px'"
+      (click)="login()">
+      Login
+    </cas-button>
+  </div>
+</div>

@@ -1,13 +1,13 @@
 <div fxLayout="row">
 
-  <cas-sidebar></cas-sidebar>
+  <cas-sidebar *ngIf="logged"></cas-sidebar>
 
   <div fxFlex="100" fxLayout="column">
-    <cas-toolbar></cas-toolbar>
+    <cas-toolbar *ngIf="logged"></cas-toolbar>
 
-    <div class="content-container">
+    <div class="content-container" [class.logged]="logged" [class.centered]="!logged"
+         [fxLayoutAlign]="logged ? 'start start' : 'center center'">
       <router-outlet></router-outlet>
     </div>
   </div>
-
 </div>

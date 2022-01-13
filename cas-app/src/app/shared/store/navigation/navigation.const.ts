@@ -28,7 +28,7 @@ export const rolesState: NavigationState = {
   link: 'roles'
 }
 
-export const privilegesState: NavigationState =   {
+export const privilegesState: NavigationState = {
   title: 'Privileges',
   subtitle: 'Manage your privileges',
   icon: 'key',

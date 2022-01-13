@@ -1,27 +1,38 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {TokenGuard} from "./core/auth/guard/token.guard";
+import {LoginComponent} from "./core/login/login.component";
 
 const routes: Routes = [
   {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
     path: '',
-    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
+    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
+    canActivate: [TokenGuard]
   },
   {
     path: 'organizations',
-    loadChildren: () => import('./modules/organizations/organizations.module').then(m => m.OrganizationsModule)
+    loadChildren: () => import('./modules/organizations/organizations.module').then(m => m.OrganizationsModule),
+    canActivate: [TokenGuard]
   },
   {
     path: 'users',
-    loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule)
+    loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule),
+    canActivate: [TokenGuard]
   },
   {
     path: 'roles',
-    loadChildren: () => import('./modules/roles/roles.module').then(m => m.RolesModule)
+    loadChildren: () => import('./modules/roles/roles.module').then(m => m.RolesModule),
+    canActivate: [TokenGuard]
   },
   {
     path: 'privileges',
-    loadChildren: () => import('./modules/privileges/privileges.module').then(m => m.PrivilegesModule)
-  },
+    loadChildren: () => import('./modules/privileges/privileges.module').then(m => m.PrivilegesModule),
+    canActivate: [TokenGuard]
+  }
 ];
 
 @NgModule({

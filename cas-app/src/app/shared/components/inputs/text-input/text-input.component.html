@@ -1,0 +1,17 @@
+<div class="text-input" fxLayout="column" fxLayoutGap="8px">
+
+  <div class="label" fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="name">{{name + (requiredLabel && isRequired() ? ' *' : '')}}</span>
+    <span class="description">{{description}}</span>
+  </div>
+
+  <div class="form" [class.invalid]="control.touched && control.invalid" [ngClass]="'theme-' + theme">
+    <input [formControl]="control"
+           [id]="id"
+           [name]="name"
+           [placeholder]="placeholder"
+           [type]="type"/>
+
+    <i-feather class="icon" [name]="icon"></i-feather>
+  </div>
+</div>
