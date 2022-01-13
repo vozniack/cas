@@ -17,6 +17,7 @@ import {TokenGuard} from "./core/auth/guard/token.guard";
 import {persistState} from "./shared/store/meta/persist.metareducer";
 import {AuthService} from "./core/auth/auth.service";
 import {HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     FlexLayoutModule,
     IconsModule,
     InputsModule,

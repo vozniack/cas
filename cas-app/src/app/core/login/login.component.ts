@@ -8,11 +8,13 @@ import {emailRegex} from "../../shared/const/regex.const";
 import {AuthService} from "../auth/auth.service";
 import {LoginRequest, LoginResponse} from "../auth/auth.interface";
 import {tap} from "rxjs/operators";
+import {fadeInAnimation} from "../../shared/animations/fade-in-animation";
 
 @Component({
   selector: 'cas-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations: [fadeInAnimation]
 })
 export class LoginComponent {
 

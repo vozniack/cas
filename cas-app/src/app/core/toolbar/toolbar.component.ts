@@ -5,11 +5,13 @@ import {SELECT_NAVIGATION_STATE} from "../../shared/store/navigation/navigation.
 import {tap} from "rxjs/operators";
 import {UserState} from "../../shared/store/user/user.state";
 import {ACTION_USER_LOGOUT} from "../../shared/store/user/user.actions";
+import {fadeInAnimation} from "../../shared/animations/fade-in-animation";
 
 @Component({
   selector: 'cas-toolbar',
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.scss']
+  styleUrls: ['./toolbar.component.scss'],
+  animations: [fadeInAnimation]
 })
 export class ToolbarComponent implements OnInit {
 
