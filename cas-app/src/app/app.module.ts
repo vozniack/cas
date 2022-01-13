@@ -13,11 +13,10 @@ import {userReducer} from "./shared/store/user/user.reducers";
 import {LoginComponent} from './core/login/login.component';
 import {InputsModule} from "./shared/components/inputs/inputs.module";
 import {ControlsModule} from "./shared/components/controls/controls.module";
-import {TokenGuard} from "./core/auth/guard/token.guard";
 import {persistState} from "./shared/store/meta/persist.metareducer";
-import {AuthService} from "./core/auth/auth.service";
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AuthModule} from "./core/auth/auth.module";
 
 @NgModule({
   declarations: [
@@ -33,6 +32,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     HttpClientModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    AuthModule,
     IconsModule,
     InputsModule,
     ControlsModule,
@@ -43,10 +43,6 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
       {
         metaReducers: [persistState as MetaReducer]
       }),
-  ],
-  providers: [
-    AuthService,
-    TokenGuard
   ],
   bootstrap: [AppComponent]
 })
