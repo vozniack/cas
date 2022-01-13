@@ -1,14 +1,19 @@
 <div class="table-container" fxLayout="column" fxLayoutGap="16px">
 
   <div fxLayout="row" fxLayoutAlign="end center" @fadeInAnimation>
-    <cas-text-input [placeholder]="'Search...'" [icon]="'search'" [width]="'512px'"></cas-text-input>
+    <cas-text-input [control]="searchFormControl"
+                    [placeholder]="'Search...'"
+                    [icon]="'search'"
+                    [width]="'512px'">
+    </cas-text-input>
   </div>
 
   <table *ngIf="columns" @fadeInAnimation>
     <thead>
     <tr>
       <th *ngFor="let column of columns">
-        <div fxLayout="row" fxLayoutAlign="space-between center" [class.sortable]="column.sortable"
+        <div fxLayout="row" fxLayoutAlign="space-between center"
+             [class.sortable]="column.sortable"
              (click)="sort(column)">
           <span>{{column.label}}</span>
 

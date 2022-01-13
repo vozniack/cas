@@ -4,6 +4,10 @@ import {RequestParam} from "../model/request.interface";
 export function buildHttpParams(requestParam: RequestParam): HttpParams {
   let httpParams: HttpParams = new HttpParams();
 
+  if (requestParam.search != null) {
+    httpParams = httpParams.append('search', requestParam.search)
+  }
+
   if (requestParam.page != null) {
     httpParams = httpParams.append('page', requestParam.page)
   }

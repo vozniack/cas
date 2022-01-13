@@ -4,6 +4,8 @@ import {Pageable} from "../../model/pageable.interface";
 import {fadeInAnimation} from "../../animations/fade-in-animation";
 import {fadeOutAnimation} from "../../animations/fade-out-animation";
 import {RequestParam, SortDirection} from "../../model/request.interface";
+import {FormControl} from "@angular/forms";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'cas-table',
@@ -25,7 +27,16 @@ export class TableComponent {
   @Output()
   requestParamChange = new EventEmitter<RequestParam>();
 
+  searchFormControl = new FormControl(null);
+
   columnType = ColumnType;
+
+  constructor() {
+    this.searchFormControl.valueChanges.pipe(
+      tap((search: string) => this.requestParam.search = search),
+      tap(() => this.requestParamChange.emit(this.requestParam))
+    ).subscribe()
+  }
 
   sort(tableColumn: TableColumn): void {
     if (tableColumn.sortable) {
