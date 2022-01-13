@@ -24,6 +24,9 @@ export class TableComponent {
   @Input()
   requestParam: RequestParam = {page: 0, size: 16};
 
+  @Input()
+  totalPages!: number;
+
   @Output()
   requestParamChange = new EventEmitter<RequestParam>();
 
@@ -32,13 +35,19 @@ export class TableComponent {
   columnType = ColumnType;
 
   constructor() {
+    this.onSearchChange();
+  }
+
+  /* Changes */
+
+  onSearchChange(): void {
     this.searchFormControl.valueChanges.pipe(
       tap((search: string) => this.requestParam.search = search),
       tap(() => this.requestParamChange.emit(this.requestParam))
     ).subscribe()
   }
 
-  sort(tableColumn: TableColumn): void {
+  onSortChange(tableColumn: TableColumn): void {
     if (tableColumn.sortable) {
       if (this.requestParam?.sort != null && this.requestParam.sort.field === tableColumn.field) {
         switch (this.requestParam.sort.direction) {
@@ -57,6 +66,13 @@ export class TableComponent {
       this.requestParamChange.emit(this.requestParam);
     }
   }
+
+  onPageChange(page: number): void {
+    this.requestParam.page = page;
+    this.requestParamChange.emit(this.requestParam);
+  }
+
+  /* Getter */
 
   getFieldValue(row: any, tableColumn: TableColumn): string {
     return tableColumn?.field?.split('.').reduce((o, key) => o[key], row);

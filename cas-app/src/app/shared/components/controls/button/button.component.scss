@@ -12,8 +12,7 @@ button {
   font-size: 16px;
   font-weight: 600;
 
-  transition: all 0.2s ease-in-out;
-
+  transition: filter 0.2s, background-color 0.2s ease-in-out;
 
   &:hover {
     cursor: pointer;
@@ -42,6 +41,17 @@ button {
     &.right {
       right: 16px;
     }
+  }
+
+  /* Sizes */
+
+  &.tiny {
+    height: 40px;
+    padding: 8px 12px;
+  }
+
+  &.small {
+    padding: 12px 24px;
   }
 
   /* Themes */
@@ -76,6 +86,33 @@ button {
 
       &:hover {
         filter: drop-shadow(0 0 4px rgba($secondary, 0.25));
+      }
+    }
+  }
+
+  &.theme-default {
+    color: $white;
+    background: $background-dark;
+
+    &:hover {
+      filter: drop-shadow(0 0 4px rgba($primary, 0.1));
+    }
+
+    &:disabled {
+      color: rgba($white, 0.5);
+      background: rgba($background-dark, 0.5);
+
+      &:hover {
+        cursor: default;
+        filter: none;
+      }
+    }
+
+    &.active {
+      background: rgba($primary, 0.75);
+
+      &:hover {
+        filter: drop-shadow(0 0 4px rgba($primary, 0.25));
       }
     }
   }

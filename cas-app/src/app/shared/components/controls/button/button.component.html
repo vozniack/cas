@@ -1,5 +1,6 @@
 <button [style.width]="width"
-        [ngClass]="'theme-' + theme"
+        [ngClass]="'theme-' + theme + ' ' + size"
+        [class.active]="active"
         [disabled]="disabled">
   <ng-content></ng-content>
 

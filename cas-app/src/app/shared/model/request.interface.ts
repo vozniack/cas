@@ -2,9 +2,9 @@ export interface RequestParam {
 
   search?: string;
 
-  page?: number;
+  page: number;
 
-  size?: number;
+  size: number;
 
   sort?: SortRequest;
 }

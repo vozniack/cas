@@ -1,12 +1,6 @@
 <div class="table-container" fxLayout="column" fxLayoutGap="16px">
 
-  <div fxLayout="row" fxLayoutAlign="end center" @fadeInAnimation>
-    <cas-text-input [control]="searchFormControl"
-                    [placeholder]="'Search...'"
-                    [icon]="'search'"
-                    [width]="'512px'">
-    </cas-text-input>
-  </div>
+  <cas-table-search [searchFormControl]="searchFormControl"></cas-table-search>
 
   <table *ngIf="columns" @fadeInAnimation>
     <thead>
@@ -14,7 +8,7 @@
       <th *ngFor="let column of columns">
         <div fxLayout="row" fxLayoutAlign="space-between center"
              [class.sortable]="column.sortable"
-             (click)="sort(column)">
+             (click)="onSortChange(column)">
           <span>{{column.label}}</span>
 
           <i-feather name="arrow-up" class="icon"
@@ -48,4 +42,9 @@
     </tbody>
 
   </table>
+
+  <cas-table-pagination [pageSize]="requestParam.size"
+                        [totalPages]="totalPages"
+                        (pageChange)="onPageChange($event)">
+  </cas-table-pagination>
 </div>

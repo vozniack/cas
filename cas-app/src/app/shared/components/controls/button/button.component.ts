@@ -8,11 +8,13 @@ import {Component, Input} from '@angular/core';
 export class ButtonComponent {
 
   @Input() disabled: boolean = false;
+  @Input() active: boolean = false;
 
   @Input() width: string = '100%';
 
   @Input() iconLeft?: string = undefined;
   @Input() iconRight?: string = undefined;
 
-  @Input() theme: 'primary' | 'secondary' = 'primary'
+  @Input() size: 'tiny' | 'small' | 'normal' = 'normal';
+  @Input() theme: 'primary' | 'secondary' | 'default' = 'primary';
 }

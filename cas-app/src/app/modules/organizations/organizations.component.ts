@@ -8,6 +8,7 @@ import {Organization} from "./organizations.interface";
 import {OrganizationsService} from "./organizations.service";
 import {Pageable} from "../../shared/model/pageable.interface";
 import {RequestParam} from "../../shared/model/request.interface";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'cas-organizations',
@@ -18,7 +19,10 @@ export class OrganizationsComponent {
 
   data: Pageable<Organization> = {}
   columns = organizationColumns;
-  requestParam: RequestParam = {page: 0, size: 16};
+
+  requestParam: RequestParam = {page: 0, size: 10};
+
+  totalPages!: number;
 
   constructor(private organizationsService: OrganizationsService,
               private store: Store<NavigationState>,) {
@@ -27,8 +31,10 @@ export class OrganizationsComponent {
   }
 
   getOrganizations(): void {
-    this.organizationsService.getOrganizations(this.requestParam)
-      .subscribe(response => this.data = response)
+    this.organizationsService.getOrganizations(this.requestParam).pipe(
+      tap(response => this.data = response),
+      tap(response => this.totalPages = response.totalPages!!)
+    ).subscribe()
   }
 
   onRequestParamChange(requestParam: RequestParam): void {

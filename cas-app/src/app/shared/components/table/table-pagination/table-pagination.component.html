@@ -1,0 +1,44 @@
+<div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="4px" *ngIf="totalPages > 1" @fadeInAnimation>
+
+  <!-- static previous pages buttons -->
+
+  <cas-button [disabled]="totalPages < 2 || page === 1"
+              [width]="'56px'" [size]="'tiny'" [theme]="'default'"
+              (click)="firstPage()">
+    <i-feather name="chevrons-left"></i-feather>
+  </cas-button>
+
+  <cas-button [disabled]="page === 1"
+              [width]="'56px'" [size]="'tiny'" [theme]="'default'"
+              (click)="prevPage()">
+    <i-feather name="chevron-left"></i-feather>
+  </cas-button>
+
+  <!-- dynamic page buttons -->
+
+  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="4px">
+    <ng-container *ngFor="let p of pages">
+      <cas-button *ngIf="this.canShowPage(p)"
+                  [active]="p === page"
+                  [width]="'56px'" [size]="'tiny'" [theme]="'default'"
+                  (click)="this.changePage(p)"
+                  @fadeInAnimation>
+        {{p.toString()}}
+      </cas-button>
+    </ng-container>
+  </div>
+
+  <!-- static next pages buttons -->
+
+  <cas-button [disabled]="totalPages === 0 || (totalPages > 0 && page === totalPages)"
+              [width]="'56px'" [size]="'tiny'" [theme]="'default'"
+              (click)="nextPage()">
+    <i-feather name="chevron-right"></i-feather>
+  </cas-button>
+
+  <cas-button [disabled]="totalPages < 2 || page === totalPages"
+              [width]="'56px'" [size]="'tiny'" [theme]="'default'"
+              (click)="lastPage()">
+    <i-feather name="chevrons-right"></i-feather>
+  </cas-button>
+</div>
