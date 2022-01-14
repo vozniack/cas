@@ -18,6 +18,10 @@
           </i-feather>
         </div>
       </th>
+
+      <th *ngIf="actions.length > 0">
+        <span>Actions</span>
+      </th>
     </tr>
     </thead>
 
@@ -33,10 +37,16 @@
 
         <ng-container *ngIf="column.type == columnType.DATE">
           <span [ngClass]="column.badge ? 'badge ' + column.badge : ''">
-            {{getFieldValue(row, column) | date: 'MM-dd-YYYY, HH:mm:ss'}}
+            {{getFieldValue(row, column) | date: 'dd-MM-YYYY, HH:mm:ss'}}
           </span>
         </ng-container>
 
+      </th>
+
+      <th *ngIf="actions.length > 0">
+        <cas-table-actions [actions]="actions"
+                           (actionActive)="onActionActive($event, row)">
+        </cas-table-actions>
       </th>
     </tr>
     </tbody>

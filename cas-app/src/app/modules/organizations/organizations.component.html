@@ -1,5 +1,10 @@
 <div fxLayout="column">
-  <cas-table [data]="data" [columns]="columns" [requestParam]="requestParam" [totalPages]="totalPages"
-             (requestParamChange)="onRequestParamChange($event)">
+  <cas-table [data]="data"
+             [columns]="columns"
+             [actions]="actions"
+             [requestParam]="requestParam"
+             [totalPages]="totalPages"
+             (requestParamChange)="onRequestParamChange($event)"
+             (actionActive)="onActionActive($event)">
   </cas-table>
 </div>

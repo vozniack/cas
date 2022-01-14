@@ -46,12 +46,15 @@ button {
   /* Sizes */
 
   &.tiny {
-    height: 40px;
-    padding: 8px 12px;
+    height: 30px;
+    padding: 4px 8px;
+
+    border-radius: 8px;
   }
 
   &.small {
-    padding: 12px 24px;
+    height: 40px;
+    padding: 8px 12px;
   }
 
   /* Themes */

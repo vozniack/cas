@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ColumnType, TableColumn} from "./table.interface";
+import {ColumnType, TableAction, TableColumn} from "./table.interface";
 import {Pageable} from "../../model/pageable.interface";
 import {fadeInAnimation} from "../../animations/fade-in-animation";
 import {fadeOutAnimation} from "../../animations/fade-out-animation";
@@ -22,6 +22,9 @@ export class TableComponent {
   columns: TableColumn[] = [];
 
   @Input()
+  actions: TableAction[] = [];
+
+  @Input()
   requestParam: RequestParam = {page: 0, size: 16};
 
   @Input()
@@ -29,6 +32,9 @@ export class TableComponent {
 
   @Output()
   requestParamChange = new EventEmitter<RequestParam>();
+
+  @Output()
+  actionActive = new EventEmitter<TableAction>();
 
   searchFormControl = new FormControl(null);
 
@@ -70,6 +76,10 @@ export class TableComponent {
   onPageChange(page: number): void {
     this.requestParam.page = page;
     this.requestParamChange.emit(this.requestParam);
+  }
+
+  onActionActive(tableAction: TableAction, data: any): void {
+    this.actionActive.emit({...tableAction, data: data})
   }
 
   /* Getter */

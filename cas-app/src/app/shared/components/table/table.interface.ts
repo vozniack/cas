@@ -19,3 +19,14 @@ export enum ColumnType {
 export type BadgeType =
   'primary' |
   'secondary';
+
+export interface TableAction {
+
+  name: string;
+
+  icon: string;
+
+  theme: 'primary' | 'secondary' | 'default';
+
+  data?: any;
+}

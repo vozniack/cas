@@ -1,4 +1,4 @@
-import {ColumnType, TableColumn} from "../../shared/components/table/table.interface";
+import {ColumnType, TableAction, TableColumn} from "../../shared/components/table/table.interface";
 
 export const organizationColumns: TableColumn[] = [
   {
@@ -27,5 +27,18 @@ export const organizationColumns: TableColumn[] = [
     field: 'updatedAt',
     sortable: true,
     type: ColumnType.DATE
+  }
+]
+
+export const organizationActions: TableAction[] = [
+  {
+    name: 'EDIT',
+    icon: 'edit',
+    theme: 'primary'
+  },
+  {
+    name: 'SHOW',
+    icon: 'eye',
+    theme: 'secondary'
   }
 ]
