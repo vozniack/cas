@@ -25,8 +25,8 @@
     </tr>
     </thead>
 
-    <tbody *ngIf="data" @fadeInAnimation>
-    <tr *ngFor="let row of data.content; let i = index">
+    <tbody *ngIf="_data" @fadeInAnimation>
+    <tr *ngFor="let row of _data.content; let i = index">
       <th *ngFor="let column of columns">
 
         <ng-container *ngIf="column.type == null">
