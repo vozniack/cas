@@ -24,8 +24,6 @@ export class OrganizationsComponent {
 
   requestParam: RequestParam = {page: 0, size: 10};
 
-  totalPages!: number;
-
   constructor(private organizationsService: OrganizationsService,
               private store: Store<NavigationState>,) {
     this.store.dispatch(ACTION_SET_NAVIGATION({navigationState: organizationsState}))
@@ -34,8 +32,7 @@ export class OrganizationsComponent {
 
   getOrganizations(): void {
     this.organizationsService.getOrganizations(this.requestParam).pipe(
-      tap(response => this.data = response),
-      tap(response => this.totalPages = response.totalPages!!)
+      tap((response: Pageable<Organization>) => this.data = response),
     ).subscribe()
   }
 

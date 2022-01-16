@@ -55,6 +55,7 @@
 
   <cas-table-pagination [pageSize]="requestParam.size"
                         [totalPages]="totalPages"
+                        [reset]="paginationReset"
                         (pageChange)="onPageChange($event)">
   </cas-table-pagination>
 </div>

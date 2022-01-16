@@ -1,5 +1,7 @@
-import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output} from '@angular/core';
 import {fadeInAnimation} from "../../../animations/fade-in-animation";
+import {Subject} from "rxjs";
+import {takeUntil, tap} from "rxjs/operators";
 
 @Component({
   selector: 'cas-table-pagination',
@@ -7,7 +9,7 @@ import {fadeInAnimation} from "../../../animations/fade-in-animation";
   styleUrls: ['./table-pagination.component.scss'],
   animations: [fadeInAnimation]
 })
-export class TablePaginationComponent implements OnChanges {
+export class TablePaginationComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input()
   pageSize!: number;
@@ -18,6 +20,9 @@ export class TablePaginationComponent implements OnChanges {
   @Input()
   borderButtons: number = 1;
 
+  @Input()
+  reset!: Subject<any>;
+
   @Output()
   pageChange = new EventEmitter<number>();
 
@@ -25,12 +30,27 @@ export class TablePaginationComponent implements OnChanges {
 
   page = 1;
 
-  constructor() {
+  ngDestroyed$ = new Subject<boolean>();
+
+  /* ng actions */
+
+  ngOnInit(): void {
+    this.reset.pipe(
+      takeUntil(this.ngDestroyed$),
+      tap(() => this.page = 1)
+    ).subscribe()
   }
 
   ngOnChanges(): void {
     this.countPages();
   }
+
+  ngOnDestroy(): void {
+    this.ngDestroyed$.next(true);
+    this.ngDestroyed$.unsubscribe();
+  }
+
+  /* Counter */
 
   countPages(): void {
     this.pages = [];

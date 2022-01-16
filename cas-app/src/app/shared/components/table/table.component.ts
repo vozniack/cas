@@ -6,7 +6,7 @@ import {fadeOutAnimation} from "../../animations/fade-out-animation";
 import {RequestParam, SortDirection} from "../../model/request.interface";
 import {FormControl} from "@angular/forms";
 import {tap} from "rxjs/operators";
-import {Observable} from "rxjs";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'cas-table',
@@ -37,6 +37,8 @@ export class TableComponent {
   @Output()
   actionActive = new EventEmitter<TableAction>();
 
+  paginationReset = new Subject();
+
   _data: Pageable<any> = {};
   totalPages!: number;
 
@@ -46,18 +48,14 @@ export class TableComponent {
 
   constructor() {
     this.onSearchChange();
-
-    Observable.create(this.data).pipe(
-      tap((data: Pageable<any>) => this.totalPages = data.totalPages!!)
-    ).subscribe()
   }
 
   /* Changes */
 
   onSearchChange(): void {
     this.searchFormControl.valueChanges.pipe(
-      tap((search: string) => this.requestParam.search = search),
-      tap(() => this.requestParamChange.emit(this.requestParam))
+      tap((search: string) => this.requestParamChange.emit({...this.requestParam, page: 0, search: search})),
+      tap(() => this.paginationReset.next())
     ).subscribe()
   }
 
@@ -82,8 +80,7 @@ export class TableComponent {
   }
 
   onPageChange(page: number): void {
-    this.requestParam.page = page;
-    this.requestParamChange.emit(this.requestParam);
+    this.requestParamChange.emit({...this.requestParam, page: page});
   }
 
   onActionActive(tableAction: TableAction, data: any): void {
