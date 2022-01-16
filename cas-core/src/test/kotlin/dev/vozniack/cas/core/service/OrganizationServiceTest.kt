@@ -5,6 +5,7 @@ import dev.vozniack.cas.core.entity.Organization
 import dev.vozniack.cas.core.exception.ConflictException
 import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.OrganizationRepository
+import dev.vozniack.cas.core.repository.specification.OrganizationQuery
 import dev.vozniack.cas.core.types.ScopeType
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
@@ -32,7 +33,38 @@ class OrganizationServiceTest @Autowired constructor(
             Organization(name = "Second organization", code = "ORG_2")
         ))
 
-        val organizations = organizationService.findAll(PageRequest.ofSize(1024))
+        val organizations = organizationService.findAll(OrganizationQuery(), PageRequest.ofSize(1024))
+
+        assertThat(organizations).isInstanceOf(Page::class.java)
+        assertThat(organizations.content.size).isEqualTo(2)
+    }
+
+    @Test
+    fun `find page of filtered organizations`() {
+        organizationRepository.saveAll(listOf(
+            Organization(name = "First organization", code = "ORG_1"),
+            Organization(name = "Second organization", code = "ORG_2")
+        ))
+
+        var organizations = organizationService.findAll(
+            OrganizationQuery(name = "first"), PageRequest.ofSize(1024)
+        )
+
+        assertThat(organizations).isInstanceOf(Page::class.java)
+        assertThat(organizations.content.size).isEqualTo(1)
+        assertThat(organizations.content[0].name).isEqualTo("First organization")
+
+        organizations = organizationService.findAll(
+            OrganizationQuery(code = "2"), PageRequest.ofSize(1024)
+        )
+
+        assertThat(organizations).isInstanceOf(Page::class.java)
+        assertThat(organizations.content.size).isEqualTo(1)
+        assertThat(organizations.content[0].name).isEqualTo("Second organization")
+
+        organizations = organizationService.findAll(
+            OrganizationQuery(name = "first", code = "2"), PageRequest.ofSize(1024)
+        )
 
         assertThat(organizations).isInstanceOf(Page::class.java)
         assertThat(organizations.content.size).isEqualTo(2)
