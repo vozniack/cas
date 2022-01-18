@@ -120,7 +120,7 @@ VALUES ('39798f2b-df6f-4239-9736-138b245b151c', 'INTERNAL', 'Login', 'LOGIN',
 
 
        ('9d31e72b-2d3a-4984-8e19-fec0b67857ef', 'INTERNAL', 'Manage account', 'MANAGE_ACCOUNT',
-        'Right to manage own account', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
+        'User account management privileges set', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
 
        ('150e6506-8cc1-4fb3-b700-af236b23d5e9', 'INTERNAL', 'Update email', 'UPDATE_EMAIL',
         'Right to update own email', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '9d31e72b-2d3a-4984-8e19-fec0b67857ef'),
@@ -128,22 +128,6 @@ VALUES ('39798f2b-df6f-4239-9736-138b245b151c', 'INTERNAL', 'Login', 'LOGIN',
        ('fbf61743-c54b-446c-b5ef-addf083cd3c6', 'INTERNAL', 'Update password', 'UPDATE_PASSWORD',
         'Right to update own password', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5',
         '9d31e72b-2d3a-4984-8e19-fec0b67857ef'),
-
-
-       ('80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c', 'INTERNAL', 'Manage users', 'MANAGE_USERS',
-        'User management privilege set', 1, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
-
-       ('b52cebd3-7a86-4f08-a87a-8e13ba29eec0', 'INTERNAL', 'Read user', 'READ_USER',
-        'Right to display users', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c'),
-
-       ('b5ff26bc-7ff6-4505-800d-10743b839d5e', 'INTERNAL', 'Create user', 'CREATE_USER',
-        'Right to create users', 1, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c'),
-
-       ('1e7f623e-1dc3-4a43-974f-3888bfc6c371', 'INTERNAL', 'Update user', 'UPDATE_USER',
-        'Right to update users', 2, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c'),
-
-       ('81a06d5c-8e79-436c-80a7-aa4605c1eb2e', 'INTERNAL', 'Delete user', 'DELETE_USER',
-        'Right to delete users', 3, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c'),
 
 
        ('9b62cadc-bf60-4ea0-b239-7aae1ad7b9d7', 'INTERNAL', 'Manage organizations', 'MANAGE_ORGANIZATIONS',
@@ -164,6 +148,22 @@ VALUES ('39798f2b-df6f-4239-9736-138b245b151c', 'INTERNAL', 'Login', 'LOGIN',
        ('b5b29a88-73ff-456b-a98d-9ae5dd48f2e9', 'INTERNAL', 'Delete organization', 'DELETE_ORGANIZATION',
         'Right to delete organizations', 3, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5',
         '9b62cadc-bf60-4ea0-b239-7aae1ad7b9d7'),
+
+
+       ('80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c', 'INTERNAL', 'Manage users', 'MANAGE_USERS',
+        'User management privilege set', 1, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
+
+       ('b52cebd3-7a86-4f08-a87a-8e13ba29eec0', 'INTERNAL', 'Read user', 'READ_USER',
+        'Right to display users', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c'),
+
+       ('b5ff26bc-7ff6-4505-800d-10743b839d5e', 'INTERNAL', 'Create user', 'CREATE_USER',
+        'Right to create users', 1, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c'),
+
+       ('1e7f623e-1dc3-4a43-974f-3888bfc6c371', 'INTERNAL', 'Update user', 'UPDATE_USER',
+        'Right to update users', 2, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c'),
+
+       ('81a06d5c-8e79-436c-80a7-aa4605c1eb2e', 'INTERNAL', 'Delete user', 'DELETE_USER',
+        'Right to delete users', 3, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c'),
 
 
        ('4b2e19fa-79db-44b9-8bbf-6561a47b3cb9', 'INTERNAL', 'Manage roles', 'MANAGE_ROLES',
@@ -205,8 +205,8 @@ INSERT INTO user_privileges (user_id, privilege_id)
 VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', '39798f2b-df6f-4239-9736-138b245b151c');
 
 INSERT INTO role_privileges (role_id, privilege_id)
-VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', '80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c'),
-       ('98fa7b2c-6caa-4852-b632-e5c05b507021', '9b62cadc-bf60-4ea0-b239-7aae1ad7b9d7'),
+VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', '9b62cadc-bf60-4ea0-b239-7aae1ad7b9d7'),
+       ('98fa7b2c-6caa-4852-b632-e5c05b507021', '80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c'),
        ('98fa7b2c-6caa-4852-b632-e5c05b507021', '4b2e19fa-79db-44b9-8bbf-6561a47b3cb9'),
        ('98fa7b2c-6caa-4852-b632-e5c05b507021', '32cb0e0a-4368-447c-ad00-2affe47e7d1d'),
        ('451adc34-f819-46d5-9e35-719ee343fb73', '9d31e72b-2d3a-4984-8e19-fec0b67857ef');
