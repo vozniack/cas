@@ -5,6 +5,7 @@ import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.RoleRepository
 import dev.vozniack.cas.core.repository.UserRepository
+import dev.vozniack.cas.core.repository.specification.Specificable
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
@@ -13,7 +14,8 @@ import java.util.UUID
 @Service
 class RoleService(private val roleRepository: RoleRepository, private val userRepository: UserRepository) {
 
-    fun findAll(pageable: Pageable): Page<Role> = roleRepository.findAll(pageable)
+    fun findAll(query: Specificable<Role>, pageable: Pageable): Page<Role> =
+        roleRepository.findAll(query.toSpecification(), pageable)
 
     fun findById(id: UUID): Role = roleRepository.findById(id).orElseThrow { NotFoundException() }
 

@@ -6,6 +6,7 @@ import dev.vozniack.cas.core.api.v1.dto.request.UserPasswordRequestDto
 import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.UserRepository
+import dev.vozniack.cas.core.repository.specification.UserQuery
 import dev.vozniack.cas.core.types.ScopeType
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
@@ -29,14 +30,30 @@ class UserServiceTest @Autowired constructor(
     }
 
     @Test
-    fun `find list of all users`() {
+    fun `find page of all users`() {
         userRepository.save(User(email = "john.doe1@cas.dev", roles = listOf()))
         userRepository.save(User(email = "john.doe2@cas.dev", roles = listOf()))
 
-        val users = userService.findAll(PageRequest.ofSize(1024))
+        val users = userService.findAll(UserQuery(), PageRequest.ofSize(1024))
 
         assertThat(users).isInstanceOf(Page::class.java)
         assertThat(users.content.size).isEqualTo(2)
+    }
+
+    @Test
+    fun `find page of filtered users`() {
+        userRepository.save(User(firstName = "John", lastName = "Doe", email = "john.doe1@cas.dev", roles = listOf()))
+        userRepository.save(User(firstName = "Johannes", lastName = "Doe", email = "john.doe2@cas.dev", roles = listOf()))
+
+        var users = userService.findAll(UserQuery(lastName = "Doe"), PageRequest.ofSize(1024))
+
+        assertThat(users).isInstanceOf(Page::class.java)
+        assertThat(users.content.size).isEqualTo(2)
+
+        users = userService.findAll(UserQuery(firstName = "Johannes"), PageRequest.ofSize(1024))
+
+        assertThat(users).isInstanceOf(Page::class.java)
+        assertThat(users.content.size).isEqualTo(1)
     }
 
     @Test

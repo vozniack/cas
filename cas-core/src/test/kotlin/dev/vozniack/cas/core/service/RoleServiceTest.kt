@@ -6,6 +6,7 @@ import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.RoleRepository
 import dev.vozniack.cas.core.repository.UserRepository
+import dev.vozniack.cas.core.repository.specification.RoleQuery
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.AfterEach
@@ -29,12 +30,29 @@ class RoleServiceTest @Autowired constructor(
     }
 
     @Test
-    fun `find list of all roles`() {
+    fun `find page of all roles`() {
         roleRepository.saveAll(listOf(Role(name = "ADMINISTRATOR", description = "Description"),
             Role(name = "MANAGER", description = "Description"))
         )
 
-        val roles = roleService.findAll(PageRequest.ofSize(1024))
+        val roles = roleService.findAll(RoleQuery(), PageRequest.ofSize(1024))
+
+        assertThat(roles).isInstanceOf(Page::class.java)
+        assertThat(roles.content.size).isEqualTo(2)
+    }
+
+    @Test
+    fun `find page of filtered roles`() {
+        roleRepository.saveAll(listOf(Role(name = "ADMINISTRATOR", description = "Description"),
+            Role(name = "MANAGER", description = "Description"))
+        )
+
+        var roles = roleService.findAll(RoleQuery(name = "ADMINISTRATOR"), PageRequest.ofSize(1024))
+
+        assertThat(roles).isInstanceOf(Page::class.java)
+        assertThat(roles.content.size).isEqualTo(1)
+
+        roles = roleService.findAll(RoleQuery(name = "ADMIN", description = "Description"), PageRequest.ofSize(1024))
 
         assertThat(roles).isInstanceOf(Page::class.java)
         assertThat(roles.content.size).isEqualTo(2)

@@ -5,6 +5,7 @@ import dev.vozniack.cas.core.api.v1.dto.request.UserPasswordRequestDto
 import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.UserRepository
+import dev.vozniack.cas.core.repository.specification.Specificable
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -14,7 +15,8 @@ import java.util.UUID
 @Service
 class UserService(private val userRepository: UserRepository, private val passwordEncoder: PasswordEncoder) {
 
-    fun findAll(pageable: Pageable): Page<User> = userRepository.findAll(pageable)
+    fun findAll(query: Specificable<User>, pageable: Pageable): Page<User> =
+        userRepository.findAll(query.toSpecification(), pageable)
 
     fun findById(id: UUID): User = userRepository.findById(id).orElseThrow { NotFoundException() }
 

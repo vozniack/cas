@@ -4,6 +4,7 @@ import dev.vozniack.cas.core.entity.Privilege
 import dev.vozniack.cas.core.exception.ConflictException
 import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.PrivilegeRepository
+import dev.vozniack.cas.core.repository.specification.Specificable
 import dev.vozniack.cas.core.types.ScopeType
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -14,7 +15,8 @@ import java.util.UUID
 @Service
 class PrivilegeService(private val privilegeRepository: PrivilegeRepository) {
 
-    fun findAll(pageable: Pageable): Page<Privilege> = privilegeRepository.findAllByParentIsNull(pageable)
+    fun findAll(query: Specificable<Privilege>, pageable: Pageable): Page<Privilege> =
+        privilegeRepository.findAll(query.toSpecification(), pageable)
 
     fun findById(id: UUID): Privilege = privilegeRepository.findById(id).orElseThrow { NotFoundException() }
 
