@@ -1,11 +1,11 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
-import {Pageable} from "../../shared/model/pageable.interface";
+import {environment} from "../../../../environments/environment";
+import {Pageable} from "../../../shared/model/pageable.interface";
 import {Observable} from "rxjs";
 import {Organization} from "./organizations.interface";
-import {buildHttpParams} from "../../shared/utils/request-param.util";
-import {RequestParam} from "../../shared/model/request.interface";
+import {buildHttpParams} from "../../../shared/utils/request-param.util";
+import {RequestParam} from "../../../shared/model/request.interface";
 
 @Injectable()
 export class OrganizationsService {

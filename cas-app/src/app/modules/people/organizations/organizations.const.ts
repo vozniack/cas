@@ -1,4 +1,4 @@
-import {ColumnType, TableAction, TableColumn} from "../../shared/components/table/table.interface";
+import {ColumnType, TableAction, TableColumn} from "../../../shared/components/table/table.interface";
 
 export const organizationColumns: TableColumn[] = [
   {

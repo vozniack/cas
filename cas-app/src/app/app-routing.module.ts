@@ -5,22 +5,22 @@ import {LoginComponent} from "./core/login/login.component";
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  },
+  {
     path: 'login',
     component: LoginComponent
   },
   {
-    path: '',
+    path: 'dashboard',
     loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
     canActivate: [TokenGuard]
   },
   {
-    path: 'organizations',
-    loadChildren: () => import('./modules/organizations/organizations.module').then(m => m.OrganizationsModule),
-    canActivate: [TokenGuard]
-  },
-  {
-    path: 'users',
-    loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule),
+    path: 'people',
+    loadChildren: () => import('./modules/people/people.module').then(m => m.PeopleModule),
     canActivate: [TokenGuard]
   },
   {

@@ -1,10 +1,10 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
-import {RequestParam} from "../../shared/model/request.interface";
+import {environment} from "../../../../environments/environment";
+import {RequestParam} from "../../../shared/model/request.interface";
 import {Observable} from "rxjs";
-import {Pageable} from "../../shared/model/pageable.interface";
-import {buildHttpParams} from "../../shared/utils/request-param.util";
+import {Pageable} from "../../../shared/model/pageable.interface";
+import {buildHttpParams} from "../../../shared/utils/request-param.util";
 import {User} from "./users.interface";
 
 @Injectable()
