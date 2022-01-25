@@ -22,6 +22,7 @@ export class TextInputComponent {
   @Input() width: string = '100%';
 
   @Input() theme: 'primary' | 'secondary' = 'primary';
+  @Input() background : 'basic' | 'dark' = 'basic';
 
   isRequired(): boolean {
     return this.control.hasValidator(Validators.required);

@@ -24,6 +24,16 @@ const routes: Routes = [
     canActivate: [TokenGuard]
   },
   {
+    path: 'organizations',
+    loadChildren: () => import('./modules/organizations/organizations.module').then(m => m.OrganizationsModule),
+    canActivate: [TokenGuard]
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule),
+    canActivate: [TokenGuard]
+  },
+  {
     path: 'roles',
     loadChildren: () => import('./modules/roles/roles.module').then(m => m.RolesModule),
     canActivate: [TokenGuard]

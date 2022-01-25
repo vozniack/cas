@@ -1,0 +1,14 @@
+@import 'src/styles/variables';
+
+.organizations-container {
+  padding: 24px;
+  border-radius: 12px;
+
+  color: $white;
+  background: $background-dark;
+
+  .title {
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
+}

@@ -1,5 +1,5 @@
-import {ScopeType} from "../../../shared/model/types.interface";
-import {Auditable} from "../../../shared/model/auditable.interface";
+import {ScopeType} from "../../shared/model/types.interface";
+import {Auditable} from "../../shared/model/auditable.interface";
 
 export interface User extends Auditable {
 

@@ -1,45 +1,53 @@
-import {Component} from '@angular/core';
-import {Store} from "@ngrx/store";
-import {NavigationState} from "../../../shared/store/navigation/navigation.state";
-import {ACTION_SET_NAVIGATION} from "../../../shared/store/navigation/navigation.actions";
-import {usersState} from "../../../shared/store/navigation/navigation.const";
+import {Component, Input, OnInit} from '@angular/core';
+import {fadeInAnimation} from "../../../shared/animations/fade-in-animation";
 import {Pageable} from "../../../shared/model/pageable.interface";
+import {User} from "../../users/users.interface";
 import {RequestParam} from "../../../shared/model/request.interface";
 import {tap} from "rxjs/operators";
-import {TableAction} from "../../../shared/components/table/table.interface";
-import {UsersService} from "./users.service";
-import {User} from "./users.interface";
-import {userActions, userColumns} from "./users.const";
+import {UsersService} from "../../users/users.service";
+import {Subject} from "rxjs";
+import {Organization} from "../../organizations/organizations.interface";
+import {fadeOutAnimation} from "../../../shared/animations/fade-out-animation";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'cas-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  styleUrls: ['./users.component.scss'],
+  animations: [fadeInAnimation, fadeOutAnimation]
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit {
+
+  @Input()
+  organizationRefresh!: Subject<Organization>;
 
   data: Pageable<User> = {}
-  columns = userColumns;
-  actions = userActions;
-
   requestParam: RequestParam = {page: 0, size: 10};
+  searchControl = new FormControl(null);
 
-  constructor(private usersService: UsersService,
-              private store: Store<NavigationState>) {
-    this.store.dispatch(ACTION_SET_NAVIGATION({navigationState: usersState}));
+  organization?: Organization;
+
+  constructor(private usersService: UsersService) {
+    this.searchControl.valueChanges.pipe(
+      tap((search: string) => this.requestParam.search = search),
+      tap(() => this.getUsers())
+    ).subscribe();
+  }
+
+  ngOnInit(): void {
+    this.organizationRefresh.pipe(
+      tap((organization: Organization) => this.organization = organization)
+    ).subscribe();
   }
 
   getUsers(): void {
     this.usersService.getUsers(this.requestParam).pipe(
-      tap((response: Pageable<User>) => this.data = response),
+      tap((response: Pageable<User>) => this.data = response)
     ).subscribe()
   }
 
   onRequestParamChange(requestParam: RequestParam): void {
     this.requestParam = requestParam;
     this.getUsers();
-  }
-
-  onActionActive(tableAction: TableAction): void {
   }
 }

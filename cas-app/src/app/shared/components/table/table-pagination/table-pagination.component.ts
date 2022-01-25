@@ -58,8 +58,6 @@ export class TablePaginationComponent implements OnInit, OnDestroy {
       this.pages[iterator++] = this.page + i;
     }
 
-    console.log('page counting');
-
     this.pageChange.emit(this.page - 1);
   }
 

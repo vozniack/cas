@@ -40,9 +40,6 @@ export class TableComponent {
   @Input()
   addButton = true;
 
-  @Input()
-  addLabel = 'Add'
-
   @Output()
   requestParamChange = new EventEmitter<RequestParam>();
 

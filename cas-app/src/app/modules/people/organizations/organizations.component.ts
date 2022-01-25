@@ -1,45 +1,47 @@
-import {Component} from '@angular/core';
-import {Store} from "@ngrx/store";
-import {NavigationState} from "../../../shared/store/navigation/navigation.state";
-import {ACTION_SET_NAVIGATION} from "../../../shared/store/navigation/navigation.actions";
-import {organizationsState} from "../../../shared/store/navigation/navigation.const";
-import {organizationActions, organizationColumns} from "./organizations.const";
-import {Organization} from "./organizations.interface";
-import {OrganizationsService} from "./organizations.service";
+import {Component, Input} from '@angular/core';
+import {fadeInAnimation} from "../../../shared/animations/fade-in-animation";
+import {OrganizationsService} from "../../organizations/organizations.service";
 import {Pageable} from "../../../shared/model/pageable.interface";
+import {Organization} from "../../organizations/organizations.interface";
 import {RequestParam} from "../../../shared/model/request.interface";
 import {tap} from "rxjs/operators";
-import {TableAction} from "../../../shared/components/table/table.interface";
+import {Subject} from "rxjs";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'cas-organizations',
   templateUrl: './organizations.component.html',
-  styleUrls: ['./organizations.component.scss']
+  styleUrls: ['./organizations.component.scss'],
+  animations: [fadeInAnimation]
 })
 export class OrganizationsComponent {
 
+  @Input()
+  organizationRefresh!: Subject<Organization>;
+
   data: Pageable<Organization> = {}
-  columns = organizationColumns;
-  actions = organizationActions;
-
   requestParam: RequestParam = {page: 0, size: 10};
+  searchControl = new FormControl(null);
 
-  constructor(private organizationsService: OrganizationsService,
-              private store: Store<NavigationState>) {
-    this.store.dispatch(ACTION_SET_NAVIGATION({navigationState: organizationsState}));
+  activeOrganization?: Organization;
+
+  constructor(private organizationsService: OrganizationsService) {
+    this.getOrganizations();
+
+    this.searchControl.valueChanges.pipe(
+      tap((search: string) => this.requestParam.search = search),
+      tap(() => this.getOrganizations())
+    ).subscribe();
   }
 
   getOrganizations(): void {
     this.organizationsService.getOrganizations(this.requestParam).pipe(
-      tap((response: Pageable<Organization>) => this.data = response),
+      tap((response: Pageable<Organization>) => this.data = response)
     ).subscribe()
   }
 
-  onRequestParamChange(requestParam: RequestParam): void {
-    this.requestParam = requestParam;
-    this.getOrganizations();
-  }
-
-  onActionActive(tableAction: TableAction): void {
+  activate(organization: Organization): void {
+    this.activeOrganization = this.activeOrganization != organization ? organization : undefined;
+    this.organizationRefresh.next(this.activeOrganization);
   }
 }
