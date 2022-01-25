@@ -4,9 +4,11 @@ import {TextInputComponent} from './text-input/text-input.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {FlexModule} from "@angular/flex-layout";
 import {IconsModule} from "../../../core/icons/icons.module";
+import {SelectInputComponent} from './select-input/select-input.component';
 
 const COMPONENTS = [
-  TextInputComponent
+  TextInputComponent,
+  SelectInputComponent
 ]
 
 @NgModule({

@@ -12,6 +12,10 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+input, select {
+  font-family: 'Montserrat', sans-serif;
+}
+
 /* Imports */
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap');
@@ -42,6 +46,31 @@ h4 {
 
 h5 {
   font-size: 12px;
+}
+
+/*
+ * Scrollbar
+ */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $content-background-dark;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+  background: $background-dark;
+  border: 1px solid $content-background-dark;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba($background-dark, 0.75);
 }
 
 /*

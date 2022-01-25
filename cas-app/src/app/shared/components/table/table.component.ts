@@ -4,7 +4,7 @@ import {Pageable} from "../../model/pageable.interface";
 import {fadeInAnimation} from "../../animations/fade-in-animation";
 import {fadeOutAnimation} from "../../animations/fade-out-animation";
 import {RequestParam, SortDirection} from "../../model/request.interface";
-import {FormControl} from "@angular/forms";
+import {FormBuilder, FormControl} from "@angular/forms";
 import {tap} from "rxjs/operators";
 import {Subject} from "rxjs";
 
@@ -31,6 +31,12 @@ export class TableComponent {
   @Input()
   requestParam!: RequestParam;
 
+  @Input()
+  scopeFilter = true;
+
+  @Input()
+  searchFilter = true;
+
   @Output()
   requestParamChange = new EventEmitter<RequestParam>();
 
@@ -42,19 +48,25 @@ export class TableComponent {
   _data: Pageable<any> = {};
   totalPages!: number;
 
-  searchFormControl = new FormControl(null);
+  filterFormControl = this.formBuilder.group({
+    search: new FormControl(),
+    scope: new FormControl()
+  })
 
   columnType = ColumnType;
 
-  constructor() {
+  constructor(private formBuilder: FormBuilder) {
     this.onSearchChange();
   }
 
   /* Changes */
 
   onSearchChange(): void {
-    this.searchFormControl.valueChanges.pipe(
-      tap((search: string) => this.requestParamChange.emit({...this.requestParam, page: 0, search: search})),
+    this.filterFormControl.valueChanges.pipe(
+      tap((filter: any) => this.requestParamChange.emit(
+        {...this.requestParam, page: 0, search: filter.search, scope: filter.scope}
+      )),
+      tap((filter: any) => console.log(filter)),
       tap(() => this.paginationReset.next())
     ).subscribe()
   }
@@ -91,5 +103,9 @@ export class TableComponent {
 
   getFieldValue(row: any, tableColumn: TableColumn): string {
     return tableColumn?.field?.split('.').reduce((o, key) => o[key], row);
+  }
+
+  getControl(controlName: string): FormControl {
+    return this.filterFormControl.get(controlName) as FormControl;
   }
 }

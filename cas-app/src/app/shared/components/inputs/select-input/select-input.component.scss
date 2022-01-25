@@ -1,0 +1,158 @@
+@import 'src/styles/variables';
+
+.select-input {
+  position: relative;
+
+  .label {
+    color: $white;
+
+    .name {
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .description {
+      font-size: 12px;
+      font-weight: 200;
+    }
+  }
+
+  .form {
+    width: 100%;
+
+    position: relative;
+    border-radius: 8px;
+    box-shadow: none;
+
+    transition: filter 0.2s ease-in-out;
+
+    margin-bottom: 0 !important;
+
+    &.active:hover {
+      filter: none !important;
+    }
+
+    &.theme-primary {
+      &:hover {
+        filter: drop-shadow(0 0 2px rgba($primary, 0.75));
+      }
+
+      &.active {
+        filter: drop-shadow(0 0 2px rgba($primary, 1));
+      }
+    }
+
+    &.theme-secondary {
+      &:hover {
+        filter: drop-shadow(0 0 2px rgba($secondary, 0.75));
+      }
+
+      &.active {
+        filter: drop-shadow(0 0 2px rgba($secondary, 1));
+      }
+    }
+
+    &.invalid {
+      filter: drop-shadow(0 0 2px rgba($red, 0.75));
+    }
+
+    .select {
+      height: 40px;
+      width: 100%;
+      padding: 5px 20px;
+
+      background: $background-dark;
+
+      border-radius: 12px;
+      border: none;
+
+      box-sizing: border-box;
+
+      font-size: 18px;
+      color: $white;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .value {
+        position: absolute;
+
+        top: 10px;
+        left: 20px;
+      }
+    }
+
+    .placeholder {
+      position: absolute;
+
+      top: 14px;
+      left: 20px;
+
+      font-size: 12px;
+      color: rgba($white, 0.4);
+      letter-spacing: 1px;
+    }
+
+    .icon {
+      position: absolute;
+      z-index: 100;
+
+      top: 12px;
+      right: 12px;
+      width: 16px;
+
+      color: rgba($white, 0.5);
+
+      transition: all 0.2s ease-in-out;
+
+      &.active {
+        top: 10px;
+        right: 8px;
+        transform: rotate(-90deg);
+      }
+    }
+  }
+
+  .select-options {
+    top: 52px;
+    left: 0;
+
+    padding: 4px;
+
+    box-sizing: border-box;
+    position: absolute;
+
+    z-index: 100;
+
+    max-height: 256px;
+    overflow-y: auto;
+
+    background: $background-dark;
+
+    border-radius: 12px;
+    border: 1px solid $content-background-dark;
+
+    .option {
+      height: 20px;
+
+      padding: 8px;
+      margin-left: 6px;
+
+      border-radius: 12px;
+      color: $white;
+
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        cursor: pointer;
+        background: $content-background-dark;
+      }
+
+      &.empty {
+        font-size: 14px;
+        color: rgba($white, 0.4);
+      }
+    }
+  }
+}

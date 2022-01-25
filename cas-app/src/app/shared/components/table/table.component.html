@@ -1,6 +1,14 @@
 <div class="table-container" fxLayout="column" fxLayoutGap="16px">
 
-  <cas-table-search [searchFormControl]="searchFormControl"></cas-table-search>
+  <div fxLayout="row" [fxLayoutAlign]="searchFilter && scopeFilter ? 'space-between center' : 'end center'">
+    <cas-table-filter-scope *ngIf="scopeFilter"
+                            [formControl]="getControl('scope')">
+    </cas-table-filter-scope>
+
+    <cas-table-filter-search *ngIf="searchFilter"
+                             [formControl]="getControl('search')">
+    </cas-table-filter-search>
+  </div>
 
   <table *ngIf="columns" @fadeInAnimation>
     <thead>

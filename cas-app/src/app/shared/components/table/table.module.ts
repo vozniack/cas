@@ -4,17 +4,19 @@ import {TableComponent} from './table.component';
 import {FlexModule} from "@angular/flex-layout";
 import {InputsModule} from "../inputs/inputs.module";
 import {IconsModule} from "../../../core/icons/icons.module";
-import {TableSearchComponent} from './table-search/table-search.component';
+import {TableFilterSearchComponent} from './table-filter-search/table-filter-search.component';
 import {TablePaginationComponent} from './table-pagination/table-pagination.component';
 import {ControlsModule} from "../controls/controls.module";
 import {TableActionsComponent} from './table-actions/table-actions.component';
+import {TableFilterScopeComponent} from './table-filter-scope/table-filter-scope.component';
 
 @NgModule({
   declarations: [
     TableComponent,
-    TableSearchComponent,
+    TableFilterSearchComponent,
     TablePaginationComponent,
-    TableActionsComponent
+    TableActionsComponent,
+    TableFilterScopeComponent
   ],
   exports: [
     TableComponent

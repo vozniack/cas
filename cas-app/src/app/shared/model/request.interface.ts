@@ -1,6 +1,10 @@
+import {ScopeType} from "./types.interface";
+
 export interface RequestParam {
 
   search?: string;
+
+  scope?: ScopeType;
 
   page: number;
 
