@@ -26,8 +26,7 @@ export class OrganizationsComponent {
 
   constructor(private organizationsService: OrganizationsService,
               private store: Store<NavigationState>,) {
-    this.store.dispatch(ACTION_SET_NAVIGATION({navigationState: organizationsState}))
-    this.getOrganizations();
+    this.store.dispatch(ACTION_SET_NAVIGATION({navigationState: organizationsState}));
   }
 
   getOrganizations(): void {

@@ -27,7 +27,6 @@ export class UsersComponent {
   constructor(private usersService: UsersService,
               private store: Store<NavigationState>) {
     this.store.dispatch(ACTION_SET_NAVIGATION({navigationState: usersState}));
-    this.getUsers();
   }
 
   getUsers(): void {

@@ -35,10 +35,12 @@ button {
     transition: color 0.2s ease-in-out;
 
     &.left {
+      top: 10px;
       left: 16px;
     }
 
     &.right {
+      top: 10px;
       right: 16px;
     }
   }
@@ -50,11 +52,31 @@ button {
     padding: 4px 8px;
 
     border-radius: 8px;
+
+    &.icon-left {
+      padding: 4px 8px 4px 24px;
+    }
+
+    &.icon-right {
+      padding: 4px 24px 4px 8px;
+    }
   }
 
   &.small {
     height: 40px;
     padding: 8px 12px;
+
+    &.icon-left {
+      padding: 8px 12px 8px 48px;
+    }
+
+    &.icon-right {
+      padding: 8px 48px 8px 12px;
+    }
+
+    &.icon-left, &.icon-right .content {
+      margin-top: 2px;
+    }
   }
 
   /* Themes */

@@ -37,6 +37,12 @@ export class TableComponent {
   @Input()
   searchFilter = true;
 
+  @Input()
+  addButton = true;
+
+  @Input()
+  addLabel = 'Add'
+
   @Output()
   requestParamChange = new EventEmitter<RequestParam>();
 
@@ -49,8 +55,8 @@ export class TableComponent {
   totalPages!: number;
 
   filterFormControl = this.formBuilder.group({
-    search: new FormControl(),
-    scope: new FormControl()
+    scope: new FormControl(),
+    search: new FormControl()
   })
 
   columnType = ColumnType;
@@ -66,7 +72,6 @@ export class TableComponent {
       tap((filter: any) => this.requestParamChange.emit(
         {...this.requestParam, page: 0, search: filter.search, scope: filter.scope}
       )),
-      tap((filter: any) => console.log(filter)),
       tap(() => this.paginationReset.next())
     ).subscribe()
   }
@@ -97,6 +102,12 @@ export class TableComponent {
 
   onActionActive(tableAction: TableAction, data: any): void {
     this.actionActive.emit({...tableAction, data: data})
+  }
+
+  /* Table actions */
+
+  onClearFilters(): void {
+    this.filterFormControl.patchValue({...this.filterFormControl.getRawValue(), scope: null, search: null});
   }
 
   /* Getter */

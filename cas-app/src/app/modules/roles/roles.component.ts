@@ -27,7 +27,6 @@ export class RolesComponent {
   constructor(private rolesService: RolesService,
               private store: Store<NavigationState>) {
     this.store.dispatch(ACTION_SET_NAVIGATION({navigationState: rolesState}));
-    this.getRoles();
   }
 
   getRoles(): void {

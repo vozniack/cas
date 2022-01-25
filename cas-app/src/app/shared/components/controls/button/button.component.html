@@ -1,8 +1,12 @@
 <button [style.width]="width"
         [ngClass]="'theme-' + theme + ' ' + size"
         [class.active]="active"
+        [class.icon-left]="iconLeft"
+        [class.icon-right]="iconRight"
         [disabled]="disabled">
-  <ng-content></ng-content>
+  <div class="content" fxLayout="row" fxLayoutAlign="center center">
+    <ng-content></ng-content>
+  </div>
 
   <i-feather *ngIf="iconLeft" class="icon left" [name]="iconLeft"></i-feather>
   <i-feather *ngIf="iconRight" class="icon right" [name]="iconRight"></i-feather>

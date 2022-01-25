@@ -27,7 +27,6 @@ export class PrivilegesComponent {
   constructor(private privilegesService: PrivilegesService,
               private store: Store<NavigationState>) {
     this.store.dispatch(ACTION_SET_NAVIGATION({navigationState: privilegesState}));
-    this.getPrivileges();
   }
 
   getPrivileges(): void {

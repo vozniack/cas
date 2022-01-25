@@ -1,13 +1,25 @@
 <div class="table-container" fxLayout="column" fxLayoutGap="16px">
 
-  <div fxLayout="row" [fxLayoutAlign]="searchFilter && scopeFilter ? 'space-between center' : 'end center'">
-    <cas-table-filter-scope *ngIf="scopeFilter"
-                            [formControl]="getControl('scope')">
-    </cas-table-filter-scope>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+      <cas-table-filter-scope *ngIf="scopeFilter"
+                              [formControl]="getControl('scope')">
+      </cas-table-filter-scope>
 
-    <cas-table-filter-search *ngIf="searchFilter"
-                             [formControl]="getControl('search')">
-    </cas-table-filter-search>
+      <cas-table-filter-search *ngIf="searchFilter"
+                               [formControl]="getControl('search')">
+      </cas-table-filter-search>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
+      <cas-button [size]="'small'" [theme]="'default'" [iconRight]="'x-circle'" (click)="onClearFilters()">
+        Clear filters
+      </cas-button>
+
+      <cas-button *ngIf="addButton" [size]="'small'" [theme]="'primary'" [iconRight]="'plus-circle'">
+        {{addLabel}}
+      </cas-button>
+    </div>
   </div>
 
   <table *ngIf="columns" @fadeInAnimation>
@@ -36,7 +48,6 @@
     <tbody *ngIf="_data" @fadeInAnimation>
     <tr *ngFor="let row of _data.content; let i = index">
       <th *ngFor="let column of columns">
-
         <ng-container *ngIf="column.type == null">
           <span [ngClass]="column.badge ? 'badge ' + column.badge : ''">
             {{getFieldValue(row, column)}}
@@ -48,7 +59,6 @@
             {{getFieldValue(row, column) | date: 'dd-MM-YYYY, HH:mm:ss'}}
           </span>
         </ng-container>
-
       </th>
 
       <th *ngIf="actions.length > 0">
@@ -58,7 +68,6 @@
       </th>
     </tr>
     </tbody>
-
   </table>
 
   <cas-table-pagination [pageSize]="requestParam.size"

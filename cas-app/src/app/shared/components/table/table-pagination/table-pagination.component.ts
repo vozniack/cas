@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {fadeInAnimation} from "../../../animations/fade-in-animation";
 import {Subject} from "rxjs";
 import {takeUntil, tap} from "rxjs/operators";
@@ -9,7 +9,7 @@ import {takeUntil, tap} from "rxjs/operators";
   styleUrls: ['./table-pagination.component.scss'],
   animations: [fadeInAnimation]
 })
-export class TablePaginationComponent implements OnInit, OnChanges, OnDestroy {
+export class TablePaginationComponent implements OnInit, OnDestroy {
 
   @Input()
   pageSize!: number;
@@ -35,14 +35,12 @@ export class TablePaginationComponent implements OnInit, OnChanges, OnDestroy {
   /* ng actions */
 
   ngOnInit(): void {
+    setTimeout(() => this.countPages(), 32);
+
     this.reset.pipe(
       takeUntil(this.ngDestroyed$),
       tap(() => this.page = 1)
     ).subscribe()
-  }
-
-  ngOnChanges(): void {
-    this.countPages();
   }
 
   ngOnDestroy(): void {
@@ -59,6 +57,8 @@ export class TablePaginationComponent implements OnInit, OnChanges, OnDestroy {
     for (let i = -(this.borderButtons); i < (this.borderButtons * 2) - (this.borderButtons - 1); i++) {
       this.pages[iterator++] = this.page + i;
     }
+
+    console.log('page counting');
 
     this.pageChange.emit(this.page - 1);
   }
