@@ -5,6 +5,7 @@ import dev.vozniack.cas.core.api.v1.mapper.Mapper
 import dev.vozniack.cas.core.entity.Privilege
 import dev.vozniack.cas.core.repository.specification.PrivilegeQuery
 import dev.vozniack.cas.core.service.PrivilegeService
+import dev.vozniack.cas.core.types.ScopeType
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.security.access.prepost.PreAuthorize
@@ -28,8 +29,12 @@ class PrivilegeController(
 
     @GetMapping
     @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasRole('ADMIN')")
-    fun getAll(@RequestParam(required = false) search: String?, pageable: Pageable): Page<PrivilegeDto> =
-        privilegeService.findAll(PrivilegeQuery(search, search, search), pageable).map(privilegeMapper::mapToDto)
+    fun getAll(
+        @RequestParam(required = false) scope: ScopeType?,
+        @RequestParam(required = false) search: String?,
+        pageable: Pageable,
+    ): Page<PrivilegeDto> = privilegeService.findAll(PrivilegeQuery(scope, search, search, search), pageable)
+        .map(privilegeMapper::mapToDto)
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasRole('ADMIN')")

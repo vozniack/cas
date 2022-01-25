@@ -7,6 +7,7 @@ import dev.vozniack.cas.core.entity.Role
 import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.repository.specification.RoleQuery
 import dev.vozniack.cas.core.service.RoleService
+import dev.vozniack.cas.core.types.ScopeType
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.security.access.prepost.PreAuthorize
@@ -31,8 +32,11 @@ class RoleController(
 
     @GetMapping
     @PreAuthorize("hasAuthority('READ_ROLE') and hasRole('ADMIN')")
-    fun getAll(@RequestParam(required = false) search: String?, pageable: Pageable): Page<RoleDto> =
-        roleService.findAll(RoleQuery(search, search), pageable).map(roleMapper::mapToDto)
+    fun getAll(
+        @RequestParam(required = false) scope: ScopeType?,
+        @RequestParam(required = false) search: String?,
+        pageable: Pageable,
+    ): Page<RoleDto> = roleService.findAll(RoleQuery(scope, search, search), pageable).map(roleMapper::mapToDto)
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('READ_ROLE') and hasRole('ADMIN')")

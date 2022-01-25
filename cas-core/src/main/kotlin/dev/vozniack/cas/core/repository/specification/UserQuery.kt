@@ -1,13 +1,20 @@
 package dev.vozniack.cas.core.repository.specification
 
 import dev.vozniack.cas.core.entity.User
+import dev.vozniack.cas.core.types.ScopeType
 import org.springframework.data.jpa.domain.Specification
 
 class UserQuery(
+    val scope: ScopeType? = null,
     val firstName: String? = null,
     val lastName: String? = null,
     val email: String? = null,
 ) : Specificable<User> {
+
+    private fun scopeEquals(scope: ScopeType?): Specification<User> =
+        Specification<User> { root, _, criteriaBuilder ->
+            scope?.let { criteriaBuilder.equal(criteriaBuilder.upper(root.get("scope")), it) }
+        }
 
     private fun firstNameLike(firstName: String?): Specification<User> =
         Specification<User> { root, _, criteriaBuilder ->
@@ -26,7 +33,9 @@ class UserQuery(
 
     override fun toSpecification(): Specification<User> =
         Specification<User> { _, _, _ -> null }
-            .or(firstNameLike(firstName))
-            .or(lastNameLike(lastName))
-            .or(emailLike(email))
+            .and(scopeEquals(scope))
+            .and(firstNameLike(firstName)
+                .or(lastNameLike(lastName))
+                .or(emailLike(email))
+            )
 }

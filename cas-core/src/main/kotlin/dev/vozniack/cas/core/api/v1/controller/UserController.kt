@@ -7,6 +7,7 @@ import dev.vozniack.cas.core.api.v1.mapper.Mapper
 import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.repository.specification.UserQuery
 import dev.vozniack.cas.core.service.UserService
+import dev.vozniack.cas.core.types.ScopeType
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.security.access.prepost.PreAuthorize
@@ -30,8 +31,11 @@ class UserController(
 
     @GetMapping
     @PreAuthorize("hasAuthority('READ_USER') and hasRole('ADMIN')")
-    fun getAll(@RequestParam(required = false) search: String?, pageable: Pageable): Page<UserDto> =
-        userService.findAll(UserQuery(search, search, search), pageable).map(userMapper::mapToDto)
+    fun getAll(
+        @RequestParam(required = false) scope: ScopeType?,
+        @RequestParam(required = false) search: String?,
+        pageable: Pageable,
+    ): Page<UserDto> = userService.findAll(UserQuery(scope, search, search, search), pageable).map(userMapper::mapToDto)
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('READ_USER') and hasRole('ADMIN')")

@@ -5,6 +5,7 @@ import dev.vozniack.cas.core.api.v1.mapper.Mapper
 import dev.vozniack.cas.core.entity.Organization
 import dev.vozniack.cas.core.repository.specification.OrganizationQuery
 import dev.vozniack.cas.core.service.OrganizationService
+import dev.vozniack.cas.core.types.ScopeType
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.security.access.prepost.PreAuthorize
@@ -28,9 +29,12 @@ class OrganizationController(
 
     @GetMapping
     @PreAuthorize("hasAuthority('READ_ORGANIZATION') and hasRole('ADMIN')")
-    fun getAll(@RequestParam(required = false) search: String?, pageable: Pageable): Page<OrganizationDto> =
-        organizationService.findAll(OrganizationQuery(search, search), pageable)
-            .map(organizationMapper::mapToDto)
+    fun getAll(
+        @RequestParam(required = false) scope: ScopeType?,
+        @RequestParam(required = false) search: String?,
+        pageable: Pageable,
+    ): Page<OrganizationDto> = organizationService.findAll(OrganizationQuery(scope, search, search), pageable)
+        .map(organizationMapper::mapToDto)
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('READ_ORGANIZATION') and hasRole('ADMIN')")
