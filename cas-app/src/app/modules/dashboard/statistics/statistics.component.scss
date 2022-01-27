@@ -1,0 +1,32 @@
+@import 'src/styles/variables';
+
+.statistics-container {
+  padding: 16px 24px;
+  border-radius: 12px;
+
+  width: auto;
+
+  color: $white;
+  background: $background-dark;
+
+  .icon {
+    background: rgba($primary, 0.75);
+    color: $white;
+
+    padding: 24px;
+    border-radius: 100%;
+
+    width: 32px;
+    height: 32px;
+  }
+
+  .amount {
+    margin-top: -8px;
+    font-size: 56px;
+    font-weight: 700;
+  }
+
+  .title {
+    font-weight: 300;
+  }
+}
