@@ -1,9 +1,11 @@
 import {Component, Input} from '@angular/core';
+import {fadeInAnimation} from "../../../animations/fade-in-animation";
 
 @Component({
   selector: 'cas-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss']
+  styleUrls: ['./button.component.scss'],
+  animations: [fadeInAnimation]
 })
 export class ButtonComponent {
 

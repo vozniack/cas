@@ -1,4 +1,4 @@
-<div [style.width]="width" class="select-input" fxLayout="column" fxLayoutGap="8px">
+<div [style.width]="width" class="select-input" fxLayout="column" fxLayoutGap="8px" @fadeInAnimation>
   <div class="label" fxLayout="row" fxLayoutAlign="space-between center">
     <span class="name">{{name + (requiredLabel && isRequired() ? ' *' : '')}}</span>
     <span class="description">{{description}}</span>
