@@ -5,9 +5,12 @@ import {PrivilegesRoutingModule} from "./privileges-routing.module";
 import {TableModule} from "../../shared/components/table/table.module";
 import {PrivilegesService} from "./privileges.service";
 import {FlexModule} from "@angular/flex-layout";
+import {PrivilegesTableComponent} from './privileges-table/privileges-table.component';
+import {InputsModule} from "../../shared/components/inputs/inputs.module";
 
 const COMPONENTS = [
-  PrivilegesComponent
+  PrivilegesComponent,
+  PrivilegesTableComponent
 ]
 
 @NgModule({
@@ -16,7 +19,8 @@ const COMPONENTS = [
     CommonModule,
     PrivilegesRoutingModule,
     TableModule,
-    FlexModule
+    FlexModule,
+    InputsModule
   ],
   providers: [
     PrivilegesService

@@ -1,14 +1,9 @@
-import {ColumnType, TableAction, TableColumn} from "../../shared/components/table/table.interface";
+import {ColumnType, TableAction, TableColumn} from "../../../shared/components/table/table.interface";
 
-export const privilegeColumns: TableColumn[] = [
+export const roleColumns: TableColumn[] = [
   {
     label: 'Name',
     field: 'name',
-    sortable: true
-  },
-  {
-    label: 'Code',
-    field: 'code',
     sortable: true,
     badge: 'primary'
   },
@@ -25,7 +20,7 @@ export const privilegeColumns: TableColumn[] = [
   }
 ]
 
-export const privilegeActions: TableAction[] = [
+export const roleActions: TableAction[] = [
   {
     name: 'EDIT',
     icon: 'edit',

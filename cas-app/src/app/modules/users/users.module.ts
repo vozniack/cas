@@ -5,9 +5,12 @@ import {UsersRoutingModule} from "./users-routing.module";
 import {TableModule} from "../../shared/components/table/table.module";
 import {FlexModule} from "@angular/flex-layout";
 import {UsersService} from "./users.service";
+import {UsersTableComponent} from './users-table/users-table.component';
+import {InputsModule} from "../../shared/components/inputs/inputs.module";
 
 const COMPONENTS = [
-  UsersComponent
+  UsersComponent,
+  UsersTableComponent
 ]
 
 @NgModule({
@@ -16,7 +19,8 @@ const COMPONENTS = [
     CommonModule,
     UsersRoutingModule,
     TableModule,
-    FlexModule
+    FlexModule,
+    InputsModule
   ],
   providers: [
     UsersService

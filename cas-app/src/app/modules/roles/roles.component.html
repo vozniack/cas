@@ -1,9 +1,10 @@
-<div fxLayout="column">
-  <cas-table [data]="data"
-             [columns]="columns"
-             [actions]="actions"
-             [requestParam]="requestParam"
-             (requestParamChange)="onRequestParamChange($event)"
-             (actionActive)="onActionActive($event)">
-  </cas-table>
+<div fxLayout="column" fxLayoutGap="24px">
+  <cas-text-input [control]="searchFormControl"
+                  [id]="'filter-search'"
+                  [placeholder]="'Search...'"
+                  [icon]="'search'"
+                  [width]="'368px'">
+  </cas-text-input>
+
+  <cas-roles-table [data]="data" [requestParam]="requestParam" [refresh]="refresh"></cas-roles-table>
 </div>

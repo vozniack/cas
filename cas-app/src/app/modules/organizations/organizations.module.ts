@@ -5,9 +5,12 @@ import {OrganizationsRoutingModule} from "./organizations-routing.module";
 import {FlexModule} from "@angular/flex-layout";
 import {TableModule} from "../../shared/components/table/table.module";
 import {OrganizationsService} from "./organizations.service";
+import {OrganizationsTableComponent} from './organizations-table/organizations-table.component';
+import {InputsModule} from "../../shared/components/inputs/inputs.module";
 
 const COMPONENTS = [
-  OrganizationsComponent
+  OrganizationsComponent,
+  OrganizationsTableComponent
 ];
 
 @NgModule({
@@ -16,7 +19,8 @@ const COMPONENTS = [
     CommonModule,
     OrganizationsRoutingModule,
     FlexModule,
-    TableModule
+    TableModule,
+    InputsModule
   ],
   providers: [
     OrganizationsService
