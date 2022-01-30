@@ -1,28 +1,5 @@
 <div class="table-container" fxLayout="column" fxLayoutGap="16px">
 
-  <div fxLayout="row" fxLayoutAlign="space-between center">
-    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
-      <cas-table-filter-scope *ngIf="scopeFilter"
-                              [formControl]="getControl('scope')">
-      </cas-table-filter-scope>
-
-      <cas-table-filter-search *ngIf="searchFilter"
-                               [formControl]="getControl('search')">
-      </cas-table-filter-search>
-
-      <cas-button class="filter-button" [size]="'small'" [theme]="'default'"
-                  (click)="onClearFilters()">
-        <i-feather class="logo" name="x"></i-feather>
-      </cas-button>
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
-      <cas-button *ngIf="addButton" [size]="'small'" [theme]="'primary'">
-        <i-feather class="logo" name="plus"></i-feather>
-      </cas-button>
-    </div>
-  </div>
-
   <table *ngIf="columns" @fadeInAnimation>
     <thead>
     <tr>

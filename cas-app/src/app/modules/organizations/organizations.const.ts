@@ -18,11 +18,6 @@ export const organizationColumns: TableColumn[] = [
     sortable: true
   },
   {
-    label: 'Scope',
-    field: 'scope',
-    badge: 'secondary'
-  },
-  {
     label: 'Updated at',
     field: 'updatedAt',
     sortable: true,

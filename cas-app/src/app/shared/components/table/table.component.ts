@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ColumnType, TableAction, TableColumn} from "./table.interface";
 import {Pageable} from "../../model/pageable.interface";
 import {fadeInAnimation} from "../../animations/fade-in-animation";
 import {fadeOutAnimation} from "../../animations/fade-out-animation";
 import {RequestParam, SortDirection} from "../../model/request.interface";
-import {FormBuilder, FormControl} from "@angular/forms";
+import {FormControl} from "@angular/forms";
 import {tap} from "rxjs/operators";
 import {Subject} from "rxjs";
 
@@ -14,7 +14,7 @@ import {Subject} from "rxjs";
   styleUrls: ['./table.component.scss'],
   animations: [fadeInAnimation, fadeOutAnimation]
 })
-export class TableComponent {
+export class TableComponent implements OnInit {
 
   @Input()
   set data(data: Pageable<any>) {
@@ -30,6 +30,9 @@ export class TableComponent {
 
   @Input()
   requestParam!: RequestParam;
+
+  @Input()
+  searchFormControl?: FormControl;
 
   @Input()
   scopeFilter = true;
@@ -51,24 +54,17 @@ export class TableComponent {
   _data: Pageable<any> = {};
   totalPages!: number;
 
-  filterFormControl = this.formBuilder.group({
-    scope: new FormControl(),
-    search: new FormControl()
-  })
-
   columnType = ColumnType;
 
-  constructor(private formBuilder: FormBuilder) {
+  ngOnInit(): void {
     this.onSearchChange();
   }
 
   /* Changes */
 
   onSearchChange(): void {
-    this.filterFormControl.valueChanges.pipe(
-      tap((filter: any) => this.requestParamChange.emit(
-        {...this.requestParam, page: 0, search: filter.search, scope: filter.scope}
-      )),
+    this.searchFormControl?.valueChanges.pipe(
+      tap((search: string) => this.requestParamChange.emit({...this.requestParam, page: 0, search: search})),
       tap(() => this.paginationReset.next())
     ).subscribe()
   }
@@ -101,19 +97,9 @@ export class TableComponent {
     this.actionActive.emit({...tableAction, data: data})
   }
 
-  /* Table actions */
-
-  onClearFilters(): void {
-    this.filterFormControl.patchValue({...this.filterFormControl.getRawValue(), scope: null, search: null});
-  }
-
   /* Getter */
 
   getFieldValue(row: any, tableColumn: TableColumn): string {
     return tableColumn?.field?.split('.').reduce((o, key) => o[key], row);
-  }
-
-  getControl(controlName: string): FormControl {
-    return this.filterFormControl.get(controlName) as FormControl;
   }
 }

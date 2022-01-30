@@ -1,8 +1,4 @@
-import {ScopeType} from "./types.interface";
-
 export interface RequestParam {
-
-  scope?: ScopeType;
 
   search?: string;
 
