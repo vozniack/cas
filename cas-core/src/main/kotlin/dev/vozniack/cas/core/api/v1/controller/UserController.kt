@@ -30,24 +30,22 @@ class UserController(
 ) {
 
     @GetMapping
-    @PreAuthorize("hasAuthority('READ_USER') and hasRole('ADMIN')")
-    fun getAll(
-        @RequestParam(required = false) scope: ScopeType?,
-        @RequestParam(required = false) search: String?,
-        pageable: Pageable,
-    ): Page<UserDto> = userService.findAll(UserQuery(scope, search, search, search), pageable).map(userMapper::mapToDto)
+    @PreAuthorize("hasAuthority('READ_USER') and hasAnyRole('ADMIN', 'USER')")
+    fun getAll(@RequestParam(required = false) search: String?, pageable: Pageable): Page<UserDto> =
+        userService.findAll(UserQuery(ScopeType.EXTERNAL, search, search, search), pageable)
+            .map(userMapper::mapToDto)
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('READ_USER') and hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('READ_USER') and hasAnyRole('ADMIN', 'USER')")
     fun getById(@PathVariable id: UUID): UserDto = userMapper.mapToDto(userService.findById(id))
 
     @PostMapping
-    @PreAuthorize("hasAuthority('CREATE_USER') and hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('CREATE_USER') and hasAnyRole('ADMIN', 'USER')")
     fun create(@RequestBody userDto: UserDto): UserDto =
         userMapper.mapToDto(userService.create(userMapper.mapToEntity(userDto)))
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('UPDATE_USER') and hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('UPDATE_USER') and hasAnyRole('ADMIN', 'USER')")
     fun update(@PathVariable id: UUID, @RequestBody userDto: UserDto): UserDto =
         userMapper.mapToDto(userService.update(id, userMapper.mapToEntity(userDto)))
 

@@ -28,25 +28,22 @@ class OrganizationController(
 ) {
 
     @GetMapping
-    @PreAuthorize("hasAuthority('READ_ORGANIZATION') and hasRole('ADMIN')")
-    fun getAll(
-        @RequestParam(required = false) scope: ScopeType?,
-        @RequestParam(required = false) search: String?,
-        pageable: Pageable,
-    ): Page<OrganizationDto> = organizationService.findAll(OrganizationQuery(scope, search, search), pageable)
-        .map(organizationMapper::mapToDto)
+    @PreAuthorize("hasAuthority('READ_ORGANIZATION') and hasAnyRole('ADMIN', 'USER')")
+    fun getAll(@RequestParam(required = false) search: String?, pageable: Pageable): Page<OrganizationDto> =
+        organizationService.findAll(OrganizationQuery(ScopeType.EXTERNAL, search, search), pageable)
+            .map(organizationMapper::mapToDto)
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('READ_ORGANIZATION') and hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('READ_ORGANIZATION') and hasAnyRole('ADMIN', 'USER')")
     fun getById(@PathVariable id: UUID): OrganizationDto = organizationMapper.mapToDto(organizationService.findById(id))
 
     @PostMapping
-    @PreAuthorize("hasAuthority('CREATE_ORGANIZATION') and hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('CREATE_ORGANIZATION') and hasAnyRole('ADMIN', 'USER')")
     fun create(@RequestBody organizationDto: OrganizationDto): OrganizationDto =
         organizationMapper.mapToDto(organizationService.create(organizationMapper.mapToEntity(organizationDto)))
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('UPDATE_ORGANIZATION') and hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('UPDATE_ORGANIZATION') and hasAnyRole('ADMIN', 'USER')")
     fun update(@PathVariable id: UUID, @RequestBody organizationDto: OrganizationDto): OrganizationDto =
         organizationMapper.mapToDto(organizationService.update(id, organizationMapper.mapToEntity(organizationDto)))
 

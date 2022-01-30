@@ -105,6 +105,9 @@ VALUES ('3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', 'INTERNAL', 'Central Authorizati
 INSERT INTO users (id, scope, email, password, first_name, last_name, organization_id)
 VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', 'INTERNAL', 'admin@cas.dev',
         '$2y$10$mbXVHXCEUCufdWQzkd2wNee7A5wx2hr2y6nRkLbWjx/lr.JdeF81y', 'John', 'Doe',
+        '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5'),
+       ('055cb1f2-162a-4f14-a445-883539a60002', 'INTERNAL', 'user@cas.dev',
+        '$2y$10$mbXVHXCEUCufdWQzkd2wNee7A5wx2hr2y6nRkLbWjx/lr.JdeF81y', 'John', 'Doe',
         '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5');
 
 INSERT INTO roles (id, scope, name, description)
@@ -112,7 +115,8 @@ VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', 'INTERNAL', 'ADMIN', 'Central Au
        ('451adc34-f819-46d5-9e35-719ee343fb73', 'INTERNAL', 'USER', 'Central Authorization System user role');
 
 INSERT INTO user_roles (user_id, role_id)
-VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', '98fa7b2c-6caa-4852-b632-e5c05b507021');
+VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', '98fa7b2c-6caa-4852-b632-e5c05b507021'),
+       ('055cb1f2-162a-4f14-a445-883539a60002', '451adc34-f819-46d5-9e35-719ee343fb73');
 
 INSERT INTO privileges (id, scope, name, code, description, index, organization_id, parent_id)
 VALUES ('39798f2b-df6f-4239-9736-138b245b151c', 'INTERNAL', 'Login', 'LOGIN',
@@ -202,11 +206,17 @@ VALUES ('39798f2b-df6f-4239-9736-138b245b151c', 'INTERNAL', 'Login', 'LOGIN',
         '32cb0e0a-4368-447c-ad00-2affe47e7d1d');
 
 INSERT INTO user_privileges (user_id, privilege_id)
-VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', '39798f2b-df6f-4239-9736-138b245b151c');
+VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', '39798f2b-df6f-4239-9736-138b245b151c'),
+       ('055cb1f2-162a-4f14-a445-883539a60002', '39798f2b-df6f-4239-9736-138b245b151c');
 
 INSERT INTO role_privileges (role_id, privilege_id)
-VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', '9b62cadc-bf60-4ea0-b239-7aae1ad7b9d7'),
+VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', '9d31e72b-2d3a-4984-8e19-fec0b67857ef'),
+       ('98fa7b2c-6caa-4852-b632-e5c05b507021', '9b62cadc-bf60-4ea0-b239-7aae1ad7b9d7'),
        ('98fa7b2c-6caa-4852-b632-e5c05b507021', '80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c'),
        ('98fa7b2c-6caa-4852-b632-e5c05b507021', '4b2e19fa-79db-44b9-8bbf-6561a47b3cb9'),
        ('98fa7b2c-6caa-4852-b632-e5c05b507021', '32cb0e0a-4368-447c-ad00-2affe47e7d1d'),
-       ('451adc34-f819-46d5-9e35-719ee343fb73', '9d31e72b-2d3a-4984-8e19-fec0b67857ef');
+       ('451adc34-f819-46d5-9e35-719ee343fb73', '9d31e72b-2d3a-4984-8e19-fec0b67857ef'),
+       ('451adc34-f819-46d5-9e35-719ee343fb73', '9b62cadc-bf60-4ea0-b239-7aae1ad7b9d7'),
+       ('451adc34-f819-46d5-9e35-719ee343fb73', '80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c'),
+       ('451adc34-f819-46d5-9e35-719ee343fb73', '4b2e19fa-79db-44b9-8bbf-6561a47b3cb9'),
+       ('451adc34-f819-46d5-9e35-719ee343fb73', '32cb0e0a-4368-447c-ad00-2affe47e7d1d');

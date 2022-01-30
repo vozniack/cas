@@ -31,28 +31,26 @@ class RoleController(
 ) {
 
     @GetMapping
-    @PreAuthorize("hasAuthority('READ_ROLE') and hasRole('ADMIN')")
-    fun getAll(
-        @RequestParam(required = false) scope: ScopeType?,
-        @RequestParam(required = false) search: String?,
-        pageable: Pageable,
-    ): Page<RoleDto> = roleService.findAll(RoleQuery(scope, search, search), pageable).map(roleMapper::mapToDto)
+    @PreAuthorize("hasAuthority('READ_ROLE') and hasAnyRole('ADMIN', 'USER')")
+    fun getAll(@RequestParam(required = false) search: String?, pageable: Pageable): Page<RoleDto> =
+        roleService.findAll(RoleQuery(ScopeType.EXTERNAL, search, search), pageable)
+            .map(roleMapper::mapToDto)
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('READ_ROLE') and hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('READ_ROLE') and hasAnyRole('ADMIN', 'USER')")
     fun getById(@PathVariable id: UUID): RoleDto = roleMapper.mapToDto(roleService.findById(id))
 
     @GetMapping("/{id}/users")
-    @PreAuthorize("hasAuthority('READ_ROLE') and hasAuthority('READ_USER') and hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('READ_ROLE') and hasAuthority('READ_USER') and hasAnyRole('ADMIN', 'USER')")
     fun getUsers(@PathVariable id: UUID): List<UserDto> = roleService.findUsersByRoleId(id).map(userMapper::mapToDto)
 
     @PostMapping
-    @PreAuthorize("hasAuthority('CREATE_ROLE') and hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('CREATE_ROLE') and hasAnyRole('ADMIN', 'USER')")
     fun create(@RequestBody roleDto: RoleDto): RoleDto =
         roleMapper.mapToDto(roleService.create(roleMapper.mapToEntity(roleDto)))
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('UPDATE_ROLE') and hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('UPDATE_ROLE') and hasAnyRole('ADMIN', 'USER')")
     fun update(@PathVariable id: UUID, @RequestBody roleDto: RoleDto): RoleDto =
         roleMapper.mapToDto(roleService.update(id, roleMapper.mapToEntity(roleDto)))
 

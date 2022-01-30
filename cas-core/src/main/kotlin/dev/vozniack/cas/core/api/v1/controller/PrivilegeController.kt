@@ -28,25 +28,22 @@ class PrivilegeController(
 ) {
 
     @GetMapping
-    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasRole('ADMIN')")
-    fun getAll(
-        @RequestParam(required = false) scope: ScopeType?,
-        @RequestParam(required = false) search: String?,
-        pageable: Pageable,
-    ): Page<PrivilegeDto> = privilegeService.findAll(PrivilegeQuery(scope, search, search, search), pageable)
-        .map(privilegeMapper::mapToDto)
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasAnyRole('ADMIN', 'USER')")
+    fun getAll(@RequestParam(required = false) search: String?, pageable: Pageable): Page<PrivilegeDto> =
+        privilegeService.findAll(PrivilegeQuery(ScopeType.EXTERNAL, search, search, search), pageable)
+            .map(privilegeMapper::mapToDto)
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasAnyRole('ADMIN', 'USER')")
     fun getById(@PathVariable id: UUID): PrivilegeDto = privilegeMapper.mapToDto(privilegeService.findById(id))
 
     @PostMapping
-    @PreAuthorize("hasAuthority('CREATE_PRIVILEGE') and hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('CREATE_PRIVILEGE') and hasAnyRole('ADMIN', 'USER')")
     fun create(@RequestBody privilegeDto: PrivilegeDto): PrivilegeDto =
         privilegeMapper.mapToDto(privilegeService.create(privilegeMapper.mapToEntity(privilegeDto)))
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('UPDATE_PRIVILEGE') and hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('UPDATE_PRIVILEGE') and hasAnyRole('ADMIN', 'USER')")
     fun update(@PathVariable id: UUID, @RequestBody privilegeDto: PrivilegeDto): PrivilegeDto =
         privilegeMapper.mapToDto(privilegeService.update(id, privilegeMapper.mapToEntity(privilegeDto)))
 
