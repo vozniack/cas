@@ -22,7 +22,7 @@ class Privilege(
     var id: UUID? = null,
 
     @Enumerated(EnumType.STRING)
-    var scope: ScopeType = ScopeType.EXTERNAL,
+    var scope: ScopeType? = ScopeType.EXTERNAL,
 
     var name: String = "",
     var code: String = "",

@@ -8,7 +8,7 @@ class OrganizationDto(
 
     var id: UUID?,
 
-    var scope: ScopeType,
+    var scope: ScopeType?,
 
     var name: String?,
     var code: String?,

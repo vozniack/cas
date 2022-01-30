@@ -22,7 +22,7 @@ class User(
     var id: UUID? = null,
 
     @Enumerated(EnumType.STRING)
-    var scope: ScopeType = ScopeType.EXTERNAL,
+    var scope: ScopeType? = ScopeType.EXTERNAL,
 
     var email: String = "",
     var password: String? = null,

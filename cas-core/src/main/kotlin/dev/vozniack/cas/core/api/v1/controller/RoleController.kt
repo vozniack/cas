@@ -36,6 +36,12 @@ class RoleController(
         roleService.findAll(RoleQuery(ScopeType.EXTERNAL, search, search), pageable)
             .map(roleMapper::mapToDto)
 
+    @GetMapping("/internal")
+    @PreAuthorize("hasAuthority('READ_ROLE') and hasRole('ADMIN')")
+    fun getAllInternal(@RequestParam(required = false) search: String?, pageable: Pageable): Page<RoleDto> =
+        roleService.findAll(RoleQuery(ScopeType.INTERNAL, search, search), pageable)
+            .map(roleMapper::mapToDto)
+
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('READ_ROLE') and hasAnyRole('ADMIN', 'USER')")
     fun getById(@PathVariable id: UUID): RoleDto = roleMapper.mapToDto(roleService.findById(id))

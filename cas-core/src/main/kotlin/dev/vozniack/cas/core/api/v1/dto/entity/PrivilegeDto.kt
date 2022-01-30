@@ -8,7 +8,7 @@ class PrivilegeDto(
 
     val id: UUID?,
 
-    val scope: ScopeType,
+    val scope: ScopeType?,
 
     val name: String,
     val code: String,

@@ -33,6 +33,12 @@ class OrganizationController(
         organizationService.findAll(OrganizationQuery(ScopeType.EXTERNAL, search, search), pageable)
             .map(organizationMapper::mapToDto)
 
+    @GetMapping("/internal")
+    @PreAuthorize("hasAuthority('READ_ORGANIZATION') and hasRole('ADMIN')")
+    fun getAllInternal(@RequestParam(required = false) search: String?, pageable: Pageable): Page<OrganizationDto> =
+        organizationService.findAll(OrganizationQuery(ScopeType.INTERNAL, search, search), pageable)
+            .map(organizationMapper::mapToDto)
+
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('READ_ORGANIZATION') and hasAnyRole('ADMIN', 'USER')")
     fun getById(@PathVariable id: UUID): OrganizationDto = organizationMapper.mapToDto(organizationService.findById(id))

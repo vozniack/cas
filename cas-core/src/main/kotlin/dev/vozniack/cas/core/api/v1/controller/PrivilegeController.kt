@@ -33,6 +33,12 @@ class PrivilegeController(
         privilegeService.findAll(PrivilegeQuery(ScopeType.EXTERNAL, search, search, search), pageable)
             .map(privilegeMapper::mapToDto)
 
+    @GetMapping("/internal")
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasRole('ADMIN')")
+    fun getAllInternal(@RequestParam(required = false) search: String?, pageable: Pageable): Page<PrivilegeDto> =
+        privilegeService.findAll(PrivilegeQuery(ScopeType.INTERNAL, search, search, search), pageable)
+            .map(privilegeMapper::mapToDto)
+
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasAnyRole('ADMIN', 'USER')")
     fun getById(@PathVariable id: UUID): PrivilegeDto = privilegeMapper.mapToDto(privilegeService.findById(id))

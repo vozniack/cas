@@ -8,7 +8,7 @@ class UserDto(
 
     val id: UUID?,
 
-    val scope: ScopeType,
+    val scope: ScopeType?,
 
     val email: String,
     val password: String?,
