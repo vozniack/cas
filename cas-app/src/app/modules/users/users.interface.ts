@@ -1,5 +1,6 @@
 import {ScopeType} from "../../shared/model/types.interface";
 import {Auditable} from "../../shared/model/auditable.interface";
+import {Role} from "../roles/roles.interface";
 
 export interface User extends Auditable {
 
@@ -14,4 +15,6 @@ export interface User extends Auditable {
   firstName: string;
 
   lastName: string;
+
+  roles: Role[];
 }

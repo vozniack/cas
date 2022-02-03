@@ -20,4 +20,10 @@ export class RolesService {
       params: buildHttpParams(requestParam)
     })
   }
+
+  getInternalRoles(requestParam: RequestParam): Observable<Pageable<Role>> {
+    return this.httpClient.get<Pageable<Role>>(`${this.baseUrl}/internal`, {
+      params: buildHttpParams(requestParam)
+    })
+  }
 }

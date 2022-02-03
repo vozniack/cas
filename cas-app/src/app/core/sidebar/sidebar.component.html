@@ -1,10 +1,18 @@
 <div class="sidebar-container" fxLayout="column" fxLayoutAlign="space-between center" @fadeInAnimation>
 
   <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="64px">
-    <i-feather class="logo" name=""></i-feather>
+    <i-feather class="logo"></i-feather>
 
     <div class="sidebar-navigation-container" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="4px">
-      <ng-container *ngFor="let navigationState of navigationStates">
+      <ng-container *ngFor="let navigationState of upperNavigationStates">
+        <cas-sidebar-link [navigationState]="navigationState"></cas-sidebar-link>
+      </ng-container>
+    </div>
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="end center" fxLayoutGap="64px" *ngIf="isAdmin">
+    <div class="sidebar-navigation-container" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="4px">
+      <ng-container *ngFor="let navigationState of lowerNavigationStates">
         <cas-sidebar-link [navigationState]="navigationState"></cas-sidebar-link>
       </ng-container>
     </div>

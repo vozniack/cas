@@ -1,0 +1,33 @@
+@import 'src/styles/variables';
+
+.user-container {
+  padding: 12px 24px;
+  border-radius: 12px;
+
+  color: $white;
+  background: $content-background-dark;
+
+  transition: filter 0.2s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    filter: drop-shadow(0 0 2px rgba($primary, 0.5));
+  }
+
+  .name {
+    font-size: 14px;
+  }
+
+  .email, .role {
+    font-size: 12px;
+  }
+  
+  .avatar {
+    border-radius: 50%;
+
+    height: 32px;
+    width: 32px;
+
+    background: $white;
+  }
+}

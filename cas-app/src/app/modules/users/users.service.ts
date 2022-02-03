@@ -20,4 +20,10 @@ export class UsersService {
       params: buildHttpParams(requestParam)
     })
   }
+
+  getInternalUsers(requestParam: RequestParam): Observable<Pageable<User>> {
+    return this.httpClient.get<Pageable<User>>(`${this.baseUrl}/internal`, {
+      params: buildHttpParams(requestParam)
+    })
+  }
 }

@@ -1,0 +1,23 @@
+<div class="internal-container" fxLayout="column" fxLayoutGap="24px" @fadeInAnimation>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+      <i-feather class="icon" name="briefcase"></i-feather>
+      <span class="title">{{organization?.name}}</span>
+    </div>
+
+    <span class="badge primary">{{organization?.code}}</span>
+  </div>
+
+  <span>{{organization?.description}}</span>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <span>Created at</span>
+    <span>{{organization?.createdAt | date: 'dd-MM-YYYY, HH:mm:ss'}}</span>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <span>Updated at</span>
+    <span>{{organization?.updatedAt | date: 'dd-MM-YYYY, HH:mm:ss'}}</span>
+  </div>
+</div>

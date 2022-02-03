@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {TokenGuard} from "./core/auth/guard/token.guard";
 import {LoginComponent} from "./core/login/login.component";
+import {AdminGuard} from "./core/auth/guard/admin.guard";
 
 const routes: Routes = [
   {
@@ -42,6 +43,11 @@ const routes: Routes = [
     path: 'privileges',
     loadChildren: () => import('./modules/privileges/privileges.module').then(m => m.PrivilegesModule),
     canActivate: [TokenGuard]
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),
+    canActivate: [TokenGuard, AdminGuard]
   }
 ];
 

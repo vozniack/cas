@@ -4,6 +4,7 @@ import dev.vozniack.cas.core.entity.Organization
 import dev.vozniack.cas.core.exception.ConflictException
 import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.OrganizationRepository
+import dev.vozniack.cas.core.repository.specification.OrganizationQuery
 import dev.vozniack.cas.core.repository.specification.Specificable
 import dev.vozniack.cas.core.types.ScopeType
 import org.springframework.data.domain.Page
@@ -17,6 +18,10 @@ class OrganizationService(private val organizationRepository: OrganizationReposi
 
     fun findAll(query: Specificable<Organization>, pageable: Pageable): Page<Organization> =
         organizationRepository.findAll(query.toSpecification(), pageable)
+
+    fun findInternal(): Organization = organizationRepository.findAll(
+        OrganizationQuery(scope = ScopeType.INTERNAL).toSpecification()
+    ).first()
 
     fun findById(id: UUID): Organization = organizationRepository.findById(id).orElseThrow { NotFoundException() }
 

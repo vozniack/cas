@@ -1,0 +1,17 @@
+<div class="user-container" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="24px">
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px">
+    <i-feather class="avatar"></i-feather>
+
+    <div fxLayout="column" fxLayoutGap="4px">
+      <span class="name">{{user.firstName}} {{user.lastName}}</span>
+      <span class="email">{{user.email}}</span>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <ng-container *ngFor="let role of user.roles">
+      <span class="badge light role">{{role.name}}</span>
+    </ng-container>
+  </div>
+</div>

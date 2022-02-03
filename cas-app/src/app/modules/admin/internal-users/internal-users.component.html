@@ -1,0 +1,17 @@
+<div class="internal-container" fxLayout="column" fxLayoutGap="24px" @fadeInAnimation>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+      <i-feather class="icon" name="user"></i-feather>
+      <span class="title">Users</span>
+    </div>
+
+    <span class="badge primary">{{users?.totalElements}}</span>
+  </div>
+
+  <div fxLayout="column" fxLayoutGap="16px">
+    <ng-container *ngFor="let user of users?.content">
+      <cas-user [user]="user"></cas-user>
+    </ng-container>
+  </div>
+</div>

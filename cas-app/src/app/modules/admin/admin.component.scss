@@ -1,0 +1,16 @@
+@import 'src/styles/variables';
+
+.internal-container {
+  padding: 24px;
+  border-radius: 12px;
+
+  color: $white;
+  background: $background-dark;
+
+  .title {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}

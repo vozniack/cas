@@ -42,11 +42,22 @@ export const privilegesState: NavigationState = {
   link: 'privileges'
 }
 
-export const navigationStates: NavigationState[] = [
+export const adminState: NavigationState = {
+  title: 'Administrator panel',
+  subtitle: 'Check internal resources',
+  icon: 'aperture',
+  link: 'admin'
+}
+
+export const upperNavigationStates: NavigationState[] = [
   dashboardState,
   peopleState,
   organizationsState,
   usersState,
   rolesState,
   privilegesState
+]
+
+export const lowerNavigationStates: NavigationState[] = [
+  adminState
 ]

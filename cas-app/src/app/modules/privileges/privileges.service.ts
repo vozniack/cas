@@ -20,4 +20,10 @@ export class PrivilegesService {
       params: buildHttpParams(requestParam)
     })
   }
+
+  getInternalPrivileges(requestParam: RequestParam): Observable<Pageable<Privilege>> {
+    return this.httpClient.get<Pageable<Privilege>>(`${this.baseUrl}/internal`, {
+      params: buildHttpParams(requestParam)
+    })
+  }
 }

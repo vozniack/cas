@@ -86,6 +86,10 @@ h5 {
     background: $content-background-dark;
   }
 
+  &.light {
+    background: $background-dark;
+  }
+
   &.primary {
     background: $primary;
   }

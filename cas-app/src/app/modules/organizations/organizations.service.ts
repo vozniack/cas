@@ -20,4 +20,8 @@ export class OrganizationsService {
       params: buildHttpParams(requestParam)
     })
   }
+
+  getInternalOrganization(): Observable<Organization> {
+    return this.httpClient.get<Organization>(`${this.baseUrl}/internal`);
+  }
 }
