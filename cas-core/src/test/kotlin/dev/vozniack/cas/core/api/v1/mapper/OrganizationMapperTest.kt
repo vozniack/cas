@@ -33,7 +33,7 @@ class OrganizationMapperTest @Autowired constructor(
     @Test
     fun `map dto to entity`() {
         val organizationDto = OrganizationDto(id = UUID.randomUUID(), scope = ScopeType.EXTERNAL, name = "Organization",
-            code = "ORG", description = "Organization description", createdAt = LocalDateTime.now(),
+            code = "ORG", description = "Organization description", parentId = null, createdAt = LocalDateTime.now(),
             updatedAt = LocalDateTime.now())
 
         val organization = organizationMapper.mapToEntity(organizationDto)

@@ -9,6 +9,7 @@ import dev.vozniack.cas.core.repository.OrganizationRepository
 import dev.vozniack.cas.core.repository.PrivilegeRepository
 import dev.vozniack.cas.core.repository.RoleRepository
 import dev.vozniack.cas.core.repository.UserRepository
+import dev.vozniack.cas.core.types.ScopeType
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
@@ -32,10 +33,29 @@ class StatisticsServiceTest @Autowired constructor(
 
     @Test
     fun `get dashboard statistics`() {
-        organizationRepository.saveAll(listOf(Organization(), Organization()))
-        userRepository.saveAll(listOf(User(), User(), User()))
-        roleRepository.saveAll(listOf(Role(), Role(), Role(), Role(), Role()))
-        privilegeRepository.saveAll(listOf(Privilege(), Privilege()))
+        organizationRepository.saveAll(listOf(
+            Organization(scope = ScopeType.EXTERNAL),
+            Organization(scope = ScopeType.EXTERNAL))
+        )
+
+        userRepository.saveAll(listOf(
+            User(scope = ScopeType.EXTERNAL),
+            User(scope = ScopeType.EXTERNAL),
+            User(scope = ScopeType.EXTERNAL))
+        )
+
+        roleRepository.saveAll(listOf(
+            Role(scope = ScopeType.EXTERNAL),
+            Role(scope = ScopeType.EXTERNAL),
+            Role(scope = ScopeType.EXTERNAL),
+            Role(scope = ScopeType.EXTERNAL),
+            Role(scope = ScopeType.EXTERNAL))
+        )
+
+        privilegeRepository.saveAll(listOf(
+            Privilege(scope = ScopeType.EXTERNAL),
+            Privilege(scope = ScopeType.EXTERNAL))
+        )
 
         val dashboardStatistics = statisticsService.getDashboardStatistics()
 

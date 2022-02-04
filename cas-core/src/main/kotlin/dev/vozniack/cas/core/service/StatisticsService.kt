@@ -5,6 +5,7 @@ import dev.vozniack.cas.core.repository.OrganizationRepository
 import dev.vozniack.cas.core.repository.PrivilegeRepository
 import dev.vozniack.cas.core.repository.RoleRepository
 import dev.vozniack.cas.core.repository.UserRepository
+import dev.vozniack.cas.core.types.ScopeType
 import org.springframework.stereotype.Service
 
 @Service
@@ -16,9 +17,9 @@ class StatisticsService(
 ) {
 
     fun getDashboardStatistics(): DashboardStatisticsDto = DashboardStatisticsDto(
-        organizationsAmount = organizationRepository.count(),
-        usersAmount = userRepository.count(),
-        rolesAmount = roleRepository.count(),
-        privilegesAmount = privilegeRepository.count()
+        organizationsAmount = organizationRepository.countByScope(ScopeType.EXTERNAL),
+        usersAmount = userRepository.countByScope(ScopeType.EXTERNAL),
+        rolesAmount = roleRepository.countByScope(ScopeType.EXTERNAL),
+        privilegesAmount = privilegeRepository.countByScope(ScopeType.EXTERNAL),
     )
 }

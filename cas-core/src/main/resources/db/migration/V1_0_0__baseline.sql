@@ -107,10 +107,10 @@ INSERT INTO organizations (id, scope, name, code, parent_id)
 VALUES ('3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', 'INTERNAL', 'Central Authorization System', 'CAS', null);
 
 INSERT INTO users (id, scope, email, password, first_name, last_name, organization_id)
-VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', 'INTERNAL', 'admin@cas.dev',
-        '$2y$10$mbXVHXCEUCufdWQzkd2wNee7A5wx2hr2y6nRkLbWjx/lr.JdeF81y', 'John', 'Doe',
+VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', 'INTERNAL', 'tom@cas.dev',
+        '$2y$10$mbXVHXCEUCufdWQzkd2wNee7A5wx2hr2y6nRkLbWjx/lr.JdeF81y', 'Thomas', 'Vozniack',
         '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5'),
-       ('055cb1f2-162a-4f14-a445-883539a60002', 'INTERNAL', 'user@cas.dev',
+       ('055cb1f2-162a-4f14-a445-883539a60002', 'INTERNAL', 'john@cas.dev',
         '$2y$10$mbXVHXCEUCufdWQzkd2wNee7A5wx2hr2y6nRkLbWjx/lr.JdeF81y', 'John', 'Doe',
         '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5');
 
