@@ -2,7 +2,6 @@ package dev.vozniack.cas.core.api.v1.mapper
 
 import dev.vozniack.cas.core.api.v1.dto.entity.UserDto
 import dev.vozniack.cas.core.entity.User
-import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.service.OrganizationService
 import org.springframework.stereotype.Component
 
@@ -32,7 +31,7 @@ class UserMapper(
         dto.password,
         dto.firstName,
         dto.lastName,
-        dto.organizationId?.let { organizationService.findById(it) } ?: throw NotFoundException(),
+        dto.organizationId?.let { organizationService.findById(it) },
         dto.roles.map { roleMapper.mapToEntity(it) },
     )
 }

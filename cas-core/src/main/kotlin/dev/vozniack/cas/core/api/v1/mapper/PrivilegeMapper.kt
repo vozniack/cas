@@ -2,7 +2,6 @@ package dev.vozniack.cas.core.api.v1.mapper
 
 import dev.vozniack.cas.core.api.v1.dto.entity.PrivilegeDto
 import dev.vozniack.cas.core.entity.Privilege
-import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.service.OrganizationService
 import dev.vozniack.cas.core.service.PrivilegeService
 import org.springframework.stereotype.Component
@@ -34,8 +33,8 @@ class PrivilegeMapper(
         dto.code,
         dto.description,
         dto.index,
-        dto.organizationId?.let { organizationService.findById(it) } ?: throw NotFoundException(),
-        dto.parentId?.let { privilegeService.findById(it) } ?: throw NotFoundException(),
+        dto.organizationId?.let { organizationService.findById(it) },
+        dto.parentId?.let { privilegeService.findById(it) },
         null
     )
 }

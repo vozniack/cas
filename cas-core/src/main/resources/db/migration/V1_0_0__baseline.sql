@@ -10,8 +10,12 @@ CREATE TABLE organizations
     code        VARCHAR(8)   NOT NULL UNIQUE,
     description VARCHAR(255),
 
+    parent_id   UUID,
+
     created_at  TIMESTAMP    NOT NULL             DEFAULT now(),
-    updated_at  TIMESTAMP    NOT NULL             DEFAULT now()
+    updated_at  TIMESTAMP    NOT NULL             DEFAULT now(),
+
+    CONSTRAINT organization_parent_fk FOREIGN KEY (parent_id) REFERENCES organizations (id)
 );
 
 CREATE TABLE users
@@ -99,8 +103,8 @@ CREATE TABLE role_privileges
 
 /* Values */
 
-INSERT INTO organizations (id, scope, name, code)
-VALUES ('3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', 'INTERNAL', 'Central Authorization System', 'CAS');
+INSERT INTO organizations (id, scope, name, code, parent_id)
+VALUES ('3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', 'INTERNAL', 'Central Authorization System', 'CAS', null);
 
 INSERT INTO users (id, scope, email, password, first_name, last_name, organization_id)
 VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', 'INTERNAL', 'admin@cas.dev',

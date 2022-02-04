@@ -14,6 +14,8 @@ class OrganizationDto(
     var code: String?,
     var description: String?,
 
+    var parentId: UUID?,
+
     var createdAt: LocalDateTime?,
     var updatedAt: LocalDateTime?,
 )

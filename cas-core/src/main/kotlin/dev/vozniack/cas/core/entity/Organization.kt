@@ -8,6 +8,8 @@ import javax.persistence.EnumType
 import javax.persistence.Enumerated
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 import javax.persistence.Table
 
@@ -24,6 +26,10 @@ class Organization(
     var name: String? = null,
     var code: String? = null,
     var description: String? = null,
+
+    @ManyToOne
+    @JoinColumn(name = "parent_id")
+    var parent: Organization? = null,
 
     @OneToMany(mappedBy = "organization")
     var users: List<User> = listOf(),
