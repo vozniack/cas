@@ -19,7 +19,7 @@ class PrivilegeMapper(
         entity.code,
         entity.description,
         entity.index,
-        entity.organization?.id,
+        entity.organization!!.id!!,
         entity.parent?.id,
         entity.privileges?.map { mapToDto(it) },
         entity.createdAt,
@@ -33,7 +33,7 @@ class PrivilegeMapper(
         dto.code,
         dto.description,
         dto.index,
-        dto.organizationId?.let { organizationService.findById(it) },
+        dto.organizationId.let { organizationService.findById(it) },
         dto.parentId?.let { privilegeService.findById(it) },
         null
     )

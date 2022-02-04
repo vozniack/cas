@@ -12,7 +12,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import java.util.*
+import java.util.UUID
 
 class UserMapperTest @Autowired constructor(
     private val userMapper: Mapper<User, UserDto>,
@@ -26,10 +26,16 @@ class UserMapperTest @Autowired constructor(
 
     @Test
     fun `map entity to dto`() {
+        // organization need to exist in repository due to matching by id
+
+        val organization = organizationRepository.save(
+            Organization(id = UUID.randomUUID(), name = "Organization", code = "ORG")
+        )
+
         val user = User(id = UUID.randomUUID(), scope = ScopeType.INTERNAL, email = "john.doe@cas.dev",
             password = "pass123!", firstName = "John", lastName = "Doe",
-            organization = Organization(id = UUID.randomUUID(), name = "Organization", code = "ORG"),
-            roles = listOf(Role(id = UUID.randomUUID(), name = "ROLE", description = "Description"))
+            organization = organization, roles = listOf(Role(id = UUID.randomUUID(),
+                name = "ROLE", description = "Description", organization = organization))
         )
 
         val userDto = userMapper.mapToDto(user)
@@ -57,9 +63,9 @@ class UserMapperTest @Autowired constructor(
         )
 
         val userDto = UserDto(id = UUID.randomUUID(), scope = ScopeType.INTERNAL, email = "john.doe@cas.dev",
-            password = "pass123!", firstName = "John", lastName = "Doe", organizationId = organization.id,
+            password = "pass123!", firstName = "John", lastName = "Doe", organizationId = organization.id!!,
             roles = listOf(RoleDto(id = UUID.randomUUID(), scope = ScopeType.INTERNAL,
-                name = "ROLE", description = "Description"))
+                name = "ROLE", description = "Description", organizationId = organization.id!!))
         )
 
         val user = userMapper.mapToEntity(userDto)

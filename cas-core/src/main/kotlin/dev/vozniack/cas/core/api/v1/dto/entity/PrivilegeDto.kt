@@ -16,7 +16,7 @@ class PrivilegeDto(
 
     val index: Int?,
 
-    val organizationId: UUID?,
+    val organizationId: UUID,
 
     val parentId: UUID?,
 

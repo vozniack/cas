@@ -33,20 +33,26 @@ CREATE TABLE users
     organization_id UUID         NOT NULL,
 
     created_at      TIMESTAMP    NOT NULL             DEFAULT now(),
-    updated_at      TIMESTAMP    NOT NULL             DEFAULT now()
+    updated_at      TIMESTAMP    NOT NULL             DEFAULT now(),
+
+    CONSTRAINT user_organization_fk FOREIGN KEY (organization_id) REFERENCES organizations (id)
 );
 
 CREATE TABLE roles
 (
-    id          UUID         NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
+    id              UUID         NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
 
-    scope       VARCHAR(255) NOT NULL             DEFAULT 'EXTERNAL',
+    scope           VARCHAR(255) NOT NULL             DEFAULT 'EXTERNAL',
 
-    name        VARCHAR(255) NOT NULL UNIQUE,
-    description VARCHAR(1024),
+    name            VARCHAR(255) NOT NULL UNIQUE,
+    description     VARCHAR(1024),
 
-    created_at  TIMESTAMP    NOT NULL             DEFAULT now(),
-    updated_at  TIMESTAMP    NOT NULL             DEFAULT now()
+    organization_id UUID         NOT NULL,
+
+    created_at      TIMESTAMP    NOT NULL             DEFAULT now(),
+    updated_at      TIMESTAMP    NOT NULL             DEFAULT now(),
+
+    CONSTRAINT role_organization_fk FOREIGN KEY (organization_id) REFERENCES organizations (id)
 );
 
 CREATE TABLE privileges
@@ -67,6 +73,7 @@ CREATE TABLE privileges
     created_at      TIMESTAMP    NOT NULL             DEFAULT now(),
     updated_at      TIMESTAMP    NOT NULL             DEFAULT now(),
 
+    CONSTRAINT privilege_organization_fk FOREIGN KEY (organization_id) REFERENCES organizations (id),
     CONSTRAINT privilege_parent_fk FOREIGN KEY (parent_id) REFERENCES privileges (id)
 );
 
@@ -74,7 +81,9 @@ CREATE TABLE user_roles
 (
     user_id UUID NOT NULL,
     role_id UUID NOT NULL,
+
     PRIMARY KEY (user_id, role_id),
+
     CONSTRAINT user_role_user_fk FOREIGN KEY (user_id) REFERENCES users (id),
     CONSTRAINT user_role_role_fk FOREIGN KEY (role_id) REFERENCES roles (id)
 );
@@ -114,9 +123,11 @@ VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', 'INTERNAL', 'tom@cas.dev',
         '$2y$10$mbXVHXCEUCufdWQzkd2wNee7A5wx2hr2y6nRkLbWjx/lr.JdeF81y', 'John', 'Doe',
         '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5');
 
-INSERT INTO roles (id, scope, name, description)
-VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', 'INTERNAL', 'ADMIN', 'Central Authorization System administrator role'),
-       ('451adc34-f819-46d5-9e35-719ee343fb73', 'INTERNAL', 'USER', 'Central Authorization System user role');
+INSERT INTO roles (id, scope, name, description, organization_id)
+VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', 'INTERNAL', 'ADMIN', 'Central Authorization System administrator role',
+        '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5'),
+       ('451adc34-f819-46d5-9e35-719ee343fb73', 'INTERNAL', 'USER', 'Central Authorization System user role',
+        '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5');
 
 INSERT INTO user_roles (user_id, role_id)
 VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', '98fa7b2c-6caa-4852-b632-e5c05b507021'),

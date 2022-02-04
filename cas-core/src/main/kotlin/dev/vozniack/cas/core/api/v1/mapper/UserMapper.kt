@@ -18,7 +18,7 @@ class UserMapper(
         entity.password,
         entity.firstName,
         entity.lastName,
-        entity.organization?.id,
+        entity.organization!!.id!!,
         entity.roles.map { roleMapper.mapToDto(it) },
         entity.createdAt,
         entity.updatedAt
@@ -31,7 +31,7 @@ class UserMapper(
         dto.password,
         dto.firstName,
         dto.lastName,
-        dto.organizationId?.let { organizationService.findById(it) },
+        dto.organizationId.let { organizationService.findById(it) },
         dto.roles.map { roleMapper.mapToEntity(it) },
     )
 }

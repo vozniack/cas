@@ -27,15 +27,23 @@ class PrivilegeMapperTest @Autowired constructor(
 
     @Test
     fun `map entity to dto`() {
+        // organization need to exist in repository due to matching by id
+
+        val organization = organizationRepository.save(
+            Organization(id = UUID.randomUUID(), name = "Organization", code = "ORG")
+        )
+
         val privilege = Privilege(
             id = UUID.randomUUID(), scope = ScopeType.INTERNAL, name = "Privilege", code = "PRIVILEGE",
             description = "Privilege set", index = 0,
-            organization = Organization(id = UUID.randomUUID(), name = "Organization", code = "ORG"),
+            organization = organization,
             parent = Privilege(id = UUID.randomUUID(),
                 name = "Parent privilege", code = "PARENT_PRIVILEGE", description = "Parent privilege set"),
             privileges = listOf(
-                Privilege(id = UUID.randomUUID(), name = "First privilege", code = "FIRST_PRIVILEGE"),
-                Privilege(id = UUID.randomUUID(), name = "Second privilege", code = "SECOND_PRIVILEGE")
+                Privilege(id = UUID.randomUUID(), name = "First privilege", code = "FIRST_PRIVILEGE",
+                    organization = organization),
+                Privilege(id = UUID.randomUUID(), name = "Second privilege", code = "SECOND_PRIVILEGE",
+                    organization = organization)
             ))
 
         val privilegeDto = privilegeMapper.mapToDto(privilege)
@@ -69,13 +77,13 @@ class PrivilegeMapperTest @Autowired constructor(
 
         val privilegeDto = PrivilegeDto(id = UUID.randomUUID(), scope = ScopeType.INTERNAL,
             name = "Privilege", code = "PRIVILEGE", description = "Privilege set", index = 0,
-            organizationId = organization.id, parentId = parentPrivilege.id,
+            organizationId = organization.id!!, parentId = parentPrivilege.id,
             privileges = listOf(
                 PrivilegeDto(id = UUID.randomUUID(), scope = ScopeType.INTERNAL, name = "First privilege",
-                    code = "FIRST_PRIVILEGE", description = null, index = 0, organizationId = organization.id,
+                    code = "FIRST_PRIVILEGE", description = null, index = 0, organizationId = organization.id!!,
                     parentId = null, privileges = null),
                 PrivilegeDto(id = UUID.randomUUID(), scope = ScopeType.INTERNAL, name = "Second privilege",
-                    code = "SECOND_PRIVILEGE", description = null, index = 1, organizationId = organization.id,
+                    code = "SECOND_PRIVILEGE", description = null, index = 1, organizationId = organization.id!!,
                     parentId = null, privileges = null)
             ))
 

@@ -13,6 +13,8 @@ class RoleDto(
     val name: String,
     val description: String,
 
+    val organizationId: UUID,
+
     val createdAt: LocalDateTime? = null,
     val updatedAt: LocalDateTime? = null,
 )
