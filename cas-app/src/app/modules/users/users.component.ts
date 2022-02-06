@@ -9,7 +9,7 @@ import {tap} from "rxjs/operators";
 import {UsersService} from "./users.service";
 import {User} from "./users.interface";
 import {Subject} from "rxjs";
-import {FormControl} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ViewType} from 'src/app/shared/model/types.interface';
 
 @Component({
@@ -23,14 +23,17 @@ export class UsersComponent {
   requestParam: RequestParam = {page: 0, size: 10};
   refresh = new Subject<RequestParam>();
 
-  viewType: ViewType = ViewType.TABLE;
+  view: ViewType = ViewType.TABLE;
   ViewType = ViewType;
 
-  searchFormControl = new FormControl();
-  organizationFormControl = new FormControl();
-  viewFormControl = new FormControl();
+  filters: FormGroup = this.formBuilder.group({
+    search: new FormControl(null),
+    organization: new FormControl(null),
+    view: new FormControl(this.view)
+  })
 
   constructor(private usersService: UsersService,
+              private formBuilder: FormBuilder,
               private store: Store<NavigationState>) {
     this.store.dispatch(ACTION_SET_NAVIGATION({navigationState: usersState}));
 
@@ -39,18 +42,12 @@ export class UsersComponent {
       tap(() => this.getUsers())
     ).subscribe()
 
-    this.searchFormControl.valueChanges.pipe(
-      tap((search: string) => this.requestParam.search = search),
-      tap(() => this.getUsers())
-    ).subscribe();
-
-    this.organizationFormControl.valueChanges.pipe(
-      tap((organizationId: string) => this.requestParam.organizationId = organizationId),
-      tap(() => this.getUsers())
-    ).subscribe();
-
-    this.viewFormControl.valueChanges.pipe(
-      tap((viewType: ViewType) => this.viewType = viewType),
+    this.filters.valueChanges.pipe(
+      tap((filters: any) => {
+        this.requestParam.search = filters.search;
+        this.requestParam.organizationId = filters.organization;
+        this.view = filters.view;
+      }),
       tap(() => this.getUsers())
     ).subscribe();
   }

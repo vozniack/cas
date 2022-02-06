@@ -10,14 +10,12 @@ import {InputsModule} from "../../shared/components/inputs/inputs.module";
 import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
 import {PrivilegesListComponent} from './privileges-list/privileges-list.component';
 
-const COMPONENTS = [
-  PrivilegesComponent,
-  PrivilegesTableComponent,
-  PrivilegesListComponent
-]
-
 @NgModule({
-  declarations: [...COMPONENTS],
+  declarations: [
+    PrivilegesComponent,
+    PrivilegesTableComponent,
+    PrivilegesListComponent
+  ],
   imports: [
     CommonModule,
     PrivilegesRoutingModule,

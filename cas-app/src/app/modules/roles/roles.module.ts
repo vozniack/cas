@@ -10,14 +10,12 @@ import {InputsModule} from "../../shared/components/inputs/inputs.module";
 import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
 import {RolesListComponent} from './roles-list/roles-list.component';
 
-const COMPONENTS = [
-  RolesComponent,
-  RolesTableComponent,
-  RolesListComponent
-]
-
 @NgModule({
-  declarations: [...COMPONENTS],
+  declarations: [
+    RolesComponent,
+    RolesTableComponent,
+    RolesListComponent
+  ],
   imports: [
     CommonModule,
     RolesRoutingModule,

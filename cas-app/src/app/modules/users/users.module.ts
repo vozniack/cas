@@ -10,14 +10,12 @@ import {InputsModule} from "../../shared/components/inputs/inputs.module";
 import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
 import {UsersListComponent} from './users-list/users-list.component';
 
-const COMPONENTS = [
-  UsersComponent,
-  UsersTableComponent,
-  UsersListComponent
-]
-
 @NgModule({
-  declarations: [...COMPONENTS],
+  declarations: [
+    UsersComponent,
+    UsersTableComponent,
+    UsersListComponent
+  ],
   imports: [
     CommonModule,
     UsersRoutingModule,

@@ -9,7 +9,7 @@ import {RequestParam} from "../../shared/model/request.interface";
 import {PrivilegesService} from "./privileges.service";
 import {Privilege} from "./privileges.interface";
 import {Subject} from "rxjs";
-import {FormControl} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ViewType} from 'src/app/shared/model/types.interface';
 
 @Component({
@@ -23,14 +23,17 @@ export class PrivilegesComponent {
   requestParam: RequestParam = {page: 0, size: 10};
   refresh = new Subject<RequestParam>();
 
-  viewType: ViewType = ViewType.TABLE;
+  view: ViewType = ViewType.TABLE;
   ViewType = ViewType;
 
-  searchFormControl = new FormControl();
-  organizationFormControl = new FormControl();
-  viewFormControl = new FormControl();
+  filters: FormGroup = this.formBuilder.group({
+    search: new FormControl(null),
+    organization: new FormControl(null),
+    view: new FormControl(this.view)
+  })
 
   constructor(private privilegesService: PrivilegesService,
+              private formBuilder: FormBuilder,
               private store: Store<NavigationState>) {
     this.store.dispatch(ACTION_SET_NAVIGATION({navigationState: privilegesState}));
 
@@ -39,18 +42,12 @@ export class PrivilegesComponent {
       tap(() => this.getPrivileges())
     ).subscribe()
 
-    this.searchFormControl.valueChanges.pipe(
-      tap((search: string) => this.requestParam.search = search),
-      tap(() => this.getPrivileges())
-    ).subscribe();
-
-    this.organizationFormControl.valueChanges.pipe(
-      tap((organizationId: string) => this.requestParam.organizationId = organizationId),
-      tap(() => this.getPrivileges())
-    ).subscribe();
-
-    this.viewFormControl.valueChanges.pipe(
-      tap((viewType: ViewType) => this.viewType = viewType),
+    this.filters.valueChanges.pipe(
+      tap((filters: any) => {
+        this.requestParam.search = filters.search;
+        this.requestParam.organizationId = filters.organization;
+        this.view = filters.view;
+      }),
       tap(() => this.getPrivileges())
     ).subscribe();
   }

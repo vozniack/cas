@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {FormControl} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {SelectOption} from "../../inputs/select-input/select-input.interface";
 import {OrganizationsService} from "../../../../modules/organizations/organizations.service";
 import {tap} from "rxjs/operators";
@@ -13,13 +13,7 @@ import {Organization} from "../../../../modules/organizations/organizations.inte
 export class DataToolbarComponent {
 
   @Input()
-  searchFormControl?: FormControl;
-
-  @Input()
-  organizationFormControl?: FormControl;
-
-  @Input()
-  viewFormControl?: FormControl;
+  filters?: FormGroup;
 
   organizationOptions: SelectOption[] = [];
 
@@ -31,5 +25,17 @@ export class DataToolbarComponent {
         }
       ))
     ).subscribe()
+  }
+
+  get searchFormControl(): FormControl {
+    return this.filters?.get('search') as FormControl;
+  }
+
+  get organizationFormControl(): FormControl {
+    return this.filters?.get('organization') as FormControl;
+  }
+
+  get viewFormControl(): FormControl {
+    return this.filters?.get('view') as FormControl;
   }
 }

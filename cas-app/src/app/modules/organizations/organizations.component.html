@@ -1,15 +1,13 @@
 <div fxLayout="column" fxLayoutGap="24px">
-  <cas-data-toolbar [searchFormControl]="searchFormControl"
-                    [viewFormControl]="viewFormControl">
-  </cas-data-toolbar>
+  <cas-data-toolbar [filters]="filters"></cas-data-toolbar>
 
-  <cas-organizations-table *ngIf="viewType === ViewType.TABLE"
+  <cas-organizations-table *ngIf="view === ViewType.TABLE"
                            [data]="data"
                            [requestParam]="requestParam"
                            [refresh]="refresh">
   </cas-organizations-table>
 
-  <cas-organizations-list *ngIf="viewType === ViewType.LIST"
+  <cas-organizations-list *ngIf="view === ViewType.LIST"
                           [data]="data"
                           [requestParam]="requestParam"
                           [refresh]="refresh">

@@ -9,7 +9,7 @@ import {Pageable} from "../../shared/model/pageable.interface";
 import {RequestParam} from "../../shared/model/request.interface";
 import {tap} from "rxjs/operators";
 import {Subject} from "rxjs";
-import {FormControl} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ViewType} from "../../shared/model/types.interface";
 
 @Component({
@@ -23,13 +23,16 @@ export class OrganizationsComponent {
   requestParam: RequestParam = {page: 0, size: 10};
   refresh = new Subject<RequestParam>();
 
-  viewType: ViewType = ViewType.TABLE;
+  view: ViewType = ViewType.TABLE;
   ViewType = ViewType;
 
-  searchFormControl = new FormControl();
-  viewFormControl = new FormControl();
+  filters: FormGroup = this.formBuilder.group({
+    search: new FormControl(null),
+    view: new FormControl(this.view)
+  })
 
   constructor(private organizationsService: OrganizationsService,
+              private formBuilder: FormBuilder,
               private store: Store<NavigationState>) {
     this.store.dispatch(ACTION_SET_NAVIGATION({navigationState: organizationsState}));
 
@@ -38,13 +41,11 @@ export class OrganizationsComponent {
       tap(() => this.getOrganizations())
     ).subscribe()
 
-    this.searchFormControl.valueChanges.pipe(
-      tap((search: string) => this.requestParam.search = search),
-      tap(() => this.getOrganizations())
-    ).subscribe();
-
-    this.viewFormControl.valueChanges.pipe(
-      tap((viewType: ViewType) => this.viewType = viewType),
+    this.filters.valueChanges.pipe(
+      tap((filters: any) => {
+        this.requestParam.search = filters.search;
+        this.view = filters.view;
+      }),
       tap(() => this.getOrganizations())
     ).subscribe();
   }
