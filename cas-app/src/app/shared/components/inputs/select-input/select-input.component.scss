@@ -133,7 +133,7 @@
     background: $background-dark;
 
     border-radius: 12px;
-    border: 1px solid $content-background-dark;
+    border: 1px solid $background-darker;
 
     .option {
       height: 20px;
@@ -148,7 +148,7 @@
 
       &:hover {
         cursor: pointer;
-        background: $content-background-dark;
+        background: $background-darker;
       }
 
       &.empty {

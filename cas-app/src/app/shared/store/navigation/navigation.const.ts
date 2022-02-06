@@ -7,13 +7,6 @@ export const dashboardState: NavigationState = {
   link: 'dashboard'
 }
 
-export  const peopleState: NavigationState = {
-  title: 'People',
-  subtitle: 'Manage your organizations and users',
-  icon: 'users',
-  link: 'people'
-}
-
 export const organizationsState: NavigationState = {
   title: 'Organizations',
   subtitle: 'Manage your organizations',
@@ -51,7 +44,6 @@ export const adminState: NavigationState = {
 
 export const upperNavigationStates: NavigationState[] = [
   dashboardState,
-  peopleState,
   organizationsState,
   usersState,
   rolesState,

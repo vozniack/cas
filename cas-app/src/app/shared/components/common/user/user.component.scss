@@ -5,7 +5,7 @@
   border-radius: 12px;
 
   color: $white;
-  background: $content-background-dark;
+  background: $background-darker;
 
   transition: filter 0.2s ease-in-out;
 
@@ -21,7 +21,7 @@
   .email, .role {
     font-size: 12px;
   }
-  
+
   .avatar {
     border-radius: 50%;
 
