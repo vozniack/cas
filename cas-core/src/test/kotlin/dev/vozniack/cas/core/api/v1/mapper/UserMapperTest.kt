@@ -46,6 +46,8 @@ class UserMapperTest @Autowired constructor(
         assertThat(userDto.password).isEqualTo(user.password)
         assertThat(userDto.firstName).isEqualTo(user.firstName)
         assertThat(userDto.lastName).isEqualTo(user.lastName)
+        assertThat(userDto.active).isEqualTo(user.active)
+
         assertThat(userDto.organizationId).isEqualTo(user.organization?.id)
 
         assertThat(userDto.roles.size).isEqualTo(user.roles.size)
@@ -63,9 +65,10 @@ class UserMapperTest @Autowired constructor(
         )
 
         val userDto = UserDto(id = UUID.randomUUID(), scope = ScopeType.INTERNAL, email = "john.doe@cas.dev",
-            password = "pass123!", firstName = "John", lastName = "Doe", organizationId = organization.id!!,
-            roles = listOf(RoleDto(id = UUID.randomUUID(), scope = ScopeType.INTERNAL,
-                name = "ROLE", description = "Description", organizationId = organization.id!!))
+            password = "pass123!", firstName = "John", lastName = "Doe", active = true,
+            organizationId = organization.id!!, roles = listOf(RoleDto(id = UUID.randomUUID(),
+                scope = ScopeType.INTERNAL, name = "ROLE", description = "Description",
+                organizationId = organization.id!!))
         )
 
         val user = userMapper.mapToEntity(userDto)
@@ -76,6 +79,8 @@ class UserMapperTest @Autowired constructor(
         assertThat(user.password).isEqualTo(userDto.password)
         assertThat(user.firstName).isEqualTo(userDto.firstName)
         assertThat(user.lastName).isEqualTo(userDto.lastName)
+        assertThat(user.active).isEqualTo(userDto.active)
+
         assertThat(user.organization?.id).isEqualTo(organization.id)
 
         assertThat(user.roles.size).isEqualTo(userDto.roles.size)

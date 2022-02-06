@@ -30,6 +30,8 @@ class User(
     var firstName: String? = null,
     var lastName: String? = null,
 
+    var active: Boolean? = true,
+
     @ManyToOne
     @JoinColumn(name = "organization_id")
     var organization: Organization? = null,

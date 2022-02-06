@@ -30,6 +30,8 @@ CREATE TABLE users
     first_name      VARCHAR(255),
     last_name       VARCHAR(255),
 
+    active          BOOLEAN                           DEFAULT TRUE,
+
     organization_id UUID         NOT NULL,
 
     created_at      TIMESTAMP    NOT NULL             DEFAULT now(),
@@ -44,7 +46,7 @@ CREATE TABLE roles
 
     scope           VARCHAR(255) NOT NULL             DEFAULT 'EXTERNAL',
 
-    name            VARCHAR(255) NOT NULL UNIQUE,
+    name            VARCHAR(255) NOT NULL,
     description     VARCHAR(1024),
 
     organization_id UUID         NOT NULL,
@@ -52,6 +54,7 @@ CREATE TABLE roles
     created_at      TIMESTAMP    NOT NULL             DEFAULT now(),
     updated_at      TIMESTAMP    NOT NULL             DEFAULT now(),
 
+    CONSTRAINT role_name_organization_unique UNIQUE (name, organization_id),
     CONSTRAINT role_organization_fk FOREIGN KEY (organization_id) REFERENCES organizations (id)
 );
 
@@ -61,8 +64,8 @@ CREATE TABLE privileges
 
     scope           VARCHAR(255) NOT NULL             DEFAULT 'EXTERNAL',
 
-    name            VARCHAR(255) NOT NULL UNIQUE,
-    code            VARCHAR(255) NOT NULL UNIQUE,
+    name            VARCHAR(255) NOT NULL,
+    code            VARCHAR(255) NOT NULL,
     description     VARCHAR(1024),
 
     index           INT          NOT NULL,
@@ -72,6 +75,9 @@ CREATE TABLE privileges
 
     created_at      TIMESTAMP    NOT NULL             DEFAULT now(),
     updated_at      TIMESTAMP    NOT NULL             DEFAULT now(),
+
+    CONSTRAINT privilege_name_code_organization_unique UNIQUE (name, code, organization_id),
+    CONSTRAINT privilege_index_parent_organization_unique UNIQUE (index, parent_id, organization_id),
 
     CONSTRAINT privilege_organization_fk FOREIGN KEY (organization_id) REFERENCES organizations (id),
     CONSTRAINT privilege_parent_fk FOREIGN KEY (parent_id) REFERENCES privileges (id)
@@ -115,13 +121,6 @@ CREATE TABLE role_privileges
 INSERT INTO organizations (id, scope, name, code, parent_id)
 VALUES ('3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', 'INTERNAL', 'Central Authorization System', 'CAS', null);
 
-INSERT INTO users (id, scope, email, password, first_name, last_name, organization_id)
-VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', 'INTERNAL', 'tom@cas.dev',
-        '$2y$10$mbXVHXCEUCufdWQzkd2wNee7A5wx2hr2y6nRkLbWjx/lr.JdeF81y', 'Thomas', 'Vozniack',
-        '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5'),
-       ('055cb1f2-162a-4f14-a445-883539a60002', 'INTERNAL', 'john@cas.dev',
-        '$2y$10$mbXVHXCEUCufdWQzkd2wNee7A5wx2hr2y6nRkLbWjx/lr.JdeF81y', 'John', 'Doe',
-        '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5');
 
 INSERT INTO roles (id, scope, name, description, organization_id)
 VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', 'INTERNAL', 'ADMIN', 'Central Authorization System administrator role',
@@ -129,9 +128,20 @@ VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', 'INTERNAL', 'ADMIN', 'Central Au
        ('451adc34-f819-46d5-9e35-719ee343fb73', 'INTERNAL', 'USER', 'Central Authorization System user role',
         '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5');
 
+
+INSERT INTO users (id, scope, email, password, first_name, last_name, organization_id)
+VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', 'INTERNAL', 'thomas.vozniack@cas.dev',
+        '$2y$10$mbXVHXCEUCufdWQzkd2wNee7A5wx2hr2y6nRkLbWjx/lr.JdeF81y', 'Thomas', 'Vozniack',
+        '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5'),
+       ('055cb1f2-162a-4f14-a445-883539a60002', 'INTERNAL', 'john.doe@cas.dev',
+        '$2y$10$mbXVHXCEUCufdWQzkd2wNee7A5wx2hr2y6nRkLbWjx/lr.JdeF81y', 'John', 'Doe',
+        '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5');
+
+
 INSERT INTO user_roles (user_id, role_id)
 VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', '98fa7b2c-6caa-4852-b632-e5c05b507021'),
        ('055cb1f2-162a-4f14-a445-883539a60002', '451adc34-f819-46d5-9e35-719ee343fb73');
+
 
 INSERT INTO privileges (id, scope, name, code, description, index, organization_id, parent_id)
 VALUES ('39798f2b-df6f-4239-9736-138b245b151c', 'INTERNAL', 'Login', 'LOGIN',
@@ -142,10 +152,11 @@ VALUES ('39798f2b-df6f-4239-9736-138b245b151c', 'INTERNAL', 'Login', 'LOGIN',
         'User account management privileges set', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
 
        ('150e6506-8cc1-4fb3-b700-af236b23d5e9', 'INTERNAL', 'Update email', 'UPDATE_EMAIL',
-        'Right to update own email', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '9d31e72b-2d3a-4984-8e19-fec0b67857ef'),
+        'Right to update own email', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5',
+        '9d31e72b-2d3a-4984-8e19-fec0b67857ef'),
 
        ('fbf61743-c54b-446c-b5ef-addf083cd3c6', 'INTERNAL', 'Update password', 'UPDATE_PASSWORD',
-        'Right to update own password', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5',
+        'Right to update own password', 1, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5',
         '9d31e72b-2d3a-4984-8e19-fec0b67857ef'),
 
 
@@ -220,9 +231,11 @@ VALUES ('39798f2b-df6f-4239-9736-138b245b151c', 'INTERNAL', 'Login', 'LOGIN',
         'Right to delete privileges', 3, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5',
         '32cb0e0a-4368-447c-ad00-2affe47e7d1d');
 
+
 INSERT INTO user_privileges (user_id, privilege_id)
 VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', '39798f2b-df6f-4239-9736-138b245b151c'),
        ('055cb1f2-162a-4f14-a445-883539a60002', '39798f2b-df6f-4239-9736-138b245b151c');
+
 
 INSERT INTO role_privileges (role_id, privilege_id)
 VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', '9d31e72b-2d3a-4984-8e19-fec0b67857ef'),

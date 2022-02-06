@@ -16,6 +16,8 @@ class UserDto(
     val firstName: String?,
     val lastName: String?,
 
+    val active: Boolean?,
+
     val organizationId: UUID,
 
     val roles: List<RoleDto> = listOf(),
