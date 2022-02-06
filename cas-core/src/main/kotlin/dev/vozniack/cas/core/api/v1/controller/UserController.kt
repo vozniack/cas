@@ -31,8 +31,12 @@ class UserController(
 
     @GetMapping
     @PreAuthorize("hasAuthority('READ_USER') and hasAnyRole('ADMIN', 'USER')")
-    fun getAll(@RequestParam(required = false) search: String?, pageable: Pageable): Page<UserDto> =
-        userService.findAll(UserQuery(ScopeType.EXTERNAL, search, search, search), pageable)
+    fun getAll(
+        @RequestParam(required = false) search: String?,
+        @RequestParam(required = false) organizationId: String?,
+        pageable: Pageable,
+    ): Page<UserDto> =
+        userService.findAll(UserQuery(ScopeType.EXTERNAL, search, search, search, organizationId), pageable)
             .map(userMapper::mapToDto)
 
     @GetMapping("/internal")

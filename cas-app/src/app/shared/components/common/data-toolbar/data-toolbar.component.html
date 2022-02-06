@@ -1,0 +1,22 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+    <cas-select-input *ngIf="organizationFormControl"
+                      [control]="organizationFormControl"
+                      [options]="organizationOptions"
+                      [id]="'filter-organization'"
+                      [placeholder]="'Select organization...'"
+                      [width]="'368px'">
+    </cas-select-input>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
+    <cas-text-input *ngIf="searchFormControl"
+                    [control]="searchFormControl"
+                    [id]="'filter-search'"
+                    [placeholder]="'Search...'"
+                    [icon]="'search'"
+                    [width]="'368px'">
+    </cas-text-input>
+  </div>
+</div>

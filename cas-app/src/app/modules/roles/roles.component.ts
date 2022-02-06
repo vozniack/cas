@@ -21,7 +21,9 @@ export class RolesComponent {
   data: Pageable<Role> = {}
   requestParam: RequestParam = {page: 0, size: 10};
   refresh = new Subject<RequestParam>();
+
   searchFormControl = new FormControl();
+  organizationFormControl = new FormControl();
 
   constructor(private rolesService: RolesService,
               private store: Store<NavigationState>) {
@@ -34,6 +36,11 @@ export class RolesComponent {
 
     this.searchFormControl.valueChanges.pipe(
       tap((search: string) => this.requestParam.search = search),
+      tap(() => this.getRoles())
+    ).subscribe();
+
+    this.organizationFormControl.valueChanges.pipe(
+      tap((organizationId: string) => this.requestParam.organizationId = organizationId),
       tap(() => this.getRoles())
     ).subscribe();
   }

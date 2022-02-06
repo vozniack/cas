@@ -156,7 +156,7 @@ VALUES ('9fb4dbd4-db7c-4088-9404-2cb05d40373d', 'SYSTEM', 'Mailbox system micros
 INSERT INTO users (id, email, password, first_name, last_name, organization_id)
 VALUES ('306d03dc-61cd-4e52-b2ac-d8a431e9ff46', 'mailbox@dms.com',
         '$2y$10$mbXVHXCEUCufdWQzkd2wNee7A5wx2hr2y6nRkLbWjx/lr.JdeF81y', 'Mailbox', null,
-        '238a882e-f4e9-4107-920f-3bb2bb206b70');
+        'd118dd75-b96b-42fd-9ba1-8117c740997a');
 
 
 INSERT INTO user_roles (user_id, role_id)

@@ -7,6 +7,7 @@ import {FlexModule} from "@angular/flex-layout";
 import {UsersService} from "./users.service";
 import {UsersTableComponent} from './users-table/users-table.component';
 import {InputsModule} from "../../shared/components/inputs/inputs.module";
+import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
 
 const COMPONENTS = [
   UsersComponent,
@@ -20,7 +21,8 @@ const COMPONENTS = [
     UsersRoutingModule,
     TableModule,
     FlexModule,
-    InputsModule
+    InputsModule,
+    CommonComponentsModule
   ],
   providers: [
     UsersService

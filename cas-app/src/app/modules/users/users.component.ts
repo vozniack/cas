@@ -21,7 +21,9 @@ export class UsersComponent {
   data: Pageable<User> = {}
   requestParam: RequestParam = {page: 0, size: 10};
   refresh = new Subject<RequestParam>();
+
   searchFormControl = new FormControl();
+  organizationFormControl = new FormControl();
 
   constructor(private usersService: UsersService,
               private store: Store<NavigationState>) {
@@ -34,6 +36,11 @@ export class UsersComponent {
 
     this.searchFormControl.valueChanges.pipe(
       tap((search: string) => this.requestParam.search = search),
+      tap(() => this.getUsers())
+    ).subscribe();
+
+    this.organizationFormControl.valueChanges.pipe(
+      tap((organizationId: string) => this.requestParam.organizationId = organizationId),
       tap(() => this.getUsers())
     ).subscribe();
   }

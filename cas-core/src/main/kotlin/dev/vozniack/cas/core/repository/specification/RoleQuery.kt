@@ -1,13 +1,16 @@
 package dev.vozniack.cas.core.repository.specification
 
+import dev.vozniack.cas.core.entity.Organization
 import dev.vozniack.cas.core.entity.Role
 import dev.vozniack.cas.core.types.ScopeType
 import org.springframework.data.jpa.domain.Specification
+import java.util.UUID
 
 class RoleQuery(
     val scope: ScopeType? = null,
     val name: String? = null,
     val description: String? = null,
+    val organizationId: String? = null,
 ) : Specificable<Role> {
 
     private fun scopeEquals(scope: ScopeType?): Specification<Role> =
@@ -28,9 +31,17 @@ class RoleQuery(
             }
         }
 
+    private fun belongsToOrganization(organizationId: String?): Specification<Role> =
+        Specification<Role> { root, _, criteriaBuilder ->
+            organizationId?.let {
+                criteriaBuilder.equal(root.get<Organization?>("organization").get<UUID?>("id"), UUID.fromString(it))
+            }
+        }
+
     override fun toSpecification(): Specification<Role> =
         Specification<Role> { _, _, _ -> null }
             .and(scopeEquals(scope))
+            .and(belongsToOrganization(organizationId))
             .and(nameLike(name)
                 .or(descriptionLike(description))
             )

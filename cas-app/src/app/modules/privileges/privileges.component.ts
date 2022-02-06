@@ -21,7 +21,9 @@ export class PrivilegesComponent {
   data: Pageable<Privilege> = {}
   requestParam: RequestParam = {page: 0, size: 10};
   refresh = new Subject<RequestParam>();
+
   searchFormControl = new FormControl();
+  organizationFormControl = new FormControl();
 
   constructor(private privilegesService: PrivilegesService,
               private store: Store<NavigationState>) {
@@ -34,6 +36,11 @@ export class PrivilegesComponent {
 
     this.searchFormControl.valueChanges.pipe(
       tap((search: string) => this.requestParam.search = search),
+      tap(() => this.getPrivileges())
+    ).subscribe();
+
+    this.organizationFormControl.valueChanges.pipe(
+      tap((organizationId: string) => this.requestParam.organizationId = organizationId),
       tap(() => this.getPrivileges())
     ).subscribe();
   }

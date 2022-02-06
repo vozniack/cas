@@ -7,6 +7,7 @@ import {TableModule} from "../../shared/components/table/table.module";
 import {FlexModule} from "@angular/flex-layout";
 import {RolesTableComponent} from './roles-table/roles-table.component';
 import {InputsModule} from "../../shared/components/inputs/inputs.module";
+import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
 
 const COMPONENTS = [
   RolesComponent,
@@ -20,7 +21,8 @@ const COMPONENTS = [
     RolesRoutingModule,
     TableModule,
     FlexModule,
-    InputsModule
+    InputsModule,
+    CommonComponentsModule
   ],
   providers: [
     RolesService

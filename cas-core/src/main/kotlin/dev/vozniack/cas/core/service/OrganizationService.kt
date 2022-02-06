@@ -19,6 +19,9 @@ class OrganizationService(private val organizationRepository: OrganizationReposi
     fun findAll(query: Specificable<Organization>, pageable: Pageable): Page<Organization> =
         organizationRepository.findAll(query.toSpecification(), pageable)
 
+    fun findAll(query: Specificable<Organization>): MutableIterable<Organization> =
+        organizationRepository.findAll(query.toSpecification())
+
     fun findInternal(): Organization = organizationRepository.findAll(
         OrganizationQuery(scope = ScopeType.INTERNAL).toSpecification()
     ).first()

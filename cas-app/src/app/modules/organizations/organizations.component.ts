@@ -21,6 +21,7 @@ export class OrganizationsComponent {
   data: Pageable<Organization> = {}
   requestParam: RequestParam = {page: 0, size: 10};
   refresh = new Subject<RequestParam>();
+
   searchFormControl = new FormControl();
 
   constructor(private organizationsService: OrganizationsService,

@@ -2,6 +2,8 @@ export interface RequestParam {
 
   search?: string;
 
+  organizationId?: string;
+
   page: number;
 
   size: number;

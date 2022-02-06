@@ -8,6 +8,7 @@ export function buildHttpParams(requestParam: RequestParam): HttpParams {
   httpParams = appendIfNotNull(httpParams, 'size', requestParam.size);
   httpParams = appendSortIfNotNull(httpParams, 'sort', requestParam.sort);
   httpParams = appendIfNotNull(httpParams, 'search', requestParam.search);
+  httpParams = appendIfNotNull(httpParams, 'organizationId', requestParam.organizationId);
 
   return httpParams;
 }
