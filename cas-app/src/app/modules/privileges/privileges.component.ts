@@ -10,6 +10,7 @@ import {PrivilegesService} from "./privileges.service";
 import {Privilege} from "./privileges.interface";
 import {Subject} from "rxjs";
 import {FormControl} from "@angular/forms";
+import {ViewType} from 'src/app/shared/model/types.interface';
 
 @Component({
   selector: 'cas-privileges',
@@ -22,8 +23,12 @@ export class PrivilegesComponent {
   requestParam: RequestParam = {page: 0, size: 10};
   refresh = new Subject<RequestParam>();
 
+  viewType: ViewType = ViewType.TABLE;
+  ViewType = ViewType;
+
   searchFormControl = new FormControl();
   organizationFormControl = new FormControl();
+  viewFormControl = new FormControl();
 
   constructor(private privilegesService: PrivilegesService,
               private store: Store<NavigationState>) {
@@ -41,6 +46,11 @@ export class PrivilegesComponent {
 
     this.organizationFormControl.valueChanges.pipe(
       tap((organizationId: string) => this.requestParam.organizationId = organizationId),
+      tap(() => this.getPrivileges())
+    ).subscribe();
+
+    this.viewFormControl.valueChanges.pipe(
+      tap((viewType: ViewType) => this.viewType = viewType),
       tap(() => this.getPrivileges())
     ).subscribe();
   }

@@ -8,10 +8,12 @@ import {FlexModule} from "@angular/flex-layout";
 import {PrivilegesTableComponent} from './privileges-table/privileges-table.component';
 import {InputsModule} from "../../shared/components/inputs/inputs.module";
 import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
+import {PrivilegesListComponent} from './privileges-list/privileges-list.component';
 
 const COMPONENTS = [
   PrivilegesComponent,
-  PrivilegesTableComponent
+  PrivilegesTableComponent,
+  PrivilegesListComponent
 ]
 
 @NgModule({

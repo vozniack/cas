@@ -8,10 +8,12 @@ import {OrganizationsService} from "./organizations.service";
 import {OrganizationsTableComponent} from './organizations-table/organizations-table.component';
 import {InputsModule} from "../../shared/components/inputs/inputs.module";
 import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
+import {OrganizationsListComponent} from './organizations-list/organizations-list.component';
 
 const COMPONENTS = [
   OrganizationsComponent,
-  OrganizationsTableComponent
+  OrganizationsTableComponent,
+  OrganizationsListComponent
 ];
 
 @NgModule({

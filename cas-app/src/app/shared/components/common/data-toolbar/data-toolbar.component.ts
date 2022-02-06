@@ -18,6 +18,9 @@ export class DataToolbarComponent {
   @Input()
   organizationFormControl?: FormControl;
 
+  @Input()
+  viewFormControl?: FormControl;
+
   organizationOptions: SelectOption[] = [];
 
   constructor(private organizationsService: OrganizationsService) {

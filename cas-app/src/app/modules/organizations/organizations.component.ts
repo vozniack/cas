@@ -10,6 +10,7 @@ import {RequestParam} from "../../shared/model/request.interface";
 import {tap} from "rxjs/operators";
 import {Subject} from "rxjs";
 import {FormControl} from "@angular/forms";
+import {ViewType} from "../../shared/model/types.interface";
 
 @Component({
   selector: 'cas-organizations',
@@ -22,7 +23,11 @@ export class OrganizationsComponent {
   requestParam: RequestParam = {page: 0, size: 10};
   refresh = new Subject<RequestParam>();
 
+  viewType: ViewType = ViewType.TABLE;
+  ViewType = ViewType;
+
   searchFormControl = new FormControl();
+  viewFormControl = new FormControl();
 
   constructor(private organizationsService: OrganizationsService,
               private store: Store<NavigationState>) {
@@ -35,6 +40,11 @@ export class OrganizationsComponent {
 
     this.searchFormControl.valueChanges.pipe(
       tap((search: string) => this.requestParam.search = search),
+      tap(() => this.getOrganizations())
+    ).subscribe();
+
+    this.viewFormControl.valueChanges.pipe(
+      tap((viewType: ViewType) => this.viewType = viewType),
       tap(() => this.getOrganizations())
     ).subscribe();
   }

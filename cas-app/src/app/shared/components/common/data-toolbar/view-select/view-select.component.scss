@@ -1,0 +1,32 @@
+@import 'src/styles/variables';
+
+.view-select-container {
+  height: 40px;
+  margin-top: 8px;
+
+  border-radius: 12px;
+
+  color: $white;
+  background: $background-dark;
+
+  .view-option {
+    padding: 8px 12px;
+    border-radius: 12px;
+
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+    .icon {
+      margin-top: 4px;
+      width: 20px;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background: $background-darker;
+    }
+
+    &.active {
+      color: $primary;
+    }
+  }
+}

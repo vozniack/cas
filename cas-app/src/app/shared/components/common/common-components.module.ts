@@ -7,11 +7,13 @@ import {RoleComponent} from './role/role.component';
 import {DataToolbarComponent} from './data-toolbar/data-toolbar.component';
 import {InputsModule} from "../inputs/inputs.module";
 import {OrganizationsService} from "../../../modules/organizations/organizations.service";
+import {ViewSelectComponent} from './data-toolbar/view-select/view-select.component';
 
 const COMPONENTS = [
   UserComponent,
   RoleComponent,
-  DataToolbarComponent
+  DataToolbarComponent,
+  ViewSelectComponent
 ]
 
 @NgModule({

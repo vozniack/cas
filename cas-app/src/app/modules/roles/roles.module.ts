@@ -8,10 +8,12 @@ import {FlexModule} from "@angular/flex-layout";
 import {RolesTableComponent} from './roles-table/roles-table.component';
 import {InputsModule} from "../../shared/components/inputs/inputs.module";
 import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
+import {RolesListComponent} from './roles-list/roles-list.component';
 
 const COMPONENTS = [
   RolesComponent,
-  RolesTableComponent
+  RolesTableComponent,
+  RolesListComponent
 ]
 
 @NgModule({

@@ -18,5 +18,9 @@
                     [icon]="'search'"
                     [width]="'368px'">
     </cas-text-input>
+
+    <cas-view-select *ngIf="viewFormControl"
+                     [control]="viewFormControl">
+    </cas-view-select>
   </div>
 </div>

@@ -10,6 +10,7 @@ import {tap} from "rxjs/operators";
 import {RolesService} from "./roles.service";
 import {Subject} from "rxjs";
 import {FormControl} from "@angular/forms";
+import {ViewType} from 'src/app/shared/model/types.interface';
 
 @Component({
   selector: 'cas-roles',
@@ -22,8 +23,12 @@ export class RolesComponent {
   requestParam: RequestParam = {page: 0, size: 10};
   refresh = new Subject<RequestParam>();
 
+  viewType: ViewType = ViewType.TABLE;
+  ViewType = ViewType;
+
   searchFormControl = new FormControl();
   organizationFormControl = new FormControl();
+  viewFormControl = new FormControl();
 
   constructor(private rolesService: RolesService,
               private store: Store<NavigationState>) {
@@ -41,6 +46,11 @@ export class RolesComponent {
 
     this.organizationFormControl.valueChanges.pipe(
       tap((organizationId: string) => this.requestParam.organizationId = organizationId),
+      tap(() => this.getRoles())
+    ).subscribe();
+
+    this.viewFormControl.valueChanges.pipe(
+      tap((viewType: ViewType) => this.viewType = viewType),
       tap(() => this.getRoles())
     ).subscribe();
   }

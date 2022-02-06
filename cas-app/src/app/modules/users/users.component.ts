@@ -10,6 +10,7 @@ import {UsersService} from "./users.service";
 import {User} from "./users.interface";
 import {Subject} from "rxjs";
 import {FormControl} from "@angular/forms";
+import {ViewType} from 'src/app/shared/model/types.interface';
 
 @Component({
   selector: 'cas-users',
@@ -22,8 +23,12 @@ export class UsersComponent {
   requestParam: RequestParam = {page: 0, size: 10};
   refresh = new Subject<RequestParam>();
 
+  viewType: ViewType = ViewType.TABLE;
+  ViewType = ViewType;
+
   searchFormControl = new FormControl();
   organizationFormControl = new FormControl();
+  viewFormControl = new FormControl();
 
   constructor(private usersService: UsersService,
               private store: Store<NavigationState>) {
@@ -41,6 +46,11 @@ export class UsersComponent {
 
     this.organizationFormControl.valueChanges.pipe(
       tap((organizationId: string) => this.requestParam.organizationId = organizationId),
+      tap(() => this.getUsers())
+    ).subscribe();
+
+    this.viewFormControl.valueChanges.pipe(
+      tap((viewType: ViewType) => this.viewType = viewType),
       tap(() => this.getUsers())
     ).subscribe();
   }

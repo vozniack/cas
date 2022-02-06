@@ -8,10 +8,12 @@ import {UsersService} from "./users.service";
 import {UsersTableComponent} from './users-table/users-table.component';
 import {InputsModule} from "../../shared/components/inputs/inputs.module";
 import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
+import {UsersListComponent} from './users-list/users-list.component';
 
 const COMPONENTS = [
   UsersComponent,
-  UsersTableComponent
+  UsersTableComponent,
+  UsersListComponent
 ]
 
 @NgModule({
