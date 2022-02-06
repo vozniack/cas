@@ -1,7 +1,10 @@
-<div class="user-container" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="24px">
+<div class="user-container" [ngClass]="background"
+     fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="24px">
 
   <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px">
-    <i-feather class="avatar"></i-feather>
+    <div class="avatar" fxLayout="column" fxLayoutAlign="center center">
+      <i-feather class="icon" name="user"></i-feather>
+    </div>
 
     <div fxLayout="column" fxLayoutGap="4px">
       <span class="name">{{user.firstName}} {{user.lastName}}</span>
@@ -9,9 +12,9 @@
     </div>
   </div>
 
-  <div fxLayout="row" fxLayoutAlign="end center">
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
     <ng-container *ngFor="let role of user.roles">
-      <span class="badge light role">{{role.name}}</span>
+      <span class="badge role" [ngClass]="background === 'basic' ? 'dark' : 'light'">{{role.name}}</span>
     </ng-container>
   </div>
 </div>

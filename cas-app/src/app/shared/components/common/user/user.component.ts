@@ -10,4 +10,7 @@ export class UserComponent {
 
   @Input()
   user!: User;
+
+  @Input()
+  background: 'basic' | 'inverse' = 'basic';
 }

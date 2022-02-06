@@ -44,6 +44,7 @@ export class UsersComponent {
 
     this.filters.valueChanges.pipe(
       tap((filters: any) => {
+        this.requestParam.page = 0;
         this.requestParam.search = filters.search;
         this.requestParam.organizationId = filters.organization;
         this.view = filters.view;
