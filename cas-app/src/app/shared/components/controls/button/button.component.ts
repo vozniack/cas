@@ -17,6 +17,7 @@ export class ButtonComponent {
   @Input() iconLeft?: string = undefined;
   @Input() iconRight?: string = undefined;
 
-  @Input() size: 'tiny' | 'small' | 'normal' = 'normal';
+  @Input() shape: 'rectangle' | 'circle' = 'rectangle';
+  @Input() size: 'small' | 'normal' | 'big' = 'normal';
   @Input() theme: 'primary' | 'secondary' | 'default' = 'primary';
 }

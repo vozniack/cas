@@ -1,8 +1,9 @@
-<button [style.width]="width"
-        [ngClass]="'theme-' + theme + ' ' + size"
+<button [style.width]="shape == 'rectangle' ? width : 'auto'"
+        [ngClass]="'theme-' + theme + ' ' + shape + ' ' + size"
         [class.active]="active"
-        [class.icon-left]="iconLeft"
-        [class.icon-right]="iconRight"
+        [class.icon-left]="shape == 'rectangle' && iconLeft && !iconRight"
+        [class.icon-right]="shape == 'rectangle' && iconRight && !iconLeft"
+        [class.icon-both]="shape == 'rectangle' && iconLeft && iconRight"
         [disabled]="disabled"
         @fadeInAnimation>
   <div class="content" fxLayout="row" fxLayoutAlign="center center">

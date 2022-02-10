@@ -3,9 +3,6 @@
 button {
   position: relative;
 
-  padding: 16px 32px;
-  border-radius: 12px;
-
   outline: none;
   border: none;
 
@@ -26,6 +23,10 @@ button {
     }
   }
 
+  .content {
+    margin-top: 0;
+  }
+
   .icon {
     position: absolute;
 
@@ -35,47 +36,118 @@ button {
     transition: color 0.2s ease-in-out;
 
     &.left {
-      top: 10px;
-      left: 16px;
+      left: 8px;
     }
 
     &.right {
-      top: 10px;
-      right: 16px;
+      right: 8px;
     }
   }
 
-  /* Sizes */
+  /* Shapes and sizes */
 
-  &.tiny {
-    height: 30px;
-    padding: 4px 8px;
+  &.rectangle {
 
-    border-radius: 8px;
+    &.small {
+      height: 30px;
+      padding: 4px 8px;
+      border-radius: 8px;
 
-    &.icon-left {
-      padding: 4px 8px 4px 24px;
+      .icon {
+        top: 5px
+      }
+
+      &.icon-left {
+        padding: 4px 8px 4px 36px;
+      }
+
+      &.icon-right {
+        padding: 4px 36px 4px 8px;
+      }
+
+      &.icon-both {
+        padding: 4px 36px;
+      }
     }
 
-    &.icon-right {
-      padding: 4px 24px 4px 8px;
+    &.normal {
+      height: 40px;
+      padding: 8px 16px;
+      border-radius: 12px;
+
+      .icon {
+        top: 10px
+      }
+
+      &.icon-left {
+        padding: 8px 12px 8px 36px;
+      }
+
+      &.icon-right {
+        padding: 8px 36px 8px 12px;
+      }
+
+      &.icon-both {
+        padding: 8px 36px;
+      }
+
+      .content {
+        margin-top: 2px;
+      }
+    }
+
+    &.big {
+      height: 56px;
+      padding: 16px 20px;
+      border-radius: 16px;
+
+      .icon {
+        width: 24px;
+        height: 24px;
+
+        top: 16px
+      }
+
+      &.icon-left {
+        padding: 8px 12px 8px 40px;
+      }
+
+      &.icon-right {
+        padding: 8px 40px 8px 12px;
+      }
+
+      &.icon-both {
+        padding: 8px 40px;
+      }
     }
   }
 
-  &.small {
-    height: 40px;
-    padding: 8px 12px;
+  &.circle {
+    border-radius: 50%;
 
-    &.icon-left {
-      padding: 8px 12px 8px 48px;
+    &.small {
+      padding: 12px;
+
+      height: 40px !important;
+      width: 40px !important;
     }
 
-    &.icon-right {
-      padding: 8px 48px 8px 12px;
+    &.normal {
+      padding: 10px;
+
+      height: 48px !important;
+      width: 48px !important;
     }
 
-    &.icon-left, &.icon-right .content {
-      margin-top: 2px;
+    &.big {
+      padding: 16px;
+
+      height: 64px !important;
+      width: 64px !important;
+
+      .content {
+        transform: scale(1.2);
+      }
     }
   }
 
