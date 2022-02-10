@@ -48,6 +48,8 @@ export class OrganizationsComponent {
       }),
       tap(() => this.getOrganizations())
     ).subscribe();
+
+    this.refresh.next(this.requestParam);
   }
 
   getOrganizations(): void {

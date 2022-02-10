@@ -23,7 +23,7 @@ export class PrivilegesComponent {
   requestParam: RequestParam = {page: 0, size: 10};
   refresh = new Subject<RequestParam>();
 
-  view: ViewType = ViewType.TABLE;
+  view: ViewType = ViewType.LIST;
   ViewType = ViewType;
 
   filters: FormGroup = this.formBuilder.group({
@@ -51,6 +51,8 @@ export class PrivilegesComponent {
       }),
       tap(() => this.getPrivileges())
     ).subscribe();
+
+    this.refresh.next(this.requestParam);
   }
 
   getPrivileges(): void {

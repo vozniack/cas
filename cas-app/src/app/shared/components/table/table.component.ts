@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ColumnType, TableAction, TableColumn} from "./table.interface";
 import {Pageable} from "../../model/pageable.interface";
 import {fadeInAnimation} from "../../animations/fade-in-animation";
@@ -14,7 +14,7 @@ import {Subject} from "rxjs";
   styleUrls: ['./table.component.scss'],
   animations: [fadeInAnimation, fadeOutAnimation]
 })
-export class TableComponent implements OnInit {
+export class TableComponent {
 
   @Input()
   set data(data: Pageable<any>) {
@@ -55,10 +55,6 @@ export class TableComponent implements OnInit {
   totalPages!: number;
 
   columnType = ColumnType;
-
-  ngOnInit(): void {
-    this.onSearchChange();
-  }
 
   /* Changes */
 

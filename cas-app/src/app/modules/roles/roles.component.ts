@@ -51,6 +51,8 @@ export class RolesComponent {
       }),
       tap(() => this.getRoles())
     ).subscribe();
+
+    this.refresh.next(this.requestParam);
   }
 
   getRoles(): void {

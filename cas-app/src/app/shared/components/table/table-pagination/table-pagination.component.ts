@@ -1,7 +1,7 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {fadeInAnimation} from "../../../animations/fade-in-animation";
 import {Subject} from "rxjs";
-import {takeUntil, tap} from "rxjs/operators";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'cas-table-pagination',
@@ -9,7 +9,7 @@ import {takeUntil, tap} from "rxjs/operators";
   styleUrls: ['./table-pagination.component.scss'],
   animations: [fadeInAnimation]
 })
-export class TablePaginationComponent implements OnInit, OnDestroy {
+export class TablePaginationComponent implements OnInit {
 
   @Input()
   pageSize!: number;
@@ -35,22 +35,16 @@ export class TablePaginationComponent implements OnInit, OnDestroy {
   /* ng actions */
 
   ngOnInit(): void {
-    setTimeout(() => this.countPages(), 32);
+    setTimeout(() => this.countPages(false), 32);
 
     this.reset.pipe(
-      takeUntil(this.ngDestroyed$),
       tap(() => this.page = 1)
     ).subscribe()
   }
 
-  ngOnDestroy(): void {
-    this.ngDestroyed$.next(true);
-    this.ngDestroyed$.unsubscribe();
-  }
-
   /* Counter */
 
-  countPages(): void {
+  countPages(emitChange: boolean): void {
     this.pages = [];
 
     let iterator = 0;
@@ -58,39 +52,41 @@ export class TablePaginationComponent implements OnInit, OnDestroy {
       this.pages[iterator++] = this.page + i;
     }
 
-    this.pageChange.emit(this.page - 1);
+    if (emitChange) {
+      this.pageChange.emit(this.page - 1);
+    }
   }
 
   /* Page changes */
 
   firstPage(): void {
     this.page = 1;
-    this.countPages();
+    this.countPages(true);
   }
 
   prevPage(): void {
     if (this.canChangePrev(1)) {
       this.page--;
-      this.countPages();
+      this.countPages(true);
     }
   }
 
   nextPage(): void {
     if (this.canChangeNext(1)) {
       this.page++;
-      this.countPages();
+      this.countPages(true);
     }
   }
 
   lastPage(): void {
     this.page = this.totalPages;
-    this.countPages();
+    this.countPages(true);
   }
 
   changePage(page: number): void {
     if (this.page != page) {
       this.page = page;
-      this.countPages();
+      this.countPages(true);
     }
   }
 

@@ -51,6 +51,8 @@ export class UsersComponent {
       }),
       tap(() => this.getUsers())
     ).subscribe();
+
+    this.refresh.next(this.requestParam);
   }
 
   getUsers(): void {
