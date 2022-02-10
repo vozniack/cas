@@ -44,10 +44,11 @@ export class PrivilegesComponent {
 
     this.filters.valueChanges.pipe(
       tap((filters: any) => {
+        this.view = filters.view;
+
         this.requestParam.page = 0;
         this.requestParam.search = filters.search;
         this.requestParam.organizationId = filters.organization;
-        this.view = filters.view;
       }),
       tap(() => this.getPrivileges())
     ).subscribe();

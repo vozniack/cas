@@ -1,0 +1,26 @@
+@import 'src/styles/variables';
+
+.privilege-container {
+  padding: 12px 24px;
+  border-radius: 12px;
+
+  color: $white;
+  background: $background-darker;
+
+  .name {
+    font-size: 14px;
+  }
+
+  .description, .updated, .badge {
+    font-size: 12px;
+  }
+
+
+  &.basic {
+    background: $background-dark;
+  }
+
+  &.inverse {
+    background: $background-darker;
+  }
+}

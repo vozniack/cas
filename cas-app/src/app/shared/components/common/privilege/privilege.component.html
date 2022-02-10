@@ -1,0 +1,37 @@
+<div *ngIf="privilege" class="privilege-container" [ngClass]="background" fxLayout="column" fxLayoutGap="32px">
+
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px">
+      <div fxLayout="column">
+        <span class="name">{{privilege.name}}</span>
+        <span class="description">{{privilege.description}}</span>
+      </div>
+
+      <span class="badge primary">{{privilege.code}}</span>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="8px">
+      <cas-button (click)="selectOrDeselect()"
+                  [theme]="'primary'"
+                  [shape]="'circle'"
+                  [size]="'small'">
+        <i-feather name="eye"></i-feather>
+      </cas-button>
+
+      <cas-button [disabled]="!(privilege.privileges && privilege.privileges.length > 0)"
+                  (click)="extendOrCollapse()"
+                  [theme]="'secondary'"
+                  [shape]="'circle'"
+                  [size]="'small'">
+        <i-feather [name]="isExtended ? 'chevrons-up' : 'chevrons-down'"></i-feather>
+      </cas-button>
+    </div>
+  </div>
+
+  <div *ngIf="isExtended" fxLayout="column" fxLayoutGap="8px" @fadeInAnimation>
+    <cas-privilege *ngFor="let privilege of privilege.privileges"
+                   [privilege]="privilege"
+                   [background]="background == 'basic' ? 'inverse' : 'basic'">
+    </cas-privilege>
+  </div>
+</div>

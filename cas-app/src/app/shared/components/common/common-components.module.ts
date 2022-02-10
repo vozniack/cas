@@ -8,12 +8,15 @@ import {DataToolbarComponent} from './data-toolbar/data-toolbar.component';
 import {InputsModule} from "../inputs/inputs.module";
 import {OrganizationsService} from "../../../modules/organizations/organizations.service";
 import {ViewSelectComponent} from './data-toolbar/view-select/view-select.component';
+import {PrivilegeComponent} from './privilege/privilege.component';
+import {ControlsModule} from "../controls/controls.module";
 
 const COMPONENTS = [
   UserComponent,
   RoleComponent,
   DataToolbarComponent,
-  ViewSelectComponent
+  ViewSelectComponent,
+  PrivilegeComponent
 ]
 
 @NgModule({
@@ -23,7 +26,8 @@ const COMPONENTS = [
     CommonModule,
     FlexModule,
     IconsModule,
-    InputsModule
+    InputsModule,
+    ControlsModule
   ],
   providers: [
     OrganizationsService

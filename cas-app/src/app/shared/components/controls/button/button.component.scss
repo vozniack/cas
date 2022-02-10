@@ -16,6 +16,7 @@ button {
   }
 
   &:disabled {
+    cursor: default;
     color: rgba($white, 0.5);
 
     .icon {

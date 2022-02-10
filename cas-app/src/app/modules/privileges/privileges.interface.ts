@@ -1,6 +1,7 @@
 import {ScopeType} from "../../shared/model/types.interface";
+import {Auditable} from "../../shared/model/auditable.interface";
 
-export interface Privilege {
+export interface Privilege extends Auditable {
 
   id: string;
 
@@ -11,4 +12,6 @@ export interface Privilege {
   code: string;
 
   description: string;
+
+  privileges: Privilege[];
 }

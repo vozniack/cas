@@ -1,1 +1,5 @@
-<p>privileges-list works!</p>
+<div fxLayout="column" fxLayoutGap="16px" @fadeInAnimation>
+  <ng-container *ngFor="let privilege of data.content">
+    <cas-privilege [privilege]="privilege" [background]="'basic'"></cas-privilege>
+  </ng-container>
+</div>
