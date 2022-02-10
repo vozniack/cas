@@ -8,13 +8,13 @@ import {OrganizationsService} from "./organizations.service";
 import {OrganizationsTableComponent} from './organizations-table/organizations-table.component';
 import {InputsModule} from "../../shared/components/inputs/inputs.module";
 import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
-import {OrganizationsListComponent} from './organizations-list/organizations-list.component';
+import {OrganizationsGridComponent} from './organizations-grid/organizations-grid.component';
 
 @NgModule({
   declarations: [
     OrganizationsComponent,
     OrganizationsTableComponent,
-    OrganizationsListComponent
+    OrganizationsGridComponent
   ],
   imports: [
     CommonModule,

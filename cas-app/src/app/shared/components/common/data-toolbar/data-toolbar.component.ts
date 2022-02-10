@@ -4,6 +4,7 @@ import {SelectOption} from "../../inputs/select-input/select-input.interface";
 import {OrganizationsService} from "../../../../modules/organizations/organizations.service";
 import {tap} from "rxjs/operators";
 import {Organization} from "../../../../modules/organizations/organizations.interface";
+import {ViewSelectOption} from "./view-select/view-select.interface";
 
 @Component({
   selector: 'cas-data-toolbar',
@@ -14,6 +15,9 @@ export class DataToolbarComponent {
 
   @Input()
   filters?: FormGroup;
+
+  @Input()
+  views: ViewSelectOption[] = [];
 
   organizationOptions: SelectOption[] = [];
 

@@ -11,6 +11,7 @@ import {User} from "./users.interface";
 import {Subject} from "rxjs";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ViewType} from 'src/app/shared/model/types.interface';
+import {VIEW_LIST, VIEW_TABLE} from "../../shared/const/view.const";
 
 @Component({
   selector: 'cas-users',
@@ -23,6 +24,7 @@ export class UsersComponent {
   requestParam: RequestParam = {page: 0, size: 10};
   refresh = new Subject<RequestParam>();
 
+  views = [VIEW_TABLE, VIEW_LIST]
   view: ViewType = ViewType.TABLE;
   ViewType = ViewType;
 

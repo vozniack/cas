@@ -5,11 +5,11 @@ import {RequestParam} from "../../../shared/model/request.interface";
 import {Subject} from "rxjs";
 
 @Component({
-  selector: 'cas-organizations-list',
-  templateUrl: './organizations-list.component.html',
-  styleUrls: ['./organizations-list.component.scss']
+  selector: 'cas-organizations-grid',
+  templateUrl: './organizations-grid.component.html',
+  styleUrls: ['./organizations-grid.component.scss']
 })
-export class OrganizationsListComponent {
+export class OrganizationsGridComponent {
 
   @Input()
   data: Pageable<Organization> = {}

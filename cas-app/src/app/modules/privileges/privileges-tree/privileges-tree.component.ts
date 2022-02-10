@@ -6,12 +6,12 @@ import {Subject} from "rxjs";
 import {fadeInAnimation} from "../../../shared/animations/fade-in-animation";
 
 @Component({
-  selector: 'cas-privileges-list',
-  templateUrl: './privileges-list.component.html',
-  styleUrls: ['./privileges-list.component.scss'],
+  selector: 'cas-privileges-tree',
+  templateUrl: './privileges-tree.component.html',
+  styleUrls: ['./privileges-tree.component.scss'],
   animations: [fadeInAnimation]
 })
-export class PrivilegesListComponent {
+export class PrivilegesTreeComponent {
 
   @Input()
   data: Pageable<Privilege> = {}

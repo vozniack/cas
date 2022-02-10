@@ -5,5 +5,7 @@ export enum ScopeType {
 
 export enum ViewType {
   TABLE = 'TABLE',
-  LIST = 'LIST'
+  LIST = 'LIST',
+  GRID = 'GRID',
+  TREE = 'TREE'
 }

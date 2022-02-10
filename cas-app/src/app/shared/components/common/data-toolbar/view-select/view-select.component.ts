@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {ViewType} from "../../../../model/types.interface";
 import {ViewSelectOption} from "./view-select.interface";
-import {views} from "./view-select.const";
 import {fadeInAnimation} from "../../../../animations/fade-in-animation";
 
 @Component({
@@ -16,9 +15,10 @@ export class ViewSelectComponent implements OnInit {
   @Input()
   control!: FormControl;
 
-  selectedView: ViewType = ViewType.TABLE;
+  @Input()
+  views!: ViewSelectOption[];
 
-  views: ViewSelectOption[] = views;
+  selectedView: ViewType = ViewType.TABLE;
 
   ngOnInit(): void {
     this.selectedView = this.control.value;

@@ -11,6 +11,7 @@ import {tap} from "rxjs/operators";
 import {Subject} from "rxjs";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ViewType} from "../../shared/model/types.interface";
+import {VIEW_TABLE, VIEW_GRID} from "../../shared/const/view.const";
 
 @Component({
   selector: 'cas-organizations',
@@ -23,6 +24,7 @@ export class OrganizationsComponent {
   requestParam: RequestParam = {page: 0, size: 10};
   refresh = new Subject<RequestParam>();
 
+  views = [VIEW_TABLE, VIEW_GRID]
   view: ViewType = ViewType.TABLE;
   ViewType = ViewType;
 

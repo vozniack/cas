@@ -11,6 +11,7 @@ import {Privilege} from "./privileges.interface";
 import {Subject} from "rxjs";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ViewType} from 'src/app/shared/model/types.interface';
+import {VIEW_TABLE, VIEW_TREE} from "../../shared/const/view.const";
 
 @Component({
   selector: 'cas-privileges',
@@ -23,7 +24,8 @@ export class PrivilegesComponent {
   requestParam: RequestParam = {page: 0, size: 10};
   refresh = new Subject<RequestParam>();
 
-  view: ViewType = ViewType.LIST;
+  views = [VIEW_TABLE, VIEW_TREE]
+  view: ViewType = ViewType.TREE;
   ViewType = ViewType;
 
   filters: FormGroup = this.formBuilder.group({
