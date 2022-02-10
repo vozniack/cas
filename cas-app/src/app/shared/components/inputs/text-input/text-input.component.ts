@@ -29,4 +29,8 @@ export class TextInputComponent {
   isRequired(): boolean {
     return this.control.hasValidator(Validators.required);
   }
+
+  clear(): void {
+    this.control.setValue(null);
+  }
 }

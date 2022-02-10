@@ -8,7 +8,13 @@
        [class.invalid]="control.touched && control.invalid"
        [class.active]="active">
 
-    <i-feather class="icon" [class.active]="active" name="chevron-left"></i-feather>
+    <i-feather *ngIf="control.value && !active" class="icon action" name="x" (click)="clear()" @fadeInAnimation>
+    </i-feather>
+
+    <i-feather *ngIf="!control.value || active" class="icon" [class.active]="active" name="chevron-left"
+               @fadeInAnimation>
+    </i-feather>
+
     <span class="placeholder" *ngIf="placeholder && control.value == null">{{placeholder}}</span>
 
     <div class="select">

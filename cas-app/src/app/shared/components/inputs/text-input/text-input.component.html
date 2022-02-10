@@ -13,6 +13,7 @@
            [placeholder]="placeholder"
            [type]="type"/>
 
-    <i-feather class="icon" [name]="icon"></i-feather>
+    <i-feather *ngIf="control.value" class="icon action" name="x" (click)="clear()" @fadeInAnimation></i-feather>
+    <i-feather *ngIf="!control.value" class="icon" [name]="icon" @fadeInAnimation></i-feather>
   </div>
 </div>
