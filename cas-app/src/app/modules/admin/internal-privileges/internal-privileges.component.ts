@@ -20,4 +20,8 @@ export class InternalPrivilegesComponent {
       tap((privileges: Pageable<Privilege>) => this.privileges = privileges)
     ).subscribe();
   }
+
+  getParentPrivileges(): Privilege[] {
+    return this.privileges.content!.filter(privilege => privilege.parentId == null)
+  }
 }

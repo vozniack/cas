@@ -13,5 +13,7 @@ export interface Privilege extends Auditable {
 
   description: string;
 
+  parentId: string;
+
   privileges: Privilege[];
 }
