@@ -12,7 +12,7 @@ class PrivilegeQuery(
     val code: String? = null,
     val description: String? = null,
     val organizationId: String? = null,
-    val isParent: Boolean? = null,
+    var isParent: Boolean? = null,
 ) : Specificable<Privilege> {
 
     private fun scopeEquals(scope: ScopeType?): Specification<Privilege> =

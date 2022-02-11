@@ -42,26 +42,17 @@ class PrivilegeServiceTest @Autowired constructor(
     }
 
     @Test
-    fun `find page of filtered privileges`() {
+    @Transactional
+    fun `find list of all parent privileges`() {
         val firstParent = privilegeRepository.save(Privilege(name = "First privilege", code = "FIRST_PRIVILEGE"))
-        privilegeRepository.save(Privilege(name = "Second privilege", code = "SECOND_PRIVILEGE"))
-        privilegeRepository.save(Privilege(name = "Third privilege", code = "THIRD_PRIVILEGE"))
+        privilegeRepository.save(Privilege(name = "Second privilege", code = "SECOND_PRIVILEGE", parent = firstParent))
+        privilegeRepository.save(Privilege(name = "Third privilege", code = "THIRD_PRIVILEGE", parent = firstParent))
         privilegeRepository.save(Privilege(name = "Child privilege", code = "CHILD_PRIVILEGE", parent = firstParent))
 
-        var privileges = privilegeService.findAll(PrivilegeQuery(name = "Second"), PageRequest.ofSize(1024))
+        val privileges = privilegeService.findAllParents(PrivilegeQuery())
 
-        assertThat(privileges).isInstanceOf(Page::class.java)
-        assertThat(privileges.content.size).isEqualTo(1)
-
-        privileges = privilegeService.findAll(PrivilegeQuery(name = "First", code = "SECOND"), PageRequest.ofSize(1024))
-
-        assertThat(privileges).isInstanceOf(Page::class.java)
-        assertThat(privileges.content.size).isEqualTo(2)
-
-        privileges = privilegeService.findAll(PrivilegeQuery(name = "privilege"), PageRequest.ofSize(1024))
-
-        assertThat(privileges).isInstanceOf(Page::class.java)
-        assertThat(privileges.content.size).isEqualTo(4)
+        assertThat(privileges).isInstanceOf(List::class.java)
+        assertThat(privileges.size).isEqualTo(1)
     }
 
     @Test

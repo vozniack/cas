@@ -42,23 +42,6 @@ class RoleServiceTest @Autowired constructor(
     }
 
     @Test
-    fun `find page of filtered roles`() {
-        roleRepository.saveAll(listOf(Role(name = "ADMINISTRATOR", description = "Description"),
-            Role(name = "MANAGER", description = "Description"))
-        )
-
-        var roles = roleService.findAll(RoleQuery(name = "ADMINISTRATOR"), PageRequest.ofSize(1024))
-
-        assertThat(roles).isInstanceOf(Page::class.java)
-        assertThat(roles.content.size).isEqualTo(1)
-
-        roles = roleService.findAll(RoleQuery(name = "ADMIN", description = "Description"), PageRequest.ofSize(1024))
-
-        assertThat(roles).isInstanceOf(Page::class.java)
-        assertThat(roles.content.size).isEqualTo(2)
-    }
-
-    @Test
     fun `find role by id`() {
         val savedRole = roleRepository.save(Role(name = "ROLE", description = "Description"))
         assertThat(savedRole.id).isNotNull

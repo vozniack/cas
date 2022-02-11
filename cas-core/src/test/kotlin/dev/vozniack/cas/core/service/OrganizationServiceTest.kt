@@ -40,37 +40,6 @@ class OrganizationServiceTest @Autowired constructor(
     }
 
     @Test
-    fun `find page of filtered organizations`() {
-        organizationRepository.saveAll(listOf(
-            Organization(name = "First organization", code = "ORG_1"),
-            Organization(name = "Second organization", code = "ORG_2")
-        ))
-
-        var organizations = organizationService.findAll(
-            OrganizationQuery(name = "first"), PageRequest.ofSize(1024)
-        )
-
-        assertThat(organizations).isInstanceOf(Page::class.java)
-        assertThat(organizations.content.size).isEqualTo(1)
-        assertThat(organizations.content[0].name).isEqualTo("First organization")
-
-        organizations = organizationService.findAll(
-            OrganizationQuery(code = "2"), PageRequest.ofSize(1024)
-        )
-
-        assertThat(organizations).isInstanceOf(Page::class.java)
-        assertThat(organizations.content.size).isEqualTo(1)
-        assertThat(organizations.content[0].name).isEqualTo("Second organization")
-
-        organizations = organizationService.findAll(
-            OrganizationQuery(name = "first", code = "2"), PageRequest.ofSize(1024)
-        )
-
-        assertThat(organizations).isInstanceOf(Page::class.java)
-        assertThat(organizations.content.size).isEqualTo(2)
-    }
-
-    @Test
     fun `find list of all organizations`() {
         organizationRepository.saveAll(listOf(
             Organization(name = "First organization", code = "ORG_1"),
@@ -95,6 +64,19 @@ class OrganizationServiceTest @Autowired constructor(
         assertThat(organizations).isInstanceOf(List::class.java)
         assertThat(organizations.count()).isEqualTo(1)
         assertThat(organizations.toList()[0].name).isEqualTo("First organization")
+    }
+
+    @Test
+    fun `find internal organization`() {
+        organizationRepository.saveAll(listOf(
+            Organization(name = "First organization", code = "ORG_1", scope = ScopeType.INTERNAL),
+            Organization(name = "Second organization", code = "ORG_2", scope = ScopeType.EXTERNAL)
+        ))
+
+        val organization = organizationService.findInternal()
+
+        assertThat(organization).isNotNull
+        assertThat(organization.name).isEqualTo("First organization")
     }
 
     @Test

@@ -41,19 +41,14 @@ class UserServiceTest @Autowired constructor(
     }
 
     @Test
-    fun `find page of filtered users`() {
-        userRepository.save(User(firstName = "John", lastName = "Doe", email = "john.doe1@cas.dev", roles = listOf()))
-        userRepository.save(User(firstName = "Johannes", lastName = "Doe", email = "john.doe2@cas.dev", roles = listOf()))
+    fun `find list of all users`() {
+        userRepository.save(User(email = "john.doe1@cas.dev", roles = listOf()))
+        userRepository.save(User(email = "john.doe2@cas.dev", roles = listOf()))
 
-        var users = userService.findAll(UserQuery(lastName = "Doe"), PageRequest.ofSize(1024))
+        val users = userService.findAll(UserQuery())
 
-        assertThat(users).isInstanceOf(Page::class.java)
-        assertThat(users.content.size).isEqualTo(2)
-
-        users = userService.findAll(UserQuery(firstName = "Johannes"), PageRequest.ofSize(1024))
-
-        assertThat(users).isInstanceOf(Page::class.java)
-        assertThat(users.content.size).isEqualTo(1)
+        assertThat(users).isInstanceOf(List::class.java)
+        assertThat(users.size).isEqualTo(2)
     }
 
     @Test

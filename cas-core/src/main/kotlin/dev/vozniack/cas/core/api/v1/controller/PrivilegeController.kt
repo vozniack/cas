@@ -44,7 +44,7 @@ class PrivilegeController(
         @RequestParam(required = false) organizationId: String?,
     ): List<PrivilegeDto> =
         privilegeService.findAllParents(
-            PrivilegeQuery(ScopeType.INTERNAL, search, search, search, organizationId, true)
+            PrivilegeQuery(ScopeType.INTERNAL, search, search, search, organizationId)
         ).map(privilegeMapper::mapToDto)
 
     @GetMapping("/internal")
