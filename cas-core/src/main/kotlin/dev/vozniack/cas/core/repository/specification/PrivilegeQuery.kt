@@ -12,6 +12,7 @@ class PrivilegeQuery(
     val code: String? = null,
     val description: String? = null,
     val organizationId: String? = null,
+    val isParent: Boolean? = null,
 ) : Specificable<Privilege> {
 
     private fun scopeEquals(scope: ScopeType?): Specification<Privilege> =
@@ -44,10 +45,18 @@ class PrivilegeQuery(
             }
         }
 
+    private fun isParent(isParent: Boolean?): Specification<Privilege> =
+        Specification<Privilege> { root, _, criteriaBuilder ->
+            isParent?.let {
+                criteriaBuilder.isNull(root.get<Privilege?>("parent"))
+            }
+        }
+
     override fun toSpecification(): Specification<Privilege> =
         Specification<Privilege> { _, _, _ -> null }
             .and(scopeEquals(scope))
             .and(belongsToOrganization(organizationId))
+            .and(isParent(isParent))
             .and(nameLike(name)
                 .or(codeLike(code))
                 .or(descriptionLike(description))

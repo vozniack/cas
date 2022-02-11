@@ -16,7 +16,7 @@ export class OrganizationsService {
   }
 
   getOrganizations(requestParam: RequestParam): Observable<Pageable<Organization>> {
-    return this.httpClient.get<Pageable<Organization>>(this.baseUrl, {
+    return this.httpClient.get<Pageable<Organization>>(`${this.baseUrl}/page`, {
       params: buildHttpParams(requestParam)
     })
   }

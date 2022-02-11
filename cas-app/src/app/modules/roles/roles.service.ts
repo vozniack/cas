@@ -16,7 +16,7 @@ export class RolesService {
   }
 
   getRoles(requestParam: RequestParam): Observable<Pageable<Role>> {
-    return this.httpClient.get<Pageable<Role>>(this.baseUrl, {
+    return this.httpClient.get<Pageable<Role>>(`${this.baseUrl}/page`, {
       params: buildHttpParams(requestParam)
     })
   }

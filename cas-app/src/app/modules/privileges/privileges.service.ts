@@ -16,7 +16,7 @@ export class PrivilegesService {
   }
 
   getPrivileges(requestParam: RequestParam): Observable<Pageable<Privilege>> {
-    return this.httpClient.get<Pageable<Privilege>>(this.baseUrl, {
+    return this.httpClient.get<Pageable<Privilege>>(`${this.baseUrl}/page`, {
       params: buildHttpParams(requestParam)
     })
   }

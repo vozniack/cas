@@ -29,7 +29,7 @@ class UserController(
     val userMapper: Mapper<User, UserDto>,
 ) {
 
-    @GetMapping
+    @GetMapping("/page")
     @PreAuthorize("hasAuthority('READ_USER') and hasAnyRole('ADMIN', 'USER')")
     fun getAll(
         @RequestParam(required = false) search: String?,

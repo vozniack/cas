@@ -27,7 +27,7 @@ class PrivilegeController(
     private val privilegeMapper: Mapper<Privilege, PrivilegeDto>,
 ) {
 
-    @GetMapping
+    @GetMapping("/page")
     @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasAnyRole('ADMIN', 'USER')")
     fun getAll(
         @RequestParam(required = false) search: String?,
@@ -36,6 +36,16 @@ class PrivilegeController(
     ): Page<PrivilegeDto> =
         privilegeService.findAll(PrivilegeQuery(ScopeType.EXTERNAL, search, search, search, organizationId), pageable)
             .map(privilegeMapper::mapToDto)
+
+    @GetMapping("/parents")
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasRole('ADMIN')")
+    fun getAllParents(
+        @RequestParam(required = false) search: String?,
+        @RequestParam(required = false) organizationId: String?,
+    ): List<PrivilegeDto> =
+        privilegeService.findAllParents(
+            PrivilegeQuery(ScopeType.INTERNAL, search, search, search, organizationId, true)
+        ).map(privilegeMapper::mapToDto)
 
     @GetMapping("/internal")
     @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasRole('ADMIN')")

@@ -13,7 +13,7 @@ VALUES ('9c576336-8241-46ca-9c6d-dcf8838a31bb', 'ADMIN', 'Document Management Sy
        ('e61c99dd-16c0-4864-9aa0-b68f010aa5e0', 'USER', 'Document Management System user role',
         '238a882e-f4e9-4107-920f-3bb2bb206b70'),
 
-       ('fd1dfafd-0572-4a9e-84ca-78a8f124c599', 'USER', 'Document Printer System administrator role',
+       ('fd1dfafd-0572-4a9e-84ca-78a8f124c599', 'USER', 'Document Printer System user role',
         '28e00094-259d-4516-a04e-ab5876e1e1dd');
 
 
@@ -154,7 +154,7 @@ VALUES ('9fb4dbd4-db7c-4088-9404-2cb05d40373d', 'SYSTEM', 'Mailbox system micros
 
 
 INSERT INTO users (id, email, password, first_name, last_name, organization_id)
-VALUES ('306d03dc-61cd-4e52-b2ac-d8a431e9ff46', 'mailbox@dms.com',
+VALUES ('306d03dc-61cd-4e52-b2ac-d8a431e9ff46', 'mailbox@your-mailbox.com',
         '$2y$10$mbXVHXCEUCufdWQzkd2wNee7A5wx2hr2y6nRkLbWjx/lr.JdeF81y', 'Mailbox', null,
         'd118dd75-b96b-42fd-9ba1-8117c740997a');
 

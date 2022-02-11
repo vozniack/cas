@@ -18,6 +18,9 @@ class PrivilegeService(private val privilegeRepository: PrivilegeRepository) {
     fun findAll(query: Specificable<Privilege>, pageable: Pageable): Page<Privilege> =
         privilegeRepository.findAll(query.toSpecification(), pageable)
 
+    fun findAllParents(query: Specificable<Privilege>): List<Privilege> =
+        privilegeRepository.findAll(query.toSpecification())
+
     fun findById(id: UUID): Privilege = privilegeRepository.findById(id).orElseThrow { NotFoundException() }
 
     fun create(privilege: Privilege): Privilege = privilegeRepository.save(

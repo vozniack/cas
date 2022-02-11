@@ -27,7 +27,7 @@ class OrganizationController(
     private val organizationMapper: Mapper<Organization, OrganizationDto>,
 ) {
 
-    @GetMapping
+    @GetMapping("/page")
     @PreAuthorize("hasAuthority('READ_ORGANIZATION') and hasAnyRole('ADMIN', 'USER')")
     fun getAll(@RequestParam(required = false) search: String?, pageable: Pageable): Page<OrganizationDto> =
         organizationService.findAll(OrganizationQuery(ScopeType.EXTERNAL, search, search), pageable)
