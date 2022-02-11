@@ -15,8 +15,14 @@ export class UsersService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getUsers(requestParam: RequestParam): Observable<Pageable<User>> {
+  getUsersPage(requestParam: RequestParam): Observable<Pageable<User>> {
     return this.httpClient.get<Pageable<User>>(`${this.baseUrl}/page`, {
+      params: buildHttpParams(requestParam)
+    })
+  }
+
+  getUsersList(requestParam: RequestParam): Observable<User[]> {
+    return this.httpClient.get<User[]>(`${this.baseUrl}/list`, {
       params: buildHttpParams(requestParam)
     })
   }

@@ -1,8 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Pageable} from "../../../shared/model/pageable.interface";
-import {Role} from "../roles.interface";
-import {RequestParam} from "../../../shared/model/request.interface";
-import {Subject} from "rxjs";
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'cas-roles-list',
@@ -12,11 +9,5 @@ import {Subject} from "rxjs";
 export class RolesListComponent {
 
   @Input()
-  data: Pageable<Role> = {}
-
-  @Input()
-  requestParam!: RequestParam;
-
-  @Input()
-  refresh!: Subject<RequestParam>;
+  filters!: FormGroup;
 }

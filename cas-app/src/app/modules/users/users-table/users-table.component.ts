@@ -5,6 +5,10 @@ import {RequestParam} from "../../../shared/model/request.interface";
 import {Subject} from "rxjs";
 import {User} from "../users.interface";
 import {TableAction} from "../../../shared/components/table/table.interface";
+import {FormGroup} from "@angular/forms";
+import {UsersService} from "../users.service";
+import {filter, takeUntil, tap} from "rxjs/operators";
+import {ViewType} from "../../../shared/model/types.interface";
 
 @Component({
   selector: 'cas-users-table',
@@ -14,20 +18,48 @@ import {TableAction} from "../../../shared/components/table/table.interface";
 export class UsersTableComponent {
 
   @Input()
+  filters!: FormGroup;
+
   data: Pageable<User> = {}
 
-  @Input()
-  requestParam!: RequestParam;
-
-  @Input()
-  refresh!: Subject<RequestParam>;
+  requestParam: RequestParam = {page: 0, size: 10};
 
   columns = userColumns;
   actions = userActions;
 
+  ngDestroyed$ = new Subject<boolean>();
+
+  constructor(private usersService: UsersService) {
+    this.getUsers();
+  }
+
+  ngOnInit(): void {
+    this.filters.valueChanges.pipe(
+      takeUntil(this.ngDestroyed$),
+      filter((filters: any) => filters.view === ViewType.TABLE),
+      tap((filters: any) => {
+        this.requestParam.page = 0;
+        this.requestParam.search = filters.search;
+        this.requestParam.organizationId = filters.organization;
+      }),
+      tap(() => this.getUsers())
+    ).subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.ngDestroyed$.next(true);
+    this.ngDestroyed$.unsubscribe();
+  }
+
+  getUsers(): void {
+    this.usersService.getUsersPage(this.requestParam).pipe(
+      tap((response: Pageable<User>) => this.data = response),
+    ).subscribe()
+  }
+
   onRequestParamChange(requestParam: RequestParam): void {
     this.requestParam = requestParam;
-    this.refresh.next(this.requestParam);
+    this.getUsers();
   }
 
   onActionActive(tableAction: TableAction): void {

@@ -18,6 +18,9 @@ class UserService(private val userRepository: UserRepository, private val passwo
     fun findAll(query: Specificable<User>, pageable: Pageable): Page<User> =
         userRepository.findAll(query.toSpecification(), pageable)
 
+    fun findAll(query: Specificable<User>): List<User> =
+        userRepository.findAll(query.toSpecification())
+
     fun findById(id: UUID): User = userRepository.findById(id).orElseThrow { NotFoundException() }
 
     fun create(user: User): User = userRepository.save(user.apply { password = passwordEncoder.encode(user.password) })

@@ -39,6 +39,15 @@ class UserController(
         userService.findAll(UserQuery(ScopeType.EXTERNAL, search, search, search, organizationId), pageable)
             .map(userMapper::mapToDto)
 
+    @GetMapping("/list")
+    @PreAuthorize("hasAuthority('READ_USER') and hasAnyRole('ADMIN', 'USER')")
+    fun getAll(
+        @RequestParam(required = false) search: String?,
+        @RequestParam(required = false) organizationId: String?,
+    ): List<UserDto> =
+        userService.findAll(UserQuery(ScopeType.EXTERNAL, search, search, search, organizationId))
+            .map(userMapper::mapToDto)
+
     @GetMapping("/internal")
     @PreAuthorize("hasAuthority('READ_USER') and hasRole('ADMIN')")
     fun getAllInternal(@RequestParam(required = false) search: String?, pageable: Pageable): Page<UserDto> =
