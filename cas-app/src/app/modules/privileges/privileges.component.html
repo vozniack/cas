@@ -1,15 +1,7 @@
 <div fxLayout="column" fxLayoutGap="24px">
   <cas-data-toolbar [filters]="filters" [views]="views"></cas-data-toolbar>
 
-  <cas-privileges-table *ngIf="view === ViewType.TABLE"
-                        [data]="data"
-                        [requestParam]="requestParam"
-                        [refresh]="refresh">
-  </cas-privileges-table>
+  <cas-privileges-table *ngIf="view === ViewType.TABLE" [filters]="filters"></cas-privileges-table>
 
-  <cas-privileges-tree *ngIf="view === ViewType.TREE"
-                        [data]="data"
-                        [requestParam]="requestParam"
-                        [refresh]="refresh">
-  </cas-privileges-tree>
+  <cas-privileges-tree *ngIf="view === ViewType.TREE" [filters]="filters"></cas-privileges-tree>
 </div>

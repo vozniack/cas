@@ -9,6 +9,7 @@ import {PrivilegesTableComponent} from './privileges-table/privileges-table.comp
 import {InputsModule} from "../../shared/components/inputs/inputs.module";
 import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
 import {PrivilegesTreeComponent} from './privileges-tree/privileges-tree.component';
+import {TreeModule} from "../../shared/components/tree/tree.module";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {PrivilegesTreeComponent} from './privileges-tree/privileges-tree.compone
     TableModule,
     FlexModule,
     InputsModule,
-    CommonComponentsModule
+    CommonComponentsModule,
+    TreeModule
   ],
   providers: [
     PrivilegesService

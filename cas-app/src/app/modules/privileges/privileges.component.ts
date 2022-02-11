@@ -4,11 +4,7 @@ import {NavigationState} from "../../shared/store/navigation/navigation.state";
 import {ACTION_SET_NAVIGATION} from "../../shared/store/navigation/navigation.actions";
 import {privilegesState} from "../../shared/store/navigation/navigation.const";
 import {tap} from "rxjs/operators";
-import {Pageable} from "../../shared/model/pageable.interface";
-import {RequestParam} from "../../shared/model/request.interface";
 import {PrivilegesService} from "./privileges.service";
-import {Privilege} from "./privileges.interface";
-import {Subject} from "rxjs";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ViewType} from 'src/app/shared/model/types.interface';
 import {VIEW_TABLE, VIEW_TREE} from "../../shared/const/view.const";
@@ -19,10 +15,6 @@ import {VIEW_TABLE, VIEW_TREE} from "../../shared/const/view.const";
   styleUrls: ['./privileges.component.scss']
 })
 export class PrivilegesComponent {
-
-  data: Pageable<Privilege> = {}
-  requestParam: RequestParam = {page: 0, size: 10};
-  refresh = new Subject<RequestParam>();
 
   views = [VIEW_TABLE, VIEW_TREE]
   view: ViewType = ViewType.TREE;
@@ -39,28 +31,8 @@ export class PrivilegesComponent {
               private store: Store<NavigationState>) {
     this.store.dispatch(ACTION_SET_NAVIGATION({navigationState: privilegesState}));
 
-    this.refresh.pipe(
-      tap((requestParam: RequestParam) => this.requestParam = requestParam),
-      tap(() => this.getPrivileges())
-    ).subscribe()
-
     this.filters.valueChanges.pipe(
-      tap((filters: any) => {
-        this.view = filters.view;
-
-        this.requestParam.page = 0;
-        this.requestParam.search = filters.search;
-        this.requestParam.organizationId = filters.organization;
-      }),
-      tap(() => this.getPrivileges())
+      tap((filters: any) => this.view = filters.view)
     ).subscribe();
-
-    this.refresh.next(this.requestParam);
-  }
-
-  getPrivileges(): void {
-    this.privilegesService.getPrivileges(this.requestParam).pipe(
-      tap((response: Pageable<Privilege>) => this.data = response),
-    ).subscribe()
   }
 }

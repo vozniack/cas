@@ -12,7 +12,7 @@ import {tap} from "rxjs/operators";
 export class TablePaginationComponent implements OnInit {
 
   @Input()
-  pageSize!: number;
+  pageSize?: number = 10;
 
   @Input()
   totalPages!: number;

@@ -1,9 +1,14 @@
-import {Component, Input} from '@angular/core';
-import {Pageable} from "../../../shared/model/pageable.interface";
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Privilege} from "../privileges.interface";
 import {RequestParam} from "../../../shared/model/request.interface";
-import {Subject} from "rxjs";
 import {fadeInAnimation} from "../../../shared/animations/fade-in-animation";
+import {TreeNode} from "../../../shared/components/tree/tree.interface";
+import {mapToTreeNode} from "../../../shared/utils/mapping.util";
+import {PrivilegesService} from "../privileges.service";
+import {filter, takeUntil, tap} from "rxjs/operators";
+import {FormGroup} from "@angular/forms";
+import {Subject} from "rxjs";
+import {ViewType} from "../../../shared/model/types.interface";
 
 @Component({
   selector: 'cas-privileges-tree',
@@ -11,14 +16,49 @@ import {fadeInAnimation} from "../../../shared/animations/fade-in-animation";
   styleUrls: ['./privileges-tree.component.scss'],
   animations: [fadeInAnimation]
 })
-export class PrivilegesTreeComponent {
+export class PrivilegesTreeComponent implements OnInit, OnDestroy {
 
   @Input()
-  data: Pageable<Privilege> = {}
+  filters!: FormGroup;
 
   @Input()
-  requestParam!: RequestParam;
+  view!: ViewType;
 
-  @Input()
-  refresh!: Subject<RequestParam>;
+  data: Privilege[] = []
+
+  requestParam: RequestParam = {};
+
+  ngDestroyed$ = new Subject<boolean>();
+
+  constructor(private privilegesService: PrivilegesService) {
+    this.getPrivileges();
+  }
+
+  ngOnInit(): void {
+    this.filters.valueChanges.pipe(
+      takeUntil(this.ngDestroyed$),
+      filter((filters: any) => filters.view === ViewType.TREE),
+      tap((filters: any) => {
+        this.requestParam.search = filters.search;
+        this.requestParam.organizationId = filters.organization;
+      }),
+      tap(() => this.getPrivileges())
+    ).subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.ngDestroyed$.next(true);
+    this.ngDestroyed$.unsubscribe();
+  }
+
+  getPrivileges(): void {
+    this.privilegesService.getPrivilegeParents(this.requestParam).pipe(
+      tap((response: Privilege[]) => this.data = response),
+    ).subscribe()
+  }
+
+  getTreeNodes(): TreeNode[] {
+    return this.data.filter(privilege => privilege.parentId == null)
+      .map(privilege => mapToTreeNode(privilege));
+  }
 }

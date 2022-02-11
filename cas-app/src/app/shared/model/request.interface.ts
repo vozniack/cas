@@ -4,9 +4,9 @@ export interface RequestParam {
 
   organizationId?: string;
 
-  page: number;
+  page?: number;
 
-  size: number;
+  size?: number;
 
   sort?: SortRequest;
 }
