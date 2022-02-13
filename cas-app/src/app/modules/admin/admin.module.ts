@@ -14,6 +14,7 @@ import {PrivilegesService} from "../privileges/privileges.service";
 import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
 import {IconsModule} from "../../core/icons/icons.module";
 import {TreeModule} from "../../shared/components/tree/tree.module";
+import {PrivilegeMapperService} from "../privileges/privilege.mapper.service";
 
 @NgModule({
   declarations: [
@@ -23,19 +24,20 @@ import {TreeModule} from "../../shared/components/tree/tree.module";
     InternalUsersComponent,
     InternalInfoComponent
   ],
-    imports: [
-        CommonModule,
-        AdminRoutingModule,
-        FlexModule,
-        CommonComponentsModule,
-        IconsModule,
-        TreeModule
-    ],
+  imports: [
+    CommonModule,
+    AdminRoutingModule,
+    FlexModule,
+    CommonComponentsModule,
+    IconsModule,
+    TreeModule
+  ],
   providers: [
     OrganizationsService,
     RolesService,
     UsersService,
-    PrivilegesService
+    PrivilegesService,
+    PrivilegeMapperService
   ]
 })
 export class AdminModule {

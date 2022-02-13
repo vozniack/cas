@@ -10,6 +10,7 @@ import {InputsModule} from "../../shared/components/inputs/inputs.module";
 import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
 import {PrivilegesTreeComponent} from './privileges-tree/privileges-tree.component';
 import {TreeModule} from "../../shared/components/tree/tree.module";
+import {PrivilegeMapperService} from "./privilege.mapper.service";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {TreeModule} from "../../shared/components/tree/tree.module";
     TreeModule
   ],
   providers: [
-    PrivilegesService
+    PrivilegesService,
+    PrivilegeMapperService
   ]
 })
 export class PrivilegesModule {

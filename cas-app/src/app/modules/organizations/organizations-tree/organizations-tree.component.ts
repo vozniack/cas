@@ -6,9 +6,9 @@ import {RequestParam} from "../../../shared/model/request.interface";
 import {Subject} from "rxjs";
 import {filter, takeUntil, tap} from "rxjs/operators";
 import {ViewType} from "../../../shared/model/types.interface";
-import {mapOrganizationsToTreeNodes} from "../../../shared/utils/mapping.util";
 import {Organization} from "../organizations.interface";
 import {fadeInAnimation} from "../../../shared/animations/fade-in-animation";
+import {OrganizationMapperService} from "../organization.mapper.service";
 
 @Component({
   selector: 'cas-organizations-tree',
@@ -27,7 +27,8 @@ export class OrganizationsTreeComponent implements OnInit, OnDestroy {
 
   ngDestroyed$ = new Subject<boolean>();
 
-  constructor(private organizationsService: OrganizationsService) {
+  constructor(private organizationsService: OrganizationsService,
+              private organizationsMapper: OrganizationMapperService) {
     this.getOrganizations();
   }
 
@@ -49,7 +50,7 @@ export class OrganizationsTreeComponent implements OnInit, OnDestroy {
 
   getOrganizations(): void {
     this.organizationsService.getOrganizationParents(this.requestParam).pipe(
-      tap((response: Organization[]) => this.data = mapOrganizationsToTreeNodes(response)),
+      tap((response: Organization[]) => this.data = this.organizationsMapper.mapToTreeNodes(response)),
     ).subscribe()
   }
 }

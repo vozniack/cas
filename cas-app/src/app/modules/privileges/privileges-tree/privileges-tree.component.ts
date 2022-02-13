@@ -3,12 +3,12 @@ import {Privilege} from "../privileges.interface";
 import {RequestParam} from "../../../shared/model/request.interface";
 import {fadeInAnimation} from "../../../shared/animations/fade-in-animation";
 import {TreeNode} from "../../../shared/components/tree/tree.interface";
-import {mapPrivilegesToTreeNodes} from "../../../shared/utils/mapping.util";
 import {PrivilegesService} from "../privileges.service";
 import {filter, takeUntil, tap} from "rxjs/operators";
 import {FormGroup} from "@angular/forms";
 import {Subject} from "rxjs";
 import {ViewType} from "../../../shared/model/types.interface";
+import {PrivilegeMapperService} from "../privilege.mapper.service";
 
 @Component({
   selector: 'cas-privileges-tree',
@@ -30,7 +30,8 @@ export class PrivilegesTreeComponent implements OnInit, OnDestroy {
 
   ngDestroyed$ = new Subject<boolean>();
 
-  constructor(private privilegesService: PrivilegesService) {
+  constructor(private privilegesService: PrivilegesService,
+              private privilegesMapper: PrivilegeMapperService) {
     this.getPrivileges();
   }
 
@@ -53,7 +54,7 @@ export class PrivilegesTreeComponent implements OnInit, OnDestroy {
 
   getPrivileges(): void {
     this.privilegesService.getPrivilegeParents(this.requestParam).pipe(
-      tap((response: Privilege[]) => this.data = mapPrivilegesToTreeNodes(response)),
+      tap((response: Privilege[]) => this.data = this.privilegesMapper.mapToTreeNodes(response)),
     ).subscribe()
   }
 }

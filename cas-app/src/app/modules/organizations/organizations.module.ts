@@ -11,6 +11,7 @@ import {CommonComponentsModule} from "../../shared/components/common/common-comp
 import {OrganizationsGridComponent} from './organizations-grid/organizations-grid.component';
 import {OrganizationsTreeComponent} from './organizations-tree/organizations-tree.component';
 import {TreeModule} from "../../shared/components/tree/tree.module";
+import {OrganizationMapperService} from "./organization.mapper.service";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {TreeModule} from "../../shared/components/tree/tree.module";
     TreeModule
   ],
   providers: [
-    OrganizationsService
+    OrganizationsService,
+    OrganizationMapperService
   ]
 })
 export class OrganizationsModule {
