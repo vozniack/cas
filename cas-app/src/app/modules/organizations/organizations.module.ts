@@ -9,12 +9,15 @@ import {OrganizationsTableComponent} from './organizations-table/organizations-t
 import {InputsModule} from "../../shared/components/inputs/inputs.module";
 import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
 import {OrganizationsGridComponent} from './organizations-grid/organizations-grid.component';
+import {OrganizationsTreeComponent} from './organizations-tree/organizations-tree.component';
+import {TreeModule} from "../../shared/components/tree/tree.module";
 
 @NgModule({
   declarations: [
     OrganizationsComponent,
     OrganizationsTableComponent,
-    OrganizationsGridComponent
+    OrganizationsGridComponent,
+    OrganizationsTreeComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +25,8 @@ import {OrganizationsGridComponent} from './organizations-grid/organizations-gri
     FlexModule,
     TableModule,
     InputsModule,
-    CommonComponentsModule
+    CommonComponentsModule,
+    TreeModule
   ],
   providers: [
     OrganizationsService

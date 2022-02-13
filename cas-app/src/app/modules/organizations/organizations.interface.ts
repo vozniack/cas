@@ -12,4 +12,8 @@ export interface Organization extends Auditable {
   code: string;
 
   description: string;
+
+  parentId: string;
+
+  organizations: Organization[];
 }
