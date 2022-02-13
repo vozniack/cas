@@ -19,9 +19,11 @@ class OrganizationQueryTest @Autowired constructor(
 
     @Test
     fun `get organizations by query cases`() {
+        val parent = organizationRepository.save(Organization(name = "Parent", code = "PAR"))
+
         organizationRepository.saveAll(listOf(
-            Organization(name = "First organization", code = "ORG_1"),
-            Organization(name = "Second organization", code = "ORG_2")
+            Organization(name = "First organization", code = "ORG_1", parent = parent),
+            Organization(name = "Second organization", code = "ORG_2", parent = parent)
         ))
 
         var organizations = organizationRepository.findAll(OrganizationQuery(name = "first").toSpecification())
@@ -32,5 +34,8 @@ class OrganizationQueryTest @Autowired constructor(
 
         organizations = organizationRepository.findAll(OrganizationQuery(name = "first", code = "2").toSpecification())
         Assertions.assertThat(organizations.size).isEqualTo(2)
+
+        organizations = organizationRepository.findAll(OrganizationQuery(isParent = true).toSpecification())
+        Assertions.assertThat(organizations.size).isEqualTo(1)
     }
 }

@@ -3,6 +3,7 @@ package dev.vozniack.cas.core.entity
 import dev.vozniack.cas.core.entity.common.Auditable
 import dev.vozniack.cas.core.types.ScopeType
 import java.util.UUID
+import javax.persistence.CascadeType
 import javax.persistence.Entity
 import javax.persistence.EnumType
 import javax.persistence.Enumerated
@@ -30,6 +31,9 @@ class Organization(
     @ManyToOne
     @JoinColumn(name = "parent_id")
     var parent: Organization? = null,
+
+    @OneToMany(mappedBy = "parent", cascade = [CascadeType.REMOVE])
+    var organizations: List<Organization>? = listOf(),
 
     @OneToMany(mappedBy = "organization")
     var users: List<User> = listOf(),

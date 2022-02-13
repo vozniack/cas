@@ -3,6 +3,7 @@ package dev.vozniack.cas.core.api.v1.mapper
 import dev.vozniack.cas.core.CasCoreAbstractTest
 import dev.vozniack.cas.core.api.v1.dto.entity.OrganizationDto
 import dev.vozniack.cas.core.entity.Organization
+import dev.vozniack.cas.core.repository.OrganizationRepository
 import dev.vozniack.cas.core.types.ScopeType
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -12,36 +13,48 @@ import java.util.UUID
 
 class OrganizationMapperTest @Autowired constructor(
     private val organizationMapper: Mapper<Organization, OrganizationDto>,
+    private val organizationRepository: OrganizationRepository,
 ) : CasCoreAbstractTest() {
 
     @Test
     fun `map entity to dto`() {
+        val parentOrganization = Organization(id = UUID.randomUUID(), scope = ScopeType.EXTERNAL, name = "Parent")
+        val childOrganization = Organization(id = UUID.randomUUID(), scope = ScopeType.EXTERNAL, name = "child")
+
         val organization = Organization(id = UUID.randomUUID(), scope = ScopeType.EXTERNAL, name = "Organization",
-            code = "ORG", description = "Organization description")
+            code = "ORG", description = "Organization description", parent = parentOrganization,
+            organizations = listOf(childOrganization))
 
         val organizationDto = organizationMapper.mapToDto(organization)
-
-        assertThat(organization.id).isEqualTo(organizationDto.id)
-        assertThat(organization.scope).isEqualTo(organizationDto.scope)
-        assertThat(organization.name).isEqualTo(organizationDto.name)
-        assertThat(organization.code).isEqualTo(organizationDto.code)
-        assertThat(organization.description).isEqualTo(organizationDto.description)
-        assertThat(organization.createdAt).isEqualTo(organizationDto.createdAt)
-        assertThat(organization.updatedAt).isEqualTo(organizationDto.updatedAt)
-    }
-
-    @Test
-    fun `map dto to entity`() {
-        val organizationDto = OrganizationDto(id = UUID.randomUUID(), scope = ScopeType.EXTERNAL, name = "Organization",
-            code = "ORG", description = "Organization description", parentId = null, createdAt = LocalDateTime.now(),
-            updatedAt = LocalDateTime.now())
-
-        val organization = organizationMapper.mapToEntity(organizationDto)
 
         assertThat(organizationDto.id).isEqualTo(organization.id)
         assertThat(organizationDto.scope).isEqualTo(organization.scope)
         assertThat(organizationDto.name).isEqualTo(organization.name)
         assertThat(organizationDto.code).isEqualTo(organization.code)
         assertThat(organizationDto.description).isEqualTo(organization.description)
+        assertThat(organizationDto.parentId).isEqualTo(parentOrganization.id)
+        assertThat(organizationDto.organizations!![0].id).isEqualTo(childOrganization.id)
+        assertThat(organizationDto.createdAt).isEqualTo(organization.createdAt)
+        assertThat(organizationDto.updatedAt).isEqualTo(organization.updatedAt)
+    }
+
+    @Test
+    fun `map dto to entity`() {
+        val parentOrganization = organizationRepository.save(
+            Organization(id = UUID.randomUUID(), scope = ScopeType.EXTERNAL, name = "Parent")
+        )
+
+        val organizationDto = OrganizationDto(id = UUID.randomUUID(), scope = ScopeType.EXTERNAL, name = "Organization",
+            code = "ORG", description = "Organization description", createdAt = LocalDateTime.now(),
+            updatedAt = LocalDateTime.now(), parentId = parentOrganization.id, organizations = listOf())
+
+        val organization = organizationMapper.mapToEntity(organizationDto)
+
+        assertThat(organization.id).isEqualTo(organizationDto.id)
+        assertThat(organization.scope).isEqualTo(organizationDto.scope)
+        assertThat(organization.name).isEqualTo(organizationDto.name)
+        assertThat(organization.code).isEqualTo(organizationDto.code)
+        assertThat(organization.description).isEqualTo(organizationDto.description)
+        assertThat(organization.parent!!.id).isEqualTo(organizationDto.parentId)
     }
 }

@@ -8,6 +8,7 @@ class OrganizationQuery(
     val scope: ScopeType? = null,
     val name: String? = null,
     val code: String? = null,
+    var isParent: Boolean? = null,
 ) : Specificable<Organization> {
 
     private fun scopeEquals(scope: ScopeType?): Specification<Organization> =
@@ -25,9 +26,18 @@ class OrganizationQuery(
             code?.let { criteriaBuilder.like(criteriaBuilder.lower(root.get("code")), "%${it.lowercase()}%") }
         }
 
+
+    private fun isParent(isParent: Boolean?): Specification<Organization> =
+        Specification<Organization> { root, _, criteriaBuilder ->
+            isParent?.let {
+                criteriaBuilder.isNull(root.get<Organization?>("parent"))
+            }
+        }
+
     override fun toSpecification(): Specification<Organization> =
         Specification<Organization> { _, _, _ -> null }
             .and(scopeEquals(scope))
+            .and(isParent(isParent))
             .and(nameLike(name)
                 .or(codeLike(code))
             )

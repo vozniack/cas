@@ -53,17 +53,19 @@ class OrganizationServiceTest @Autowired constructor(
     }
 
     @Test
-    fun `find list of filtered organizations`() {
+    fun `find list of all parent organizations`() {
+        val parent = organizationRepository.save(Organization(name = "Parent", code = "PAR"))
+
         organizationRepository.saveAll(listOf(
-            Organization(name = "First organization", code = "ORG_1"),
-            Organization(name = "Second organization", code = "ORG_2")
+            Organization(name = "First organization", code = "ORG_1", parent = parent),
+            Organization(name = "Second organization", code = "ORG_2", parent = parent)
         ))
 
-        val organizations = organizationService.findAll(OrganizationQuery(name = "first"))
+        val organizations = organizationService.findAllParents(OrganizationQuery())
 
         assertThat(organizations).isInstanceOf(List::class.java)
         assertThat(organizations.count()).isEqualTo(1)
-        assertThat(organizations.toList()[0].name).isEqualTo("First organization")
+        assertThat(organizations.toList()[0].name).isEqualTo("Parent")
     }
 
     @Test

@@ -22,6 +22,9 @@ class OrganizationService(private val organizationRepository: OrganizationReposi
     fun findAll(query: Specificable<Organization>): MutableIterable<Organization> =
         organizationRepository.findAll(query.toSpecification())
 
+    fun findAllParents(query: OrganizationQuery): List<Organization> =
+        organizationRepository.findAll(query.apply { isParent = true }.toSpecification())
+
     fun findInternal(): Organization = organizationRepository.findAll(
         OrganizationQuery(scope = ScopeType.INTERNAL).toSpecification()
     ).first()

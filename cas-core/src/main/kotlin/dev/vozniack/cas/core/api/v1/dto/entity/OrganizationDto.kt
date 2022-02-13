@@ -6,16 +6,18 @@ import java.util.UUID
 
 class OrganizationDto(
 
-    var id: UUID?,
+    val id: UUID?,
 
-    var scope: ScopeType?,
+    val scope: ScopeType?,
 
-    var name: String?,
-    var code: String?,
-    var description: String?,
+    val name: String?,
+    val code: String?,
+    val description: String?,
 
-    var parentId: UUID?,
+    val parentId: UUID?,
 
-    var createdAt: LocalDateTime?,
-    var updatedAt: LocalDateTime?,
+    val organizations: List<OrganizationDto>?,
+
+    val createdAt: LocalDateTime?,
+    val updatedAt: LocalDateTime?,
 )

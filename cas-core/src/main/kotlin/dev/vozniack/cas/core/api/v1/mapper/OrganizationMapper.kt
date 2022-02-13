@@ -17,6 +17,7 @@ class OrganizationMapper(
         entity.code,
         entity.description,
         entity.parent?.id,
+        entity.organizations?.map { mapToDto(it) },
         entity.createdAt,
         entity.updatedAt
     )
