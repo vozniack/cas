@@ -13,6 +13,7 @@ import {UsersService} from "../users/users.service";
 import {PrivilegesService} from "../privileges/privileges.service";
 import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
 import {IconsModule} from "../../core/icons/icons.module";
+import {TreeModule} from "../../shared/components/tree/tree.module";
 
 @NgModule({
   declarations: [
@@ -22,13 +23,14 @@ import {IconsModule} from "../../core/icons/icons.module";
     InternalUsersComponent,
     InternalInfoComponent
   ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    FlexModule,
-    CommonComponentsModule,
-    IconsModule
-  ],
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        FlexModule,
+        CommonComponentsModule,
+        IconsModule,
+        TreeModule
+    ],
   providers: [
     OrganizationsService,
     RolesService,

@@ -9,9 +9,5 @@
     <span class="badge primary">{{privileges?.totalElements}}</span>
   </div>
 
-  <div fxLayout="column" fxLayoutGap="16px">
-    <ng-container *ngFor="let privilege of getParentPrivileges()">
-      <cas-privilege [privilege]="privilege" [background]="'inverse'"></cas-privilege>
-    </ng-container>
-  </div>
+  <cas-tree [nodes]="nodes" [theme]="'dark'"></cas-tree>
 </div>

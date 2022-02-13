@@ -1,3 +1,3 @@
-<div class="tree-branch-container" fxLayout="column" fxLayoutGap="8px">
-  <cas-tree-node *ngFor="let node of nodes" [node]="node"></cas-tree-node>
+<div class="tree-branch-container" [ngClass]="theme" fxLayout="column" fxLayoutGap="8px">
+  <cas-tree-node *ngFor="let node of nodes" [node]="node" [theme]="theme"></cas-tree-node>
 </div>

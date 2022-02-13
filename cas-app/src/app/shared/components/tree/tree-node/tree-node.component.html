@@ -1,5 +1,5 @@
 <div fxLayout="column" fxLayoutGap="8px">
-  <div class="tree-node-container" fxLayout="row" fxLayoutAlign="space-between center">
+  <div class="tree-node-container" [ngClass]="theme" fxLayout="row" fxLayoutAlign="space-between center">
 
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
       <div fxLayout="column" fxLayoutGap="4px">
@@ -11,8 +11,9 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
-      <cas-button [theme]="expanded ? 'primary' : 'dark'" [shape]="'circle'" [size]="'small'"
-                  (click)="expanded = !expanded"
+      <cas-button [theme]="expanded ? 'primary' : theme === 'dark' ? 'light' : 'dark'"
+                  [shape]="'circle'" [size]="'small'"
+                  (click)="expandOrCollapse()"
                   [disabled]="node.children.length < 1">
         <i-feather [name]="expanded ? 'chevrons-up' : 'chevrons-down'"></i-feather>
       </cas-button>
@@ -20,7 +21,7 @@
   </div>
 
   <div class="node-children-container" [class.expanded]="expanded" @fadeInAnimation>
-    <cas-tree-branch [nodes]="node.children"></cas-tree-branch>
+    <cas-tree-branch [nodes]="node.children" [theme]="theme"></cas-tree-branch>
   </div>
 </div>
 

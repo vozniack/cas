@@ -10,4 +10,7 @@ export class TreeComponent {
 
   @Input()
   nodes!: TreeNode[];
+
+  @Input()
+  theme: 'light' | 'dark' = 'light';
 }

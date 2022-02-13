@@ -13,5 +13,14 @@ export class TreeNodeComponent {
   @Input()
   node!: TreeNode;
 
+  @Input()
+  theme: 'light' | 'dark' = 'light';
+
   expanded = false;
+
+  expandOrCollapse(): void {
+    if (this.node.children.length > 0) {
+      this.expanded = !this.expanded;
+    }
+  }
 }

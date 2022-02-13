@@ -14,7 +14,8 @@ import {TreeBranchComponent} from './tree-branch/tree-branch.component';
     TreeBranchComponent
   ],
   exports: [
-    TreeComponent
+    TreeComponent,
+    TreeNodeComponent
   ],
   imports: [
     CommonModule,

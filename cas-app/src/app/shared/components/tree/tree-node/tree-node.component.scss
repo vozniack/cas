@@ -5,7 +5,14 @@
   padding: 8px 16px;
 
   color: $white;
-  background: $background-dark;
+
+  &.light {
+    background: $background-dark;
+  }
+
+  &.dark {
+    background: $background-darker;
+  }
 
   .label {
     font-size: 14px;
