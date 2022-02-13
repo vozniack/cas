@@ -16,7 +16,7 @@ import {PrivilegeMapperService} from "../../privileges/privilege.mapper.service"
 export class InternalPrivilegesComponent {
 
   privileges!: Pageable<Privilege>;
-  nodes: TreeNode[] = [];
+  nodes: TreeNode<Privilege>[] = [];
 
   constructor(private privilegesService: PrivilegesService,
               private privilegeMapper: PrivilegeMapperService) {

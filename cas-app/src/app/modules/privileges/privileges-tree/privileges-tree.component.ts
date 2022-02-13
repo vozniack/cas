@@ -24,7 +24,7 @@ export class PrivilegesTreeComponent implements OnInit, OnDestroy {
   @Input()
   view!: ViewType;
 
-  data: TreeNode[] = [];
+  data: TreeNode<Privilege>[] = [];
 
   requestParam: RequestParam = {};
 

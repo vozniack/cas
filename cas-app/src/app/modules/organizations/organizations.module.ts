@@ -8,17 +8,19 @@ import {OrganizationsService} from "./organizations.service";
 import {OrganizationsTableComponent} from './organizations-table/organizations-table.component';
 import {InputsModule} from "../../shared/components/inputs/inputs.module";
 import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
-import {OrganizationsGridComponent} from './organizations-grid/organizations-grid.component';
 import {OrganizationsTreeComponent} from './organizations-tree/organizations-tree.component';
 import {TreeModule} from "../../shared/components/tree/tree.module";
 import {OrganizationMapperService} from "./organization.mapper.service";
+import {OrganizationTileComponent} from './organizations-tree/organization-tile/organization-tile.component';
+import {ControlsModule} from "../../shared/components/controls/controls.module";
+import {IconsModule} from "../../core/icons/icons.module";
 
 @NgModule({
   declarations: [
     OrganizationsComponent,
     OrganizationsTableComponent,
-    OrganizationsGridComponent,
-    OrganizationsTreeComponent
+    OrganizationsTreeComponent,
+    OrganizationTileComponent,
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,9 @@ import {OrganizationMapperService} from "./organization.mapper.service";
     TableModule,
     InputsModule,
     CommonComponentsModule,
-    TreeModule
+    TreeModule,
+    ControlsModule,
+    IconsModule
   ],
   providers: [
     OrganizationsService,

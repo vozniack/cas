@@ -1,4 +1,4 @@
-export interface TreeNode {
+export interface TreeNode<T> {
 
   label: string;
 
@@ -6,5 +6,7 @@ export interface TreeNode {
 
   badge: string;
 
-  children: TreeNode[];
+  children: TreeNode<T>[];
+
+  data: T;
 }

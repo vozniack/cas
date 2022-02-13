@@ -98,3 +98,22 @@ h5 {
     background: $secondary;
   }
 }
+
+/*
+ * Separator
+ */
+
+hr {
+  width: 90%;
+
+  border: 2px solid;
+  border-radius: 25%;
+
+  &.light {
+    border-color: rgba($background-dark, 0.5);
+  }
+
+  &.dark {
+    border-color: rgba($background-darker, 0.5);
+  }
+}

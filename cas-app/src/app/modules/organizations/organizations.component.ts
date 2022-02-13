@@ -7,7 +7,7 @@ import {OrganizationsService} from "./organizations.service";
 import {tap} from "rxjs/operators";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ViewType} from "../../shared/model/types.interface";
-import {VIEW_GRID, VIEW_TABLE, VIEW_TREE} from "../../shared/const/view.const";
+import {VIEW_TABLE, VIEW_TREE} from "../../shared/const/view.const";
 
 @Component({
   selector: 'cas-organizations',
@@ -16,7 +16,7 @@ import {VIEW_GRID, VIEW_TABLE, VIEW_TREE} from "../../shared/const/view.const";
 })
 export class OrganizationsComponent {
 
-  views = [VIEW_TABLE, VIEW_GRID, VIEW_TREE]
+  views = [VIEW_TABLE, VIEW_TREE]
   view: ViewType = ViewType.TABLE;
   ViewType = ViewType;
 

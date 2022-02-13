@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {TreeNode} from "./tree.interface";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'cas-tree',
@@ -9,8 +10,14 @@ import {TreeNode} from "./tree.interface";
 export class TreeComponent {
 
   @Input()
-  nodes!: TreeNode[];
+  nodes!: TreeNode<any>[];
+
+  @Input()
+  itemSelect?: Subject<any>;
 
   @Input()
   theme: 'light' | 'dark' = 'light';
+
+  @Input()
+  selecting = true;
 }

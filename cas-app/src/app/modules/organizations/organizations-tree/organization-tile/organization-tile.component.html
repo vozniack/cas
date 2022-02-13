@@ -1,0 +1,52 @@
+<div class="organization-tile-container" fxLayout="column" fxLayoutGap="24px" @fadeInAnimation>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="title">{{organization.name}}</span>
+
+    <cas-button [theme]="'dark'" [size]="'small'" [shape]="'circle'" (click)="closeView()">
+      <i-feather name="x"></i-feather>
+    </cas-button>
+  </div>
+
+  <span>{{organization.description}}</span>
+
+  <hr class="dark"/>
+
+  <div fxLayout="column" fxLayoutGap="24px">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <span>Code</span>
+      <span class="badge primary">{{organization.code}}</span>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <span>Created at</span>
+      <span>{{organization.createdAt | date: 'dd-MM-YYYY, HH:mm:ss'}}</span>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <span>Updated at</span>
+      <span>{{organization.updatedAt | date: 'dd-MM-YYYY, HH:mm:ss'}}</span>
+    </div>
+
+    <hr class="dark"/>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <span>Users</span>
+      <span class="badge dark">0</span>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <span>Roles</span>
+      <span class="badge dark">0</span>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <span>Privileges</span>
+      <span class="badge dark">0</span>
+    </div>
+
+    <hr class="dark"/>
+
+    <cas-button [theme]="'primary'">Show organization</cas-button>
+  </div>
+</div>

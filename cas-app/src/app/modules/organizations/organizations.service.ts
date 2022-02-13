@@ -27,8 +27,10 @@ export class OrganizationsService {
     });
   }
 
-  getOrganizationsList(): Observable<Organization[]> {
-    return this.httpClient.get<Organization[]>(`${this.baseUrl}/list`);
+  getOrganizationsList(requestParam?: RequestParam): Observable<Organization[]> {
+    return this.httpClient.get<Organization[]>(`${this.baseUrl}/list`, {
+      params: buildHttpParams(requestParam)
+    });
   }
 
   getInternalOrganization(): Observable<Organization> {

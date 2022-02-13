@@ -21,7 +21,10 @@ export class OrganizationsTreeComponent implements OnInit, OnDestroy {
   @Input()
   filters!: FormGroup;
 
-  data: TreeNode[] = [];
+  itemSelect = new Subject<Organization>();
+  selectedOrganization?: Organization;
+
+  data: TreeNode<Organization>[] = [];
 
   requestParam: RequestParam = {};
 
@@ -30,6 +33,10 @@ export class OrganizationsTreeComponent implements OnInit, OnDestroy {
   constructor(private organizationsService: OrganizationsService,
               private organizationsMapper: OrganizationMapperService) {
     this.getOrganizations();
+
+    this.itemSelect.pipe(
+      tap((organization: Organization) => this.selectedOrganization = organization)
+    ).subscribe();
   }
 
   ngOnInit(): void {

@@ -11,6 +11,13 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
+      <cas-button *ngIf="selecting"
+                  [theme]="selected ? 'primary' : theme === 'dark' ? 'light' : 'dark'"
+                  [shape]="'circle'" [size]="'small'"
+                  (click)="switchView()">
+        <i-feather name="eye"></i-feather>
+      </cas-button>
+
       <cas-button [theme]="expanded ? 'primary' : theme === 'dark' ? 'light' : 'dark'"
                   [shape]="'circle'" [size]="'small'"
                   (click)="expandOrCollapse()"
@@ -21,8 +28,10 @@
   </div>
 
   <div class="node-children-container" [class.expanded]="expanded" @fadeInAnimation>
-    <cas-tree-branch [nodes]="node.children" [theme]="theme"></cas-tree-branch>
+    <cas-tree-branch [nodes]="node.children"
+                     [itemSelect]="itemSelect"
+                     [theme]="theme"
+                     [selecting]="selecting">
+    </cas-tree-branch>
   </div>
 </div>
-
-
