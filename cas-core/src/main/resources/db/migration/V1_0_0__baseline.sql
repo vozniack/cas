@@ -149,7 +149,7 @@ VALUES ('39798f2b-df6f-4239-9736-138b245b151c', 'INTERNAL', 'Login', 'LOGIN',
 
 
        ('9d31e72b-2d3a-4984-8e19-fec0b67857ef', 'INTERNAL', 'Manage account', 'MANAGE_ACCOUNT',
-        'User account management privileges set', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
+        'User account management privileges set', 1, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
 
        ('150e6506-8cc1-4fb3-b700-af236b23d5e9', 'INTERNAL', 'Update email', 'UPDATE_EMAIL',
         'Right to update own email', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5',
@@ -161,7 +161,7 @@ VALUES ('39798f2b-df6f-4239-9736-138b245b151c', 'INTERNAL', 'Login', 'LOGIN',
 
 
        ('9b62cadc-bf60-4ea0-b239-7aae1ad7b9d7', 'INTERNAL', 'Manage organizations', 'MANAGE_ORGANIZATIONS',
-        'Organizations management privilege set', 3, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
+        'Organizations management privilege set', 2, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
 
        ('6393f416-38a7-4f62-94cc-b3f884d69358', 'INTERNAL', 'Read organizations', 'READ_ORGANIZATION',
         'Right to display organizations', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5',
@@ -181,7 +181,7 @@ VALUES ('39798f2b-df6f-4239-9736-138b245b151c', 'INTERNAL', 'Login', 'LOGIN',
 
 
        ('80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c', 'INTERNAL', 'Manage users', 'MANAGE_USERS',
-        'User management privilege set', 1, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
+        'User management privilege set', 3, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
 
        ('b52cebd3-7a86-4f08-a87a-8e13ba29eec0', 'INTERNAL', 'Read user', 'READ_USER',
         'Right to display users', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '80fbf8a7-efb6-44f1-b8fb-2db9cdbdd80c'),
@@ -197,7 +197,7 @@ VALUES ('39798f2b-df6f-4239-9736-138b245b151c', 'INTERNAL', 'Login', 'LOGIN',
 
 
        ('4b2e19fa-79db-44b9-8bbf-6561a47b3cb9', 'INTERNAL', 'Manage roles', 'MANAGE_ROLES',
-        'Roles management privilege set', 3, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
+        'Roles management privilege set', 4, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
 
        ('7eb13577-06b2-4b88-ad78-f1b99f951c6e', 'INTERNAL', 'Read roles', 'READ_ROLE',
         'Right to display roles', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', '4b2e19fa-79db-44b9-8bbf-6561a47b3cb9'),
@@ -213,7 +213,7 @@ VALUES ('39798f2b-df6f-4239-9736-138b245b151c', 'INTERNAL', 'Login', 'LOGIN',
 
 
        ('32cb0e0a-4368-447c-ad00-2affe47e7d1d', 'INTERNAL', 'Manage privileges', 'MANAGE_PRIVILEGES',
-        'Privilege management privilege set', 4, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
+        'Privilege management privilege set', 5, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', null),
 
        ('082493be-3d0c-4f12-8554-2e7cb87d76f9', 'INTERNAL', 'Read privilege', 'READ_PRIVILEGE',
         'Right to display privileges', 0, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5',
