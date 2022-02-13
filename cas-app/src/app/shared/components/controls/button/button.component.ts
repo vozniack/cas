@@ -19,5 +19,5 @@ export class ButtonComponent {
 
   @Input() shape: 'rectangle' | 'circle' = 'rectangle';
   @Input() size: 'small' | 'normal' | 'big' = 'normal';
-  @Input() theme: 'primary' | 'secondary' | 'default' = 'primary';
+  @Input() theme: 'primary' | 'secondary' | 'light' | 'dark' = 'light';
 }

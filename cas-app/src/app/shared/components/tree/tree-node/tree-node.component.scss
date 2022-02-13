@@ -1,0 +1,28 @@
+@import 'src/styles/variables';
+
+.tree-node-container {
+  border-radius: 12px;
+  padding: 8px 16px;
+
+  color: $white;
+  background: $background-dark;
+
+  .label {
+    font-size: 14px;
+  }
+
+  .description, .badge {
+    font-size: 12px;
+  }
+}
+
+.node-children-container {
+  max-height: 0;
+  overflow: hidden;
+
+  transition: max-height 0.2s ease-in-out;
+
+  &.expanded {
+    max-height: 1024px;
+  }
+}

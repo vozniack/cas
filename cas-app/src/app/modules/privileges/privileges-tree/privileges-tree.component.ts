@@ -3,7 +3,7 @@ import {Privilege} from "../privileges.interface";
 import {RequestParam} from "../../../shared/model/request.interface";
 import {fadeInAnimation} from "../../../shared/animations/fade-in-animation";
 import {TreeNode} from "../../../shared/components/tree/tree.interface";
-import {mapToTreeNode} from "../../../shared/utils/mapping.util";
+import {mapPrivilegesToTreeNodes} from "../../../shared/utils/mapping.util";
 import {PrivilegesService} from "../privileges.service";
 import {filter, takeUntil, tap} from "rxjs/operators";
 import {FormGroup} from "@angular/forms";
@@ -24,7 +24,7 @@ export class PrivilegesTreeComponent implements OnInit, OnDestroy {
   @Input()
   view!: ViewType;
 
-  data: Privilege[] = []
+  data: TreeNode[] = [];
 
   requestParam: RequestParam = {};
 
@@ -53,12 +53,7 @@ export class PrivilegesTreeComponent implements OnInit, OnDestroy {
 
   getPrivileges(): void {
     this.privilegesService.getPrivilegeParents(this.requestParam).pipe(
-      tap((response: Privilege[]) => this.data = response),
+      tap((response: Privilege[]) => this.data = mapPrivilegesToTreeNodes(response)),
     ).subscribe()
-  }
-
-  getTreeNodes(): TreeNode[] {
-    return this.data.filter(privilege => privilege.parentId == null)
-      .map(privilege => mapToTreeNode(privilege));
   }
 }

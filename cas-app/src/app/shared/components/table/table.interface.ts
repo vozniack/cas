@@ -26,7 +26,7 @@ export interface TableAction {
 
   icon: string;
 
-  theme: 'primary' | 'secondary' | 'default';
+  theme: 'primary' | 'secondary' | 'dark';
 
   data?: any;
 }

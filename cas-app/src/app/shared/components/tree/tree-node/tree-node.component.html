@@ -1,1 +1,27 @@
-<p>tree-node works!</p>
+<div fxLayout="column" fxLayoutGap="8px">
+  <div class="tree-node-container" fxLayout="row" fxLayoutAlign="space-between center">
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+      <div fxLayout="column" fxLayoutGap="4px">
+        <span class="label">{{node.label}}</span>
+        <span class="description">{{node.description}}</span>
+      </div>
+
+      <span class="badge primary">{{node.badge}}</span>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
+      <cas-button [theme]="expanded ? 'primary' : 'dark'" [shape]="'circle'" [size]="'small'"
+                  (click)="expanded = !expanded"
+                  [disabled]="node.children.length < 1">
+        <i-feather [name]="expanded ? 'chevrons-up' : 'chevrons-down'"></i-feather>
+      </cas-button>
+    </div>
+  </div>
+
+  <div class="node-children-container" [class.expanded]="expanded" @fadeInAnimation>
+    <cas-tree-branch [nodes]="node.children"></cas-tree-branch>
+  </div>
+</div>
+
+

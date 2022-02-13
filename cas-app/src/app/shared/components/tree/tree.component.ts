@@ -10,5 +10,4 @@ export class TreeComponent {
 
   @Input()
   nodes!: TreeNode[];
-
 }

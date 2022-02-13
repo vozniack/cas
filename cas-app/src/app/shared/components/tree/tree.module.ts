@@ -5,11 +5,13 @@ import {FlexModule} from "@angular/flex-layout";
 import {IconsModule} from "../../../core/icons/icons.module";
 import {ControlsModule} from "../controls/controls.module";
 import {TreeNodeComponent} from './tree-node/tree-node.component';
+import {TreeBranchComponent} from './tree-branch/tree-branch.component';
 
 @NgModule({
   declarations: [
     TreeComponent,
-    TreeNodeComponent
+    TreeNodeComponent,
+    TreeBranchComponent
   ],
   exports: [
     TreeComponent
