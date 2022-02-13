@@ -26,6 +26,9 @@ export class PrivilegesTreeComponent implements OnInit, OnDestroy {
 
   data: TreeNode<Privilege>[] = [];
 
+  itemSelect = new Subject<Privilege>();
+  selectedPrivilege?: Privilege;
+
   requestParam: RequestParam = {};
 
   ngDestroyed$ = new Subject<boolean>();
@@ -33,6 +36,10 @@ export class PrivilegesTreeComponent implements OnInit, OnDestroy {
   constructor(private privilegesService: PrivilegesService,
               private privilegesMapper: PrivilegeMapperService) {
     this.getPrivileges();
+
+    this.itemSelect.pipe(
+      tap((privilege: Privilege) => this.selectedPrivilege = privilege)
+    ).subscribe();
   }
 
   ngOnInit(): void {

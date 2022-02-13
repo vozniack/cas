@@ -117,3 +117,24 @@ hr {
     border-color: rgba($background-darker, 0.5);
   }
 }
+
+/*
+ * Tile container
+ */
+
+.tile-container {
+  margin-top: 8px;
+
+  padding: 12px 24px;
+  border-radius: 12px;
+
+  width: 512px;
+
+  color: $white;
+  background-color: $background-dark;
+
+  .title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+}

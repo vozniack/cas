@@ -11,12 +11,16 @@ import {CommonComponentsModule} from "../../shared/components/common/common-comp
 import {PrivilegesTreeComponent} from './privileges-tree/privileges-tree.component';
 import {TreeModule} from "../../shared/components/tree/tree.module";
 import {PrivilegeMapperService} from "./privilege.mapper.service";
+import {PrivilegeTileComponent} from './privileges-tree/privilege-tile/privilege-tile.component';
+import {ControlsModule} from "../../shared/components/controls/controls.module";
+import {IconsModule} from "../../core/icons/icons.module";
 
 @NgModule({
   declarations: [
     PrivilegesComponent,
     PrivilegesTableComponent,
-    PrivilegesTreeComponent
+    PrivilegesTreeComponent,
+    PrivilegeTileComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +29,9 @@ import {PrivilegeMapperService} from "./privilege.mapper.service";
     FlexModule,
     InputsModule,
     CommonComponentsModule,
-    TreeModule
+    TreeModule,
+    ControlsModule,
+    IconsModule
   ],
   providers: [
     PrivilegesService,
