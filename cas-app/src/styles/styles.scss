@@ -137,4 +137,14 @@ hr {
     font-size: 18px;
     font-weight: 700;
   }
+
+  .nested-privileges-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    .badge {
+      margin: 8px 8px 0 0;
+    }
+  }
+
 }

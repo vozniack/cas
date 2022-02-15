@@ -7,6 +7,8 @@ import {Subject} from "rxjs";
 import {UsersService} from "../users.service";
 import {filter, takeUntil, tap} from "rxjs/operators";
 import {ViewType} from "../../../shared/model/types.interface";
+import {ListNode} from "../../../shared/components/list/list.interface";
+import {UsersMapper} from "../users-mapper.service";
 
 @Component({
   selector: 'cas-users-list',
@@ -19,14 +21,23 @@ export class UsersListComponent {
   @Input()
   filters!: FormGroup;
 
-  data: User[] = [];
+  itemSelect = new Subject<User>();
+  selectedUser?: User;
+
+  data: ListNode<User>[] = [];
 
   requestParam: RequestParam = {};
 
   ngDestroyed$ = new Subject<boolean>();
 
-  constructor(private usersService: UsersService) {
+  constructor(private usersService: UsersService,
+              private usersMapper: UsersMapper) {
     this.getUsers();
+
+    this.itemSelect.pipe(
+      takeUntil(this.ngDestroyed$),
+      tap((user: User) => this.selectedUser = user)
+    ).subscribe();
   }
 
   ngOnInit(): void {
@@ -48,7 +59,7 @@ export class UsersListComponent {
 
   getUsers(): void {
     this.usersService.getUsersList(this.requestParam).pipe(
-      tap((response: User[]) => this.data = response),
+      tap((response: User[]) => this.data = this.usersMapper.mapToListNodes(response)),
     ).subscribe()
   }
 }

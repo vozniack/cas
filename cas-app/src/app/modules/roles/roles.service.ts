@@ -21,6 +21,12 @@ export class RolesService {
     })
   }
 
+  getRolesList(requestParam: RequestParam): Observable<Role[]> {
+    return this.httpClient.get<Role[]>(`${this.baseUrl}/list`, {
+      params: buildHttpParams(requestParam)
+    })
+  }
+
   getInternalRoles(requestParam: RequestParam): Observable<Pageable<Role>> {
     return this.httpClient.get<Pageable<Role>>(`${this.baseUrl}/internal`, {
       params: buildHttpParams(requestParam)

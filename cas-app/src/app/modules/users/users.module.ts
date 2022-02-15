@@ -10,12 +10,17 @@ import {InputsModule} from "../../shared/components/inputs/inputs.module";
 import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
 import {UsersListComponent} from './users-list/users-list.component';
 import {IconsModule} from "../../core/icons/icons.module";
+import {ListModule} from "../../shared/components/list/list.module";
+import {UsersMapper} from "./users-mapper.service";
+import {UserTileComponent} from './users-list/user-tile/user-tile.component';
+import {ControlsModule} from "../../shared/components/controls/controls.module";
 
 @NgModule({
   declarations: [
     UsersComponent,
     UsersTableComponent,
-    UsersListComponent
+    UsersListComponent,
+    UserTileComponent
   ],
   imports: [
     CommonModule,
@@ -24,10 +29,13 @@ import {IconsModule} from "../../core/icons/icons.module";
     FlexModule,
     InputsModule,
     CommonComponentsModule,
-    IconsModule
+    IconsModule,
+    ListModule,
+    ControlsModule
   ],
   providers: [
-    UsersService
+    UsersService,
+    UsersMapper
   ]
 })
 export class UsersModule {

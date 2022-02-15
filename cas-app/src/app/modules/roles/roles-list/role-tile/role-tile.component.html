@@ -1,0 +1,47 @@
+<div class="tile-container" fxLayout="column" fxLayoutGap="24px" @fadeInAnimation>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="title">{{role.name}}</span>
+
+    <cas-button [theme]="'dark'" [size]="'small'" [shape]="'circle'" (click)="closeView()">
+      <i-feather name="x"></i-feather>
+    </cas-button>
+  </div>
+
+  <span>{{role.description}}</span>
+
+  <hr class="dark"/>
+
+  <div fxLayout="column" fxLayoutGap="24px">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <span>Organization</span>
+      <span class="badge primary">{{role.details.organizationCode}}</span>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <span>Created at</span>
+      <span>{{role.createdAt | date: 'dd-MM-YYYY, HH:mm:ss'}}</span>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <span>Updated at</span>
+      <span>{{role.updatedAt | date: 'dd-MM-YYYY, HH:mm:ss'}}</span>
+    </div>
+
+    <hr class="dark" *ngIf="privileges.length > 0"/>
+
+    <div fxLayout="column" fxLayoutGap="8px" *ngIf="privileges.length > 0">
+      <span>User privileges</span>
+
+      <div class="nested-privileges-container">
+        <ng-container *ngFor="let privilege of privileges">
+          <span class="badge dark">{{privilege.code}}</span>
+        </ng-container>
+      </div>
+    </div>
+
+    <hr class="dark"/>
+
+    <cas-button [theme]="'primary'">Show role</cas-button>
+  </div>
+</div>

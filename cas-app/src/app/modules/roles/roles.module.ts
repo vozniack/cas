@@ -9,12 +9,18 @@ import {RolesTableComponent} from './roles-table/roles-table.component';
 import {InputsModule} from "../../shared/components/inputs/inputs.module";
 import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
 import {RolesListComponent} from './roles-list/roles-list.component';
+import {RoleTileComponent} from './roles-list/role-tile/role-tile.component';
+import {ControlsModule} from "../../shared/components/controls/controls.module";
+import {IconsModule} from "../../core/icons/icons.module";
+import {ListModule} from "../../shared/components/list/list.module";
+import {RolesMapper} from "./roles-mapper.service";
 
 @NgModule({
   declarations: [
     RolesComponent,
     RolesTableComponent,
-    RolesListComponent
+    RolesListComponent,
+    RoleTileComponent
   ],
   imports: [
     CommonModule,
@@ -22,10 +28,14 @@ import {RolesListComponent} from './roles-list/roles-list.component';
     TableModule,
     FlexModule,
     InputsModule,
-    CommonComponentsModule
+    CommonComponentsModule,
+    ControlsModule,
+    IconsModule,
+    ListModule
   ],
   providers: [
-    RolesService
+    RolesService,
+    RolesMapper
   ]
 })
 export class RolesModule {

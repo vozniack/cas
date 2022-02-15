@@ -17,11 +17,12 @@ export interface User extends Auditable {
 
   lastName: string;
 
+  active: boolean;
+
   roles: Role[];
 
   details: UserDetails;
 }
 
 export interface UserDetails extends BasicDetails {
-
 }

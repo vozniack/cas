@@ -17,6 +17,8 @@ class RoleService(private val roleRepository: RoleRepository, private val userRe
     fun findAll(query: Specificable<Role>, pageable: Pageable): Page<Role> =
         roleRepository.findAll(query.toSpecification(), pageable)
 
+    fun findAll(query: Specificable<Role>): List<Role> = roleRepository.findAll(query.toSpecification())
+
     fun findById(id: UUID): Role = roleRepository.findById(id).orElseThrow { NotFoundException() }
 
     fun findUsersByRoleId(id: UUID): List<User> = userRepository.findAllByRolesId(id)

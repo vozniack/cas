@@ -1,0 +1,40 @@
+@import 'src/styles/variables';
+
+.list-node-container {
+  border-radius: 12px;
+  padding: 8px 16px;
+
+  color: $white;
+
+  &.light {
+    background: $background-dark;
+  }
+
+  &.dark {
+    background: $background-darker;
+  }
+
+  .icon-container {
+    border-radius: 50%;
+
+    height: 32px;
+    width: 32px;
+
+    background: $white;
+
+
+    .icon {
+      color: $background-dark;
+      margin-top: 6px;
+      width: 16px;
+    }
+  }
+
+  .label {
+    font-size: 14px;
+  }
+
+  .description, .badge {
+    font-size: 12px;
+  }
+}

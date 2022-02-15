@@ -1,0 +1,9 @@
+<div fxLayout="column" fxLayoutGap="16px" @fadeInAnimation>
+  <ng-container *ngFor="let node of nodes">
+    <cas-list-node [node]="node"
+                   [itemSelect]="itemSelect"
+                   [theme]="theme"
+                   [selecting]="selecting">
+    </cas-list-node>
+  </ng-container>
+</div>
