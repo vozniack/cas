@@ -8,7 +8,7 @@ import {filter, takeUntil, tap} from "rxjs/operators";
 import {FormGroup} from "@angular/forms";
 import {Subject} from "rxjs";
 import {ViewType} from "../../../shared/model/types.interface";
-import {PrivilegeMapperService} from "../privilege.mapper.service";
+import {PrivilegesMapper} from "../privileges-mapper.service";
 
 @Component({
   selector: 'cas-privileges-tree',
@@ -34,7 +34,7 @@ export class PrivilegesTreeComponent implements OnInit, OnDestroy {
   ngDestroyed$ = new Subject<boolean>();
 
   constructor(private privilegesService: PrivilegesService,
-              private privilegesMapper: PrivilegeMapperService) {
+              private privilegesMapper: PrivilegesMapper) {
     this.getPrivileges();
 
     this.itemSelect.pipe(

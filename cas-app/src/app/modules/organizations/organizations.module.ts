@@ -10,7 +10,7 @@ import {InputsModule} from "../../shared/components/inputs/inputs.module";
 import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
 import {OrganizationsTreeComponent} from './organizations-tree/organizations-tree.component';
 import {TreeModule} from "../../shared/components/tree/tree.module";
-import {OrganizationMapperService} from "./organization.mapper.service";
+import {OrganizationsMapper} from "./organizations-mapper.service";
 import {OrganizationTileComponent} from './organizations-tree/organization-tile/organization-tile.component';
 import {ControlsModule} from "../../shared/components/controls/controls.module";
 import {IconsModule} from "../../core/icons/icons.module";
@@ -35,7 +35,7 @@ import {IconsModule} from "../../core/icons/icons.module";
   ],
   providers: [
     OrganizationsService,
-    OrganizationMapperService
+    OrganizationsMapper
   ]
 })
 export class OrganizationsModule {

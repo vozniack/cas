@@ -14,7 +14,7 @@ import {PrivilegesService} from "../privileges/privileges.service";
 import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
 import {IconsModule} from "../../core/icons/icons.module";
 import {TreeModule} from "../../shared/components/tree/tree.module";
-import {PrivilegeMapperService} from "../privileges/privilege.mapper.service";
+import {PrivilegesMapper} from "../privileges/privileges-mapper.service";
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import {PrivilegeMapperService} from "../privileges/privilege.mapper.service";
     RolesService,
     UsersService,
     PrivilegesService,
-    PrivilegeMapperService
+    PrivilegesMapper
   ]
 })
 export class AdminModule {

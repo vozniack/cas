@@ -8,7 +8,7 @@ import {filter, takeUntil, tap} from "rxjs/operators";
 import {ViewType} from "../../../shared/model/types.interface";
 import {Organization} from "../organizations.interface";
 import {fadeInAnimation} from "../../../shared/animations/fade-in-animation";
-import {OrganizationMapperService} from "../organization.mapper.service";
+import {OrganizationsMapper} from "../organizations-mapper.service";
 
 @Component({
   selector: 'cas-organizations-tree',
@@ -31,7 +31,7 @@ export class OrganizationsTreeComponent implements OnInit, OnDestroy {
   ngDestroyed$ = new Subject<boolean>();
 
   constructor(private organizationsService: OrganizationsService,
-              private organizationsMapper: OrganizationMapperService) {
+              private organizationsMapper: OrganizationsMapper) {
     this.getOrganizations();
 
     this.itemSelect.pipe(

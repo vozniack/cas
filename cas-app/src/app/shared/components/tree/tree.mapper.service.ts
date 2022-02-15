@@ -1,4 +1,4 @@
-import {TreeNode} from "../../components/tree/tree.interface";
+import {TreeNode} from "./tree.interface";
 
 export abstract class TreeMapper<T> {
 

@@ -1,10 +1,10 @@
-import {TreeMapper} from "../../shared/utils/mapper/tree-mapper.service";
+import {TreeMapper} from "../../shared/components/tree/tree.mapper.service";
 import {Organization} from "./organizations.interface";
 import {TreeNode} from "../../shared/components/tree/tree.interface";
 import {Injectable} from "@angular/core";
 
 @Injectable()
-export class OrganizationMapperService implements TreeMapper<Organization> {
+export class OrganizationsMapper implements TreeMapper<Organization> {
 
   mapToTreeNodes(organizations: Organization[]): TreeNode<Organization>[] {
     return organizations.filter(organization => organization.parentId == null).map(organization => this.mapOrganizationToTreeNode(organization));

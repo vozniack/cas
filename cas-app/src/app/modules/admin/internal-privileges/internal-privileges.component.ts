@@ -5,7 +5,7 @@ import {Pageable} from "../../../shared/model/pageable.interface";
 import {Privilege} from "../../privileges/privileges.interface";
 import {map, tap} from "rxjs/operators";
 import {TreeNode} from "../../../shared/components/tree/tree.interface";
-import {PrivilegeMapperService} from "../../privileges/privilege.mapper.service";
+import {PrivilegesMapper} from "../../privileges/privileges-mapper.service";
 
 @Component({
   selector: 'cas-internal-privileges',
@@ -19,7 +19,7 @@ export class InternalPrivilegesComponent {
   nodes: TreeNode<Privilege>[] = [];
 
   constructor(private privilegesService: PrivilegesService,
-              private privilegeMapper: PrivilegeMapperService) {
+              private privilegeMapper: PrivilegesMapper) {
     this.privilegesService.getInternalPrivileges({page: 0, size: 64}).pipe(
       tap((privileges: Pageable<Privilege>) => this.privileges = privileges),
       map((privileges: Pageable<Privilege>) => privileges.content!.filter(privilege => privilege.parentId == null)),
