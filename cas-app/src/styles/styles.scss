@@ -123,8 +123,6 @@ hr {
  */
 
 .tile-container {
-  margin-top: 8px;
-
   padding: 12px 24px;
   border-radius: 12px;
 
@@ -147,4 +145,7 @@ hr {
     }
   }
 
+  &.margin {
+    margin-top: 8px;
+  }
 }
