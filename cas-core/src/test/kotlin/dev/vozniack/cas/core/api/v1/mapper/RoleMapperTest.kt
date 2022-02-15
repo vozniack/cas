@@ -13,13 +13,15 @@ import java.util.UUID
 
 class RoleMapperTest @Autowired constructor(
     private val roleMapper: Mapper<Role, RoleDto>,
-    private val organizationRepository: OrganizationRepository
+    private val organizationRepository: OrganizationRepository,
 ) : CasCoreAbstractTest() {
 
     @Test
     fun `map entity to dto`() {
+        val organization = Organization(id = UUID.randomUUID(), code = "ORG")
+
         val role = Role(id = UUID.randomUUID(), scope = ScopeType.EXTERNAL,
-            name = "ROLE", description = "Description", organization = Organization(id = UUID.randomUUID()))
+            name = "ROLE", description = "Description", organization = organization)
         val roleDto = roleMapper.mapToDto(role)
 
         assertThat(roleDto.id).isEqualTo(role.id)
@@ -27,6 +29,7 @@ class RoleMapperTest @Autowired constructor(
         assertThat(roleDto.name).isEqualTo(role.name)
         assertThat(roleDto.description).isEqualTo(role.description)
         assertThat(roleDto.organizationId).isEqualTo(role.organization!!.id!!)
+        assertThat(roleDto.details?.organizationCode).isEqualTo(organization.code)
     }
 
     @Test

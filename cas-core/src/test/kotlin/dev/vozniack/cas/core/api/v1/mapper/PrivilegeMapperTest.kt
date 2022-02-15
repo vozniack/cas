@@ -16,7 +16,7 @@ import java.util.UUID
 class PrivilegeMapperTest @Autowired constructor(
     private val privilegeMapper: Mapper<Privilege, PrivilegeDto>,
     private val privilegeRepository: PrivilegeRepository,
-    private val organizationRepository: OrganizationRepository
+    private val organizationRepository: OrganizationRepository,
 ) : CasCoreAbstractTest() {
 
     @AfterEach
@@ -27,11 +27,7 @@ class PrivilegeMapperTest @Autowired constructor(
 
     @Test
     fun `map entity to dto`() {
-        // organization need to exist in repository due to matching by id
-
-        val organization = organizationRepository.save(
-            Organization(id = UUID.randomUUID(), name = "Organization", code = "ORG")
-        )
+        val organization = Organization(id = UUID.randomUUID(), name = "Organization", code = "ORG")
 
         val privilege = Privilege(
             id = UUID.randomUUID(), scope = ScopeType.INTERNAL, name = "Privilege", code = "PRIVILEGE",
@@ -59,6 +55,7 @@ class PrivilegeMapperTest @Autowired constructor(
         assertThat(privilegeDto.privileges?.size).isEqualTo(privilege.privileges?.size)
         assertThat(privilegeDto.privileges?.get(0)?.name).isEqualTo(privilege.privileges?.get(0)?.name)
         assertThat(privilegeDto.privileges?.get(0)?.code).isEqualTo(privilege.privileges?.get(0)?.code)
+        assertThat(privilegeDto.details?.organizationCode).isEqualTo(organization.code)
     }
 
     @Test

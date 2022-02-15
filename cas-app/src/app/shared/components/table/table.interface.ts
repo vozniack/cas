@@ -18,7 +18,9 @@ export enum ColumnType {
 
 export type BadgeType =
   'primary' |
-  'secondary';
+  'secondary' |
+  'light' |
+  'dark';
 
 export interface TableAction {
 

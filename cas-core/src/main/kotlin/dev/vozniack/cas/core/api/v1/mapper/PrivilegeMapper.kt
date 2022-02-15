@@ -1,6 +1,7 @@
 package dev.vozniack.cas.core.api.v1.mapper
 
 import dev.vozniack.cas.core.api.v1.dto.entity.PrivilegeDto
+import dev.vozniack.cas.core.api.v1.dto.entity.details.BasicDetailsDto
 import dev.vozniack.cas.core.entity.Privilege
 import dev.vozniack.cas.core.service.OrganizationService
 import dev.vozniack.cas.core.service.PrivilegeService
@@ -13,28 +14,31 @@ class PrivilegeMapper(
 ) : Mapper<Privilege, PrivilegeDto> {
 
     override fun mapToDto(entity: Privilege): PrivilegeDto = PrivilegeDto(
-        entity.id,
-        entity.scope,
-        entity.name,
-        entity.code,
-        entity.description,
-        entity.index,
-        entity.organization!!.id!!,
-        entity.parent?.id,
-        entity.privileges?.map { mapToDto(it) },
-        entity.createdAt,
-        entity.updatedAt
+        id = entity.id,
+        scope = entity.scope,
+        name = entity.name,
+        code = entity.code,
+        description = entity.description,
+        index = entity.index,
+        organizationId = entity.organization!!.id!!,
+        parentId = entity.parent?.id,
+        privileges = entity.privileges?.map { mapToDto(it) },
+        createdAt = entity.createdAt,
+        updatedAt = entity.updatedAt,
+        details = BasicDetailsDto(
+            organizationCode = entity.organization?.code
+        )
     )
 
     override fun mapToEntity(dto: PrivilegeDto): Privilege = Privilege(
-        dto.id,
-        dto.scope,
-        dto.name,
-        dto.code,
-        dto.description,
-        dto.index,
-        dto.organizationId.let { organizationService.findById(it) },
-        dto.parentId?.let { privilegeService.findById(it) },
-        null
+        id = dto.id,
+        scope = dto.scope,
+        name = dto.name,
+        code = dto.code,
+        description = dto.description,
+        index = dto.index,
+        organization = dto.organizationId.let { organizationService.findById(it) },
+        parent = dto.parentId?.let { privilegeService.findById(it) },
+        privileges = null
     )
 }

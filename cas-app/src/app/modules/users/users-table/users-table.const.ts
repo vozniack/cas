@@ -17,6 +17,12 @@ export const userColumns: TableColumn[] = [
     sortable: true
   },
   {
+    label: 'Organization',
+    field: 'details.organizationCode',
+    sortable: true,
+    badge: 'dark'
+  },
+  {
     label: 'Updated at',
     field: 'updatedAt',
     sortable: true,

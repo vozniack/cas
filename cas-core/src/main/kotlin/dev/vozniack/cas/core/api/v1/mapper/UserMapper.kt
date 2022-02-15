@@ -1,6 +1,7 @@
 package dev.vozniack.cas.core.api.v1.mapper
 
 import dev.vozniack.cas.core.api.v1.dto.entity.UserDto
+import dev.vozniack.cas.core.api.v1.dto.entity.details.BasicDetailsDto
 import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.service.OrganizationService
 import org.springframework.stereotype.Component
@@ -12,28 +13,31 @@ class UserMapper(
 ) : Mapper<User, UserDto> {
 
     override fun mapToDto(entity: User): UserDto = UserDto(
-        entity.id,
-        entity.scope,
-        entity.email,
-        entity.password,
-        entity.firstName,
-        entity.lastName,
-        entity.active,
-        entity.organization!!.id!!,
-        entity.roles.map { roleMapper.mapToDto(it) },
-        entity.createdAt,
-        entity.updatedAt
+        id = entity.id,
+        scope = entity.scope,
+        email = entity.email,
+        password = entity.password,
+        firstName = entity.firstName,
+        lastName = entity.lastName,
+        active = entity.active,
+        organizationId = entity.organization!!.id!!,
+        roles = entity.roles.map { roleMapper.mapToDto(it) },
+        createdAt = entity.createdAt,
+        updatedAt = entity.updatedAt,
+        details = BasicDetailsDto(
+            organizationCode = entity.organization?.code
+        )
     )
 
     override fun mapToEntity(dto: UserDto): User = User(
-        dto.id,
-        dto.scope,
-        dto.email,
-        dto.password,
-        dto.firstName,
-        dto.lastName,
-        dto.active,
-        dto.organizationId.let { organizationService.findById(it) },
-        dto.roles.map { roleMapper.mapToEntity(it) },
+        id = dto.id,
+        scope = dto.scope,
+        email = dto.email,
+        password = dto.password,
+        firstName = dto.firstName,
+        lastName = dto.lastName,
+        active = dto.active,
+        organization = dto.organizationId.let { organizationService.findById(it) },
+        roles = dto.roles.map { roleMapper.mapToEntity(it) },
     )
 }

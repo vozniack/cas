@@ -1,5 +1,6 @@
 package dev.vozniack.cas.core.api.v1.dto.entity
 
+import dev.vozniack.cas.core.api.v1.dto.entity.details.OrganizationDetailsDto
 import dev.vozniack.cas.core.types.ScopeType
 import java.time.LocalDateTime
 import java.util.UUID
@@ -20,4 +21,6 @@ class OrganizationDto(
 
     val createdAt: LocalDateTime?,
     val updatedAt: LocalDateTime?,
+
+    val details: OrganizationDetailsDto? = null
 )

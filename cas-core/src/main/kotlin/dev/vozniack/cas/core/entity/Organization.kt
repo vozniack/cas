@@ -39,6 +39,9 @@ class Organization(
     var users: List<User> = listOf(),
 
     @OneToMany(mappedBy = "organization")
+    var roles: List<Role> = listOf(),
+
+    @OneToMany(mappedBy = "organization")
     var privileges: List<Privilege> = listOf(),
 
     ) : Auditable()

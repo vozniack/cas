@@ -1,5 +1,6 @@
 package dev.vozniack.cas.core.api.v1.mapper
 
+import dev.vozniack.cas.core.api.v1.dto.entity.details.OrganizationDetailsDto
 import dev.vozniack.cas.core.api.v1.dto.entity.OrganizationDto
 import dev.vozniack.cas.core.entity.Organization
 import dev.vozniack.cas.core.service.OrganizationService
@@ -11,23 +12,28 @@ class OrganizationMapper(
 ) : Mapper<Organization, OrganizationDto> {
 
     override fun mapToDto(entity: Organization): OrganizationDto = OrganizationDto(
-        entity.id,
-        entity.scope,
-        entity.name,
-        entity.code,
-        entity.description,
-        entity.parent?.id,
-        entity.organizations?.map { mapToDto(it) },
-        entity.createdAt,
-        entity.updatedAt
+        id = entity.id,
+        scope = entity.scope,
+        name = entity.name,
+        code = entity.code,
+        description = entity.description,
+        parentId = entity.parent?.id,
+        organizations = entity.organizations?.map { mapToDto(it) },
+        createdAt = entity.createdAt,
+        updatedAt = entity.updatedAt,
+        details = OrganizationDetailsDto(
+            users = entity.users.size,
+            roles = entity.roles.size,
+            privileges = entity.privileges.size
+        )
     )
 
     override fun mapToEntity(dto: OrganizationDto): Organization = Organization(
-        dto.id,
-        dto.scope,
-        dto.name,
-        dto.code,
-        dto.description,
-        dto.parentId?.let { organizationService.findById(it) }
+        id = dto.id,
+        scope = dto.scope,
+        name = dto.name,
+        code = dto.code,
+        description = dto.description,
+        parent = dto.parentId?.let { organizationService.findById(it) }
     )
 }
