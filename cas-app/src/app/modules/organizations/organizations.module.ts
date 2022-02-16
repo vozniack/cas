@@ -41,6 +41,9 @@ import {UsersMapper} from "../users/users-mapper.service";
     OrganizationUsersComponent,
     OrganizationPrivilegesComponent,
   ],
+  exports: [
+    OrganizationViewComponent
+  ],
   imports: [
     CommonModule,
     OrganizationsRoutingModule,
