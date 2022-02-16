@@ -7,13 +7,13 @@ VALUES ('238a882e-f4e9-4107-920f-3bb2bb206b70', 'Document Management System',
         'Microservice for documents rendering', 'DPS', '238a882e-f4e9-4107-920f-3bb2bb206b70');
 
 
-INSERT INTO roles (id, name, description, organization_id)
-VALUES ('9c576336-8241-46ca-9c6d-dcf8838a31bb', 'ADMIN', 'Document Management System administrator role',
+INSERT INTO roles (id, name, code, description, organization_id)
+VALUES ('9c576336-8241-46ca-9c6d-dcf8838a31bb', 'Admin', 'ADMIN', 'Document Management System administrator role',
         '238a882e-f4e9-4107-920f-3bb2bb206b70'),
-       ('e61c99dd-16c0-4864-9aa0-b68f010aa5e0', 'USER', 'Document Management System user role',
+       ('e61c99dd-16c0-4864-9aa0-b68f010aa5e0', 'User', 'USER', 'Document Management System user role',
         '238a882e-f4e9-4107-920f-3bb2bb206b70'),
 
-       ('fd1dfafd-0572-4a9e-84ca-78a8f124c599', 'USER', 'Document Printer System user role',
+       ('fd1dfafd-0572-4a9e-84ca-78a8f124c599', 'User', 'USER', 'Document Printer System user role',
         '28e00094-259d-4516-a04e-ab5876e1e1dd');
 
 
@@ -131,8 +131,8 @@ INSERT INTO organizations (id, name, description, code, parent_id)
 VALUES ('d118dd75-b96b-42fd-9ba1-8117c740997a', 'Mailbox System', 'Simple mailbox', 'MBS', null);
 
 
-INSERT INTO roles (id, name, description, organization_id)
-VALUES ('9fb4dbd4-db7c-4088-9404-2cb05d40373d', 'SYSTEM', 'Mailbox system microservice role',
+INSERT INTO roles (id, name, code, description, organization_id)
+VALUES ('9fb4dbd4-db7c-4088-9404-2cb05d40373d', 'System microservice', 'SYSTEM', 'Mailbox system microservice role',
         'd118dd75-b96b-42fd-9ba1-8117c740997a');
 
 

@@ -12,6 +12,7 @@ class RoleDto(
     val scope: ScopeType?,
 
     val name: String,
+    val code: String,
     val description: String,
 
     val organizationId: UUID,

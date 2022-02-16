@@ -4,6 +4,11 @@ export const roleColumns: TableColumn[] = [
   {
     label: 'Name',
     field: 'name',
+    sortable: true
+  },
+  {
+    label: 'Code',
+    field: 'code',
     sortable: true,
     badge: 'primary'
   },

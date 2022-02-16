@@ -64,7 +64,7 @@ class UserMapperTest @Autowired constructor(
         val userDto = UserDto(id = UUID.randomUUID(), scope = ScopeType.INTERNAL, email = "john.doe@cas.dev",
             password = "pass123!", firstName = "John", lastName = "Doe", active = true,
             organizationId = organization.id!!, roles = listOf(RoleDto(id = UUID.randomUUID(),
-                scope = ScopeType.INTERNAL, name = "ROLE", description = "Description",
+                scope = ScopeType.INTERNAL, name = "ROLE", code = "ROLE", description = "Description",
                 organizationId = organization.id!!))
         )
 
@@ -83,6 +83,7 @@ class UserMapperTest @Autowired constructor(
         assertThat(user.roles.size).isEqualTo(userDto.roles.size)
         assertThat(user.roles[0].id).isEqualTo(userDto.roles[0].id)
         assertThat(user.roles[0].name).isEqualTo(userDto.roles[0].name)
+        assertThat(user.roles[0].code).isEqualTo(userDto.roles[0].code)
         assertThat(user.roles[0].description).isEqualTo(userDto.roles[0].description)
     }
 }

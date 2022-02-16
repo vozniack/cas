@@ -10,6 +10,8 @@ export interface Role extends Auditable {
 
   name: string;
 
+  code: string;
+
   description: string;
 
   details: RoleDetails

@@ -22,7 +22,7 @@ class TokenBuilder {
             .compact()
     }
 
-    private fun collectRoles(user: User): List<String> = user.roles.map(Role::name)
+    private fun collectRoles(user: User): List<String> = user.roles.map(Role::code)
 
     private fun collectPrivileges(user: User): List<String> {
         val privileges = mutableListOf<String>()

@@ -9,6 +9,7 @@ import java.util.UUID
 class RoleQuery(
     val scope: ScopeType? = null,
     val name: String? = null,
+    val code: String? = null,
     val description: String? = null,
     val organizationId: String? = null,
 ) : Specificable<Role> {
@@ -21,6 +22,11 @@ class RoleQuery(
     private fun nameLike(name: String?): Specification<Role> =
         Specification<Role> { root, _, criteriaBuilder ->
             name?.let { criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), "%${it.lowercase()}%") }
+        }
+
+    private fun codeLike(code: String?): Specification<Role> =
+        Specification<Role> { root, _, criteriaBuilder ->
+            code?.let { criteriaBuilder.like(criteriaBuilder.lower(root.get("code")), "%${it.lowercase()}%") }
         }
 
     private fun descriptionLike(description: String?): Specification<Role> =
@@ -43,6 +49,7 @@ class RoleQuery(
             .and(scopeEquals(scope))
             .and(belongsToOrganization(organizationId))
             .and(nameLike(name)
+                .or(codeLike(code))
                 .or(descriptionLike(description))
             )
 }

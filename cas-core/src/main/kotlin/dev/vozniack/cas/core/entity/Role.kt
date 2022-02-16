@@ -25,6 +25,7 @@ class Role(
     var scope: ScopeType? = ScopeType.EXTERNAL,
 
     var name: String = "",
+    var code: String = "",
     var description: String = "",
 
     @ManyToOne

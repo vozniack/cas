@@ -15,6 +15,7 @@ class RoleMapper(
         id = entity.id,
         scope = entity.scope,
         name = entity.name,
+        code = entity.code,
         description = entity.description,
         organizationId = entity.organization!!.id!!,
         createdAt = entity.createdAt,
@@ -28,6 +29,7 @@ class RoleMapper(
         id = dto.id,
         scope = dto.scope,
         name = dto.name,
+        code = dto.code,
         description = dto.description,
         organization = dto.organizationId.let { organizationService.findById(it) }
     )

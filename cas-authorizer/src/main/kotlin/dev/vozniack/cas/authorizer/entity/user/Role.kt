@@ -11,6 +11,7 @@ class Role(
     var id: UUID? = null,
 
     var name: String = "",
+    var code: String = "",
 
     @ManyToMany
     @JoinTable(

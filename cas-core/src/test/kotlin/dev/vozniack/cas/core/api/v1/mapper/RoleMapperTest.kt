@@ -27,6 +27,7 @@ class RoleMapperTest @Autowired constructor(
         assertThat(roleDto.id).isEqualTo(role.id)
         assertThat(roleDto.scope).isEqualTo(role.scope)
         assertThat(roleDto.name).isEqualTo(role.name)
+        assertThat(roleDto.code).isEqualTo(role.code)
         assertThat(roleDto.description).isEqualTo(role.description)
         assertThat(roleDto.organizationId).isEqualTo(role.organization!!.id!!)
         assertThat(roleDto.details?.organizationCode).isEqualTo(organization.code)
@@ -41,12 +42,13 @@ class RoleMapperTest @Autowired constructor(
         )
 
         val roleDto = RoleDto(id = UUID.randomUUID(), scope = ScopeType.EXTERNAL,
-            name = "ROLE", description = "Description", organizationId = organization.id!!)
+            name = "ROLE", code = "ROLE", description = "Description", organizationId = organization.id!!)
         val role = roleMapper.mapToEntity(roleDto)
 
         assertThat(role.id).isEqualTo(roleDto.id)
         assertThat(role.scope).isEqualTo(roleDto.scope)
         assertThat(role.name).isEqualTo(roleDto.name)
+        assertThat(role.code).isEqualTo(roleDto.code)
         assertThat(role.description).isEqualTo(roleDto.description)
         assertThat(role.organization!!.id).isEqualTo(roleDto.organizationId)
     }

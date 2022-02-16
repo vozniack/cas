@@ -47,6 +47,7 @@ CREATE TABLE roles
     scope           VARCHAR(255) NOT NULL             DEFAULT 'EXTERNAL',
 
     name            VARCHAR(255) NOT NULL,
+    code            VARCHAR(8)   NOT NULL,
     description     VARCHAR(1024),
 
     organization_id UUID         NOT NULL,
@@ -55,6 +56,7 @@ CREATE TABLE roles
     updated_at      TIMESTAMP    NOT NULL             DEFAULT now(),
 
     CONSTRAINT role_name_organization_unique UNIQUE (name, organization_id),
+    CONSTRAINT role_code_organization_unique UNIQUE (code, organization_id),
     CONSTRAINT role_organization_fk FOREIGN KEY (organization_id) REFERENCES organizations (id)
 );
 
@@ -76,9 +78,9 @@ CREATE TABLE privileges
     created_at      TIMESTAMP    NOT NULL             DEFAULT now(),
     updated_at      TIMESTAMP    NOT NULL             DEFAULT now(),
 
-    CONSTRAINT privilege_name_code_organization_unique UNIQUE (name, code, organization_id),
+    CONSTRAINT privilege_name_organization_unique UNIQUE (name, organization_id),
+    CONSTRAINT privilege_code_organization_unique UNIQUE (code, organization_id),
     CONSTRAINT privilege_index_parent_organization_unique UNIQUE (index, parent_id, organization_id),
-
     CONSTRAINT privilege_organization_fk FOREIGN KEY (organization_id) REFERENCES organizations (id),
     CONSTRAINT privilege_parent_fk FOREIGN KEY (parent_id) REFERENCES privileges (id)
 );
@@ -122,10 +124,10 @@ INSERT INTO organizations (id, scope, name, code, parent_id)
 VALUES ('3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', 'INTERNAL', 'Central Authorization System', 'CAS', null);
 
 
-INSERT INTO roles (id, scope, name, description, organization_id)
-VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', 'INTERNAL', 'ADMIN', 'Central Authorization System administrator role',
+INSERT INTO roles (id, scope, name, code, description, organization_id)
+VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', 'INTERNAL', 'Admin', 'ADMIN', 'Central Authorization System administrator role',
         '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5'),
-       ('451adc34-f819-46d5-9e35-719ee343fb73', 'INTERNAL', 'USER', 'Central Authorization System user role',
+       ('451adc34-f819-46d5-9e35-719ee343fb73', 'INTERNAL', 'User', 'USER', 'Central Authorization System user role',
         '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5');
 
 

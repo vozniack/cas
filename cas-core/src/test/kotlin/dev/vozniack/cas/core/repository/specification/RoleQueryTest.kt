@@ -26,8 +26,8 @@ class RoleQueryTest @Autowired constructor(
         val organization = organizationRepository.save(Organization(name = "First organization", code = "ORG_1"))
 
         roleRepository.saveAll(listOf(
-            Role(name = "ADMINISTRATOR", description = "Description", organization = organization),
-            Role(name = "MANAGER", description = "Description"))
+            Role(name = "ADMINISTRATOR", code = "ADM", description = "Description", organization = organization),
+            Role(name = "MANAGER", code = "MANAGER", description = "Description"))
         )
 
         var roles = roleRepository.findAll(RoleQuery(name = "ADMINISTRATOR").toSpecification())
@@ -35,6 +35,9 @@ class RoleQueryTest @Autowired constructor(
 
         roles = roleRepository.findAll(RoleQuery(name = "ADMIN", description = "Description").toSpecification())
         Assertions.assertThat(roles.size).isEqualTo(2)
+
+        roles = roleRepository.findAll(RoleQuery(code = "ADM").toSpecification())
+        Assertions.assertThat(roles.size).isEqualTo(1)
 
         roles = roleRepository.findAll(RoleQuery(organizationId = organization.id.toString()).toSpecification())
         Assertions.assertThat(roles.size).isEqualTo(1)
