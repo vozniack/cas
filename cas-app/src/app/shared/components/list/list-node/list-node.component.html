@@ -11,10 +11,16 @@
         <span class="description">{{node.description}}</span>
       </div>
 
-      <span class="badge primary" *ngFor="let badge of node.badges">{{badge}}</span>
+      <ng-container *ngIf="selecting">
+        <span class="badge primary" *ngFor="let badge of node.badges">{{badge}}</span>
+      </ng-container>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
+      <ng-container *ngIf="!selecting">
+        <span class="badge primary" *ngFor="let badge of node.badges">{{badge}}</span>
+      </ng-container>
+
       <cas-button *ngIf="selecting"
                   [theme]="selected ? 'primary' : theme === 'dark' ? 'light' : 'dark'"
                   [shape]="'circle'" [size]="'small'"
