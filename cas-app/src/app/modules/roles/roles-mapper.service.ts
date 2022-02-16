@@ -12,7 +12,7 @@ export class RolesMapper extends ListMapper<Role> {
     return {
       label: role.name,
       description: role.description,
-      badges: [],
+      badges: [role.code],
       data: role
     }
   }
