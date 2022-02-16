@@ -21,7 +21,6 @@ export class PrivilegesTableComponent implements OnInit, OnDestroy {
   filters!: FormGroup;
 
   data: Pageable<Privilege> = {}
-
   requestParam: RequestParam = {page: 0, size: 10};
 
   columns = privilegeColumns;

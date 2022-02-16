@@ -22,7 +22,6 @@ export class OrganizationsTableComponent implements OnInit, OnDestroy {
   filters!: FormGroup;
 
   data: Pageable<Organization> = {}
-
   requestParam: RequestParam = {page: 0, size: 10};
 
   columns = organizationColumns;

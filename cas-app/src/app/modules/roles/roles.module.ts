@@ -13,7 +13,6 @@ import {RoleTileComponent} from './roles-list/role-tile/role-tile.component';
 import {ControlsModule} from "../../shared/components/controls/controls.module";
 import {IconsModule} from "../../core/icons/icons.module";
 import {ListModule} from "../../shared/components/list/list.module";
-import {RolesMapper} from "./roles-mapper.service";
 
 @NgModule({
   declarations: [
@@ -34,8 +33,7 @@ import {RolesMapper} from "./roles-mapper.service";
     ListModule
   ],
   providers: [
-    RolesService,
-    RolesMapper
+    RolesService
   ]
 })
 export class RolesModule {

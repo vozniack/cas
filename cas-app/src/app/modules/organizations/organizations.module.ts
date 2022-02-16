@@ -10,7 +10,6 @@ import {InputsModule} from "../../shared/components/inputs/inputs.module";
 import {CommonComponentsModule} from "../../shared/components/common/common-components.module";
 import {OrganizationsTreeComponent} from './organizations-tree/organizations-tree.component';
 import {TreeModule} from "../../shared/components/tree/tree.module";
-import {OrganizationsMapper} from "./organizations-mapper.service";
 import {OrganizationTileComponent} from './organizations-tree/organization-tile/organization-tile.component';
 import {ControlsModule} from "../../shared/components/controls/controls.module";
 import {IconsModule} from "../../core/icons/icons.module";
@@ -23,10 +22,7 @@ import {OrganizationUsersComponent} from './organization-view/organization-users
 import {
   OrganizationPrivilegesComponent
 } from './organization-view/organization-privileges/organization-privileges.component';
-import {PrivilegesMapper} from "../privileges/privileges-mapper.service";
 import {ListModule} from "../../shared/components/list/list.module";
-import {RolesMapper} from "../roles/roles-mapper.service";
-import {UsersMapper} from "../users/users-mapper.service";
 
 @NgModule({
   declarations: [
@@ -58,11 +54,7 @@ import {UsersMapper} from "../users/users-mapper.service";
   ],
   providers: [
     OrganizationsService,
-    OrganizationsMapper,
-    OrganizationsResolver,
-    PrivilegesMapper,
-    RolesMapper,
-    UsersMapper
+    OrganizationsResolver
   ]
 })
 export class OrganizationsModule {

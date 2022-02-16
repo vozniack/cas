@@ -3,6 +3,7 @@ import {Privilege} from "../../../privileges/privileges.interface";
 import {TreeNode} from "../../../../shared/components/tree/tree.interface";
 import {PrivilegesMapper} from "../../../privileges/privileges-mapper.service";
 import {fadeInAnimation} from "../../../../shared/animations/fade-in-animation";
+import {TreeMapper} from "../../../../shared/components/tree/tree.mapper.service";
 
 @Component({
   selector: 'cas-organization-privileges',
@@ -14,13 +15,11 @@ export class OrganizationPrivilegesComponent implements OnInit {
 
   @Input()
   privileges!: Privilege[];
-
   nodes: TreeNode<Privilege>[] = [];
 
-  constructor(private privilegesMapper: PrivilegesMapper) {
-  }
+  mapper: TreeMapper<Privilege> = new PrivilegesMapper();
 
   ngOnInit(): void {
-    this.nodes = this.privilegesMapper.mapToTreeNodes(this.privileges);
+    this.nodes = this.mapper.mapToTreeNodes(this.privileges);
   }
 }

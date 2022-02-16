@@ -11,7 +11,6 @@ import {CommonComponentsModule} from "../../shared/components/common/common-comp
 import {UsersListComponent} from './users-list/users-list.component';
 import {IconsModule} from "../../core/icons/icons.module";
 import {ListModule} from "../../shared/components/list/list.module";
-import {UsersMapper} from "./users-mapper.service";
 import {UserTileComponent} from './users-list/user-tile/user-tile.component';
 import {ControlsModule} from "../../shared/components/controls/controls.module";
 
@@ -34,8 +33,7 @@ import {ControlsModule} from "../../shared/components/controls/controls.module";
     ControlsModule
   ],
   providers: [
-    UsersService,
-    UsersMapper
+    UsersService
   ]
 })
 export class UsersModule {

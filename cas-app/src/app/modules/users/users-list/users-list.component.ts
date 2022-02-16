@@ -9,6 +9,7 @@ import {filter, takeUntil, tap} from "rxjs/operators";
 import {ViewType} from "../../../shared/model/types.interface";
 import {ListNode} from "../../../shared/components/list/list.interface";
 import {UsersMapper} from "../users-mapper.service";
+import {ListMapper} from "../../../shared/components/list/list.mapper";
 
 @Component({
   selector: 'cas-users-list',
@@ -25,13 +26,13 @@ export class UsersListComponent {
   selectedUser?: User;
 
   data: ListNode<User>[] = [];
-
   requestParam: RequestParam = {};
+
+  mapper: ListMapper<User> = new UsersMapper();
 
   ngDestroyed$ = new Subject<boolean>();
 
-  constructor(private usersService: UsersService,
-              private usersMapper: UsersMapper) {
+  constructor(private usersService: UsersService) {
     this.getUsers();
 
     this.itemSelect.pipe(
@@ -59,7 +60,7 @@ export class UsersListComponent {
 
   getUsers(): void {
     this.usersService.getUsersList(this.requestParam).pipe(
-      tap((response: User[]) => this.data = this.usersMapper.mapToListNodes(response)),
+      tap((response: User[]) => this.data = this.mapper.mapToListNodes(response)),
     ).subscribe()
   }
 }

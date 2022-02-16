@@ -9,6 +9,7 @@ import {ViewType} from "../../../shared/model/types.interface";
 import {RolesService} from "../roles.service";
 import {RolesMapper} from "../roles-mapper.service";
 import {fadeInAnimation} from "../../../shared/animations/fade-in-animation";
+import {ListMapper} from "../../../shared/components/list/list.mapper";
 
 @Component({
   selector: 'cas-roles-list',
@@ -25,13 +26,13 @@ export class RolesListComponent {
   selectedRole?: Role;
 
   data: ListNode<Role>[] = [];
-
   requestParam: RequestParam = {};
+
+  mapper: ListMapper<Role> = new RolesMapper();
 
   ngDestroyed$ = new Subject<boolean>();
 
-  constructor(private rolesService: RolesService,
-              private rolesMapper: RolesMapper) {
+  constructor(private rolesService: RolesService) {
     this.getUsers();
 
     this.itemSelect.pipe(
@@ -59,7 +60,7 @@ export class RolesListComponent {
 
   getUsers(): void {
     this.rolesService.getRolesList(this.requestParam).pipe(
-      tap((response: Role[]) => this.data = this.rolesMapper.mapToListNodes(response)),
+      tap((response: Role[]) => this.data = this.mapper.mapToListNodes(response)),
     ).subscribe()
   }
 }

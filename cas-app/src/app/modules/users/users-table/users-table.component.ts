@@ -21,7 +21,6 @@ export class UsersTableComponent {
   filters!: FormGroup;
 
   data: Pageable<User> = {}
-
   requestParam: RequestParam = {page: 0, size: 10};
 
   columns = userColumns;

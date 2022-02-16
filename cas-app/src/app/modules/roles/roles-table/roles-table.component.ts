@@ -21,7 +21,6 @@ export class RolesTableComponent implements OnInit, OnDestroy {
   filters!: FormGroup;
 
   data: Pageable<Role> = {}
-
   requestParam: RequestParam = {page: 0, size: 10};
 
   columns = roleColumns;

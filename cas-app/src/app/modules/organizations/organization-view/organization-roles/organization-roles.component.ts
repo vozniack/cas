@@ -3,6 +3,7 @@ import {Role} from "../../../roles/roles.interface";
 import {fadeInAnimation} from "../../../../shared/animations/fade-in-animation";
 import {RolesMapper} from "../../../roles/roles-mapper.service";
 import {ListNode} from "../../../../shared/components/list/list.interface";
+import {ListMapper} from "../../../../shared/components/list/list.mapper";
 
 @Component({
   selector: 'cas-organization-roles',
@@ -14,13 +15,11 @@ export class OrganizationRolesComponent implements OnInit {
 
   @Input()
   roles: Role[] = [];
-
   nodes: ListNode<Role>[] = [];
 
-  constructor(private rolesMapper: RolesMapper) {
-  }
+  mapper: ListMapper<Role> = new RolesMapper();
 
   ngOnInit(): void {
-    this.nodes = this.rolesMapper.mapToListNodes(this.roles);
+    this.nodes = this.mapper.mapToListNodes(this.roles);
   }
 }

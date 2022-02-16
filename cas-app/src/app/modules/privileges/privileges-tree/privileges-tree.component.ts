@@ -9,6 +9,7 @@ import {FormGroup} from "@angular/forms";
 import {Subject} from "rxjs";
 import {ViewType} from "../../../shared/model/types.interface";
 import {PrivilegesMapper} from "../privileges-mapper.service";
+import {TreeMapper} from "../../../shared/components/tree/tree.mapper.service";
 
 @Component({
   selector: 'cas-privileges-tree',
@@ -24,17 +25,17 @@ export class PrivilegesTreeComponent implements OnInit, OnDestroy {
   @Input()
   view!: ViewType;
 
-  data: TreeNode<Privilege>[] = [];
-
   itemSelect = new Subject<Privilege>();
   selectedPrivilege?: Privilege;
 
+  data: TreeNode<Privilege>[] = [];
   requestParam: RequestParam = {};
+
+  mapper: TreeMapper<Privilege> = new PrivilegesMapper();
 
   ngDestroyed$ = new Subject<boolean>();
 
-  constructor(private privilegesService: PrivilegesService,
-              private privilegesMapper: PrivilegesMapper) {
+  constructor(private privilegesService: PrivilegesService) {
     this.getPrivileges();
 
     this.itemSelect.pipe(
@@ -61,7 +62,7 @@ export class PrivilegesTreeComponent implements OnInit, OnDestroy {
 
   getPrivileges(): void {
     this.privilegesService.getPrivilegeParents(this.requestParam).pipe(
-      tap((response: Privilege[]) => this.data = this.privilegesMapper.mapToTreeNodes(response)),
+      tap((response: Privilege[]) => this.data = this.mapper.mapToTreeNodes(response)),
     ).subscribe()
   }
 }

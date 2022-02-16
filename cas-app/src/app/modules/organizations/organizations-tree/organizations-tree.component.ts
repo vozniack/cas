@@ -9,6 +9,7 @@ import {ViewType} from "../../../shared/model/types.interface";
 import {Organization} from "../organizations.interface";
 import {fadeInAnimation} from "../../../shared/animations/fade-in-animation";
 import {OrganizationsMapper} from "../organizations-mapper.service";
+import {TreeMapper} from "../../../shared/components/tree/tree.mapper.service";
 
 @Component({
   selector: 'cas-organizations-tree',
@@ -25,13 +26,13 @@ export class OrganizationsTreeComponent implements OnInit, OnDestroy {
   selectedOrganization?: Organization;
 
   data: TreeNode<Organization>[] = [];
-
   requestParam: RequestParam = {};
+
+  mapper: TreeMapper<Organization> = new OrganizationsMapper();
 
   ngDestroyed$ = new Subject<boolean>();
 
-  constructor(private organizationsService: OrganizationsService,
-              private organizationsMapper: OrganizationsMapper) {
+  constructor(private organizationsService: OrganizationsService) {
     this.getOrganizations();
 
     this.itemSelect.pipe(
@@ -57,7 +58,7 @@ export class OrganizationsTreeComponent implements OnInit, OnDestroy {
 
   getOrganizations(): void {
     this.organizationsService.getOrganizationParents(this.requestParam).pipe(
-      tap((response: Organization[]) => this.data = this.organizationsMapper.mapToTreeNodes(response)),
+      tap((response: Organization[]) => this.data = this.mapper.mapToTreeNodes(response)),
     ).subscribe()
   }
 }
