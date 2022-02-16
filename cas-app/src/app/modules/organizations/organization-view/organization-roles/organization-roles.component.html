@@ -1,0 +1,15 @@
+<div class="standard-container" fxLayout="column" fxLayoutGap="24px" @fadeInAnimation>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+      <i-feather class="icon" name="lock"></i-feather>
+      <span class="title">Roles</span>
+    </div>
+
+    <span class="badge primary">{{roles?.length}}</span>
+  </div>
+
+  <div fxLayout="column" fxLayoutGap="16px">
+    <cas-list [nodes]="nodes" [theme]="'dark'" [selecting]="false"></cas-list>
+  </div>
+</div>

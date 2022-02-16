@@ -9,6 +9,7 @@ import {FormGroup} from "@angular/forms";
 import {ViewType} from "../../../shared/model/types.interface";
 import {filter, takeUntil, tap} from "rxjs/operators";
 import {OrganizationsService} from "../organizations.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'cas-organizations-table',
@@ -19,7 +20,7 @@ export class OrganizationsTableComponent implements OnInit, OnDestroy {
 
   @Input()
   filters!: FormGroup;
-  
+
   data: Pageable<Organization> = {}
 
   requestParam: RequestParam = {page: 0, size: 10};
@@ -29,7 +30,8 @@ export class OrganizationsTableComponent implements OnInit, OnDestroy {
 
   ngDestroyed$ = new Subject<boolean>();
 
-  constructor(private organizationsService: OrganizationsService) {
+  constructor(private organizationsService: OrganizationsService,
+              private router: Router) {
     this.getOrganizations();
   }
 
@@ -63,5 +65,14 @@ export class OrganizationsTableComponent implements OnInit, OnDestroy {
   }
 
   onActionActive(tableAction: TableAction): void {
+    switch (tableAction.name) {
+      case 'SHOW':
+        this.showOrganization(tableAction.data);
+        break;
+    }
+  }
+
+  showOrganization(organization: Organization): void {
+    this.router.navigate([`/organizations/${organization.id}`]).then();
   }
 }

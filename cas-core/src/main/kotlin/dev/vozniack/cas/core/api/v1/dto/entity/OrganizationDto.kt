@@ -22,5 +22,9 @@ class OrganizationDto(
     val createdAt: LocalDateTime?,
     val updatedAt: LocalDateTime?,
 
+    val roles: List<RoleDto>? = listOf(),
+    val users: List<UserDto>? = listOf(),
+    val privileges: List<PrivilegeDto>? = listOf(),
+
     val details: OrganizationDetailsDto? = null
 )

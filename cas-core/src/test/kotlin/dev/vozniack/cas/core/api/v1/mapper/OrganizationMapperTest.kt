@@ -3,6 +3,9 @@ package dev.vozniack.cas.core.api.v1.mapper
 import dev.vozniack.cas.core.CasCoreAbstractTest
 import dev.vozniack.cas.core.api.v1.dto.entity.OrganizationDto
 import dev.vozniack.cas.core.entity.Organization
+import dev.vozniack.cas.core.entity.Privilege
+import dev.vozniack.cas.core.entity.Role
+import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.repository.OrganizationRepository
 import dev.vozniack.cas.core.types.ScopeType
 import org.assertj.core.api.Assertions.assertThat
@@ -21,9 +24,13 @@ class OrganizationMapperTest @Autowired constructor(
         val parentOrganization = Organization(id = UUID.randomUUID(), scope = ScopeType.EXTERNAL, name = "Parent")
         val childOrganization = Organization(id = UUID.randomUUID(), scope = ScopeType.EXTERNAL, name = "child")
 
-        val organization = Organization(id = UUID.randomUUID(), scope = ScopeType.EXTERNAL, name = "Organization",
-            code = "ORG", description = "Organization description", parent = parentOrganization,
-            organizations = listOf(childOrganization))
+        val id = UUID.randomUUID()
+        val organization = Organization(id = id, scope = ScopeType.EXTERNAL, name = "Organization",
+            code = "ORG", description = "Organization description",
+            parent = parentOrganization, organizations = listOf(childOrganization),
+            roles = listOf(Role(name = "Role", organization = Organization(id = id))),
+            users = listOf(User(firstName = "User", organization = Organization(id = id))),
+            privileges = listOf(Privilege(name = "Privilege", organization = Organization(id = id))))
 
         val organizationDto = organizationMapper.mapToDto(organization)
 
@@ -34,6 +41,9 @@ class OrganizationMapperTest @Autowired constructor(
         assertThat(organizationDto.description).isEqualTo(organization.description)
         assertThat(organizationDto.parentId).isEqualTo(parentOrganization.id)
         assertThat(organizationDto.organizations!![0].id).isEqualTo(childOrganization.id)
+        assertThat(organizationDto.roles!![0].name).isEqualTo("Role")
+        assertThat(organizationDto.users!![0].firstName).isEqualTo("User")
+        assertThat(organizationDto.privileges!![0].name).isEqualTo("Privilege")
         assertThat(organizationDto.createdAt).isEqualTo(organization.createdAt)
         assertThat(organizationDto.updatedAt).isEqualTo(organization.updatedAt)
     }

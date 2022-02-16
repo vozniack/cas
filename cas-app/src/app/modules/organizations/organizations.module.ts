@@ -14,6 +14,19 @@ import {OrganizationsMapper} from "./organizations-mapper.service";
 import {OrganizationTileComponent} from './organizations-tree/organization-tile/organization-tile.component';
 import {ControlsModule} from "../../shared/components/controls/controls.module";
 import {IconsModule} from "../../core/icons/icons.module";
+import {OrganizationComponent} from './organization/organization.component';
+import {OrganizationsResolver} from "./organizations.resolver";
+import {OrganizationViewComponent} from './organization-view/organization-view.component';
+import {OrganizationInfoComponent} from './organization-view/organization-info/organization-info.component';
+import {OrganizationRolesComponent} from './organization-view/organization-roles/organization-roles.component';
+import {OrganizationUsersComponent} from './organization-view/organization-users/organization-users.component';
+import {
+  OrganizationPrivilegesComponent
+} from './organization-view/organization-privileges/organization-privileges.component';
+import {PrivilegesMapper} from "../privileges/privileges-mapper.service";
+import {ListModule} from "../../shared/components/list/list.module";
+import {RolesMapper} from "../roles/roles-mapper.service";
+import {UsersMapper} from "../users/users-mapper.service";
 
 @NgModule({
   declarations: [
@@ -21,6 +34,12 @@ import {IconsModule} from "../../core/icons/icons.module";
     OrganizationsTableComponent,
     OrganizationsTreeComponent,
     OrganizationTileComponent,
+    OrganizationComponent,
+    OrganizationViewComponent,
+    OrganizationInfoComponent,
+    OrganizationRolesComponent,
+    OrganizationUsersComponent,
+    OrganizationPrivilegesComponent,
   ],
   imports: [
     CommonModule,
@@ -31,11 +50,16 @@ import {IconsModule} from "../../core/icons/icons.module";
     CommonComponentsModule,
     TreeModule,
     ControlsModule,
-    IconsModule
+    IconsModule,
+    ListModule
   ],
   providers: [
     OrganizationsService,
-    OrganizationsMapper
+    OrganizationsMapper,
+    OrganizationsResolver,
+    PrivilegesMapper,
+    RolesMapper,
+    UsersMapper
   ]
 })
 export class OrganizationsModule {

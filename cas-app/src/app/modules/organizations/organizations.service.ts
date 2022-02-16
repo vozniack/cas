@@ -36,4 +36,8 @@ export class OrganizationsService {
   getInternalOrganization(): Observable<Organization> {
     return this.httpClient.get<Organization>(`${this.baseUrl}/internal`);
   }
+
+  getOrganization(id: string): Observable<Organization> {
+    return this.httpClient.get<Organization>(`${this.baseUrl}/${id}`)
+  }
 }

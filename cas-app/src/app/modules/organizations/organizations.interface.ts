@@ -1,5 +1,8 @@
 import {ScopeType} from "../../shared/model/types.interface";
 import {Auditable} from "../../shared/model/auditable.interface";
+import {Role} from "../roles/roles.interface";
+import {User} from "../users/users.interface";
+import {Privilege} from "../privileges/privileges.interface";
 
 export interface Organization extends Auditable {
 
@@ -16,6 +19,12 @@ export interface Organization extends Auditable {
   parentId: string;
 
   organizations: Organization[];
+
+  roles: Role[];
+
+  users: User[];
+
+  privileges: Privilege[];
 
   details: OrganizationDetails;
 }
