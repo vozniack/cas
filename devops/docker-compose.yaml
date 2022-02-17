@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: cas-admin
+      POSTGRES_PASSWORD: cas123!
+      POSTGRES_DB: cas-database
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.2
+    environment:
+      - "discovery.type=single-node"
+    networks:
+      - cas-network
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:7.14.2
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    networks:
+      - cas-network
+    depends_on:
+      - elasticsearch
+    ports:
+      - "5601:5601"
+
+networks:
+  cas-network:
+    driver: bridge

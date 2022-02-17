@@ -6,9 +6,9 @@ spring:
     name: cas-core
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: root
+    url: jdbc:postgresql://localhost:5432/cas-database
+    username: cas-admin
+    password: cas123!
 
   jpa:
     hibernate:
@@ -20,9 +20,9 @@ spring:
         default-page-size: 64
 
   flyway:
-    url: jdbc:postgresql://localhost:5432/postgres
-    user: postgres
-    password: root
+    url: jdbc:postgresql://localhost:5432/cas-database
+    user: cas-admin
+    password: cas123!
     table: schema_version
 
 cas:

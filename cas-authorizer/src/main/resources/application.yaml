@@ -6,9 +6,9 @@ spring:
     name: cas-authorizer
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: root
+    url: jdbc:postgresql://localhost:5432/cas-database
+    username: cas-admin
+    password: cas123!
 
   jpa:
     hibernate:
