@@ -1,37 +1,37 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from "@ngrx/store";
-import {NavigationState} from "../../shared/store/navigation/navigation.state";
-import {SELECT_NAVIGATION_STATE} from "../../shared/store/navigation/navigation.selectors";
+import {AppState} from "../../store/app/app.state";
+import {SELECT_APP_STATE} from "../../store/app/app.selectors";
 import {tap} from "rxjs/operators";
-import {UserState} from "../../shared/store/user/user.state";
-import {ACTION_USER_LOGOUT} from "../../shared/store/user/user.actions";
 import {fadeInAnimation} from "../../shared/animations/fade-in-animation";
+import {fadeOutAnimation} from "../../shared/animations/fade-out-animation";
+import {ACTION_EDIT_RESOURCE, ACTION_USER_LOGOUT} from "../../store/app/app.actions";
 
 @Component({
   selector: 'cas-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
-  animations: [fadeInAnimation]
+  animations: [fadeInAnimation, fadeOutAnimation]
 })
 export class ToolbarComponent implements OnInit {
 
-  title!: string;
-  subtitle!: string;
+  state!: AppState;
 
-  constructor(private navigationStore: Store<NavigationState>, private userStore: Store<UserState>) {
+  constructor(private store: Store) {
   }
 
   ngOnInit(): void {
-    this.navigationStore.pipe(
-      select(SELECT_NAVIGATION_STATE),
-      tap((state: any) => {
-        this.title = state.title;
-        this.subtitle = state.subtitle;
-      })
+    this.store.pipe(
+      select(SELECT_APP_STATE),
+      tap((state: AppState) => this.state = state)
     ).subscribe();
   }
 
   logout(): void {
-    this.userStore.dispatch(ACTION_USER_LOGOUT());
+    this.store.dispatch(ACTION_USER_LOGOUT());
+  }
+
+  edit(): void {
+    this.store.dispatch(ACTION_EDIT_RESOURCE({resource: this.state.resource}))
   }
 }

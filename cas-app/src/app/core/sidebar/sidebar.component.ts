@@ -1,11 +1,10 @@
 import {Component} from '@angular/core';
-import {lowerNavigationStates, upperNavigationStates} from "../../shared/store/navigation/navigation.const";
+import {lowerPageStates, upperPageStates} from "../../store/app/app.const";
 import {fadeInAnimation} from "../../shared/animations/fade-in-animation";
 import {select, Store} from "@ngrx/store";
-import {UserState} from "../../shared/store/user/user.state";
-import {SELECT_USER_TOKEN} from "../../shared/store/user/user.selectors";
 import {tap} from "rxjs/operators";
 import {hasRole} from "../../shared/utils/jwt.util";
+import {SELECT_USER_TOKEN} from "../../store/app/app.selectors";
 
 @Component({
   selector: 'cas-sidebar',
@@ -15,12 +14,12 @@ import {hasRole} from "../../shared/utils/jwt.util";
 })
 export class SidebarComponent {
 
-  upperNavigationStates = upperNavigationStates;
-  lowerNavigationStates = lowerNavigationStates;
+  upperNavigationStates = upperPageStates;
+  lowerNavigationStates = lowerPageStates;
 
   isAdmin = false;
 
-  constructor(private store: Store<UserState>) {
+  constructor(private store: Store) {
     this.store.pipe(
       select(SELECT_USER_TOKEN),
       tap((token: string) => this.isAdmin = hasRole(token, 'ADMIN')),

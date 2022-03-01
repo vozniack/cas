@@ -1,13 +1,1 @@
-<div fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="24px">
-
-  <div fxLayout="column" fxLayoutGap="24px" fxFlex="30">
-    <cas-organization-info [organization]="organization"></cas-organization-info>
-    <cas-organization-roles [roles]="organization.roles"></cas-organization-roles>
-    <cas-organization-users [users]="organization.users"></cas-organization-users>
-  </div>
-
-  <div fxLayout="column" fxLayoutGap="24px" fxFlex>
-    <cas-organization-privileges [privileges]="organization.privileges"></cas-organization-privileges>
-  </div>
-
-</div>
+<cas-organization [organization]="organization"></cas-organization>

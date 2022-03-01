@@ -4,16 +4,16 @@
     <i-feather class="logo"></i-feather>
 
     <div class="sidebar-navigation-container" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="4px">
-      <ng-container *ngFor="let navigationState of upperNavigationStates">
-        <cas-sidebar-link [navigationState]="navigationState"></cas-sidebar-link>
+      <ng-container *ngFor="let pageState of upperNavigationStates">
+        <cas-sidebar-link [pageState]="pageState"></cas-sidebar-link>
       </ng-container>
     </div>
   </div>
 
   <div fxLayout="column" fxLayoutAlign="end center" fxLayoutGap="64px" *ngIf="isAdmin">
     <div class="sidebar-navigation-container" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="4px">
-      <ng-container *ngFor="let navigationState of lowerNavigationStates">
-        <cas-sidebar-link [navigationState]="navigationState"></cas-sidebar-link>
+      <ng-container *ngFor="let pageState of lowerNavigationStates">
+        <cas-sidebar-link [pageState]="pageState"></cas-sidebar-link>
       </ng-container>
     </div>
   </div>

@@ -8,15 +8,16 @@ import {SidebarLinkComponent} from './core/sidebar/sidebar-link/sidebar-link.com
 import {ToolbarComponent} from "./core/toolbar/toolbar.component";
 import {IconsModule} from "./core/icons/icons.module";
 import {MetaReducer, StoreModule} from "@ngrx/store";
-import {navigationReducer} from "./shared/store/navigation/navigation.reducers";
-import {userReducer} from "./shared/store/user/user.reducers";
+import {appReducer} from "./store/app/app.reducers";
 import {LoginComponent} from './core/login/login.component';
 import {InputsModule} from "./shared/components/inputs/inputs.module";
 import {ControlsModule} from "./shared/components/controls/controls.module";
-import {persistState} from "./shared/store/meta/persist.metareducer";
+import {persistState} from "./store/meta/persist.metareducer";
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AuthModule} from "./core/auth/auth.module";
+import {EffectsModule} from "@ngrx/effects";
+import {AppEffects} from "./store/app/app.effects";
 
 @NgModule({
   declarations: [
@@ -36,13 +37,8 @@ import {AuthModule} from "./core/auth/auth.module";
     IconsModule,
     InputsModule,
     ControlsModule,
-    StoreModule.forRoot({
-        navigation: navigationReducer,
-        user: userReducer
-      },
-      {
-        metaReducers: [persistState as MetaReducer]
-      }),
+    StoreModule.forRoot({app: appReducer}, {metaReducers: [persistState as MetaReducer]}),
+    EffectsModule.forRoot([AppEffects]),
   ],
   bootstrap: [AppComponent]
 })

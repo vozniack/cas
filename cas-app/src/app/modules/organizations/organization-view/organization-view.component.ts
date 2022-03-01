@@ -1,5 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 import {Organization} from "../organizations.interface";
+import {Store} from "@ngrx/store";
+import {ACTION_SET_RESOURCE} from "../../../store/app/app.actions";
 
 @Component({
   selector: 'cas-organization-view',
@@ -8,6 +11,11 @@ import {Organization} from "../organizations.interface";
 })
 export class OrganizationViewComponent {
 
-  @Input()
-  organization!: Organization
+  organization!: Organization;
+
+  constructor(private store: Store,
+              private activatedRoute: ActivatedRoute) {
+    this.organization = this.activatedRoute.snapshot.data['organization'];
+    this.store.dispatch(ACTION_SET_RESOURCE({resource: {name: 'organizations', id: this.organization.id}}));
+  }
 }

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from "@ngrx/store";
-import {UserState} from "./shared/store/user/user.state";
 import {tap} from "rxjs/operators";
-import {SELECT_USER_STATE} from "./shared/store/user/user.selectors";
 import {Router} from "@angular/router";
+import {UserState} from "./store/app/app.state";
+import {SELECT_USER_STATE} from "./store/app/app.selectors";
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
 
   logged!: boolean;
 
-  constructor(private store: Store<UserState>, private router: Router) {
+  constructor(private store: Store, private router: Router) {
   }
 
   ngOnInit(): void {

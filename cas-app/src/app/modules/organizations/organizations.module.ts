@@ -13,16 +13,17 @@ import {TreeModule} from "../../shared/components/tree/tree.module";
 import {OrganizationTileComponent} from './organizations-tree/organization-tile/organization-tile.component';
 import {ControlsModule} from "../../shared/components/controls/controls.module";
 import {IconsModule} from "../../core/icons/icons.module";
-import {OrganizationComponent} from './organization/organization.component';
-import {OrganizationsResolver} from "./organizations.resolver";
 import {OrganizationViewComponent} from './organization-view/organization-view.component';
-import {OrganizationInfoComponent} from './organization-view/organization-info/organization-info.component';
-import {OrganizationRolesComponent} from './organization-view/organization-roles/organization-roles.component';
-import {OrganizationUsersComponent} from './organization-view/organization-users/organization-users.component';
+import {OrganizationsResolver} from "./organizations.resolver";
+import {OrganizationComponent} from './organization/organization.component';
+import {OrganizationInfoComponent} from './organization/organization-info/organization-info.component';
+import {OrganizationRolesComponent} from './organization/organization-roles/organization-roles.component';
+import {OrganizationUsersComponent} from './organization/organization-users/organization-users.component';
 import {
   OrganizationPrivilegesComponent
-} from './organization-view/organization-privileges/organization-privileges.component';
+} from './organization/organization-privileges/organization-privileges.component';
 import {ListModule} from "../../shared/components/list/list.module";
+import {OrganizationEditComponent} from './organization-edit/organization-edit.component';
 
 @NgModule({
   declarations: [
@@ -30,15 +31,16 @@ import {ListModule} from "../../shared/components/list/list.module";
     OrganizationsTableComponent,
     OrganizationsTreeComponent,
     OrganizationTileComponent,
-    OrganizationComponent,
     OrganizationViewComponent,
+    OrganizationComponent,
     OrganizationInfoComponent,
     OrganizationRolesComponent,
     OrganizationUsersComponent,
     OrganizationPrivilegesComponent,
+    OrganizationEditComponent,
   ],
   exports: [
-    OrganizationViewComponent
+    OrganizationComponent
   ],
   imports: [
     CommonModule,

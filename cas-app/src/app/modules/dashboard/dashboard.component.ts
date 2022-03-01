@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
-import {NavigationState} from "../../shared/store/navigation/navigation.state";
 import {Store} from "@ngrx/store";
-import {dashboardState} from "../../shared/store/navigation/navigation.const";
-import {ACTION_SET_NAVIGATION} from "../../shared/store/navigation/navigation.actions";
+import {dashboardPageState} from "../../store/app/app.const";
+import {ACTION_SET_NAVIGATION} from "../../store/app/app.actions";
 
 @Component({
   selector: 'cas-dashboard',
@@ -11,7 +10,7 @@ import {ACTION_SET_NAVIGATION} from "../../shared/store/navigation/navigation.ac
 })
 export class DashboardComponent {
 
-  constructor(private store: Store<NavigationState>) {
-    this.store.dispatch(ACTION_SET_NAVIGATION({navigationState: dashboardState}))
+  constructor(private store: Store) {
+    this.store.dispatch(ACTION_SET_NAVIGATION({page: dashboardPageState}))
   }
 }

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {NavigationState} from "../../../shared/store/navigation/navigation.state";
+import {PageState} from "../../../store/app/app.state";
 
 @Component({
   selector: 'cas-sidebar-link',
@@ -9,5 +9,5 @@ import {NavigationState} from "../../../shared/store/navigation/navigation.state
 export class SidebarLinkComponent {
 
   @Input()
-  navigationState!: NavigationState;
+  pageState!: PageState;
 }

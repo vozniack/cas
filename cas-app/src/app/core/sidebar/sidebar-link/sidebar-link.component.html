@@ -1,9 +1,9 @@
 <div class="sidebar-link" fxLayout="row" fxLayoutAlign="start center"
-     [routerLink]="navigationState.link" [routerLinkActive]="'active'"
+     [routerLink]="pageState.link" [routerLinkActive]="'active'"
      [routerLinkActiveOptions]="{ exact: true }">
   <div class="border"></div>
 
   <div class="navigation-link">
-    <i-feather class="icon" name="{{navigationState.icon}}"></i-feather>
+    <i-feather class="icon" name="{{pageState.icon}}"></i-feather>
   </div>
 </div>

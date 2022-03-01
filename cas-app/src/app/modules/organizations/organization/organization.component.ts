@@ -1,5 +1,4 @@
-import {Component} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {Component, Input} from '@angular/core';
 import {Organization} from "../organizations.interface";
 
 @Component({
@@ -9,9 +8,6 @@ import {Organization} from "../organizations.interface";
 })
 export class OrganizationComponent {
 
-  organization!: Organization;
-
-  constructor(private activatedRoute: ActivatedRoute) {
-    this.organization = this.activatedRoute.snapshot.data['organization'];
-  }
+  @Input()
+  organization!: Organization
 }
