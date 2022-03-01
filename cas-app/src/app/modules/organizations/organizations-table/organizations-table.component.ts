@@ -4,12 +4,10 @@ import {Organization} from "../organizations.interface";
 import {organizationActions, organizationColumns} from "./organizations-table.const";
 import {RequestParam} from "../../../shared/model/request.interface";
 import {Subject} from "rxjs";
-import {TableAction} from "../../../shared/components/table/table.interface";
 import {FormGroup} from "@angular/forms";
 import {ViewType} from "../../../shared/model/types.interface";
 import {filter, takeUntil, tap} from "rxjs/operators";
 import {OrganizationsService} from "../organizations.service";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'cas-organizations-table',
@@ -29,8 +27,7 @@ export class OrganizationsTableComponent implements OnInit, OnDestroy {
 
   ngDestroyed$ = new Subject<boolean>();
 
-  constructor(private organizationsService: OrganizationsService,
-              private router: Router) {
+  constructor(private organizationsService: OrganizationsService) {
     this.getOrganizations();
   }
 
@@ -61,17 +58,5 @@ export class OrganizationsTableComponent implements OnInit, OnDestroy {
   onRequestParamChange(requestParam: RequestParam): void {
     this.requestParam = requestParam;
     this.getOrganizations();
-  }
-
-  onActionActive(tableAction: TableAction): void {
-    switch (tableAction.name) {
-      case 'SHOW':
-        this.showOrganization(tableAction.data);
-        break;
-    }
-  }
-
-  showOrganization(organization: Organization): void {
-    this.router.navigate([`/organizations/${organization.id}`]).then();
   }
 }

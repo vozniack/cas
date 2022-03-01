@@ -2,7 +2,8 @@ import {Component, Input} from '@angular/core';
 import {Organization} from "../../organizations.interface";
 import {Subject} from "rxjs";
 import {fadeInAnimation} from "../../../../shared/animations/fade-in-animation";
-import {Router} from "@angular/router";
+import {Store} from "@ngrx/store";
+import {ACTION_VIEW_RESOURCE} from "../../../../store/app/app.actions";
 
 @Component({
   selector: 'cas-organization-tile',
@@ -18,7 +19,7 @@ export class OrganizationTileComponent {
   @Input()
   itemSelect!: Subject<any>;
 
-  constructor(private router: Router) {
+  constructor(private store: Store) {
   }
 
   closeView(): void {
@@ -26,6 +27,6 @@ export class OrganizationTileComponent {
   }
 
   showOrganization(): void {
-    this.router.navigate([`/organizations/${this.organization.id}`]).then();
+    this.store.dispatch(ACTION_VIEW_RESOURCE({resource: {name: 'organizations', id: this.organization.id}}))
   }
 }

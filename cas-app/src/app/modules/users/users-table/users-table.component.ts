@@ -4,7 +4,6 @@ import {Pageable} from "../../../shared/model/pageable.interface";
 import {RequestParam} from "../../../shared/model/request.interface";
 import {Subject} from "rxjs";
 import {User} from "../users.interface";
-import {TableAction} from "../../../shared/components/table/table.interface";
 import {FormGroup} from "@angular/forms";
 import {UsersService} from "../users.service";
 import {filter, takeUntil, tap} from "rxjs/operators";
@@ -59,8 +58,5 @@ export class UsersTableComponent {
   onRequestParamChange(requestParam: RequestParam): void {
     this.requestParam = requestParam;
     this.getUsers();
-  }
-
-  onActionActive(tableAction: TableAction): void {
   }
 }

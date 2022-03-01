@@ -4,7 +4,6 @@ import {Pageable} from "../../../shared/model/pageable.interface";
 import {RequestParam} from "../../../shared/model/request.interface";
 import {Subject} from "rxjs";
 import {Role} from "../roles.interface";
-import {TableAction} from "../../../shared/components/table/table.interface";
 import {filter, takeUntil, tap} from "rxjs/operators";
 import {FormGroup} from "@angular/forms";
 import {RolesService} from "../roles.service";
@@ -59,8 +58,5 @@ export class RolesTableComponent implements OnInit, OnDestroy {
   onRequestParamChange(requestParam: RequestParam): void {
     this.requestParam = requestParam;
     this.getRoles();
-  }
-
-  onActionActive(tableAction: TableAction): void {
   }
 }

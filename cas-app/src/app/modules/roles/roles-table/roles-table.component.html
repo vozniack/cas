@@ -2,6 +2,6 @@
            [columns]="columns"
            [actions]="actions"
            [requestParam]="requestParam"
-           (requestParamChange)="onRequestParamChange($event)"
-           (actionActive)="onActionActive($event)">
+           [resourceName]="'roles'"
+           (requestParamChange)="onRequestParamChange($event)">
 </cas-table>

@@ -4,11 +4,12 @@ import {Router} from "@angular/router";
 import {map, tap} from "rxjs/operators";
 import {
   ACTION_EDIT_RESOURCE,
-  ACTION_EDIT_RESOURCE_REDIRECTED,
   ACTION_ENABLE_EDIT,
+  ACTION_RESOURCE_REDIRECTED,
   ACTION_SET_RESOURCE,
   ACTION_USER_LOGIN,
-  ACTION_USER_LOGOUT
+  ACTION_USER_LOGOUT,
+  ACTION_VIEW_RESOURCE
 } from "./app.actions";
 import {ResourceState} from "./app.state";
 
@@ -36,12 +37,22 @@ export class AppEffects {
     )
   )
 
+  viewResource$ = createEffect(() => {
+      return this.actions.pipe(
+        ofType(ACTION_VIEW_RESOURCE.type),
+        map((action: any) => action.resource),
+        tap((state: ResourceState) => this.router.navigate([`/${state.name}/${state.id}`])),
+        map(() => ACTION_RESOURCE_REDIRECTED())
+      );
+    }
+  )
+
   editResource$ = createEffect(() => {
       return this.actions.pipe(
         ofType(ACTION_EDIT_RESOURCE.type),
         map((action: any) => action.resource),
         tap((state: ResourceState) => this.router.navigate([`/${state.name}/${state.id}/edit`])),
-        map(() => ACTION_EDIT_RESOURCE_REDIRECTED())
+        map(() => ACTION_RESOURCE_REDIRECTED())
       );
     }
   )

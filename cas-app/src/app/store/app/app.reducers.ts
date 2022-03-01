@@ -8,7 +8,7 @@ import {
   ACTION_USER_LOGIN,
   ACTION_USER_LOGOUT
 } from "./app.actions";
-import {emptyActions, initialAppState} from "./app.const";
+import {emptyActions, emptyResource, initialAppState} from "./app.const";
 
 const initialState = initialAppState();
 
@@ -29,6 +29,7 @@ function onSetNavigation(state: AppState, page: PageState) {
   return {
     ...state,
     page: page,
+    resource: emptyResource,
     actions: emptyActions
   }
 }

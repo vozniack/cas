@@ -7,6 +7,8 @@ import {RequestParam, SortDirection} from "../../model/request.interface";
 import {FormControl} from "@angular/forms";
 import {tap} from "rxjs/operators";
 import {Subject} from "rxjs";
+import {ACTION_EDIT_RESOURCE, ACTION_VIEW_RESOURCE} from "../../../store/app/app.actions";
+import {Store} from "@ngrx/store";
 
 @Component({
   selector: 'cas-table',
@@ -35,6 +37,9 @@ export class TableComponent {
   searchFormControl?: FormControl;
 
   @Input()
+  resourceName!: 'organizations' | 'users' | 'roles' | 'privileges';
+
+  @Input()
   scopeFilter = true;
 
   @Input()
@@ -55,6 +60,9 @@ export class TableComponent {
   totalPages!: number;
 
   columnType = ColumnType;
+
+  constructor(private store: Store) {
+  }
 
   /* Changes */
 
@@ -90,7 +98,24 @@ export class TableComponent {
   }
 
   onActionActive(tableAction: TableAction, data: any): void {
-    this.actionActive.emit({...tableAction, data: data})
+    if (tableAction.custom) {
+      this.actionActive.emit({...tableAction, data: data})
+    } else {
+      switch (tableAction.name) {
+        case 'VIEW':
+          this.store.dispatch(ACTION_VIEW_RESOURCE({resource: {name: this.resourceName, id: data.id}}))
+          break;
+
+        case 'EDIT':
+          this.store.dispatch(ACTION_EDIT_RESOURCE({resource: {name: this.resourceName, id: data.id}}))
+          break;
+
+        default:
+          this.actionActive.emit({...tableAction, data: data})
+          break;
+      }
+    }
+
   }
 
   /* Getter */

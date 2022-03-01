@@ -2,7 +2,6 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Pageable} from "../../../shared/model/pageable.interface";
 import {RequestParam} from "../../../shared/model/request.interface";
 import {privilegeActions, privilegeColumns} from "./privileges-table.const";
-import {TableAction} from "../../../shared/components/table/table.interface";
 import {Privilege} from "../privileges.interface";
 import {FormGroup} from "@angular/forms";
 import {filter, takeUntil, tap} from "rxjs/operators";
@@ -35,7 +34,7 @@ export class PrivilegesTableComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.filters.valueChanges.pipe(
       takeUntil(this.ngDestroyed$),
-      filter((filters:any) => filters.view === ViewType.TABLE),
+      filter((filters: any) => filters.view === ViewType.TABLE),
       tap((filters: any) => {
         this.requestParam.page = 0;
         this.requestParam.search = filters.search;
@@ -59,8 +58,5 @@ export class PrivilegesTableComponent implements OnInit, OnDestroy {
   onRequestParamChange(requestParam: RequestParam): void {
     this.requestParam = requestParam;
     this.getPrivileges();
-  }
-
-  onActionActive(tableAction: TableAction): void {
   }
 }

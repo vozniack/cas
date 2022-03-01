@@ -23,12 +23,16 @@ export const ACTION_SET_RESOURCE = createAction(
   '[App][Resource] Set resource state', props<{ resource: ResourceState }>()
 );
 
+export const ACTION_VIEW_RESOURCE = createAction(
+  '[App][Resource] Redirect to resource view page', props<{ resource: ResourceState }>()
+);
+
 export const ACTION_EDIT_RESOURCE = createAction(
   '[App][Resource] Redirect to resource edit page', props<{ resource: ResourceState }>()
 );
 
-export const ACTION_EDIT_RESOURCE_REDIRECTED = createAction(
-  '[App][Resource] Redirected to resource edit page'
+export const ACTION_RESOURCE_REDIRECTED = createAction(
+  '[App][Resource] Redirected to resource page'
 );
 
 /* Actions */

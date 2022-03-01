@@ -29,11 +29,13 @@ export const organizationActions: TableAction[] = [
   {
     name: 'EDIT',
     icon: 'edit',
-    theme: 'primary'
+    theme: 'primary',
+    custom: false
   },
   {
-    name: 'SHOW',
+    name: 'VIEW',
     icon: 'eye',
-    theme: 'secondary'
+    theme: 'secondary',
+    custom: false
   }
 ]

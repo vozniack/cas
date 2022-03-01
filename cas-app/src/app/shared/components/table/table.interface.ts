@@ -24,11 +24,13 @@ export type BadgeType =
 
 export interface TableAction {
 
-  name: string;
+  name: 'EDIT' | 'VIEW' | string;
 
   icon: string;
 
   theme: 'primary' | 'secondary' | 'dark';
 
   data?: any;
+
+  custom: boolean;
 }
