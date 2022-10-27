@@ -69,7 +69,7 @@ export class TableComponent {
   onSearchChange(): void {
     this.searchFormControl?.valueChanges.pipe(
       tap((search: string) => this.requestParamChange.emit({...this.requestParam, page: 0, search: search})),
-      tap(() => this.paginationReset.next())
+      tap(() => this.paginationReset.next(undefined))
     ).subscribe()
   }
 

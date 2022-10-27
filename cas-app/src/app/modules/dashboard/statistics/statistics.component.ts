@@ -12,7 +12,7 @@ import {fadeInAnimation} from "../../../shared/animations/fade-in-animation";
 })
 export class StatisticsComponent {
 
-  statistics!: DashboardStatistics;
+  statistics?: DashboardStatistics;
 
   constructor(private dashboardService: DashboardService) {
     this.dashboardService.getDashboardStatistics().pipe(

@@ -11,8 +11,8 @@
 
           <i-feather name="arrow-up" class="icon"
                      @fadeInAnimation @fadeOutAnimation
-                     [class.inverted]="requestParam?.sort?.direction === 'DESC'"
-                     *ngIf="requestParam?.sort?.field === column.field">
+                     [class.inverted]="requestParam.sort?.direction === 'DESC'"
+                     *ngIf="requestParam.sort?.field === column.field">
           </i-feather>
         </div>
       </th>
