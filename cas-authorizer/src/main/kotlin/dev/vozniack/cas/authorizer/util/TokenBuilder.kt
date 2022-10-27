@@ -5,9 +5,9 @@ import dev.vozniack.cas.authorizer.entity.user.Role
 import dev.vozniack.cas.authorizer.entity.user.User
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
-import org.springframework.stereotype.Component
 import java.nio.charset.StandardCharsets
-import java.util.*
+import java.util.Date
+import org.springframework.stereotype.Component
 
 @Component
 class TokenBuilder {

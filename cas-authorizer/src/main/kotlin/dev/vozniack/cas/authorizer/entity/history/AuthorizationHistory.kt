@@ -4,7 +4,7 @@ import dev.vozniack.cas.authorizer.types.AuthorizationHistoryStatus
 import org.springframework.data.annotation.Id
 import org.springframework.data.elasticsearch.annotations.Document
 import java.time.LocalDateTime
-import java.util.*
+import java.util.UUID
 
 @Document(indexName = "authorization_history")
 data class AuthorizationHistory(
