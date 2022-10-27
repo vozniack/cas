@@ -4,9 +4,7 @@ import java.util.UUID
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.JoinTable
-import javax.persistence.ManyToMany
+import javax.persistence.OneToMany
 import javax.persistence.Table
 
 @Entity
@@ -19,11 +17,6 @@ class Role(
     var name: String = "",
     var code: String = "",
 
-    @ManyToMany
-    @JoinTable(
-        name = "role_privileges",
-        joinColumns = [JoinColumn(name = "role_id")],
-        inverseJoinColumns = [JoinColumn(name = "privilege_id")]
-    )
-    var privileges: List<Privilege> = listOf(),
+    @OneToMany(mappedBy = "role")
+    var privileges: List<RolePrivilege> = listOf(),
 )

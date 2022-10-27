@@ -3,15 +3,15 @@ package dev.vozniack.cas.core.entity
 import dev.vozniack.cas.core.entity.common.Auditable
 import dev.vozniack.cas.core.types.ScopeType
 import java.util.UUID
+import javax.persistence.CascadeType
 import javax.persistence.Entity
 import javax.persistence.EnumType
 import javax.persistence.Enumerated
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.JoinColumn
-import javax.persistence.JoinTable
-import javax.persistence.ManyToMany
 import javax.persistence.ManyToOne
+import javax.persistence.OneToMany
 import javax.persistence.Table
 
 @Entity
@@ -32,12 +32,7 @@ class Role(
     @JoinColumn(name = "organization_id")
     var organization: Organization? = null,
 
-    @ManyToMany
-    @JoinTable(
-        name = "role_privileges",
-        joinColumns = [JoinColumn(name = "role_id")],
-        inverseJoinColumns = [JoinColumn(name = "privilege_id")]
-    )
-    var privileges: List<Privilege> = listOf(),
+    @OneToMany(mappedBy = "role", cascade = [CascadeType.REMOVE])
+    var privileges: List<RolePrivilege> = listOf(),
 
     ) : Auditable()

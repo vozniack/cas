@@ -98,22 +98,34 @@ CREATE TABLE user_roles
 
 CREATE TABLE user_privileges
 (
+    id           UUID NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
+
     user_id      UUID NOT NULL,
     privilege_id UUID NOT NULL,
 
-    PRIMARY KEY (user_id, privilege_id),
+    excluded     BOOLEAN                   DEFAULT FALSE,
 
+    created_at      TIMESTAMP    NOT NULL             DEFAULT now(),
+    updated_at      TIMESTAMP    NOT NULL             DEFAULT now(),
+
+    CONSTRAINT user_privilege_unique UNIQUE (user_id, privilege_id),
     CONSTRAINT user_privilege_user_fk FOREIGN KEY (user_id) REFERENCES users (id),
     CONSTRAINT user_privilege_privilege_fk FOREIGN KEY (privilege_id) REFERENCES privileges (id)
 );
 
 CREATE TABLE role_privileges
 (
+    id           UUID NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
+
     role_id      UUID NOT NULL,
     privilege_id UUID NOT NULL,
 
-    PRIMARY KEY (role_id, privilege_id),
+    excluded     BOOLEAN                   DEFAULT FALSE,
 
+    created_at      TIMESTAMP    NOT NULL             DEFAULT now(),
+    updated_at      TIMESTAMP    NOT NULL             DEFAULT now(),
+
+    CONSTRAINT role_privilege_unique UNIQUE (role_id, privilege_id),
     CONSTRAINT role_privilege_role_fk FOREIGN KEY (role_id) REFERENCES roles (id),
     CONSTRAINT role_privilege_privilege_fk FOREIGN KEY (privilege_id) REFERENCES privileges (id)
 );
@@ -125,7 +137,8 @@ VALUES ('3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', 'INTERNAL', 'Central Authorizati
 
 
 INSERT INTO roles (id, scope, name, code, description, organization_id)
-VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', 'INTERNAL', 'Admin', 'ADMIN', 'Central Authorization System administrator role',
+VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', 'INTERNAL', 'Admin', 'ADMIN',
+        'Central Authorization System administrator role',
         '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5'),
        ('451adc34-f819-46d5-9e35-719ee343fb73', 'INTERNAL', 'User', 'USER', 'Central Authorization System user role',
         '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5');

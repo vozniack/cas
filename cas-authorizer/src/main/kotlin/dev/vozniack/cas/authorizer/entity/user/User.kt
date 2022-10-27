@@ -7,6 +7,7 @@ import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.JoinTable
 import javax.persistence.ManyToMany
+import javax.persistence.OneToMany
 import javax.persistence.Table
 
 @Entity
@@ -27,11 +28,6 @@ class User(
     )
     var roles: List<Role> = listOf(),
 
-    @ManyToMany
-    @JoinTable(
-        name = "user_privileges",
-        joinColumns = [JoinColumn(name = "user_id")],
-        inverseJoinColumns = [JoinColumn(name = "privilege_id")]
-    )
-    var privileges: List<Privilege> = listOf(),
+    @OneToMany(mappedBy = "user")
+    var privileges: List<UserPrivilege> = listOf(),
 )
