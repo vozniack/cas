@@ -47,7 +47,7 @@ CREATE TABLE roles
     scope           VARCHAR(255) NOT NULL             DEFAULT 'EXTERNAL',
 
     name            VARCHAR(255) NOT NULL,
-    code            VARCHAR(8)   NOT NULL,
+    code            VARCHAR(16)  NOT NULL,
     description     VARCHAR(1024),
 
     organization_id UUID         NOT NULL,
@@ -98,15 +98,15 @@ CREATE TABLE user_roles
 
 CREATE TABLE user_privileges
 (
-    id           UUID NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
+    id           UUID      NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
 
-    user_id      UUID NOT NULL,
-    privilege_id UUID NOT NULL,
+    user_id      UUID      NOT NULL,
+    privilege_id UUID      NOT NULL,
 
-    excluded     BOOLEAN                   DEFAULT FALSE,
+    excluded     BOOLEAN                        DEFAULT FALSE,
 
-    created_at      TIMESTAMP    NOT NULL             DEFAULT now(),
-    updated_at      TIMESTAMP    NOT NULL             DEFAULT now(),
+    created_at   TIMESTAMP NOT NULL             DEFAULT now(),
+    updated_at   TIMESTAMP NOT NULL             DEFAULT now(),
 
     CONSTRAINT user_privilege_unique UNIQUE (user_id, privilege_id),
     CONSTRAINT user_privilege_user_fk FOREIGN KEY (user_id) REFERENCES users (id),
@@ -115,15 +115,15 @@ CREATE TABLE user_privileges
 
 CREATE TABLE role_privileges
 (
-    id           UUID NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
+    id           UUID      NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
 
-    role_id      UUID NOT NULL,
-    privilege_id UUID NOT NULL,
+    role_id      UUID      NOT NULL,
+    privilege_id UUID      NOT NULL,
 
-    excluded     BOOLEAN                   DEFAULT FALSE,
+    excluded     BOOLEAN                        DEFAULT FALSE,
 
-    created_at      TIMESTAMP    NOT NULL             DEFAULT now(),
-    updated_at      TIMESTAMP    NOT NULL             DEFAULT now(),
+    created_at   TIMESTAMP NOT NULL             DEFAULT now(),
+    updated_at   TIMESTAMP NOT NULL             DEFAULT now(),
 
     CONSTRAINT role_privilege_unique UNIQUE (role_id, privilege_id),
     CONSTRAINT role_privilege_role_fk FOREIGN KEY (role_id) REFERENCES roles (id),
@@ -146,7 +146,7 @@ VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', 'INTERNAL', 'Admin', 'ADMIN',
 
 INSERT INTO users (id, scope, email, password, first_name, last_name, organization_id)
 VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', 'INTERNAL', 'thomas.vozniack@cas.dev',
-        '$2y$10$mbXVHXCEUCufdWQzkd2wNee7A5wx2hr2y6nRkLbWjx/lr.JdeF81y', 'Thomas', 'Vozniack',
+        '$2y$10$xQmgOI21SYQllSWhAwEe6uzKihvrGmhaMycrJp2Unv.tnnXPHuUz.', 'Thomas', 'Vozniack',
         '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5'),
        ('055cb1f2-162a-4f14-a445-883539a60002', 'INTERNAL', 'john.doe@cas.dev',
         '$2y$10$mbXVHXCEUCufdWQzkd2wNee7A5wx2hr2y6nRkLbWjx/lr.JdeF81y', 'John', 'Doe',

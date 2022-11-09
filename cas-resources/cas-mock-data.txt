@@ -1,0 +1,77 @@
+This is the mock data of some system for paper company.
+
+Organization:
+    - Dunder Mifflin Paper Company (DMPC)
+
+Roles:
+    - CEO
+    - MANAGER
+    - ASSISTANT_REGIONAL_MANAGER
+    - SALESMAN
+    - SECRETARY
+    - ACCOUNTANT
+    - PARTY_PLANNING_COMMITTEE
+    - TEMP
+
+Users:
+    - David Wallace (CEO)
+    - Michael Scott (MANAGER)
+    - Dwigth Schrute (SALESMAN, ASSISTANT_REGIONAL_MANAGER)
+    - Jim Halpert (SALESMAN)
+    - Andy Bernard (SALESMAN)
+    - Stanley Hudson (SALESMAN)
+    - Phyllis Vance (SALESMAN)
+    - Pam Beesly (SECRETARY, PARTY_PLANNING_COMMITTEE)
+    - Erin Hannon (SECRETARY)
+    - Kevin Malone (ACCOUNTANT)
+    - Angela Martin (ACCOUNTANT, PARTY_PLANNING_COMMITTEE)
+    - Oscar Martinez (ACCOUNTANT)
+    - Kelly Kapour (PARTY_PLANNING_COMMITTEE_
+    - Ryan Howard (TEMP)
+    - Creed Bratton ()
+
+Privileges:
+
+    - MANAGE_COMPANY
+        - HIRE_MANAGER
+        - FIRE_MANAGER
+        - ORGANISE_PARTY
+        - SOLVE_CONFLICTS
+    - MANAGE_BRANCH
+        - BUSINESS_DOING
+        - DECISION_MAKING
+        - HIRE_EMPLOYEE
+        - FIRE_EMPLOYEE
+        - STRESS_EMPLOYEE
+            - MAKE_JOKE
+            - PRETEND_SOMEONE
+            - GOLDEN_TICKET
+    - MANAGE_SALES
+        - MAKE_SALE
+        - FIND_CLIENT
+        - PREPARE_GIFT
+    - MANAGE_RECEPTION
+        - ANSWER_CALL
+        - MAKE_COPY
+        - PUT_CANDIES
+        - MANAGE_TIME
+    - MANAGE_NUMBERS
+        - SETTLE_ACCOUNTS
+        - MANAGE_SURPLUS
+            - FIND_SURPLUS
+            - EXPLAIN_SURPLUS
+    - MANAGE_INVOICES
+        - CREATE_INVOICE
+        - UPDATE_INVOICE
+        - SEND_INVOICE
+    - MANAGE_PARTY
+        - PLAN_PARTY
+        - FIND_CAKE
+        - MAKE_DECORATIONS
+        - PREPARE_KARAOKE
+    - MAKE_PRANK
+    - BE_ANNOYING
+    - MAKE_COFFEE
+    - START_FIRE
+    - KILL_VAMPIRE
+    - BE_BELSNICKEL
