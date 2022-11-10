@@ -236,7 +236,7 @@ VALUES ('c6ac2055-9911-409a-9557-dcf750fdac97', 'fd34db12-af91-4817-9fd4-6cc052d
        ('b8092073-d220-434b-8956-8cc9760606cd', '8a1b403d-8019-497e-862e-c7f73cdaf3ac', true),
        ('9b7a24d8-3e9c-4732-869e-b0aaf50f0fb8', '8a1b403d-8019-497e-862e-c7f73cdaf3ac', true),
 
-       ('919dacea-a0fb-4202-87a3-bb2508f0e332', '798ebf6b-fd0a-480a-9766-e17bc7a0dabf', true),
-       ('919dacea-a0fb-4202-87a3-bb2508f0e332', '8550a237-ce71-4d76-a3b4-79bd4a955618', true),
+       ('919dacea-a0fb-4202-87a3-bb2508f0e332', '798ebf6b-fd0a-480a-9766-e17bc7a0dabf', false),
+       ('919dacea-a0fb-4202-87a3-bb2508f0e332', '8550a237-ce71-4d76-a3b4-79bd4a955618', false),
 
-       ('4a032d84-9f26-451f-b3f4-62d467c45fc7', 'e123fe4d-691d-47f2-8517-e1e4e1cc4624', true);
+       ('4a032d84-9f26-451f-b3f4-62d467c45fc7', 'e123fe4d-691d-47f2-8517-e1e4e1cc4624', false);

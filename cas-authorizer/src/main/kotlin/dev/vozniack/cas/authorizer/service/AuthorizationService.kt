@@ -1,17 +1,22 @@
 package dev.vozniack.cas.authorizer.service
 
 import dev.vozniack.cas.authorizer.api.v1.dto.LoginRequest
+import dev.vozniack.cas.authorizer.aspects.LogAuthorizationHistory
+import dev.vozniack.cas.authorizer.entity.user.Role
+import dev.vozniack.cas.authorizer.entity.user.User
 import dev.vozniack.cas.authorizer.exception.UnauthorizedException
 import dev.vozniack.cas.authorizer.repository.UserRepository
-import dev.vozniack.cas.authorizer.aspects.LogAuthorizationHistory
-import dev.vozniack.cas.authorizer.util.TokenBuilder
+import io.jsonwebtoken.Jwts
+import io.jsonwebtoken.security.Keys
+import java.nio.charset.StandardCharsets
+import java.util.Date
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
 class AuthorizationService(
-    private val tokenBuilder: TokenBuilder,
+    private val privilegeService: PrivilegeService,
     private val userRepository: UserRepository,
     private val passwordEncoder: PasswordEncoder,
 ) {
@@ -20,9 +25,16 @@ class AuthorizationService(
     lateinit var jwtSecret: String
 
     @LogAuthorizationHistory
-    fun login(loginRequest: LoginRequest): String =
-        userRepository.findUserByEmail(loginRequest.email)
-            .filter { user -> passwordEncoder.matches(loginRequest.password, user.password) }
-            .map { user -> tokenBuilder.buildToken(user, jwtSecret) }
-            .orElseThrow { UnauthorizedException() }
+    fun login(loginRequest: LoginRequest): String = userRepository.findUserByEmail(loginRequest.email)
+        .filter { user -> passwordEncoder.matches(loginRequest.password, user.password) }
+        .map { user -> buildToken(user) }
+        .orElseThrow { UnauthorizedException() }
+
+    private fun buildToken(user: User): String = Jwts.builder()
+        .setSubject(user.email)
+        .addClaims(mapOf(Pair("roles", user.roles.map(Role::code))) as Map<String, Any>?)
+        .addClaims(mapOf(Pair("privileges", privilegeService.collectPrivileges(user))) as Map<String, Any>?)
+        .signWith(Keys.hmacShaKeyFor(jwtSecret.toByteArray(StandardCharsets.UTF_8)))
+        .setExpiration(Date(Date().time + (1000 * 60 * 60 * 12))) // 12 hours
+        .compact()
 }

@@ -1,4 +1,4 @@
-package dev.vozniack.cas.authorizer.entity.user
+package dev.vozniack.cas.authorizer.entity.privilege
 
 import java.util.UUID
 import javax.persistence.CascadeType
@@ -12,20 +12,20 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "privileges")
-class Privilege(
+class Privilege {
 
     @Id @GeneratedValue
-    var id: UUID? = null,
+    lateinit var id: UUID
 
-    var name: String = "",
-    var code: String = "",
-
-    var index: Int? = null,
+    lateinit var name: String
+    lateinit var code: String
 
     @ManyToOne
     @JoinColumn(name = "parent_id")
-    var parent: Privilege? = null,
+    var parent: Privilege? = null
 
     @OneToMany(mappedBy = "parent", cascade = [CascadeType.REMOVE])
-    var privileges: List<Privilege>? = listOf(),
-)
+    var privileges: MutableList<Privilege> = mutableListOf()
+
+    fun hasChildren(): Boolean = privileges.isNotEmpty()
+}

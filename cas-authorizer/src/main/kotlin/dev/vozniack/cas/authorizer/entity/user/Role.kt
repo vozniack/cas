@@ -1,5 +1,6 @@
 package dev.vozniack.cas.authorizer.entity.user
 
+import dev.vozniack.cas.authorizer.entity.privilege.RolePrivilege
 import java.util.UUID
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue

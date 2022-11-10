@@ -1,5 +1,6 @@
-package dev.vozniack.cas.authorizer.entity.user
+package dev.vozniack.cas.authorizer.entity.privilege
 
+import dev.vozniack.cas.authorizer.entity.user.User
 import java.util.UUID
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -10,18 +11,18 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "user_privileges")
-class UserPrivilege(
+class UserPrivilege : RelatedPrivilege {
 
     @Id @GeneratedValue
-    var id: UUID? = null,
+    lateinit var id: UUID
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    var user: User? = null,
+    lateinit var user: User
 
     @ManyToOne
     @JoinColumn(name = "privilege_id")
-    var privilege: Privilege? = null,
+    override lateinit var privilege: Privilege
 
-    var excluded: Boolean? = false,
-)
+    override var excluded: Boolean = false
+}
