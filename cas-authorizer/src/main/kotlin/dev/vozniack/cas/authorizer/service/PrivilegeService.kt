@@ -2,9 +2,9 @@ package dev.vozniack.cas.authorizer.service
 
 import dev.vozniack.cas.authorizer.entity.privilege.Privilege
 import dev.vozniack.cas.authorizer.entity.privilege.RelatedPrivilege
+import dev.vozniack.cas.authorizer.entity.privilege.addPrivilegeIfNotExist
+import dev.vozniack.cas.authorizer.entity.privilege.collectCodes
 import dev.vozniack.cas.authorizer.entity.user.User
-import dev.vozniack.cas.authorizer.utils.addPrivilegeIfNotExist
-import dev.vozniack.cas.authorizer.utils.collectCodes
 import java.util.UUID
 import org.springframework.stereotype.Service
 
@@ -12,30 +12,27 @@ import org.springframework.stereotype.Service
 class PrivilegeService {
 
     fun collectPrivileges(user: User): List<String> {
-        val collectedPrivileges: MutableList<Privilege> = mutableListOf()
+        val privileges: MutableList<Privilege> = mutableListOf()
 
-        user.roles.forEach { collectPrivileges(it.privileges.toMutableList(), collectedPrivileges) }
-        collectPrivileges(user.privileges.toMutableList(), collectedPrivileges)
+        user.roles.forEach { collectPrivileges(it.privileges, privileges) }
+        collectPrivileges(user.privileges, privileges)
 
-        return collectedPrivileges.collectCodes(mutableListOf()).distinct()
+        return privileges.collectCodes(mutableListOf()).distinct()
     }
 
-    private fun collectPrivileges(
-        userPrivileges: MutableList<RelatedPrivilege>,
-        collectedPrivileges: MutableList<Privilege>
-    ) {
-        userPrivileges.filter { !it.excluded }
-            .forEach { collectedPrivileges.addPrivilegeIfNotExist(it.privilege) }
+    private fun collectPrivileges(relatedPrivileges: List<RelatedPrivilege>, privileges: MutableList<Privilege>) {
+        relatedPrivileges.filter { !it.excluded }
+            .forEach { privileges.addPrivilegeIfNotExist(it.privilege) }
 
-        userPrivileges.filter { it.excluded }
+        relatedPrivileges.filter { it.excluded }
             .map { it.privilege.id }
-            .forEach { excludePrivilege(collectedPrivileges, it) }
+            .forEach { excludePrivilege(privileges, it) }
     }
 
-    private fun excludePrivilege(collectedPrivileges: MutableList<Privilege>, excludedPrivilege: UUID) {
-        collectedPrivileges.removeIf { it.id == excludedPrivilege }
+    private fun excludePrivilege(privileges: MutableList<Privilege>, excludedPrivilegeId: UUID) {
+        privileges.removeIf { it.id == excludedPrivilegeId }
 
-        collectedPrivileges.filter { it.hasChildren() }
-            .forEach { excludePrivilege(it.privileges, excludedPrivilege) }
+        privileges.filter { it.hasChildren() }
+            .forEach { excludePrivilege(it.privileges, excludedPrivilegeId) }
     }
 }
