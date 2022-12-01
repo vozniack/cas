@@ -5,7 +5,7 @@
   <div fxLayout="column" fxFlex="100">
     <cas-toolbar *ngIf="logged"></cas-toolbar>
 
-    <div class="content-container" [class.logged]="logged" [class.centered]="!logged"
+    <div class="content-wrapper" [class.logged]="logged" [class.centered]="!logged"
          [fxLayout]="logged ? 'column' : 'row'"
          [fxLayoutAlign]="logged ? 'start start' : 'center center'">
       <router-outlet></router-outlet>

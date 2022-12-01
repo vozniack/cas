@@ -63,7 +63,7 @@ h5 {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  border-radius: 12px;
+  border-radius: $radius;
   background: $background-dark;
   border: 1px solid $background-darker;
 }
@@ -79,17 +79,21 @@ h5 {
 
 .badge {
   padding: 4px 16px;
-  border-radius: 12px;
+  border-radius: $radius;
 
   font-weight: 600;
   font-size: 12px;
 
+  color: $dark-gray;
+
   &.dark {
     background: $background-darker;
+    color: $white;
   }
 
   &.light {
     background: $background-dark;
+    color: $white;
   }
 
   &.primary {
@@ -121,12 +125,12 @@ hr {
 }
 
 /*
- * Standard container
+ * Standard containers
  */
 
 .standard-container {
   padding: 24px;
-  border-radius: 12px;
+  border-radius: $radius;
 
   color: $white;
   background: $background-dark;
@@ -139,13 +143,16 @@ hr {
   }
 }
 
-/*
- * Tile container
- */
+.content-container {
+  padding: 16px;
+  border-radius: $radius;
+
+  background: $background-darker;
+}
 
 .tile-container {
   padding: 12px 24px;
-  border-radius: 12px;
+  border-radius: $radius;
 
   width: 512px;
 

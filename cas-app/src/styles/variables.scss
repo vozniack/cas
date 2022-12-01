@@ -4,27 +4,29 @@
 
 /* Palette */
 
-$yellow: rgb(255, 207, 43);
-$orange: rgb(254, 147, 47);
-$red: rgb(218, 64, 68);
-$pink: rgb(245, 61, 116);
-$violet: rgb(127, 38, 246);
-$blue: rgb(47, 192, 255);
-$cyan: rgb(48, 223, 196);
-$green: rgb(151, 255, 47);
-
 $white: rgb(255, 255, 255);
 $black: rgb(0, 0, 0);
 
+$orange: rgb(245, 221, 200);
+$violet: rgb(214, 200, 255);
+$cyan: rgb(126, 222, 235);
+$green: rgb(192, 239, 203);
+
+$pink: rgb(245, 61, 116);
+
+$dark-gray: rgb(32, 32, 48);
+
 /* Usages */
 
-$primary: $blue;
+$primary: $cyan;
 $secondary: $violet;
 
 /* Background */
 
-$background-light: rgb(243, 243, 246);
-$background-lighter: rgba(255, 255, 255);
+$background-dark: rgb(36, 37, 45);
+$background-darker: rgb(30, 31, 37);
+$background-lighter: rgba(51, 52, 59);
 
-$background-dark: rgb(34, 37, 47);
-$background-darker: rgb(22, 26, 32);
+/* Radius */
+
+$radius: 10px;

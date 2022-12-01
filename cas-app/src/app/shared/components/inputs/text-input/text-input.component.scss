@@ -20,7 +20,7 @@
     width: 100%;
 
     position: relative;
-    border-radius: 8px;
+    border-radius: $radius;
     box-shadow: none;
 
     transition: filter 0.2s ease-in-out;
@@ -46,7 +46,7 @@
     }
 
     &.invalid {
-      filter: drop-shadow(0 0 2px rgba($red, 0.75));
+      filter: drop-shadow(0 0 2px rgba($pink, 0.75));
     }
 
     input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
@@ -59,7 +59,7 @@
       width: 100%;
       padding: 5px 20px;
 
-      border-radius: 12px;
+      border-radius: $radius;
       border: none;
 
       box-sizing: border-box;

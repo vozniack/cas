@@ -1,7 +1,7 @@
 @import 'src/styles/variables';
 
 .list-node-container {
-  border-radius: 12px;
+  border-radius: $radius;
   padding: 8px 16px;
 
   color: $white;

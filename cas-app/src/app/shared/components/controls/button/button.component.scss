@@ -52,7 +52,7 @@ button {
     &.small {
       height: 24px;
       padding: 2px 4px;
-      border-radius: 8px;
+      border-radius: $radius;
 
       .icon {
         top: 5px
@@ -74,7 +74,7 @@ button {
     &.normal {
       height: 40px;
       padding: 8px 16px;
-      border-radius: 12px;
+      border-radius: $radius;
 
       .icon {
         top: 10px
@@ -100,7 +100,7 @@ button {
     &.big {
       height: 56px;
       padding: 16px 20px;
-      border-radius: 16px;
+      border-radius: $radius;
 
       .icon {
         width: 24px;
@@ -155,7 +155,7 @@ button {
   /* Themes */
 
   &.theme-primary {
-    color: $white;
+    color: $dark-gray;
     background: rgba($primary, 1);
 
     &:hover {
@@ -172,7 +172,7 @@ button {
   }
 
   &.theme-secondary {
-    color: $white;
+    color: $dark-gray;
     background: rgba($secondary, 1);
 
     &:hover {

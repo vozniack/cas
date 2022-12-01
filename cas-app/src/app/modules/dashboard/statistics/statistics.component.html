@@ -1,34 +1,34 @@
 <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
 
-  <div class="statistics-container" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="32px" fxFlex>
-    <i-feather class="icon" name="briefcase"></i-feather>
+  <div class="statistics-container" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="40px" fxFlex>
+    <i-feather class="icon organizations" name="briefcase"></i-feather>
     <div fxLayout="column" fxLayoutAlign="start start">
-      <span class="amount" @fadeInAnimation>{{statistics?.organizationsAmount}}</span>
       <span class="title">Organizations</span>
+      <span class="amount" @fadeInAnimation>{{statistics?.organizationsAmount}}</span>
     </div>
   </div>
 
-  <div class="statistics-container" fxLayout="row" fxLayoutAlign="start center"  fxLayoutGap="32px" fxFlex>
-    <i-feather class="icon" name="user"></i-feather>
+  <div class="statistics-container" fxLayout="row" fxLayoutAlign="start center"  fxLayoutGap="40px" fxFlex>
+    <i-feather class="icon users" name="user"></i-feather>
     <div fxLayout="column" fxLayoutAlign="start start">
-      <span class="amount" @fadeInAnimation>{{statistics?.usersAmount}}</span>
       <span class="title">Users</span>
+      <span class="amount" @fadeInAnimation>{{statistics?.usersAmount}}</span>
     </div>
   </div>
 
-  <div class="statistics-container" fxLayout="row" fxLayoutAlign="start center"  fxLayoutGap="32px" fxFlex>
-    <i-feather class="icon" name="lock"></i-feather>
+  <div class="statistics-container" fxLayout="row" fxLayoutAlign="start center"  fxLayoutGap="40px" fxFlex>
+    <i-feather class="icon roles" name="lock"></i-feather>
     <div fxLayout="column" fxLayoutAlign="start start">
-      <span class="amount" @fadeInAnimation>{{statistics?.rolesAmount}}</span>
       <span class="title">Roles</span>
+      <span class="amount" @fadeInAnimation>{{statistics?.rolesAmount}}</span>
     </div>
   </div>
 
-  <div class="statistics-container" fxLayout="row" fxLayoutAlign="start center"  fxLayoutGap="32px" fxFlex>
-    <i-feather class="icon" name="key"></i-feather>
+  <div class="statistics-container" fxLayout="row" fxLayoutAlign="start center"  fxLayoutGap="40px" fxFlex>
+    <i-feather class="icon privileges" name="key"></i-feather>
     <div fxLayout="column" fxLayoutAlign="start start">
-      <span class="amount" @fadeInAnimation>{{statistics?.privilegesAmount}}</span>
       <span class="title">Privileges</span>
+      <span class="amount" @fadeInAnimation>{{statistics?.privilegesAmount}}</span>
     </div>
   </div>
 </div>

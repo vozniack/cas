@@ -1,14 +1,12 @@
 @import 'src/styles/variables';
 
-.content-container {
-  border-radius: 16px;
+.content-wrapper {
+  border-radius: $radius;
   transition: background-color 0.2s ease-in-out;
 
   &.logged {
     margin: 0 24px 24px 0;
-    padding: 24px;
-
-    background: $background-darker;
+    padding: 24px 12px;
 
     align-items: normal !important;
   }

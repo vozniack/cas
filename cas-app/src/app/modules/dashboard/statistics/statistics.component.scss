@@ -1,32 +1,51 @@
 @import 'src/styles/variables';
 
 .statistics-container {
-  padding: 16px 24px;
-  border-radius: 12px;
+  padding: 12px 16px;
+  border-radius: $radius;
 
   width: auto;
 
+  background-color: $background-darker;
   color: $white;
-  background: $background-dark;
 
   .icon {
-    background: rgba($primary, 0.75);
-    color: $white;
+    color: $dark-gray;
 
     padding: 24px;
     border-radius: 100%;
 
     width: 32px;
     height: 32px;
+
+    &.organizations {
+      background-color: $cyan;
+      filter: drop-shadow(0 4px 8px rgba($cyan, 0.25));
+    }
+
+    &.users {
+      background-color: $violet;
+      filter: drop-shadow(0 4px 8px rgba($violet, 0.25));
+    }
+
+    &.roles {
+      background-color: $orange;
+      filter: drop-shadow(0 4px 8px rgba($orange, 0.25));
+    }
+
+    &.privileges {
+      background-color: $green;
+      filter: drop-shadow(0 4px 8px rgba($green, 0.25));
+    }
   }
 
   .amount {
-    margin-top: -8px;
     font-size: 56px;
     font-weight: 700;
   }
 
   .title {
+    margin-top: 8px;
     font-weight: 300;
   }
 }
