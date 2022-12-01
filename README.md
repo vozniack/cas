@@ -2,4 +2,4 @@
 
 Will be updated someday...
 
-![](cas-resources/cas-architecture.jpg)
+![](resources/architecture/cas-architecture.jpg)
