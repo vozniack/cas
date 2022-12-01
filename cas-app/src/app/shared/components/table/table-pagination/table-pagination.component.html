@@ -3,15 +3,15 @@
   <!-- static previous pages buttons -->
 
   <cas-button [disabled]="totalPages < 2 || page === 1"
-              [width]="'56px'" [size]="'normal'" [theme]="'light'"
+              [width]="'48px'" [size]="'small'" [theme]="'light'"
               (click)="firstPage()">
-    <i-feather name="chevrons-left"></i-feather>
+    <i-feather class="pagination-icon" name="chevrons-left"></i-feather>
   </cas-button>
 
   <cas-button [disabled]="page === 1"
-              [width]="'56px'" [size]="'normal'" [theme]="'light'"
+              [width]="'48px'" [size]="'small'" [theme]="'light'"
               (click)="prevPage()">
-    <i-feather name="chevron-left"></i-feather>
+    <i-feather class="pagination-icon" name="chevron-left"></i-feather>
   </cas-button>
 
   <!-- dynamic page buttons -->
@@ -20,10 +20,10 @@
     <ng-container *ngFor="let p of pages">
       <cas-button *ngIf="this.canShowPage(p)"
                   [active]="p === page"
-                  [width]="'56px'" [size]="'normal'" [theme]="'light'"
+                  [width]="'48px'" [size]="'small'" [theme]="'light'"
                   (click)="this.changePage(p)"
                   @fadeInAnimation>
-        {{p.toString()}}
+        <span class="pagination-number">{{p.toString()}}</span>
       </cas-button>
     </ng-container>
   </div>
@@ -31,14 +31,14 @@
   <!-- static next pages buttons -->
 
   <cas-button [disabled]="totalPages === 0 || (totalPages > 0 && page === totalPages)"
-              [width]="'56px'" [size]="'normal'" [theme]="'light'"
+              [width]="'48px'" [size]="'small'" [theme]="'light'"
               (click)="nextPage()">
-    <i-feather name="chevron-right"></i-feather>
+    <i-feather class="pagination-icon" name="chevron-right"></i-feather>
   </cas-button>
 
   <cas-button [disabled]="totalPages < 2 || page === totalPages"
-              [width]="'56px'" [size]="'normal'" [theme]="'light'"
+              [width]="'48px'" [size]="'small'" [theme]="'light'"
               (click)="lastPage()">
-    <i-feather name="chevrons-right"></i-feather>
+    <i-feather class="pagination-icon" name="chevrons-right"></i-feather>
   </cas-button>
 </div>

@@ -1,4 +1,4 @@
-<div class="tree-branch-container" [ngClass]="theme" fxLayout="column" fxLayoutGap="8px">
+<div class="tree-branch-container" fxLayout="column" fxLayoutGap="8px" [class.parent]="parent" [ngClass]="theme">
   <cas-tree-node *ngFor="let node of nodes"
                  [node]="node"
                  [itemSelect]="itemSelect"

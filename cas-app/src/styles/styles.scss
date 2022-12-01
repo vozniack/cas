@@ -80,7 +80,9 @@ h5 {
 .badge {
   padding: 4px 16px;
   border-radius: 12px;
+
   font-weight: 600;
+  font-size: 12px;
 
   &.dark {
     background: $background-darker;

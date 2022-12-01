@@ -2,21 +2,7 @@
 
 .sidebar-link {
   outline: none;
-  width: 108px;
-
-  .border {
-    margin-right: 4px;
-
-    content: "";
-
-    width: 4px;
-    height: 40px;
-
-    border-top-right-radius: 32px;
-    border-bottom-right-radius: 32px;
-
-    transition: 0.2s ease-in-out;
-  }
+  width: auto;
 
   .navigation-link {
     padding: 32px;
@@ -24,35 +10,27 @@
     color: rgba($white, 0.65);
     outline: none;
 
-    transition: 0.2s ease-in-out;
-
-    &:hover .icon {
-      transform: scale(1.25);
-    }
-
     .text {
       margin-top: 2px;
+      margin-left: 4px;
 
       font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
+
+      transition: 0.2s ease-in-out color;
     }
 
     .icon {
-      height: 28px;
-      width: 28px;
+      height: 24px;
+      width: 24px;
 
-      transition: 0.2s ease-in-out;
+      transition: 0.2s ease-in-out filter, color;
     }
   }
 
   &.active, &:hover {
     cursor: pointer;
-
-    .border {
-      background: $primary;
-      filter: drop-shadow(0 0 4px rgba($primary, 0.75));
-    }
 
     .navigation-link {
       color: $primary;

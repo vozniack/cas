@@ -1,10 +1,12 @@
 @import 'src/styles/variables';
 
 .sidebar-container {
-  background: $background-dark;
+  background: $background-darker;
 
-  width: 108px;
+  width: 200px;
   height: 100vh;
+
+  margin-right: 24px;
 
   top: 0;
   left: 0;
@@ -12,14 +14,12 @@
   position: sticky;
 
   .logo {
-    margin-top: 24px;
+    margin: 32px 0 8px 0;
 
-    padding: 24px;
-    border-radius: 50%;
+    font-size: 40px;
+    font-weight: 700;
+    text-transform: uppercase;
 
-    height: 24px;
-    width: 24px;
-
-    background: $white;
+    color: $white;
   }
 }

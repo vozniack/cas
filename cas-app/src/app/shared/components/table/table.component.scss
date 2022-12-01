@@ -29,6 +29,9 @@
         font-size: 20px;
         font-weight: 600;
 
+        text-align: left;
+        padding: 12px 12px;
+
         .sortable:hover {
           cursor: pointer;
         }
@@ -59,13 +62,11 @@
         font-size: 14px;
         font-weight: 400;
 
+        text-align: left;
+        padding: 6px 12px;
+
         background: rgba($background-dark, 0.5);
       }
-    }
-
-    td, th {
-      text-align: left;
-      padding: 12px 24px;
     }
   }
 }

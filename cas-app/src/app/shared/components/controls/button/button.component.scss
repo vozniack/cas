@@ -9,7 +9,7 @@ button {
   font-size: 16px;
   font-weight: 600;
 
-  transition: filter 0.2s, background-color 0.2s ease-in-out;
+  transition: filter 0.2s, background-color 0.2s ease-out;
 
   &:hover {
     cursor: pointer;
@@ -50,8 +50,8 @@ button {
   &.rectangle {
 
     &.small {
-      height: 30px;
-      padding: 4px 8px;
+      height: 24px;
+      padding: 2px 4px;
       border-radius: 8px;
 
       .icon {

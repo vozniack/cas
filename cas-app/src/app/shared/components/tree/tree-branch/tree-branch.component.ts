@@ -19,5 +19,8 @@ export class TreeBranchComponent {
   theme: 'light' | 'dark' = 'light';
 
   @Input()
+  parent = true;
+
+  @Input()
   selecting = true;
 }
