@@ -6,7 +6,7 @@ import {tap} from "rxjs/operators";
 import {PrivilegesService} from "./privileges.service";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ViewType} from 'src/app/shared/model/types.interface';
-import {VIEW_TABLE, VIEW_TREE} from "../../shared/const/view.const";
+import {VIEW_TREE} from "../../shared/const/view.const";
 
 @Component({
   selector: 'cas-privileges',
@@ -15,7 +15,7 @@ import {VIEW_TABLE, VIEW_TREE} from "../../shared/const/view.const";
 })
 export class PrivilegesComponent {
 
-  views = [VIEW_TABLE, VIEW_TREE]
+  views = [VIEW_TREE]
   view: ViewType = ViewType.TREE;
   ViewType = ViewType;
 

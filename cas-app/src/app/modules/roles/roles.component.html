@@ -1,7 +1,11 @@
-<div class="content-container" fxLayout="column" fxLayoutGap="24px">
-  <cas-data-toolbar [filters]="filters" [views]="views"></cas-data-toolbar>
+<div fxLayout="column" fxLayoutGap="16px">
+  <div class="content-container">
+    <cas-data-toolbar [filters]="filters" [views]="views"></cas-data-toolbar>
+  </div>
 
-  <cas-roles-table *ngIf="view === ViewType.TABLE" [filters]="filters"></cas-roles-table>
+  <div class="content-container">
+    <cas-roles-table *ngIf="view === ViewType.TABLE" [filters]="filters"></cas-roles-table>
 
-  <cas-roles-list *ngIf="view === ViewType.LIST" [filters]="filters"></cas-roles-list>
+    <cas-roles-list *ngIf="view === ViewType.LIST" [filters]="filters"></cas-roles-list>
+  </div>
 </div>

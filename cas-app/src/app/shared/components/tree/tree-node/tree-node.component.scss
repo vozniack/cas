@@ -2,7 +2,7 @@
 
 .tree-node-container {
   border-radius: $radius;
-  padding: 8px 16px;
+  padding: 4px 12px;
 
   color: $white;
 
@@ -15,11 +15,12 @@
   }
 
   .label {
-    font-size: 14px;
+    margin-top: 4px;
+    font-size: 12px;
   }
 
   .description, .badge {
-    font-size: 12px;
+    font-size: 10px;
   }
 }
 

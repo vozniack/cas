@@ -66,7 +66,7 @@ export const privilegesPageState: PageState = {
 export const adminPageState: PageState = {
   title: 'Admin panel',
   subtitle: 'Check internal resources',
-  icon: 'aperture',
+  icon: 'box',
   link: 'admin',
 }
 

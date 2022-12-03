@@ -2,7 +2,7 @@ import {ViewSelectOption} from "../components/common/data-toolbar/view-select/vi
 import {ViewType} from "../model/types.interface";
 
 export const VIEW_TABLE: ViewSelectOption = {
-  icon: 'columns',
+  icon: 'table',
   viewType: ViewType.TABLE
 }
 
@@ -17,6 +17,6 @@ export const VIEW_GRID: ViewSelectOption = {
 }
 
 export const VIEW_TREE: ViewSelectOption = {
-  icon: 'layout',
+  icon: 'menu',
   viewType: ViewType.TREE
 }

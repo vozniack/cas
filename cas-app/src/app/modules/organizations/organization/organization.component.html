@@ -1,12 +1,12 @@
-<div fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="24px">
+<div class="content-container" fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="16px">
 
-  <div fxLayout="column" fxLayoutGap="24px" fxFlex="30">
+  <div fxLayout="column" fxLayoutGap="16px" fxFlex="30">
     <cas-organization-info [organization]="organization"></cas-organization-info>
     <cas-organization-roles [roles]="organization.roles"></cas-organization-roles>
     <cas-organization-users [users]="organization.users"></cas-organization-users>
   </div>
 
-  <div fxLayout="column" fxLayoutGap="24px" fxFlex>
+  <div fxLayout="column" fxLayoutGap="16px" fxFlex>
     <cas-organization-privileges [privileges]="organization.privileges"></cas-organization-privileges>
   </div>
 

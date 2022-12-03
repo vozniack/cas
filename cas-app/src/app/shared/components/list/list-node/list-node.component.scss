@@ -6,6 +6,8 @@
 
   color: $white;
 
+  overflow: hidden;
+
   &.light {
     background: $background-dark;
   }
@@ -20,8 +22,9 @@
     height: 32px;
     width: 32px;
 
-    background: $white;
+    margin-top: 4px;
 
+    background: $white;
 
     .icon {
       color: $background-dark;
@@ -31,10 +34,16 @@
   }
 
   .label {
-    font-size: 14px;
+    margin-top: 4px;
+    font-size: 12px;
+  }
+
+  .badge {
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .description, .badge {
-    font-size: 12px;
+    font-size: 10px;
   }
 }

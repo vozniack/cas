@@ -7,11 +7,11 @@ import dev.vozniack.cas.core.repository.PrivilegeRepository
 import dev.vozniack.cas.core.repository.specification.PrivilegeQuery
 import dev.vozniack.cas.core.repository.specification.Specificable
 import dev.vozniack.cas.core.types.ScopeType
+import java.util.Optional
+import java.util.UUID
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
-import java.util.Optional
-import java.util.UUID
 
 @Service
 class PrivilegeService(private val privilegeRepository: PrivilegeRepository) {
@@ -21,6 +21,7 @@ class PrivilegeService(private val privilegeRepository: PrivilegeRepository) {
 
     fun findAllParents(query: PrivilegeQuery): List<Privilege> =
         privilegeRepository.findAll(query.apply { isParent = true }.toSpecification())
+            .sortedBy { it.index }
 
     fun findById(id: UUID): Privilege = privilegeRepository.findById(id).orElseThrow { NotFoundException() }
 
