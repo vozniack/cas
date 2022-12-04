@@ -9,3 +9,10 @@ export enum ViewType {
   GRID = 'GRID',
   TREE = 'TREE'
 }
+
+export enum ResourceType {
+  ORGANIZATION = 'ORGANIZATION',
+  USER = 'USER',
+  ROLE = 'ROLE',
+  PRIVILEGE = 'PRIVILEGE'
+}

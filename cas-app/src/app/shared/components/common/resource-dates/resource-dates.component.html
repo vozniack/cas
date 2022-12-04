@@ -1,0 +1,11 @@
+<div fxLayout="column" fxLayoutGap="24px">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <span>Created at</span>
+    <span class="badge secondary">{{resource.createdAt | date: 'dd-MM-YYYY, HH:mm:ss'}}</span>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <span>Updated at</span>
+    <span class="badge secondary">{{resource.updatedAt | date: 'dd-MM-YYYY, HH:mm:ss'}}</span>
+  </div>
+</div>

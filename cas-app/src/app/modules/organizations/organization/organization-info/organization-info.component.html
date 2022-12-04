@@ -5,19 +5,45 @@
       <i-feather class="icon" name="briefcase"></i-feather>
       <span class="title">{{organization.name}}</span>
     </div>
-
-    <span class="badge primary">{{organization.code}}</span>
   </div>
 
   <span>{{organization.description}}</span>
 
   <div fxLayout="row" fxLayoutAlign="space-between center">
-    <span>Created at</span>
-    <span>{{organization.createdAt | date: 'dd-MM-YYYY, HH:mm:ss'}}</span>
+    <span>Code</span>
+    <span class="badge primary">{{organization.code}}</span>
   </div>
 
-  <div fxLayout="row" fxLayoutAlign="space-between center">
-    <span>Updated at</span>
-    <span>{{organization.updatedAt | date: 'dd-MM-YYYY, HH:mm:ss'}}</span>
+  <hr class="dark"/>
+
+  <cas-resource-dates [resource]="organization"></cas-resource-dates>
+
+  <hr class="dark"/>
+
+  <div class="column" fxLayoutGap="16px">
+    <span>Organization resources</span>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+    <cas-button
+      [iconLeft]="'user'"
+      [theme]="selectedResource === ResourceType.USER ? 'primary' : 'dark'"
+      (click)="selectResource(ResourceType.USER)">
+      Users
+    </cas-button>
+
+    <cas-button
+      [iconLeft]="'lock'"
+      [theme]="selectedResource === ResourceType.ROLE ? 'primary' : 'dark'"
+      (click)="selectResource(ResourceType.ROLE)">
+      Roles
+    </cas-button>
+
+    <cas-button
+      [iconLeft]="'key'"
+      [theme]="selectedResource === ResourceType.PRIVILEGE ? 'primary' : 'dark'"
+      (click)="selectResource(ResourceType.PRIVILEGE)">
+      Privileges
+    </cas-button>
   </div>
 </div>

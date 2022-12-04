@@ -1,37 +1,30 @@
 <div class="tile-container" fxLayout="column" fxLayoutGap="24px" @fadeInAnimation>
 
   <div fxLayout="row" fxLayoutAlign="space-between center">
-    <span class="title">{{user.firstName}} {{user.lastName}}</span>
+    <div fxLayout="column" fxLayoutGap="8px">
+      <span class="title">{{user.firstName}} {{user.lastName}}</span>
+      <span>{{user.email}}</span>
+    </div>
 
     <cas-button [theme]="'dark'" [size]="'small'" [shape]="'circle'" (click)="closeView()">
       <i-feather name="x"></i-feather>
     </cas-button>
   </div>
 
-  <span>{{user.email}}</span>
-
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <span>Active</span>
     <span class="badge dark">{{user.active ? 'YES' : 'NO'}}</span>
   </div>
 
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <span>Organization</span>
+    <span class="badge dark">{{user.details.organizationCode}}</span>
+  </div>
+
   <hr class="dark"/>
 
   <div fxLayout="column" fxLayoutGap="24px">
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-      <span>Organization</span>
-      <span class="badge primary">{{user.details.organizationCode}}</span>
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-      <span>Created at</span>
-      <span>{{user.createdAt | date: 'dd-MM-YYYY, HH:mm:ss'}}</span>
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-      <span>Updated at</span>
-      <span>{{user.updatedAt | date: 'dd-MM-YYYY, HH:mm:ss'}}</span>
-    </div>
+    <cas-resource-dates [resource]="user"></cas-resource-dates>
 
     <hr class="dark" *ngIf="privileges.length > 0"/>
 

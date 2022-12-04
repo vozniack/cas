@@ -1,5 +1,7 @@
 export interface TreeNode<T> {
 
+  icon: string;
+
   label: string;
 
   description: string;

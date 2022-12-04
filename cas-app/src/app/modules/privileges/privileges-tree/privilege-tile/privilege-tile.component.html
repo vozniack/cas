@@ -3,7 +3,7 @@
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <div fxLayout="column" fxLayoutGap="8px">
       <span class="title">{{privilege.name}}</span>
-      <span>{{privilege.description}}</span>
+      <span *ngIf="privilege.description">{{privilege.description}}</span>
     </div>
 
     <cas-button [theme]="'dark'" [size]="'small'" [shape]="'circle'" (click)="closeView()">
@@ -16,23 +16,15 @@
     <span class="badge dark">CAS</span>
   </div>
 
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <span>Code</span>
+    <span class="badge primary">{{privilege.code}}</span>
+  </div>
+
   <hr class="dark"/>
 
   <div fxLayout="column" fxLayoutGap="24px">
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-      <span>Code</span>
-      <span class="badge primary">{{privilege.code}}</span>
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-      <span>Created at</span>
-      <span>{{privilege.createdAt | date: 'dd-MM-YYYY, HH:mm:ss'}}</span>
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-      <span>Updated at</span>
-      <span>{{privilege.updatedAt | date: 'dd-MM-YYYY, HH:mm:ss'}}</span>
-    </div>
+    <cas-resource-dates [resource]="privilege"></cas-resource-dates>
 
     <hr class="dark"/>
 

@@ -12,6 +12,7 @@ export class PrivilegesMapper implements TreeMapper<Privilege> {
 
   private mapPrivilege(privilege: Privilege): TreeNode<Privilege> {
     return {
+      icon: 'key',
       label: privilege.name,
       description: privilege.description,
       badge: privilege.code,

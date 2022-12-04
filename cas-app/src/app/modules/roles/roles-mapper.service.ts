@@ -10,6 +10,7 @@ export class RolesMapper extends ListMapper<Role> {
 
   private static mapToListNode(role: Role): ListNode<Role> {
     return {
+      icon: 'lock',
       label: role.name,
       description: role.description,
       badges: [role.code],

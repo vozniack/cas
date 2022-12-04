@@ -7,6 +7,7 @@ import {InputsModule} from "../inputs/inputs.module";
 import {OrganizationsService} from "../../../modules/organizations/organizations.service";
 import {ViewSelectComponent} from './data-toolbar/view-select/view-select.component';
 import {ControlsModule} from "../controls/controls.module";
+import { ResourceDatesComponent } from './resource-dates/resource-dates.component';
 
 const COMPONENTS = [
   DataToolbarComponent,
@@ -14,8 +15,8 @@ const COMPONENTS = [
 ]
 
 @NgModule({
-  declarations: [...COMPONENTS],
-  exports: [...COMPONENTS],
+  declarations: [...COMPONENTS, ResourceDatesComponent],
+  exports: [...COMPONENTS, ResourceDatesComponent],
   imports: [
     CommonModule,
     FlexModule,

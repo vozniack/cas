@@ -12,6 +12,7 @@ export class OrganizationsMapper implements TreeMapper<Organization> {
 
   private mapOrganizationToTreeNode(organization: Organization): TreeNode<Organization> {
     return {
+      icon: 'briefcase',
       label: organization.name,
       description: organization.description,
       badge: organization.code,

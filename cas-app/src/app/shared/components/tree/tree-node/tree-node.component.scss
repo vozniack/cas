@@ -6,6 +6,23 @@
 
   color: $white;
 
+  .icon-container {
+    border-radius: 50%;
+
+    height: 32px;
+    width: 32px;
+
+    margin-top: 4px;
+
+    background: $white;
+
+    .icon {
+      color: $background-dark;
+      margin-top: 6px;
+      width: 16px;
+    }
+  }
+
   &.light {
     background: $background-dark;
   }
