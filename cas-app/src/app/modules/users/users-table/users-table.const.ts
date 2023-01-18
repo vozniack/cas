@@ -1,4 +1,5 @@
 import {ColumnType, TableAction, TableColumn} from "../../../shared/components/table/table.interface";
+import {defaultActions} from '../../../shared/components/table/table-actions/table-actions.const';
 
 export const userColumns: TableColumn[] = [
   {
@@ -31,16 +32,5 @@ export const userColumns: TableColumn[] = [
 ]
 
 export const userActions: TableAction[] = [
-  {
-    name: 'EDIT',
-    icon: 'edit',
-    theme: 'primary',
-    custom: false
-  },
-  {
-    name: 'VIEW',
-    icon: 'eye',
-    theme: 'secondary',
-    custom: false
-  }
+  ...defaultActions
 ]

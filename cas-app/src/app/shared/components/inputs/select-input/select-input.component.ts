@@ -26,6 +26,7 @@ export class SelectInputComponent {
   @Input() width: string = '100%';
 
   @Input() theme: 'primary' | 'secondary' = 'primary';
+  @Input() background: 'basic' | 'inverse' = 'basic';
 
   active = false;
 

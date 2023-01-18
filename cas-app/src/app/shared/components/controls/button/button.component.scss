@@ -149,6 +149,16 @@ button {
         transform: scale(1.2);
       }
     }
+
+    .content {
+      transform: scale(0.9);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    &:hover .content {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
   }
 
   /* Themes */

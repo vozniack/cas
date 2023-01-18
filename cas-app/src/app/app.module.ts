@@ -18,6 +18,11 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AuthModule} from "./core/auth/auth.module";
 import {EffectsModule} from "@ngrx/effects";
 import {AppEffects} from "./store/app/app.effects";
+import {OrganizationsService} from './modules/organizations/organizations.service';
+import {UsersService} from './modules/users/users.service';
+import {RolesService} from './modules/roles/roles.service';
+import {PrivilegesService} from './modules/privileges/privileges.service';
+import {CommonComponentsModule} from './shared/components/common/common-components.module';
 
 @NgModule({
   declarations: [
@@ -39,8 +44,15 @@ import {AppEffects} from "./store/app/app.effects";
     ControlsModule,
     StoreModule.forRoot({app: appReducer}, {metaReducers: [persistState as MetaReducer]}),
     EffectsModule.forRoot([AppEffects]),
+    CommonComponentsModule,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    OrganizationsService,
+    UsersService,
+    RolesService,
+    PrivilegesService
+  ]
 })
 export class AppModule {
 }

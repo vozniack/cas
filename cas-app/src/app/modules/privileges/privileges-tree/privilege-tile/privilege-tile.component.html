@@ -21,12 +21,12 @@
     <span class="badge primary">{{privilege.code}}</span>
   </div>
 
-  <hr class="dark"/>
+  <cas-separator></cas-separator>
 
   <div fxLayout="column" fxLayoutGap="24px">
     <cas-resource-dates [resource]="privilege"></cas-resource-dates>
 
-    <hr class="dark"/>
+    <cas-separator></cas-separator>
 
     <div fxLayout="column" fxLayoutGap="8px" *ngIf="privilege.privileges.length > 0">
       <span>Nested privileges</span>
@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <hr class="dark" *ngIf="privilege.privileges.length > 0"/>
+    <cas-separator *ngIf="privilege.privileges.length > 0"></cas-separator>
 
     <cas-button [theme]="'primary'">Show privilege</cas-button>
   </div>

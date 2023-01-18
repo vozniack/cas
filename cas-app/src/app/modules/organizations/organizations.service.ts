@@ -40,4 +40,8 @@ export class OrganizationsService {
   getOrganization(id: string): Observable<Organization> {
     return this.httpClient.get<Organization>(`${this.baseUrl}/${id}`)
   }
+
+  updateOrganization(organization: Organization): Observable<Organization> {
+    return this.httpClient.put<Organization>(`${this.baseUrl}/${organization.id}`, organization)
+  }
 }

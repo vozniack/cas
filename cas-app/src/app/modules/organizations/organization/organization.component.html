@@ -1,21 +1,25 @@
 <div class="content-container" fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="16px">
-  <div fxLayout="column" fxLayoutGap="16px" fxFlex="30">
-    <cas-organization-info [organization]="organization"
-                           (resourceChange)="onResourceChange($event)">
-    </cas-organization-info>
-  </div>
+  <ng-container *ngIf="organization">
+    <div fxLayout="column" fxLayoutGap="16px" fxFlex="30">
+      <cas-organization-info [organization]="organization"
+                             [organizationForm]="organizationForm"
+                             [editMode]="editMode"
+                             (resourceChange)="onResourceChange($event)">
+      </cas-organization-info>
+    </div>
 
-  <div fxLayout="column" fxLayoutGap="16px" fxFlex>
-    <cas-organization-users *ngIf="selectedResource === ResourceType.USER"
-                            [users]="organization.users">
-    </cas-organization-users>
+    <div fxLayout="column" fxLayoutGap="16px" fxFlex>
+      <cas-organization-users *ngIf="selectedResource === ResourceType.USER"
+                              [users]="organization.users">
+      </cas-organization-users>
 
-    <cas-organization-roles *ngIf="selectedResource === ResourceType.ROLE"
-                            [roles]="organization.roles">
-    </cas-organization-roles>
+      <cas-organization-roles *ngIf="selectedResource === ResourceType.ROLE"
+                              [roles]="organization.roles">
+      </cas-organization-roles>
 
-    <cas-organization-privileges *ngIf="selectedResource === ResourceType.PRIVILEGE"
-                                 [privileges]="organization.privileges">
-    </cas-organization-privileges>
-  </div>
+      <cas-organization-privileges *ngIf="selectedResource === ResourceType.PRIVILEGE"
+                                   [privileges]="organization.privileges">
+      </cas-organization-privileges>
+    </div>
+  </ng-container>
 </div>

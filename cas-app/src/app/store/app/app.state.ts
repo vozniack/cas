@@ -1,23 +1,29 @@
+import {Organization} from '../../modules/organizations/organizations.interface';
+import {User} from '../../modules/users/users.interface';
+import {Role} from '../../modules/roles/roles.interface';
+import {Privilege} from '../../modules/privileges/privileges.interface';
+
 export interface AppState {
 
   page: PageState;
 
-  resource: ResourceState;
-
   user: UserState;
 
-  actions: ActionState;
+  resource: ResourceState;
 }
 
 export interface PageState {
 
   title: string;
 
-  subtitle: string;
-
   icon: string;
 
   link: string;
+}
+
+export interface UserState {
+
+  token?: string;
 }
 
 export interface ResourceState {
@@ -25,14 +31,6 @@ export interface ResourceState {
   name: 'organizations' | 'users' | 'roles' | 'privileges' | undefined;
 
   id: string | undefined;
-}
 
-export interface ActionState {
-
-  edit: boolean;
-}
-
-export interface UserState {
-
-  token?: string;
+  payload: Organization | User | Role | Privilege | undefined;
 }

@@ -1,0 +1,23 @@
+@import 'src/styles/variables';
+
+.separator {
+  border: 2px solid;
+  border-radius: 25%;
+
+  &.horizontal {
+    width: 90%;
+
+  }
+
+  &.vertical {
+    max-height: 90%;
+  }
+
+  &.light {
+    border-color: rgba($background-dark, 0.5);
+  }
+
+  &.dark {
+    border-color: rgba($background-darker, 0.5);
+  }
+}

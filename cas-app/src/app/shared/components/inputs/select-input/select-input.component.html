@@ -5,10 +5,10 @@
   </div>
 
   <div class="form" [ngClass]="'theme-' + theme"
-       [class.invalid]="control.touched && control.invalid"
-       [class.active]="active">
+       [class.invalid]="control.touched && control.invalid" [class.active]="active">
 
-    <i-feather *ngIf="control.value && !active" class="icon action" name="x" (click)="clear()" @fadeInAnimation>
+    <i-feather *ngIf="control.value && !active" class="icon action" name="x" (click)="clear()"
+               @fadeInAnimation>
     </i-feather>
 
     <i-feather *ngIf="!control.value || active" class="icon" [class.active]="active" name="chevron-left"
@@ -17,7 +17,7 @@
 
     <span class="placeholder" *ngIf="placeholder && control.value == null">{{placeholder}}</span>
 
-    <div class="select">
+    <div class="select" [ngClass]="background">
       <span class="value">{{getOptionName()}}</span>
     </div>
   </div>

@@ -1,0 +1,8 @@
+<ng-container *ngIf="position === 'HORIZONTAL'">
+  <hr class="separator horizontal {{style}}"/>
+</ng-container>
+
+<ng-container *ngIf="position === 'VERTICAL'">
+  <div class="separator vertical {{style}}" [style.height]="height"></div>
+</ng-container>
+

@@ -27,6 +27,12 @@ export class OrganizationTileComponent {
   }
 
   showOrganization(): void {
-    this.store.dispatch(ACTION_VIEW_RESOURCE({resource: {name: 'organizations', id: this.organization.id}}))
+    this.store.dispatch(ACTION_VIEW_RESOURCE({
+      resource: {
+        name: 'organizations',
+        id: this.organization.id,
+        payload: this.organization
+      }
+    }))
   }
 }

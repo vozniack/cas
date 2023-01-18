@@ -5,9 +5,8 @@ import {fadeInAnimation} from "../../animations/fade-in-animation";
 import {fadeOutAnimation} from "../../animations/fade-out-animation";
 import {RequestParam, SortDirection} from "../../model/request.interface";
 import {FormControl} from "@angular/forms";
-import {tap} from "rxjs/operators";
 import {Subject} from "rxjs";
-import {ACTION_EDIT_RESOURCE, ACTION_VIEW_RESOURCE} from "../../../store/app/app.actions";
+import {ACTION_VIEW_RESOURCE} from "../../../store/app/app.actions";
 import {Store} from "@ngrx/store";
 
 @Component({
@@ -66,13 +65,6 @@ export class TableComponent {
 
   /* Changes */
 
-  onSearchChange(): void {
-    this.searchFormControl?.valueChanges.pipe(
-      tap((search: string) => this.requestParamChange.emit({...this.requestParam, page: 0, search: search})),
-      tap(() => this.paginationReset.next(undefined))
-    ).subscribe()
-  }
-
   onSortChange(tableColumn: TableColumn): void {
     if (tableColumn.sortable) {
       if (this.requestParam?.sort != null && this.requestParam.sort.field === tableColumn.field) {
@@ -103,11 +95,16 @@ export class TableComponent {
     } else {
       switch (tableAction.name) {
         case 'VIEW':
-          this.store.dispatch(ACTION_VIEW_RESOURCE({resource: {name: this.resourceName, id: data.id}}))
+          this.store.dispatch(ACTION_VIEW_RESOURCE({
+            resource: {
+              name: this.resourceName,
+              id: data.id,
+              payload: data
+            }
+          }))
           break;
 
-        case 'EDIT':
-          this.store.dispatch(ACTION_EDIT_RESOURCE({resource: {name: this.resourceName, id: data.id}}))
+        case 'REMOVE':
           break;
 
         default:
@@ -115,7 +112,6 @@ export class TableComponent {
           break;
       }
     }
-
   }
 
   /* Getter */

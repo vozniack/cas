@@ -1,24 +1,20 @@
 <div class="standard-container" fxLayout="column" fxLayoutGap="24px" @fadeInAnimation>
 
-  <div fxLayout="row" fxLayoutAlign="space-between center">
-    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
-      <i-feather class="icon" name="briefcase"></i-feather>
-      <span class="title">{{organization.name}}</span>
-    </div>
-  </div>
+  <ng-container *ngIf="!editMode">
+    <cas-organization-info-view [organization]="organization">
+    </cas-organization-info-view>
+  </ng-container>
 
-  <span>{{organization.description}}</span>
+  <ng-container *ngIf="editMode">
+    <cas-organization-info-form [organization]="organization" [organizationForm]="organizationForm">
+    </cas-organization-info-form>
+  </ng-container>
 
-  <div fxLayout="row" fxLayoutAlign="space-between center">
-    <span>Code</span>
-    <span class="badge primary">{{organization.code}}</span>
-  </div>
-
-  <hr class="dark"/>
+  <cas-separator></cas-separator>
 
   <cas-resource-dates [resource]="organization"></cas-resource-dates>
 
-  <hr class="dark"/>
+  <cas-separator></cas-separator>
 
   <div class="column" fxLayoutGap="16px">
     <span>Organization resources</span>

@@ -61,8 +61,6 @@
       width: 100%;
       padding: 5px 20px;
 
-      background: $background-dark;
-
       border-radius: $radius;
       border: none;
 
@@ -70,6 +68,14 @@
 
       font-size: 18px;
       color: $white;
+
+      &.basic {
+        background: $background-dark;
+      }
+
+      &.inverse {
+        background: $background-darker;
+      }
 
       &:hover {
         cursor: pointer;

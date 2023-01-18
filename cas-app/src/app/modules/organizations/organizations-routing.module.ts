@@ -1,9 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {OrganizationsComponent} from "./organizations.component";
-import {OrganizationViewComponent} from "./organization-view/organization-view.component";
 import {OrganizationsResolver} from "./organizations.resolver";
-import {OrganizationEditComponent} from "./organization-edit/organization-edit.component";
+import {OrganizationComponent} from './organization/organization.component';
 
 const routes: Routes = [
   {
@@ -12,14 +11,7 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component: OrganizationViewComponent,
-    resolve: {
-      organization: OrganizationsResolver
-    }
-  },
-  {
-    path: ':id/edit',
-    component: OrganizationEditComponent,
+    component: OrganizationComponent,
     resolve: {
       organization: OrganizationsResolver
     }

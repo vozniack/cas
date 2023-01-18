@@ -1,17 +1,11 @@
 <div class="toolbar-container" fxLayout="row" fxLayoutAlign="space-between center" @fadeInAnimation>
-
   <div class="title-container" fxLayout="column" fxLayoutGap="2px">
     <h2 class="text-primary">{{this.state.page.title}}</h2>
-    <h4 class="text-primary">{{this.state.page.subtitle}}</h4>
   </div>
 
   <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
-    <div *ngIf="this.state.actions.edit" class="icon-container" @fadeInAnimation @fadeOutAnimation>
-      <i-feather class="icon" name="edit" (click)="edit()"></i-feather>
-    </div>
-
-    <div class="icon-container">
-      <i-feather class="icon" name="log-out" (click)="logout()"></i-feather>
-    </div>
+    <cas-button [shape]="'circle'" (click)="logout()" @fadeInAnimation>
+      <i-feather class="icon" name="log-out"></i-feather>
+    </cas-button>
   </div>
 </div>
