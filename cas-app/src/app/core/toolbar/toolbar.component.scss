@@ -19,23 +19,4 @@
       font-weight: 300;
     }
   }
-
-  .icon-container {
-    border-radius: 50%;
-
-    background: $background-darker;
-
-    .icon {
-      padding: 12px;
-      color: $white;
-
-      transform: scale(0.9);
-      transition: transform 0.2s ease-in-out;
-
-      &:hover {
-        cursor: pointer;
-        transform: scale(1.1);
-      }
-    }
-  }
 }

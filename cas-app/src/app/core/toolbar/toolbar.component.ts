@@ -15,7 +15,6 @@ import {ACTION_USER_LOGOUT,} from '../../store/app/app.actions';
 export class ToolbarComponent implements OnInit {
 
   state!: AppState;
-  editMode!: boolean;
 
   constructor(private store: Store) {
   }
