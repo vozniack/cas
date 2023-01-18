@@ -84,7 +84,7 @@ VALUES ('b7d72a65-4fbc-43d3-b81e-724bf4a8145e', 'Manage company', 'MANAGE_COMPAN
        ('2c7ab7e6-4082-41c7-8cb6-7efef7ea3a4e', 'Solve conflicts between branch managers', 'SOLVE_CONFLICTS',
         '', 3, 'dd6f01cf-9fca-4e7b-9da3-047dd7004494', 'b7d72a65-4fbc-43d3-b81e-724bf4a8145e'),
 
-       ('cdcf7b15-680a-4df8-8d41-ff0eea97ab25', 'Manage company branch', 'MANAGE_BRANCH',
+       ('cdcf7b15-680a-4df8-8d41-ff0eea97ab25', 'Manage branch', 'MANAGE_BRANCH',
         '', 1, 'dd6f01cf-9fca-4e7b-9da3-047dd7004494', null),
        ('23f8a940-e755-476e-82f0-2e37f917a6ec', 'Do a business', 'BUSINESS_DOING',
         '', 2, 'dd6f01cf-9fca-4e7b-9da3-047dd7004494', 'cdcf7b15-680a-4df8-8d41-ff0eea97ab25'),
