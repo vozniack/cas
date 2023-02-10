@@ -1,11 +1,9 @@
 import {NgModule} from '@angular/core';
-import {FeatherModule} from 'angular-feather';
-
-import {allIcons} from 'angular-feather/icons';
+import {IonicModule} from '@ionic/angular';
 
 @NgModule({
-  imports: [FeatherModule.pick(allIcons)],
-  exports: [FeatherModule]
+  imports: [IonicModule.forRoot()],
+  exports: [IonicModule]
 })
 export class IconsModule {
 }

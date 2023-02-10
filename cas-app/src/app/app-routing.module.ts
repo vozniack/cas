@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {TokenGuard} from "./core/auth/guard/token.guard";
-import {LoginComponent} from "./core/login/login.component";
+import {TokenGuard} from './core/auth/guard/token.guard';
+import {LoginComponent} from './core/login/login.component';
 
 const routes: Routes = [
   {
@@ -29,13 +29,8 @@ const routes: Routes = [
     canActivate: [TokenGuard]
   },
   {
-    path: 'roles',
-    loadChildren: () => import('./modules/roles/roles.module').then(m => m.RolesModule),
-    canActivate: [TokenGuard]
-  },
-  {
-    path: 'privileges',
-    loadChildren: () => import('./modules/privileges/privileges.module').then(m => m.PrivilegesModule),
+    path: 'sandbox',
+    loadChildren: () => import('./modules/sandbox/sandbox.module').then(m => m.SandboxModule),
     canActivate: [TokenGuard]
   }
 ];

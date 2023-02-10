@@ -1,0 +1,131 @@
+<div fxLayout="column" fxLayoutGap="32px">
+
+  <div fxLayout="column" fxLayoutGap="16px">
+    <h1>Inputs</h1>
+
+    <div fxLayout="row" fxLayoutGap="64px">
+      <cas-text-input
+        [name]="'Name'"
+        [description]="'Put your name'"
+        [placeholder]="'Name of you'"
+        [icon]="'person-outline'"
+        [width]="'512px'">
+      </cas-text-input>
+
+      <cas-select-input
+        [name]="'Name'"
+        [description]="'Put your name'"
+        [placeholder]="'Name of you'"
+        [width]="'512px'"
+        [options]="selectOptions">
+      </cas-select-input>
+    </div>
+  </div>
+
+  <div fxLayout="column" fxLayoutGap="24px">
+
+    <h1>Controls</h1>
+
+    <div fxLayout="row" fxLayoutGap="16px">
+      <div fxLayout="row" fxLayoutGap="16px">
+        <cas-button-rectangle [theme]="'default'" [text]="'Click me!'"></cas-button-rectangle>
+        <cas-button-rectangle [theme]="'primary'" [text]="'Click me!'"></cas-button-rectangle>
+        <cas-button-rectangle [theme]="'secondary'" [text]="'Click me!'"></cas-button-rectangle>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="16px">
+        <cas-button-rectangle [theme]="'default'" [disabled]="true" [text]="'Click me!'"></cas-button-rectangle>
+        <cas-button-rectangle [theme]="'primary'" [disabled]="true" [text]="'Click me!'"></cas-button-rectangle>
+        <cas-button-rectangle [theme]="'secondary'" [disabled]="true" [text]="'Click me!'"></cas-button-rectangle>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="16px">
+      <div fxLayout="row" fxLayoutGap="16px">
+        <cas-button-rectangle [theme]="'default'" [text]="'Click me!'" [icon]="'add-outline'"></cas-button-rectangle>
+        <cas-button-rectangle [theme]="'primary'" [text]="'Click me!'" [icon]="'add-outline'"></cas-button-rectangle>
+        <cas-button-rectangle [theme]="'secondary'" [text]="'Click me!'" [icon]="'add-outline'"></cas-button-rectangle>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="16px">
+        <cas-button-rectangle [theme]="'default'" [disabled]="true" [text]="'Click me!'"
+                              [icon]="'add-outline'"></cas-button-rectangle>
+        <cas-button-rectangle [theme]="'primary'" [disabled]="true" [text]="'Click me!'"
+                              [icon]="'add-outline'"></cas-button-rectangle>
+        <cas-button-rectangle [theme]="'secondary'" [disabled]="true" [text]="'Click me!'"
+                              [icon]="'add-outline'"></cas-button-rectangle>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="16px">
+      <div fxLayout="row" fxLayoutGap="16px">
+        <cas-button-rectangle [theme]="'default'" [text]="'Click me!'" [size]="'small'"></cas-button-rectangle>
+        <cas-button-rectangle [theme]="'primary'" [text]="'Click me!'" [size]="'small'"></cas-button-rectangle>
+        <cas-button-rectangle [theme]="'secondary'" [text]="'Click me!'" [size]="'small'"></cas-button-rectangle>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="16px">
+        <cas-button-rectangle [theme]="'default'" [disabled]="true" [text]="'Click me!'"
+                              [size]="'small'"></cas-button-rectangle>
+        <cas-button-rectangle [theme]="'primary'" [disabled]="true" [text]="'Click me!'"
+                              [size]="'small'"></cas-button-rectangle>
+        <cas-button-rectangle [theme]="'secondary'" [disabled]="true" [text]="'Click me!'"
+                              [size]="'small'"></cas-button-rectangle>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="16px">
+      <div fxLayout="row" fxLayoutGap="16px">
+        <cas-button-rectangle [theme]="'default'" [text]="'Click me!'" [icon]="'add-outline'"
+                              [size]="'small'"></cas-button-rectangle>
+        <cas-button-rectangle [theme]="'primary'" [text]="'Click me!'" [icon]="'add-outline'"
+                              [size]="'small'"></cas-button-rectangle>
+        <cas-button-rectangle [theme]="'secondary'" [text]="'Click me!'" [icon]="'add-outline'"
+                              [size]="'small'"></cas-button-rectangle>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="16px">
+        <cas-button-rectangle [theme]="'default'" [disabled]="true" [text]="'Click me!'" [icon]="'add-outline'"
+                              [size]="'small'"></cas-button-rectangle>
+        <cas-button-rectangle [theme]="'primary'" [disabled]="true" [text]="'Click me!'" [icon]="'add-outline'"
+                              [size]="'small'"></cas-button-rectangle>
+        <cas-button-rectangle [theme]="'secondary'" [disabled]="true" [text]="'Click me!'" [icon]="'add-outline'"
+                              [size]="'small'"></cas-button-rectangle>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="16px">
+      <div fxLayout="row" fxLayoutGap="16px">
+        <cas-button-circle [theme]="'default'" [icon]="'add-outline'"></cas-button-circle>
+        <cas-button-circle [theme]="'primary'" [icon]="'add-outline'"></cas-button-circle>
+        <cas-button-circle [theme]="'secondary'" [icon]="'add-outline'"></cas-button-circle>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="16px">
+        <cas-button-circle [theme]="'default'" [disabled]="true" [icon]="'add-outline'"></cas-button-circle>
+        <cas-button-circle [theme]="'primary'" [disabled]="true" [icon]="'add-outline'"></cas-button-circle>
+        <cas-button-circle [theme]="'secondary'" [disabled]="true" [icon]="'add-outline'"></cas-button-circle>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="16px">
+      <div fxLayout="row" fxLayoutGap="16px">
+        <cas-button-circle [theme]="'default'" [icon]="'add-outline'"
+                           [size]="'small'"></cas-button-circle>
+        <cas-button-circle [theme]="'primary'" [icon]="'add-outline'"
+                           [size]="'small'"></cas-button-circle>
+        <cas-button-circle [theme]="'secondary'" [icon]="'add-outline'"
+                           [size]="'small'"></cas-button-circle>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="16px">
+        <cas-button-circle [theme]="'default'" [disabled]="true" [icon]="'add-outline'"
+                           [size]="'small'"></cas-button-circle>
+        <cas-button-circle [theme]="'primary'" [disabled]="true" [icon]="'add-outline'"
+                           [size]="'small'"></cas-button-circle>
+        <cas-button-circle [theme]="'secondary'" [disabled]="true" [icon]="'add-outline'"
+                           [size]="'small'"></cas-button-circle>
+      </div>
+    </div>
+  </div>
+</div>

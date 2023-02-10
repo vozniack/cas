@@ -3,34 +3,37 @@
 .table-container {
   width: 100%;
 
-  .filter-button {
-    margin-top: 8px;
-  }
+  border: $border;
+  border-radius: $radius-standard;
+  background: $background-container;
 
   table {
     width: 100%;
+
+    border-spacing: 0;
+    border-collapse: collapse;
 
     ::selection {
       color: $white;
       background: $background-dark;
     }
 
-    th {
-      background: $background-dark;
-      border-radius: $radius;
-    }
-
     thead {
+      background: rgb(251, 251, 251);
+
+      border-bottom: $border;
+      border-radius: $radius-standard;
 
       th {
         position: relative;
 
-        color: $white;
-        font-size: 20px;
-        font-weight: 600;
+        color: $color-dark;
+        font-size: 12px;
+        font-weight: 700;
 
         text-align: left;
-        padding: 12px 12px;
+        text-transform: uppercase;
+        padding: 16px;
 
         .sortable:hover {
           cursor: pointer;
@@ -42,30 +45,62 @@
 
         .icon {
           position: absolute;
+          color: $color-dark;
+
           right: 16px;
+          top: 18px;
 
-          color: $white;
-          width: 16px;
-
-          transition: transform 0.2s;
+          transition: transform 0.2s ease-in-out, top 0.2s ease-in-out;
 
           &.inverted {
             transform: rotate(180deg);
+            top: 18px;
           }
         }
       }
     }
 
     tbody {
-      th {
-        color: $white;
-        font-size: 14px;
-        font-weight: 400;
+      tr {
+        height: 56px;
 
-        text-align: left;
-        padding: 6px 12px;
+        &:hover {
+          background: rgba($background-page, 0.5);
+        }
 
-        background: rgba($background-dark, 0.5);
+        th {
+          padding: 8px 16px;
+
+          color: $color-dark;
+          font-size: 13px;
+          font-weight: 600;
+
+          text-align: left;
+
+          .activity:before {
+            content: "• ";
+            margin-right: 4px;
+          }
+
+          .avatar {
+            height: 38px;
+            width: 38px;
+            background: $background-gray;
+            color: $color-dark;
+            border-radius: 50%;
+
+            .icon {
+              height: 20px;
+              width: 20px;
+            }
+          }
+
+          .description {
+            font-size: 11px;
+            color: rgba($color-light, 0.75);
+            font-weight: 500;
+          }
+        }
       }
     }
   }

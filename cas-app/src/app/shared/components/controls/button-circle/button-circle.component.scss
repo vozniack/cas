@@ -1,0 +1,31 @@
+@import 'src/styles/variables';
+
+.button-circle {
+  cursor: pointer;
+  outline: none;
+  border: none;
+
+  margin-top: 4px;
+
+  border-radius: $radius-rounded;
+
+  transition: filter 0.2s ease-in-out, background-color 0.2s ease-out, color 0.2s ease-in-out;
+
+  &:disabled {
+    cursor: default;
+  }
+
+  /* Sizes */
+
+  &.small {
+    height: 32px;
+    width: 32px;
+    font-size: 18px;
+  }
+
+  &.normal {
+    height: 48px;
+    width: 48px;
+    font-size: 24px;
+  }
+}

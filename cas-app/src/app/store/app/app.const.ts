@@ -42,16 +42,10 @@ export const usersPageState: PageState = {
   link: 'users',
 };
 
-export const rolesPageState: PageState = {
-  title: 'Roles',
-  icon: 'lock',
-  link: 'roles',
-};
-
-export const privilegesPageState: PageState = {
-  title: 'Privileges',
-  icon: 'key',
-  link: 'privileges',
+export const sandboxState: PageState = {
+  title: 'Sandbox',
+  icon: 'codesandbox',
+  link: 'sandbox',
 };
 
 /* Page navigation states */
@@ -60,8 +54,5 @@ export const upperPageStates: PageState[] = [
   dashboardPageState,
   organizationsPageState,
   usersPageState,
-  rolesPageState,
-  privilegesPageState
+  sandboxState
 ];
-
-export const lowerPageStates: PageState[] = [];

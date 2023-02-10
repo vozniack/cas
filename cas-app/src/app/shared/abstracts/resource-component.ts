@@ -6,8 +6,6 @@ import {ACTION_INIT_RESOURCE} from '../../store/app/app.actions';
 
 export abstract class ResourceComponent {
 
-  protected editMode: boolean = false;
-
   protected destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
   protected constructor(protected store: Store,

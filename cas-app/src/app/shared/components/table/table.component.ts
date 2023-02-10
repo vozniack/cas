@@ -1,13 +1,13 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ColumnType, TableAction, TableColumn} from "./table.interface";
-import {Pageable} from "../../model/pageable.interface";
-import {fadeInAnimation} from "../../animations/fade-in-animation";
-import {fadeOutAnimation} from "../../animations/fade-out-animation";
-import {RequestParam, SortDirection} from "../../model/request.interface";
-import {FormControl} from "@angular/forms";
-import {Subject} from "rxjs";
-import {ACTION_VIEW_RESOURCE} from "../../../store/app/app.actions";
-import {Store} from "@ngrx/store";
+import {FormControl} from '@angular/forms';
+import {Store} from '@ngrx/store';
+import {Subject} from 'rxjs';
+import {ACTION_VIEW_RESOURCE} from '../../../store/app/app.actions';
+import {fadeInAnimation} from '../../animations/fade-in-animation';
+import {fadeOutAnimation} from '../../animations/fade-out-animation';
+import {Pageable} from '../../model/pageable.interface';
+import {RequestParam, SortDirection} from '../../model/request.interface';
+import {ColumnType, TableAction, TableColumn} from './table.interface';
 
 @Component({
   selector: 'cas-table',
@@ -116,7 +116,7 @@ export class TableComponent {
 
   /* Getter */
 
-  getFieldValue(row: any, tableColumn: TableColumn): string {
-    return tableColumn?.field?.split('.').reduce((o, key) => o[key], row);
+  getFieldValue(row: any, field?: string): string {
+    return field?.split('.').reduce((o, key) => o[key], row);
   }
 }

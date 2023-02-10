@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {FormControl, Validators} from "@angular/forms";
-import {fadeInAnimation} from "../../../animations/fade-in-animation";
+import {FormControl, Validators} from '@angular/forms';
+import {fadeInAnimation} from '../../../animations/fade-in-animation';
 
 @Component({
   selector: 'cas-text-input',
@@ -21,16 +21,15 @@ export class TextInputComponent {
   @Input() icon: string = '';
 
   @Input() requiredLabel: boolean = false;
-  @Input() width: string = '100%';
+  @Input() password: boolean = false;
 
-  @Input() theme: 'primary' | 'secondary' = 'primary';
-  @Input() background: 'basic' | 'inverse' = 'basic';
+  @Input() width: string = '100%';
 
   isRequired(): boolean {
     return this.control.hasValidator(Validators.required);
   }
 
-  clear(): void {
-    this.control.setValue(null);
+  switchVisibility(): void {
+    this.type = this.type == 'password' ? 'text' : 'password';
   }
 }

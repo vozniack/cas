@@ -1,13 +1,11 @@
 import {Component} from '@angular/core';
-import {DashboardService} from "../dashboard.service";
-import {DashboardStatistics} from "../dashboard.interface";
-import {fadeInAnimation} from "../../../shared/animations/fade-in-animation";
+import {DashboardStatistics} from '../dashboard.interface';
+import {DashboardService} from '../dashboard.service';
 
 @Component({
   selector: 'cas-statistics',
   templateUrl: './statistics.component.html',
-  styleUrls: ['./statistics.component.scss'],
-  animations: [fadeInAnimation]
+  styleUrls: ['./statistics.component.scss']
 })
 export class StatisticsComponent {
 

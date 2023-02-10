@@ -1,0 +1,7 @@
+<button class="button-rectangle" [disabled]="disabled"
+        [ngClass]="'button-theme-' + theme + ' ' + size" [style.width]="width">
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
+    <ion-icon *ngIf="icon" [name]="icon"></ion-icon>
+    <span *ngIf="text">{{text}}</span>
+  </div>
+</button>

@@ -1,9 +1,0 @@
-<div class="view-select-container" fxLayout="row" fxLayoutAlign="center center" @fadeInAnimation>
-
-  <ng-container *ngFor="let view of views">
-    <div class="view-option" [class.active]="selectedView === view.viewType" (click)="switchViewType(view.viewType)">
-      <i-feather class="icon" [name]="view.icon"></i-feather>
-    </div>
-  </ng-container>
-
-</div>

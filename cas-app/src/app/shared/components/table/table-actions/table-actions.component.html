@@ -1,9 +1,8 @@
 <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
-  <cas-button *ngFor="let action of actions"
-              [width]="'40px'"
-              [size]="'small'"
-              [theme]="action.theme"
-              (click)="actionActive.emit(action)">
-    <i-feather class="action-icon" [name]="action.icon"></i-feather>
-  </cas-button>
+  <cas-button-circle *ngFor="let action of actions"
+                     [size]="'small'"
+                     [icon]="action.icon"
+                     [theme]="action.theme"
+                     (click)="actionActive.emit(action)">
+  </cas-button-circle>
 </div>

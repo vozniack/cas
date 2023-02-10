@@ -1,41 +1,38 @@
+import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
+import {FlexLayoutModule} from '@angular/flex-layout';
 import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {IonicModule} from '@ionic/angular';
+import {EffectsModule} from '@ngrx/effects';
+import {MetaReducer, StoreModule} from '@ngrx/store';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {FlexLayoutModule} from '@angular/flex-layout';
-import {ToasterService} from './core/toaster/toaster.service';
-import {SidebarComponent} from './core/sidebar/sidebar.component';
-import {SidebarLinkComponent} from './core/sidebar/sidebar-link/sidebar-link.component';
-import {ToolbarComponent} from './core/toolbar/toolbar.component';
-import {IconsModule} from './core/icons/icons.module';
-import {MetaReducer, StoreModule} from '@ngrx/store';
-import {appReducer} from './store/app/app.reducers';
-import {LoginComponent} from './core/login/login.component';
-import {InputsModule} from './shared/components/inputs/inputs.module';
-import {ControlsModule} from './shared/components/controls/controls.module';
-import {persistState} from './store/meta/persist.metareducer';
-import {HttpClientModule} from '@angular/common/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthModule} from './core/auth/auth.module';
-import {EffectsModule} from '@ngrx/effects';
-import {AppEffects} from './store/app/app.effects';
+import {ContentComponent} from './core/content/content.component';
+import {IconsModule} from './core/icons/icons.module';
+import {LoginComponent} from './core/login/login.component';
+import {ToastComponent} from './core/toaster/toast/toast.component';
+import {ToasterComponent} from './core/toaster/toaster.component';
+import {ToasterService} from './core/toaster/toaster.service';
+import {ToolbarComponent} from './core/toolbar/toolbar.component';
 import {OrganizationsService} from './modules/organizations/organizations.service';
 import {UsersService} from './modules/users/users.service';
-import {RolesService} from './modules/roles/roles.service';
-import {PrivilegesService} from './modules/privileges/privileges.service';
 import {CommonComponentsModule} from './shared/components/common/common-components.module';
-import {ToasterComponent} from './core/toaster/toaster.component';
-import {ToastComponent} from './core/toaster/toast/toast.component';
+import {ControlsModule} from './shared/components/controls/controls.module';
+import {InputsModule} from './shared/components/inputs/inputs.module';
+import {AppEffects} from './store/app/app.effects';
+import {appReducer} from './store/app/app.reducers';
+import {persistState} from './store/meta/persist.metareducer';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
-    SidebarLinkComponent,
     ToolbarComponent,
     LoginComponent,
     ToasterComponent,
-    ToastComponent
+    ToastComponent,
+    ContentComponent
   ],
   imports: [
     BrowserModule,
@@ -50,14 +47,13 @@ import {ToastComponent} from './core/toaster/toast/toast.component';
     StoreModule.forRoot({app: appReducer}, {metaReducers: [persistState as MetaReducer]}),
     EffectsModule.forRoot([AppEffects]),
     CommonComponentsModule,
+    IonicModule.forRoot(),
   ],
   bootstrap: [AppComponent],
   providers: [
     ToasterService,
     OrganizationsService,
-    UsersService,
-    RolesService,
-    PrivilegesService
+    UsersService
   ]
 })
 export class AppModule {

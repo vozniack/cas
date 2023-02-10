@@ -1,11 +1,5 @@
-<div fxLayout="column" fxLayoutGap="16px">
-  <div class="content-container">
-    <cas-data-toolbar [filters]="filters" [views]="views"></cas-data-toolbar>
-  </div>
+<div fxLayout="column" fxLayoutGap="24px" @fadeInAnimation>
+  <h1>Users</h1>
 
-  <div class="content-container">
-    <cas-users-table *ngIf="view === ViewType.TABLE" [filters]="filters"></cas-users-table>
-
-    <cas-users-list *ngIf="view === ViewType.LIST" [filters]="filters"></cas-users-list>
-  </div>
+  <cas-users-table [filters]="filters"></cas-users-table>
 </div>

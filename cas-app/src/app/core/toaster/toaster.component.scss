@@ -3,7 +3,7 @@
 .toaster {
   position: sticky;
 
-  top: 0;
+  left: 0;
   right: 0;
 
   z-index: 100;
@@ -11,7 +11,6 @@
   .toast-wrapper {
     position: absolute;
 
-    top: 0;
-    right: 0;
+    bottom: 32px;
   }
 }

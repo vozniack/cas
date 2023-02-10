@@ -4,20 +4,18 @@
     <span class="description">{{description}}</span>
   </div>
 
-  <div class="form" [ngClass]="'theme-' + theme"
-       [class.invalid]="control.touched && control.invalid" [class.active]="active">
-
-    <i-feather *ngIf="control.value && !active" class="icon action" name="x" (click)="clear()"
+  <div class="form" [class.invalid]="control.touched && control.invalid" [class.active]="active">
+    <ion-icon *ngIf="control.value && !active" class="icon action" name="x" (click)="clear()"
                @fadeInAnimation>
-    </i-feather>
+    </ion-icon>
 
-    <i-feather *ngIf="!control.value || active" class="icon" [class.active]="active" name="chevron-left"
+    <ion-icon *ngIf="!control.value || active" class="icon" [class.active]="active" name="chevron-back-outline"
                @fadeInAnimation>
-    </i-feather>
+    </ion-icon>
 
     <span class="placeholder" *ngIf="placeholder && control.value == null">{{placeholder}}</span>
 
-    <div class="select" [ngClass]="background">
+    <div class="select">
       <span class="value">{{getOptionName()}}</span>
     </div>
   </div>

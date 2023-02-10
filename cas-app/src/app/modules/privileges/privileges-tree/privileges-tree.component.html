@@ -1,8 +1,0 @@
-<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="16px" @fadeInAnimation>
-  <cas-tree [nodes]="data" [itemSelect]="itemSelect" fxFlex></cas-tree>
-
-  <ng-container *ngIf="selectedPrivilege">
-    <cas-privilege-tile [privilege]="selectedPrivilege" [itemSelect]="itemSelect">
-    </cas-privilege-tile>
-  </ng-container>
-</div>

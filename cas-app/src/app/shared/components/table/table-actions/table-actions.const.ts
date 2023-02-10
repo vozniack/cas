@@ -3,14 +3,14 @@ import {TableAction} from '../table.interface';
 export const defaultActions: TableAction[] = [
   {
     name: 'VIEW',
-    icon: 'eye',
-    theme: 'primary',
+    icon: 'eye-outline',
+    theme: 'default',
     custom: false
   },
   {
     name: 'REMOVE',
-    icon: 'trash',
-    theme: 'secondary',
+    icon: 'trash-outline',
+    theme: 'default',
     custom: false
   }
 ]

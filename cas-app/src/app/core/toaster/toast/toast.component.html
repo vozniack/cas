@@ -1,12 +1,11 @@
-<div class="toast" [ngClass]="toast.style" @fadeInAnimation>
+<div class="toast" [ngClass]="toast.style" @fadeInAnimation @fadeOutAnimation>
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <div fxLayout="column" fxLayoutGap="16px">
-      <span class="title">{{toast.title}}</span>
       <span class="message">{{toast.message}}</span>
     </div>
 
-    <cas-button [shape]="'circle'" [theme]="'light'" (click)="dismiss()">
-      <i-feather name="x"></i-feather>
-    </cas-button>
+    <cas-button-rectangle [size]="'small'" [theme]="setButtonTheme()" (click)="dismiss()">
+      <ion-icon name="x"></ion-icon>
+    </cas-button-rectangle>
   </div>
 </div>

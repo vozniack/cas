@@ -2,41 +2,58 @@
 
 .statistics-container {
   padding: 12px 16px;
-  border-radius: $radius;
+  border-radius: $radius-standard;
 
   width: auto;
 
+  color: $color-dark;
   background-color: $background-darker;
-  color: $white;
 
-  .icon {
-    color: $dark-gray;
+  ion-icon {
+    transform: scale(2);
+  }
+
+  &.organizations {
+    background-color: $cyan;
+    filter: drop-shadow(0 4px 8px rgba($cyan, 0.25));
+
+    .icon {
+      color: $cyan-dark;
+    }
+  }
+
+  &.users {
+    background-color: $violet;
+    filter: drop-shadow(0 4px 8px rgba($violet, 0.25));
+
+    .icon {
+      color: $violet-dark;
+    }
+  }
+
+  &.roles {
+    background-color: $orange;
+    filter: drop-shadow(0 4px 8px rgba($orange, 0.25));
+
+    .icon {
+      color: $orange-dark;
+    }
+  }
+
+  &.privileges {
+    background-color: $green;
+    filter: drop-shadow(0 4px 8px rgba($green, 0.25));
+
+    .icon {
+      color: $green-dark;
+    }
+  }
+
+  .icon-wrapper {
+    background: $white;
 
     padding: 24px;
-    border-radius: 100%;
-
-    width: 32px;
-    height: 32px;
-
-    &.organizations {
-      background-color: $cyan;
-      filter: drop-shadow(0 4px 8px rgba($cyan, 0.25));
-    }
-
-    &.users {
-      background-color: $violet;
-      filter: drop-shadow(0 4px 8px rgba($violet, 0.25));
-    }
-
-    &.roles {
-      background-color: $orange;
-      filter: drop-shadow(0 4px 8px rgba($orange, 0.25));
-    }
-
-    &.privileges {
-      background-color: $green;
-      filter: drop-shadow(0 4px 8px rgba($green, 0.25));
-    }
+    border-radius: $radius-rounded;
   }
 
   .amount {
@@ -46,6 +63,6 @@
 
   .title {
     margin-top: 8px;
-    font-weight: 300;
+    font-weight: 800;
   }
 }

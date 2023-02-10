@@ -4,52 +4,42 @@
   position: relative;
 
   .label {
-    color: $white;
-
     .name {
+      color: $color-dark;
       font-size: 14px;
-      font-weight: 400;
+      font-weight: 600;
     }
 
     .description {
+      color: $color-light;
       font-size: 12px;
-      font-weight: 200;
+      font-weight: 500;
     }
   }
 
   .form {
-    width: 100%;
-
     position: relative;
-    border-radius: $radius;
+
+    width: 100%;
+    margin-bottom: 0 !important;
+
+    border: $border;
+    border-radius: $radius-standard;
+
     box-shadow: none;
 
     transition: filter 0.2s ease-in-out;
-
-    margin-bottom: 0 !important;
 
     &.active:hover {
       filter: none !important;
     }
 
-    &.theme-primary {
-      &:hover {
-        filter: drop-shadow(0 0 2px rgba($primary, 0.75));
-      }
-
-      &.active {
-        filter: drop-shadow(0 0 2px rgba($primary, 1));
-      }
+    &:hover {
+      filter: drop-shadow(0 0 2px rgba($primary, 0.75));
     }
 
-    &.theme-secondary {
-      &:hover {
-        filter: drop-shadow(0 0 2px rgba($secondary, 0.75));
-      }
-
-      &.active {
-        filter: drop-shadow(0 0 2px rgba($secondary, 1));
-      }
+    &.active {
+      filter: drop-shadow(0 0 2px rgba($primary, 1));
     }
 
     &.invalid {
@@ -59,23 +49,16 @@
     .select {
       height: 40px;
       width: 100%;
-      padding: 5px 20px;
+      padding: 4px 16px;
 
-      border-radius: $radius;
+      border-radius: $radius-standard;
       border: none;
 
       box-sizing: border-box;
 
-      font-size: 18px;
-      color: $white;
-
-      &.basic {
-        background: $background-dark;
-      }
-
-      &.inverse {
-        background: $background-darker;
-      }
+      font-size: 14px;
+      color: $color-dark;
+      background: $background-container;
 
       &:hover {
         cursor: pointer;
@@ -84,7 +67,7 @@
       .value {
         position: absolute;
 
-        top: 10px;
+        top: 12px;
         left: 20px;
       }
     }
@@ -96,8 +79,7 @@
       left: 20px;
 
       font-size: 12px;
-      color: rgba($white, 0.4);
-      letter-spacing: 1px;
+      color: $color-dark;
 
       cursor: pointer;
     }
@@ -110,7 +92,7 @@
       right: 12px;
       width: 16px;
 
-      color: rgba($white, 0.5);
+      color: $color-light;
 
       transition: all 0.2s ease-in-out;
 
@@ -134,7 +116,7 @@
   }
 
   .select-options {
-    top: 52px;
+    top: 67px;
     left: 0;
 
     padding: 4px;
@@ -147,30 +129,28 @@
     max-height: 256px;
     overflow-y: auto;
 
-    background: $background-dark;
+    background: $background-container;
 
-    border-radius: $radius;
-    border: 1px solid $background-darker;
+    border: $border;
+    border-radius: $radius-standard;
 
     .option {
       height: 20px;
-
       padding: 8px;
-      margin-left: 6px;
 
-      border-radius: $radius;
-      color: $white;
+      color: $color-dark;
+      border-radius: $radius-standard;
 
       transition: background-color 0.2s ease-in-out;
 
       &:hover {
         cursor: pointer;
-        background: $background-darker;
+        background: $background-page;
       }
 
       &.empty {
         font-size: 14px;
-        color: rgba($white, 0.4);
+        color: $color-light;
       }
     }
   }

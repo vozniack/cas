@@ -1,22 +1,52 @@
 @import 'src/styles/variables';
 
-.toolbar-container {
-  padding: 32px 32px 16px 16px;
+.toolbar-wrapper {
+  background: $white;
+  border-bottom: $border;
 
-  .title-container {
-    color: $white;
+  padding: 32px;
 
-    h2, h4 {
-      filter: drop-shadow(0 0 2px rgba($primary, 0.25));
-    }
+  .toolbar-container {
+    width: 100%;
+    max-width: 1440px;
 
-    h2 {
-      text-transform: uppercase;
-      font-weight: 500;
-    }
+    .navigation-link {
+      margin-top: 8px;
 
-    h4 {
-      font-weight: 300;
+      font-weight: 700;
+      color: $color-light;
+
+      transition: color 0.2s ease-in-out;
+
+      &:after {
+        display: block;
+        content: '';
+
+        margin-top: 8px;
+        border-bottom: solid 2px $primary-dark;
+
+        transform: scaleX(0);
+        transform-origin: 50% 50%;
+
+        transition: transform 0.2s ease-in-out;
+      }
+
+      &.active {
+        color: $color-dark;
+
+        &:after {
+          transform: scaleX(0.3);
+        }
+      }
+
+      &:hover {
+        color: $color-dark;
+        cursor: pointer;
+
+        &:after {
+          transform: scaleX(0.9);
+        }
+      }
     }
   }
 }

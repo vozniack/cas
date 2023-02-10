@@ -2,43 +2,42 @@
 
   <!-- static previous pages buttons -->
 
-  <cas-button [disabled]="totalPages < 2 || page === 1"
-              [width]="'48px'" [size]="'small'" [theme]="'light'"
+  <cas-button-rectangle [disabled]="totalPages < 2 || page === 1"
+              [width]="'48px'" [size]="'small'"
               (click)="firstPage()">
-    <i-feather class="pagination-icon" name="chevrons-left"></i-feather>
-  </cas-button>
+    <ion-icon class="pagination-icon" name="chevrons-left"></ion-icon>
+  </cas-button-rectangle>
 
-  <cas-button [disabled]="page === 1"
-              [width]="'48px'" [size]="'small'" [theme]="'light'"
+  <cas-button-rectangle [disabled]="page === 1"
+              [width]="'48px'" [size]="'small'"
               (click)="prevPage()">
-    <i-feather class="pagination-icon" name="chevron-left"></i-feather>
-  </cas-button>
+    <ion-icon class="pagination-icon" name="chevron-left"></ion-icon>
+  </cas-button-rectangle>
 
   <!-- dynamic page buttons -->
 
   <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="4px">
     <ng-container *ngFor="let p of pages">
-      <cas-button *ngIf="this.canShowPage(p)"
-                  [active]="p === page"
-                  [width]="'48px'" [size]="'small'" [theme]="'light'"
+      <cas-button-rectangle *ngIf="this.canShowPage(p)"
+                  [width]="'48px'" [size]="'small'"
                   (click)="this.changePage(p)"
                   @fadeInAnimation>
         <span class="pagination-number">{{p.toString()}}</span>
-      </cas-button>
+      </cas-button-rectangle>
     </ng-container>
   </div>
 
   <!-- static next pages buttons -->
 
-  <cas-button [disabled]="totalPages === 0 || (totalPages > 0 && page === totalPages)"
-              [width]="'48px'" [size]="'small'" [theme]="'light'"
+  <cas-button-rectangle [disabled]="totalPages === 0 || (totalPages > 0 && page === totalPages)"
+              [width]="'48px'" [size]="'small'"
               (click)="nextPage()">
-    <i-feather class="pagination-icon" name="chevron-right"></i-feather>
-  </cas-button>
+    <ion-icon class="pagination-icon" name="chevron-right"></ion-icon>
+  </cas-button-rectangle>
 
-  <cas-button [disabled]="totalPages < 2 || page === totalPages"
-              [width]="'48px'" [size]="'small'" [theme]="'light'"
+  <cas-button-rectangle [disabled]="totalPages < 2 || page === totalPages"
+              [width]="'48px'" [size]="'small'"
               (click)="lastPage()">
-    <i-feather class="pagination-icon" name="chevrons-right"></i-feather>
-  </cas-button>
+    <ion-icon class="pagination-icon" name="chevrons-right"></ion-icon>
+  </cas-button-rectangle>
 </div>

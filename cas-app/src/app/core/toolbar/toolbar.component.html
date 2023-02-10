@@ -1,11 +1,25 @@
-<div class="toolbar-container" fxLayout="row" fxLayoutAlign="space-between center" @fadeInAnimation>
-  <div class="title-container" fxLayout="column" fxLayoutGap="2px">
-    <h2 class="text-primary">{{this.state.page.title}}</h2>
-  </div>
+<div class="toolbar-wrapper" fxLayoutAlign="center top" @fadeInAnimation>
+  <div class="toolbar-container" fxLayout="row" fxLayoutAlign="space-between center">
 
-  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
-    <cas-button [shape]="'circle'" (click)="logout()" @fadeInAnimation>
-      <i-feather name="log-out"></i-feather>
-    </cas-button>
+    <div fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start center">
+      <ng-container *ngFor="let navigation of upperNavigationStates">
+          <span class="navigation-link" [routerLink]="navigation.link" [routerLinkActive]="'active'">
+            {{navigation.title}}
+          </span>
+      </ng-container>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
+      <cas-text-input [id]="'page-search'"
+                      [placeholder]="'Search...'"
+                      [icon]="'search'"
+                      [width]="'368px'">
+      </cas-text-input>
+
+      <cas-button-circle [icon]="'settings-outline'"></cas-button-circle>
+
+      <cas-button-circle (click)="logout()" [icon]="'log-out-outline'"></cas-button-circle>
+    </div>
+
   </div>
 </div>

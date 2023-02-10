@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {fadeInAnimation} from "../../../animations/fade-in-animation";
-import {Subject} from "rxjs";
-import {tap} from "rxjs/operators";
+import {Subject} from 'rxjs';
+import {tap} from 'rxjs/operators';
+import {fadeInAnimation} from '../../../animations/fade-in-animation';
 
 @Component({
   selector: 'cas-table-pagination',
@@ -29,8 +29,6 @@ export class TablePaginationComponent implements OnInit {
   pages: number[] = [];
 
   page = 1;
-
-  ngDestroyed$ = new Subject<boolean>();
 
   /* ng actions */
 

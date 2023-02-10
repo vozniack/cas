@@ -1,0 +1,7 @@
+<div class="content-wrapper" fxLayoutAlign="center top" @fadeInAnimation>
+  <div class="content-container" [class.logged]="logged" [class.centered]="!logged"
+       [fxLayout]="logged ? 'column' : 'row'"
+       [fxLayoutAlign]="logged ? 'start start' : 'center center'">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -13,14 +13,12 @@ export interface TableColumn {
 
 export enum ColumnType {
   TEXT = 'TEXT',
-  DATE = 'DATE'
+  ACTIVITY = 'ACTIVITY',
+  DATE = 'DATE',
+  USER = 'USER'
 }
 
-export type BadgeType =
-  'primary' |
-  'secondary' |
-  'light' |
-  'dark';
+export type BadgeType = 'default' | 'cyan' | 'violet' | 'green' | 'orange'
 
 export interface TableAction {
 
@@ -28,7 +26,7 @@ export interface TableAction {
 
   icon: string;
 
-  theme: 'primary' | 'secondary' | 'dark';
+  theme: 'default' | 'primary' | 'secondary';
 
   data?: any;
 

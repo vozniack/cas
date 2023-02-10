@@ -1,11 +1,5 @@
-<div fxLayout="column" fxLayoutGap="16px">
-  <div class="content-container">
-    <cas-data-toolbar [filters]="filters" [views]="views"></cas-data-toolbar>
-  </div>
+<div fxLayout="column" fxLayoutGap="24px" @fadeInAnimation>
+  <h1>Organizations</h1>
 
-  <div class="content-container">
-    <cas-organizations-table *ngIf="view === ViewType.TABLE" [filters]="filters"></cas-organizations-table>
-
-    <cas-organizations-tree *ngIf="view === ViewType.TREE" [filters]="filters"></cas-organizations-tree>
-  </div>
+  <cas-organizations-table [filters]="filters"></cas-organizations-table>
 </div>

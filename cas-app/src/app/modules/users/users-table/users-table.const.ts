@@ -1,27 +1,30 @@
-import {ColumnType, TableAction, TableColumn} from "../../../shared/components/table/table.interface";
 import {defaultActions} from '../../../shared/components/table/table-actions/table-actions.const';
+import {ColumnType, TableAction, TableColumn} from '../../../shared/components/table/table.interface';
 
 export const userColumns: TableColumn[] = [
   {
-    label: 'First name',
+    label: 'Name',
     field: 'firstName',
-    sortable: true
+    sortable: true,
+    type: ColumnType.USER
   },
   {
-    label: 'Last name',
-    field: 'lastName',
-    sortable: true
-  },
-  {
-    label: 'Email',
-    field: 'email',
-    sortable: true
+    label: 'Active',
+    field: 'active',
+    sortable: true,
+    type: ColumnType.ACTIVITY
   },
   {
     label: 'Organization',
     field: 'details.organizationCode',
+    sortable: false,
+    badge: 'cyan'
+  },
+  {
+    label: 'Created at',
+    field: 'createdAt',
     sortable: true,
-    badge: 'dark'
+    type: ColumnType.DATE
   },
   {
     label: 'Updated at',

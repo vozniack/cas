@@ -8,8 +8,13 @@ body {
   margin: 0;
   padding: 0;
 
-  background: $background-dark;
+  background: $background-page !important;
   font-family: 'Montserrat', sans-serif;
+
+  ::selection {
+    color: $white;
+    background: $primary-dark;
+  }
 }
 
 input, select {
@@ -29,23 +34,18 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 28px !important;
+  font-weight: 600 !important;
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 20px !important;
+  font-weight: 500 !important;
 }
 
 h3 {
-  font-size: 16px;
-}
-
-h4 {
-  font-size: 14px;
-}
-
-h5 {
-  font-size: 12px;
+  font-size: 16px !important;
+  font-weight: 400 !important;
 }
 
 /*
@@ -65,7 +65,7 @@ h5 {
 /* Handle */
 
 ::-webkit-scrollbar-thumb {
-  border-radius: $radius;
+  border-radius: $radius-standard;
   background: $background-dark;
   border: 1px solid $background-darker;
 }
@@ -82,82 +82,92 @@ h5 {
 
 .badge {
   padding: 4px 16px;
-  border-radius: $radius;
+  border-radius: $radius-standard;
 
   font-weight: 600;
   font-size: 12px;
 
-  color: $dark-gray;
+  color: $color-dark;
 
-  &.dark {
-    background: $background-darker;
-    color: $white;
+  &.default {
+    background: $default;
   }
 
-  &.light {
-    background: $background-dark;
-    color: $white;
+  &.cyan {
+    color: $cyan-dark;
+    background: $cyan;
   }
 
-  &.primary {
-    background: $primary;
+  &.violet {
+    color: $violet-dark;
+    background: $violet;
   }
 
-  &.secondary {
-    background: $secondary;
+  &.green {
+    color: $green-dark;
+    background: $green;
+  }
+
+  &.orange {
+    color: $orange-dark;
+    background: $orange;
   }
 }
 
 /*
- * Standard containers
+ * Button themes
  */
 
-.standard-container {
-  padding: 24px;
-  border-radius: $radius;
+.button-theme-default {
+  color: $color-dark;
+  background: $background-gray;
 
-  color: $white;
-  background: $background-dark;
-
-  .title {
-    font-size: 16px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-}
-
-.content-container {
-  padding: 16px;
-  border-radius: $radius;
-
-  background: $background-darker;
-}
-
-.tile-container {
-  padding: 12px 24px;
-  border-radius: $radius;
-
-  width: 512px;
-
-  color: $white;
-  background-color: $background-dark;
-
-  .title {
-    font-size: 18px;
-    font-weight: 700;
+  &:hover {
+    filter: drop-shadow(0 0 4px rgba($background-gray, 0.5));
   }
 
-  .nested-privileges-container {
-    display: flex;
-    flex-wrap: wrap;
+  &:disabled {
+    color: $color-dark-disabled;
+    background: rgba($background-gray, 0.5);
 
-    .badge {
-      margin: 8px 8px 0 0;
+    &:hover {
+      filter: drop-shadow(0 0 4px rgba($background-gray, 0.25));
     }
   }
+}
 
-  &.margin {
-    margin-top: 8px;
+.button-theme-primary {
+  color: $primary-dark;
+  background: rgba($primary, 1);
+
+  &:hover {
+    filter: drop-shadow(0 0 4px rgba($primary, 0.5));
+  }
+
+  &:disabled {
+    color: $color-dark-disabled;
+    background: rgba($primary, 0.5);
+
+    &:hover {
+      filter: drop-shadow(0 0 4px rgba($primary, 0.25));
+    }
+  }
+}
+
+.button-theme-secondary {
+  color: $secondary-dark;
+  background: rgba($secondary, 1);
+
+  &:hover {
+    filter: drop-shadow(0 0 4px rgba($secondary, 0.5));
+  }
+
+  &:disabled {
+    color: $color-dark-disabled;
+    background: rgba($secondary, 0.5);
+
+    &:hover {
+      filter: drop-shadow(0 0 4px rgba($secondary, 0.25));
+    }
   }
 }

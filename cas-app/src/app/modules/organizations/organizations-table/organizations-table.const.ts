@@ -1,5 +1,5 @@
-import {ColumnType, TableAction, TableColumn} from "../../../shared/components/table/table.interface";
 import {defaultActions} from '../../../shared/components/table/table-actions/table-actions.const';
+import {ColumnType, TableAction, TableColumn} from '../../../shared/components/table/table.interface';
 
 export const organizationColumns: TableColumn[] = [
   {
@@ -11,7 +11,7 @@ export const organizationColumns: TableColumn[] = [
     label: 'Code',
     field: 'code',
     sortable: true,
-    badge: 'primary'
+    badge: 'cyan'
   },
   {
     label: 'Description',
@@ -19,13 +19,19 @@ export const organizationColumns: TableColumn[] = [
     sortable: true
   },
   {
+    label: 'Created at',
+    field: 'createdAt',
+    sortable: true,
+    type: ColumnType.DATE
+  },
+  {
     label: 'Updated at',
     field: 'updatedAt',
     sortable: true,
     type: ColumnType.DATE
   }
-]
+];
 
 export const organizationActions: TableAction[] = [
   ...defaultActions
-]
+];

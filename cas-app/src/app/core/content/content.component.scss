@@ -1,0 +1,21 @@
+@import 'src/styles/variables';
+
+.content-wrapper {
+  padding: 0 32px 32px 32px;
+
+  .content-container {
+    width: 100%;
+    max-width: 1440px;
+
+    &.logged {
+      margin: 0 24px 24px 0;
+      padding: 32px 8px;
+
+      align-items: normal !important;
+    }
+
+    &.centered {
+      height: 100vh;
+    }
+  }
+}

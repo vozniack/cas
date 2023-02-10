@@ -1,4 +1,4 @@
-<div class="toaster">
+<div class="toaster" fxLayout="row" fxLayoutAlign="center center">
   <div class="toast-wrapper" fxLayout="column">
     <ng-container *ngFor="let toast of toasts; index as index">
       <cas-toast [toast]="toast" (dismissEvent)="onDismiss(index)"></cas-toast>

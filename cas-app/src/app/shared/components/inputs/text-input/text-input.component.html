@@ -5,15 +5,17 @@
     <span class="description">{{description}}</span>
   </div>
 
-  <div class="form" [class.invalid]="control.touched && control.invalid" [ngClass]="'theme-' + theme">
+  <div class="form" [class.invalid]="control.touched && control.invalid">
     <input [formControl]="control"
-           [ngClass]="background"
            [id]="id"
            [name]="name"
            [placeholder]="placeholder"
            [type]="type"/>
 
-    <i-feather *ngIf="control.value" class="icon action" name="x" (click)="clear()" @fadeInAnimation></i-feather>
-    <i-feather *ngIf="!control.value" class="icon" [name]="icon" @fadeInAnimation></i-feather>
+    <ion-icon *ngIf="password" (click)="switchVisibility()" name="eye-outline"
+               class="icon password" [class.active]="password && type == 'text'">
+    </ion-icon>
+
+    <ion-icon *ngIf="icon && !password" [name]="icon" class="icon"></ion-icon>
   </div>
 </div>

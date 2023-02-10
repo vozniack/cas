@@ -7,26 +7,46 @@
 $white: rgb(255, 255, 255);
 $black: rgb(0, 0, 0);
 
-$orange: rgb(245, 221, 200);
-$violet: rgb(214, 200, 255);
-$cyan: rgb(126, 222, 235);
-$green: rgb(192, 239, 203);
+$cyan: rgb(217, 244, 255);
+$violet: rgb(246, 217, 243);
+$orange: rgb(253, 245, 216);
+$green: rgb(219, 240, 222);
+$pink: rgb(255, 179, 202);
 
-$pink: rgb(245, 61, 116);
-
-$dark-gray: rgb(32, 32, 48);
+$cyan-dark: rgb(35, 140, 192);
+$violet-dark: rgb(147, 53, 137);
+$orange-dark: rgb(168, 141, 40);
+$green-dark: rgb(33, 134, 56);
+$pink-dark: rgb(253, 126, 168);
 
 /* Usages */
 
 $primary: $cyan;
+$primary-dark: $cyan-dark;
+
 $secondary: $violet;
+$secondary-dark: $violet-dark;
+
+$default: rgb(241, 241, 241);
 
 /* Background */
 
+$background-page: rgb(251, 251, 251);
+$background-container: rgb(255, 255, 255);
+$background-gray: rgb(240, 240, 240);
+
 $background-dark: rgb(36, 37, 45);
 $background-darker: rgb(30, 31, 37);
-$background-lighter: rgba(51, 52, 59);
 
-/* Radius */
+/* Text */
 
-$radius: 10px;
+$color-light: rgb(192, 194, 202);
+$color-dark: rgba(51, 52, 59);
+$color-dark-disabled: rgb(192, 194, 202);
+
+/* Border */
+
+$border: 1px solid rgb(237, 239, 241);
+
+$radius-standard: 8px;
+$radius-rounded: 50%;

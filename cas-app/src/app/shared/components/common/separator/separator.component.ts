@@ -11,9 +11,5 @@ export class SeparatorComponent {
   position: 'VERTICAL' | 'HORIZONTAL' = 'HORIZONTAL'
 
   @Input()
-  style: 'dark' | 'light' = 'dark'
-
-  @Input()
   height: string | 'auto' = 'auto';
-
 }

@@ -1,15 +1,6 @@
-<cas-toaster></cas-toaster>
-
-<div fxLayout="row">
-  <cas-sidebar *ngIf="logged"></cas-sidebar>
-
-  <div fxLayout="column" fxFlex="100">
-    <cas-toolbar *ngIf="logged"></cas-toolbar>
-
-    <div class="content-wrapper" [class.logged]="logged" [class.centered]="!logged"
-         [fxLayout]="logged ? 'column' : 'row'"
-         [fxLayoutAlign]="logged ? 'start start' : 'center center'">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
+<div fxLayout="column" fxFlex="100">
+  <cas-toolbar *ngIf="logged"></cas-toolbar>
+  <cas-content [logged]="logged"></cas-content>
 </div>
+
+<cas-toaster></cas-toaster>

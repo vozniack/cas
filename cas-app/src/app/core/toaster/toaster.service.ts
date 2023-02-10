@@ -12,17 +12,15 @@ export class ToasterService {
     this.toasts$ = this._toast.asObservable();
   }
 
-  notifySuccess(title: string, message: string): void {
+  notifyInfo( message: string): void {
     this._toast.next({
-      title: title,
       message: message,
       style: 'info'
     });
   }
 
-  notifyWarning(title: string, message: string): void {
+  notifyWarning(message: string): void {
     this._toast.next({
-      title: title,
       message: message,
       style: 'warning'
     });

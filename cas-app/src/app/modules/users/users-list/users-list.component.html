@@ -1,8 +1,0 @@
-<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="16px" @fadeInAnimation>
-  <cas-list [nodes]="data" [itemSelect]="itemSelect" fxFlex></cas-list>
-
-  <ng-container *ngIf="selectedUser">
-    <cas-user-tile [user]="selectedUser" [itemSelect]="itemSelect">
-    </cas-user-tile>
-  </ng-container>
-</div>

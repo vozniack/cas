@@ -4,22 +4,20 @@
     <thead>
     <tr>
       <th *ngFor="let column of columns">
-        <div fxLayout="row" fxLayoutAlign="space-between center"
+        <div fxLayout="row" fxLayoutAlign="start center"
              [class.sortable]="column.sortable"
              (click)="onSortChange(column)">
           <span>{{column.label}}</span>
 
-          <i-feather name="arrow-up" class="icon"
-                     @fadeInAnimation @fadeOutAnimation
-                     [class.inverted]="requestParam.sort?.direction === 'DESC'"
-                     *ngIf="requestParam.sort?.field === column.field">
-          </i-feather>
+          <ion-icon name="chevron-up" class="icon"
+                    @fadeInAnimation @fadeOutAnimation
+                    [class.inverted]="requestParam.sort?.direction === 'DESC'"
+                    *ngIf="requestParam.sort?.field === column.field">
+          </ion-icon>
         </div>
       </th>
 
-      <th *ngIf="actions.length > 0">
-        <span>Actions</span>
-      </th>
+      <th *ngIf="actions.length > 0"></th>
     </tr>
     </thead>
 
@@ -28,29 +26,42 @@
       <th *ngFor="let column of columns">
         <ng-container *ngIf="column.type == null">
           <span [ngClass]="column.badge ? 'badge ' + column.badge : ''">
-            {{getFieldValue(row, column)}}
+            {{getFieldValue(row, column?.field)}}
+          </span>
+        </ng-container>
+
+        <ng-container *ngIf="column.type == columnType.ACTIVITY">
+          <span class="activity badge"
+                [ngClass]="getFieldValue(row, column?.field).toString() == 'true' ? 'green' : 'orange'">
+            {{getFieldValue(row, column?.field).toString() == 'true' ? 'Yes' : 'No'}}
           </span>
         </ng-container>
 
         <ng-container *ngIf="column.type == columnType.DATE">
-          <span [ngClass]="column.badge ? 'badge ' + column.badge : ''">
-            {{getFieldValue(row, column) | date: 'dd-MM-YYYY, HH:mm:ss'}}
+          <span class="badge default">
+            {{getFieldValue(row, column?.field) | date: 'dd-MM-YYYY, HH:mm:ss'}}
           </span>
+        </ng-container>
+
+        <ng-container *ngIf="column.type == columnType.USER">
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+            <span class="avatar" fxLayoutAlign="center center">
+              <ion-icon class="icon" name="person-outline"></ion-icon>
+            </span>
+
+            <div fxLayout="column" fxLayoutGap="4px">
+              <span>{{getFieldValue(row, 'firstName') + ' ' + getFieldValue(row, 'lastName')}}</span>
+              <span class="description">{{getFieldValue(row, 'email') }}</span>
+            </div>
+          </div>
+
         </ng-container>
       </th>
 
       <th *ngIf="actions.length > 0">
-        <cas-table-actions [actions]="actions"
-                           (actionActive)="onActionActive($event, row)">
-        </cas-table-actions>
+        <cas-table-actions [actions]="actions" (actionActive)="onActionActive($event, row)"></cas-table-actions>
       </th>
     </tr>
     </tbody>
   </table>
-
-  <cas-table-pagination [pageSize]="requestParam.size"
-                        [totalPages]="totalPages"
-                        [reset]="paginationReset"
-                        (pageChange)="onPageChange($event)">
-  </cas-table-pagination>
 </div>

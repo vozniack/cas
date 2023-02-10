@@ -1,8 +1,8 @@
 import {Component, ElementRef, HostListener, Input} from '@angular/core';
-import {FormControl, Validators} from "@angular/forms";
-import {SelectOption} from "./select-input.interface";
-import {fadeInAnimation} from "../../../animations/fade-in-animation";
-import {fadeOutAnimation} from "../../../animations/fade-out-animation";
+import {FormControl, Validators} from '@angular/forms';
+import {fadeInAnimation} from '../../../animations/fade-in-animation';
+import {fadeOutAnimation} from '../../../animations/fade-out-animation';
+import {SelectOption} from './select-input.interface';
 
 @Component({
   selector: 'cas-select-input',
@@ -24,9 +24,6 @@ export class SelectInputComponent {
 
   @Input() requiredLabel: boolean = false;
   @Input() width: string = '100%';
-
-  @Input() theme: 'primary' | 'secondary' = 'primary';
-  @Input() background: 'basic' | 'inverse' = 'basic';
 
   active = false;
 

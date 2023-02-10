@@ -1,32 +1,31 @@
 @import 'src/styles/variables';
 
 .toast {
-  margin: 34px 34px 0 0;
-  padding: 16px;
+  margin-top: 16px;
+  padding: 8px 16px;
 
-  width: 320px;
-  height: 72px;
+  width: 512px;
+  height: 32px;
 
-  color: $white;
-  background: $background-darker;
-  border-radius: $radius;
+  color: $color-dark;
+  border: $border;
+  border-radius: $radius-standard;
+
+  .message {
+    font-size: 16px;
+  }
 
   &.info {
-    border-left: 8px solid $primary;
-    box-shadow: 0 0 8px rgba($primary, 0.5);
+    color: $cyan-dark;
+    border: 1px solid $cyan;
+    border-left: 4px solid $cyan-dark;
+    background: rgba($cyan, 0.2);
   }
 
   &.warning {
-    border-left: 8px solid $pink;
-    box-shadow: 0 0 8px rgba($pink, 0.5);
-  }
-
-  .title {
-    font-size: 18px;
-    font-weight: 500;
-  }
-
-  .message {
-    font-size: 14px;
+    color: $violet-dark;
+    border: 1px solid $violet;
+    border-left: 4px solid $violet-dark;
+    background: rgba($violet, 0.2);
   }
 }

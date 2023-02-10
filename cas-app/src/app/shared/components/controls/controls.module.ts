@@ -1,11 +1,13 @@
-import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ButtonComponent} from './button/button.component';
-import {IconsModule} from "../../../core/icons/icons.module";
-import {FlexModule} from "@angular/flex-layout";
+import {NgModule} from '@angular/core';
+import {FlexModule} from '@angular/flex-layout';
+import {IconsModule} from '../../../core/icons/icons.module';
+import {ButtonCircleComponent} from './button-circle/button-circle.component';
+import {ButtonRectangleComponent} from './button-rectangle/button-rectangle.component';
 
 const COMPONENTS = [
-  ButtonComponent
+  ButtonRectangleComponent,
+  ButtonCircleComponent
 ];
 
 @NgModule({

@@ -1,12 +1,16 @@
-<div class="login-container" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="40px" @fadeInAnimation>
-  <h1 class="title">Central Authorization System</h1>
+<div class="login-container"
+     fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="32px"
+     @fadeInAnimation>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <h1 class="title">Central Authorization System</h1>
+  </div>
 
-  <div class="form-container" fxLayout="column" fxLayoutGap="24px">
+  <div class="form-container" fxLayout="column" fxLayoutGap="16px">
     <cas-text-input
       [control]="getControl('email')"
       [id]="'email'"
       [name]="'Email address'"
-      [icon]="'at-sign'">
+      [icon]="'mail-outline'">
     </cas-text-input>
 
     <cas-text-input
@@ -14,17 +18,16 @@
       [id]="'password'"
       [type]="'password'"
       [name]="'Password'"
-      [icon]="'lock'">
+      [password]="true">
     </cas-text-input>
   </div>
 
-  <div class="action-container" fxLayoutAlign="center center">
-    <cas-button
-      [disabled]="form.invalid"
-      [width]="'256px'"
-      [theme]="'primary'"
-      (click)="login()">
-      Login
-    </cas-button>
+  <div class="action-container" fxLayout="row" fxLayoutAlign="center center">
+    <cas-button-rectangle fxFlex
+                          [disabled]="form.invalid"
+                          [text]="'Login'"
+                          [theme]="'primary'"
+                          (click)="login()">
+    </cas-button-rectangle>
   </div>
 </div>

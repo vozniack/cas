@@ -16,12 +16,11 @@ export class ToasterComponent implements OnInit {
 
   ngOnInit(): void {
     this.toastService.toasts$.subscribe((toast: Toast) => {
-      if (this.toasts.length > 4) {
+      if (this.toasts.length > 2) {
         this.toasts.splice(0, 1);
       }
 
       this.toasts.push({
-        title: toast.title,
         message: toast.message,
         style: toast.style
       });

@@ -1,20 +1,20 @@
-import {Component, Input} from '@angular/core';
-import {userActions, userColumns} from "./users-table.const";
-import {Pageable} from "../../../shared/model/pageable.interface";
-import {RequestParam} from "../../../shared/model/request.interface";
-import {Subject} from "rxjs";
-import {User} from "../users.interface";
-import {FormGroup} from "@angular/forms";
-import {UsersService} from "../users.service";
-import {filter, takeUntil, tap} from "rxjs/operators";
-import {ViewType} from "../../../shared/model/types.interface";
+import {Component, Input, OnInit} from '@angular/core';
+import {FormGroup} from '@angular/forms';
+import {Subject} from 'rxjs';
+import {filter, takeUntil, tap} from 'rxjs/operators';
+import {Pageable} from '../../../shared/model/pageable.interface';
+import {RequestParam} from '../../../shared/model/request.interface';
+import {ViewType} from '../../../shared/model/types.interface';
+import {User} from '../users.interface';
+import {UsersService} from '../users.service';
+import {userActions, userColumns} from './users-table.const';
 
 @Component({
   selector: 'cas-users-table',
   templateUrl: './users-table.component.html',
   styleUrls: ['./users-table.component.scss']
 })
-export class UsersTableComponent {
+export class UsersTableComponent implements OnInit {
 
   @Input()
   filters!: FormGroup;
@@ -42,11 +42,6 @@ export class UsersTableComponent {
       }),
       tap(() => this.getUsers())
     ).subscribe();
-  }
-
-  ngOnDestroy(): void {
-    this.ngDestroyed$.next(true);
-    this.ngDestroyed$.unsubscribe();
   }
 
   getUsers(): void {

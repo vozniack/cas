@@ -1,34 +1,46 @@
 <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
 
-  <div class="statistics-container" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="40px" fxFlex>
-    <i-feather class="icon organizations" name="briefcase"></i-feather>
+  <div class="statistics-container organizations" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="40px" fxFlex>
+    <div class="icon-wrapper" fxLayoutAlign="center center">
+      <ion-icon class="icon" name="briefcase-outline"></ion-icon>
+    </div>
+
     <div fxLayout="column" fxLayoutAlign="start start">
       <span class="title">Organizations</span>
-      <span class="amount" @fadeInAnimation>{{statistics?.organizationsAmount}}</span>
+      <span class="amount">{{statistics?.organizationsAmount}}</span>
     </div>
   </div>
 
-  <div class="statistics-container" fxLayout="row" fxLayoutAlign="start center"  fxLayoutGap="40px" fxFlex>
-    <i-feather class="icon users" name="user"></i-feather>
+  <div class="statistics-container users" fxLayout="row" fxLayoutAlign="start center"  fxLayoutGap="40px" fxFlex>
+    <div class="icon-wrapper" fxLayoutAlign="center center">
+      <ion-icon class="icon" name="people-outline"></ion-icon>
+    </div>
+
     <div fxLayout="column" fxLayoutAlign="start start">
       <span class="title">Users</span>
-      <span class="amount" @fadeInAnimation>{{statistics?.usersAmount}}</span>
+      <span class="amount">{{statistics?.usersAmount}}</span>
     </div>
   </div>
 
-  <div class="statistics-container" fxLayout="row" fxLayoutAlign="start center"  fxLayoutGap="40px" fxFlex>
-    <i-feather class="icon roles" name="lock"></i-feather>
+  <div class="statistics-container roles" fxLayout="row" fxLayoutAlign="start center"  fxLayoutGap="40px" fxFlex>
+    <div class="icon-wrapper" fxLayoutAlign="center center">
+      <ion-icon class="icon" name="ribbon-outline"></ion-icon>
+    </div>
+
     <div fxLayout="column" fxLayoutAlign="start start">
       <span class="title">Roles</span>
-      <span class="amount" @fadeInAnimation>{{statistics?.rolesAmount}}</span>
+      <span class="amount">{{statistics?.rolesAmount}}</span>
     </div>
   </div>
 
-  <div class="statistics-container" fxLayout="row" fxLayoutAlign="start center"  fxLayoutGap="40px" fxFlex>
-    <i-feather class="icon privileges" name="key"></i-feather>
+  <div class="statistics-container privileges" fxLayout="row" fxLayoutAlign="start center"  fxLayoutGap="40px" fxFlex>
+    <div class="icon-wrapper" fxLayoutAlign="center center">
+      <ion-icon class="icon" name="key-outline"></ion-icon>
+    </div>
+
     <div fxLayout="column" fxLayoutAlign="start start">
       <span class="title">Privileges</span>
-      <span class="amount" @fadeInAnimation>{{statistics?.privilegesAmount}}</span>
+      <span class="amount">{{statistics?.privilegesAmount}}</span>
     </div>
   </div>
 </div>
