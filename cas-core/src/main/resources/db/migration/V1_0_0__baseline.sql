@@ -9,6 +9,7 @@ CREATE TABLE organizations
     name        VARCHAR(255) NOT NULL UNIQUE,
     code        VARCHAR(8)   NOT NULL UNIQUE,
     description VARCHAR(255),
+    icon        VARCHAR(64)  NOT NULL,
 
     parent_id   UUID,
 
@@ -132,8 +133,8 @@ CREATE TABLE role_privileges
 
 /* Values */
 
-INSERT INTO organizations (id, scope, name, code, parent_id)
-VALUES ('3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', 'INTERNAL', 'Central Authorization System', 'CAS', null);
+INSERT INTO organizations (id, scope, name, code, icon)
+VALUES ('3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', 'INTERNAL', 'Central Authorization System', 'CAS', 'aperture-outline');
 
 
 INSERT INTO roles (id, scope, name, code, description, organization_id)

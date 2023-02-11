@@ -1,8 +1,8 @@
 /* Dunder Mifflin Paper Company */
 
-INSERT INTO organizations (id, name, description, code, parent_id)
+INSERT INTO organizations (id, name, description, code, icon, parent_id)
 VALUES ('dd6f01cf-9fca-4e7b-9da3-047dd7004494', 'Dunder Mifflin Paper Company',
-        'Paper Company management actions', 'DMPC', null);
+        'Paper Company management actions', 'DMPC', 'document-outline', null);
 
 
 INSERT INTO roles (id, name, code, description, organization_id)

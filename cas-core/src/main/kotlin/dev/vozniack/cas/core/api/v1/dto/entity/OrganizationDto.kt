@@ -14,6 +14,7 @@ class OrganizationDto(
     val name: String?,
     val code: String?,
     val description: String?,
+    val icon: String?,
 
     val parentId: UUID?,
 

@@ -27,6 +27,7 @@ class Organization(
     var name: String? = null,
     var code: String? = null,
     var description: String? = null,
+    val icon: String? = null,
 
     @ManyToOne
     @JoinColumn(name = "parent_id")

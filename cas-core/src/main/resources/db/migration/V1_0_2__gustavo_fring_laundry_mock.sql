@@ -1,8 +1,8 @@
 /* Los Pollos Hermanos Company */
 
-INSERT INTO organizations (id, name, description, code, parent_id)
+INSERT INTO organizations (id, name, description, code, icon, parent_id)
 VALUES ('dd4f50ea-786c-409e-9f2f-fe119188edc6', 'Los Pollos Hermanos',
-        'Los Pollos Hermanos company actions', 'LPH', null);
+        'Los Pollos Hermanos company actions', 'LPH', 'fast-food-outline', null);
 
 INSERT INTO roles (id, name, code, description, organization_id)
 VALUES ('7d4899af-e885-40fa-8406-92da716babde', 'Chief Executive Officer', 'CEO',
@@ -21,34 +21,34 @@ VALUES ('7d4899af-e885-40fa-8406-92da716babde', 'Chief Executive Officer', 'CEO'
         'Company basic assistant', 'dd4f50ea-786c-409e-9f2f-fe119188edc6');
 
 INSERT INTO users (id, email, password, first_name, last_name, organization_id)
-VALUES ('dd07df45-8856-48cd-aa4f-8fcdd6043317', 'gustavo.fring@gflaundry.com',
+VALUES ('dd07df45-8856-48cd-aa4f-8fcdd6043317', 'gustavo.fring@lospolloshermanos.com',
         '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Gustavo', 'Fring',
         'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
-       ('24f00550-6a3f-4428-809e-fbdef7e01c2d', 'walter.white@gflaundry.com',
+       ('24f00550-6a3f-4428-809e-fbdef7e01c2d', 'walter.white@lospolloshermanos.com',
         '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Walter', 'White',
         'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
-       ('2975c70e-f878-45e6-82df-3a77eb33df05', 'jesse.pinkman@gflaundry.com',
+       ('2975c70e-f878-45e6-82df-3a77eb33df05', 'jesse.pinkman@lospolloshermanos.com',
         '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Jesse', 'Pinkman',
         'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
-       ('41dbfa5a-8edd-4193-8809-78e6016d70f6', 'galle.boetticher@gflaundry.com',
+       ('41dbfa5a-8edd-4193-8809-78e6016d70f6', 'galle.boetticher@lospolloshermanos.com',
         '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Galle', 'Boetticher',
         'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
-       ('c722f989-eb6c-4dcc-b6aa-01cca9223823', 'skyler.white@gflaundry.com',
+       ('c722f989-eb6c-4dcc-b6aa-01cca9223823', 'skyler.white@lospolloshermanos.com',
         '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Skyler', 'White',
         'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
-       ('5b9b4df3-1765-463b-a9f2-31c9e90fb33b', 'saul.goodman@gflaundry.com',
+       ('5b9b4df3-1765-463b-a9f2-31c9e90fb33b', 'saul.goodman@lospolloshermanos.com',
         '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Saul', 'Goodman',
         'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
-       ('0352f959-ab10-4f88-b47a-aaeebfd6491e', 'francesca.liddy@gflaundry.com',
+       ('0352f959-ab10-4f88-b47a-aaeebfd6491e', 'francesca.liddy@lospolloshermanos.com',
         '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Francesca', 'Liddy',
         'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
-       ('a3fb4e66-491f-48c9-a623-a6c61740efbd', 'mike.ehrmantraut@gflaundry.com',
+       ('a3fb4e66-491f-48c9-a623-a6c61740efbd', 'mike.ehrmantraut@lospolloshermanos.com',
         '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Mike', 'Ehrmantraut',
         'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
-       ('f29a4f8d-585a-40a2-b11c-83f65f6eb3c8', 'tyrus.kitt@gflaundry.com',
+       ('f29a4f8d-585a-40a2-b11c-83f65f6eb3c8', 'tyrus.kitt@lospolloshermanos.com',
         '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Tyrus', 'Kitt',
         'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
-       ('95a5bf84-8b55-4e72-a07d-3e3b0da4b0e9', 'victor@gflaundry.com',
+       ('95a5bf84-8b55-4e72-a07d-3e3b0da4b0e9', 'victor@lospolloshermanos.com',
         '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Victor', null,
         'dd4f50ea-786c-409e-9f2f-fe119188edc6');
 
