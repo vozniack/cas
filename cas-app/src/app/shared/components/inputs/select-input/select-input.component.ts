@@ -22,6 +22,7 @@ export class SelectInputComponent {
   @Input() description: string = '';
   @Input() placeholder: string = '';
 
+  @Input() allowEmpty: boolean = true;
   @Input() requiredLabel: boolean = false;
   @Input() width: string = '100%';
 

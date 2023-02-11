@@ -12,9 +12,9 @@ export interface TableColumn {
 }
 
 export enum ColumnType {
-  TEXT = 'TEXT',
   ACTIVITY = 'ACTIVITY',
   DATE = 'DATE',
+  ORGANIZATION = 'ORGANIZATION',
   USER = 'USER'
 }
 

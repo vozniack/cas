@@ -18,6 +18,10 @@ export class UsersService {
   getUsersPage(requestParam: RequestParam): Observable<Pageable<User>> {
     return this.httpClient.get<Pageable<User>>(`${this.baseUrl}/page`, {
       params: buildHttpParams(requestParam)
-    })
+    });
+  }
+
+  getUser(id: string): Observable<User> {
+    return this.httpClient.get<User>(`${this.baseUrl}/${id}`);
   }
 }

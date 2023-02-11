@@ -1,7 +1,8 @@
 <button class="button-rectangle" [disabled]="disabled"
         [ngClass]="'button-theme-' + theme + ' ' + size" [style.width]="width">
   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
-    <ion-icon *ngIf="icon" [name]="icon"></ion-icon>
+    <ion-icon *ngIf="iconLeft" [name]="iconLeft"></ion-icon>
     <span *ngIf="text">{{text}}</span>
+    <ion-icon *ngIf="iconRight" [name]="iconRight"></ion-icon>
   </div>
 </button>

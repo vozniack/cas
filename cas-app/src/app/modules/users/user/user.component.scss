@@ -1,11 +1,15 @@
 @import 'src/styles/variables';
 
-.organization-icon {
+.user-icon {
   background: $primary;
   color: $primary-dark;
 
+  font-size: 18px;
+  font-weight: 600;
+
   padding: 16px;
-  font-size: 28px;
+  width: 56px;
+  height: 56px;
 
   border-radius: $radius-rounded;
 }

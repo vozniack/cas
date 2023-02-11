@@ -5,18 +5,20 @@ export const organizationColumns: TableColumn[] = [
   {
     label: 'Name',
     field: 'name',
-    sortable: true
+    sortable: true,
+    type: ColumnType.ORGANIZATION
+  },
+  {
+    label: 'Active',
+    field: 'active',
+    sortable: true,
+    type: ColumnType.ACTIVITY
   },
   {
     label: 'Code',
     field: 'code',
     sortable: true,
     badge: 'cyan'
-  },
-  {
-    label: 'Description',
-    field: 'description',
-    sortable: true
   },
   {
     label: 'Created at',

@@ -1,8 +1,8 @@
-import {ScopeType} from "../../shared/model/types.interface";
-import {Auditable} from "../../shared/model/auditable.interface";
-import {Role} from "../roles/roles.interface";
-import {User} from "../users/users.interface";
-import {Privilege} from "../privileges/privileges.interface";
+import {Auditable} from '../../shared/model/auditable.interface';
+import {ScopeType} from '../../shared/model/types.interface';
+import {Privilege} from '../privileges/privileges.interface';
+import {Role} from '../roles/roles.interface';
+import {User} from '../users/users.interface';
 
 export interface Organization extends Auditable {
 
@@ -15,6 +15,10 @@ export interface Organization extends Auditable {
   code: string;
 
   description: string;
+
+  icon: string;
+
+  active: boolean;
 
   parentId: string;
 

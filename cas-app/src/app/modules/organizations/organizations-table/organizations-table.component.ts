@@ -1,13 +1,12 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Pageable} from "../../../shared/model/pageable.interface";
-import {Organization} from "../organizations.interface";
-import {organizationActions, organizationColumns} from "./organizations-table.const";
-import {RequestParam} from "../../../shared/model/request.interface";
-import {Subject} from "rxjs";
-import {FormGroup} from "@angular/forms";
-import {ViewType} from "../../../shared/model/types.interface";
-import {filter, takeUntil, tap} from "rxjs/operators";
-import {OrganizationsService} from "../organizations.service";
+import {FormGroup} from '@angular/forms';
+import {Subject} from 'rxjs';
+import {takeUntil, tap} from 'rxjs/operators';
+import {Pageable} from '../../../shared/model/pageable.interface';
+import {RequestParam} from '../../../shared/model/request.interface';
+import {Organization} from '../organizations.interface';
+import {OrganizationsService} from '../organizations.service';
+import {organizationActions, organizationColumns} from './organizations-table.const';
 
 @Component({
   selector: 'cas-organizations-table',
@@ -19,7 +18,7 @@ export class OrganizationsTableComponent implements OnInit, OnDestroy {
   @Input()
   filters!: FormGroup;
 
-  data: Pageable<Organization> = {}
+  data: Pageable<Organization> = {};
   requestParam: RequestParam = {page: 0, size: 10};
 
   columns = organizationColumns;
@@ -34,11 +33,10 @@ export class OrganizationsTableComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.filters.valueChanges.pipe(
       takeUntil(this.ngDestroyed$),
-      filter((filters: any) => filters.view === ViewType.TABLE),
       tap((filters: any) => {
         this.requestParam.page = 0;
+        this.requestParam.size = filters.size;
         this.requestParam.search = filters.search;
-        this.requestParam.organizationId = filters.organization;
       }),
       tap(() => this.getOrganizations())
     ).subscribe();
@@ -52,7 +50,7 @@ export class OrganizationsTableComponent implements OnInit, OnDestroy {
   getOrganizations(): void {
     this.organizationsService.getOrganizations(this.requestParam).pipe(
       tap((response: Pageable<Organization>) => this.data = response),
-    ).subscribe()
+    ).subscribe();
   }
 
   onRequestParamChange(requestParam: RequestParam): void {

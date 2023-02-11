@@ -1,43 +1,12 @@
-<div class="table-pagination" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="4px" *ngIf="totalPages > 1">
-
-  <!-- static previous pages buttons -->
-
-  <cas-button-rectangle [disabled]="totalPages < 2 || page === 1"
-              [width]="'48px'" [size]="'small'"
-              (click)="firstPage()">
-    <ion-icon class="pagination-icon" name="chevrons-left"></ion-icon>
+<div class="table-pagination" fxLayout="row" fxLayoutAlign="space-between center">
+  <cas-button-rectangle [iconLeft]="'arrow-back-outline'" [size]="'small'" [text]="'Previous'"
+                        [disabled]="page < 2" (click)="prevPage()">
   </cas-button-rectangle>
 
-  <cas-button-rectangle [disabled]="page === 1"
-              [width]="'48px'" [size]="'small'"
-              (click)="prevPage()">
-    <ion-icon class="pagination-icon" name="chevron-left"></ion-icon>
-  </cas-button-rectangle>
-
-  <!-- dynamic page buttons -->
-
-  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="4px">
-    <ng-container *ngFor="let p of pages">
-      <cas-button-rectangle *ngIf="this.canShowPage(p)"
-                  [width]="'48px'" [size]="'small'"
-                  (click)="this.changePage(p)"
-                  @fadeInAnimation>
-        <span class="pagination-number">{{p.toString()}}</span>
-      </cas-button-rectangle>
-    </ng-container>
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
   </div>
 
-  <!-- static next pages buttons -->
-
-  <cas-button-rectangle [disabled]="totalPages === 0 || (totalPages > 0 && page === totalPages)"
-              [width]="'48px'" [size]="'small'"
-              (click)="nextPage()">
-    <ion-icon class="pagination-icon" name="chevron-right"></ion-icon>
-  </cas-button-rectangle>
-
-  <cas-button-rectangle [disabled]="totalPages < 2 || page === totalPages"
-              [width]="'48px'" [size]="'small'"
-              (click)="lastPage()">
-    <ion-icon class="pagination-icon" name="chevrons-right"></ion-icon>
+  <cas-button-rectangle [iconRight]="'arrow-forward-outline'" [size]="'small'" [text]="'Next'"
+                        [disabled]="page + 1 > totalPages" (click)="nextPage()">
   </cas-button-rectangle>
 </div>

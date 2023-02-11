@@ -1,10 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {Subject} from 'rxjs';
-import {filter, takeUntil, tap} from 'rxjs/operators';
+import {takeUntil, tap} from 'rxjs/operators';
 import {Pageable} from '../../../shared/model/pageable.interface';
 import {RequestParam} from '../../../shared/model/request.interface';
-import {ViewType} from '../../../shared/model/types.interface';
 import {User} from '../users.interface';
 import {UsersService} from '../users.service';
 import {userActions, userColumns} from './users-table.const';
@@ -19,7 +18,7 @@ export class UsersTableComponent implements OnInit {
   @Input()
   filters!: FormGroup;
 
-  data: Pageable<User> = {}
+  data: Pageable<User> = {};
   requestParam: RequestParam = {page: 0, size: 10};
 
   columns = userColumns;
@@ -34,11 +33,10 @@ export class UsersTableComponent implements OnInit {
   ngOnInit(): void {
     this.filters.valueChanges.pipe(
       takeUntil(this.ngDestroyed$),
-      filter((filters: any) => filters.view === ViewType.TABLE),
       tap((filters: any) => {
         this.requestParam.page = 0;
+        this.requestParam.size = filters.size;
         this.requestParam.search = filters.search;
-        this.requestParam.organizationId = filters.organization;
       }),
       tap(() => this.getUsers())
     ).subscribe();
@@ -47,7 +45,7 @@ export class UsersTableComponent implements OnInit {
   getUsers(): void {
     this.usersService.getUsersPage(this.requestParam).pipe(
       tap((response: Pageable<User>) => this.data = response),
-    ).subscribe()
+    ).subscribe();
   }
 
   onRequestParamChange(requestParam: RequestParam): void {

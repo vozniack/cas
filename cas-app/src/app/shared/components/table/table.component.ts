@@ -91,7 +91,7 @@ export class TableComponent {
 
   onActionActive(tableAction: TableAction, data: any): void {
     if (tableAction.custom) {
-      this.actionActive.emit({...tableAction, data: data})
+      this.actionActive.emit({...tableAction, data: data});
     } else {
       switch (tableAction.name) {
         case 'VIEW':
@@ -101,14 +101,14 @@ export class TableComponent {
               id: data.id,
               payload: data
             }
-          }))
+          }));
           break;
 
         case 'REMOVE':
           break;
 
         default:
-          this.actionActive.emit({...tableAction, data: data})
+          this.actionActive.emit({...tableAction, data: data});
           break;
       }
     }
@@ -118,5 +118,13 @@ export class TableComponent {
 
   getFieldValue(row: any, field?: string): string {
     return field?.split('.').reduce((o, key) => o[key], row);
+  }
+
+  getUserName(row: any): string {
+    return [this.getFieldValue(row, 'firstName'), this.getFieldValue(row, 'lastName')].join(' ');
+  }
+
+  getUserInitials(row: any): string {
+    return this.getUserName(row).split(' ').map(part => part.charAt(0)).join('');
   }
 }

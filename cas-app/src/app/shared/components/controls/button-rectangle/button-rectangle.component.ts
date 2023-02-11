@@ -12,7 +12,8 @@ export class ButtonRectangleComponent {
   @Input() width: string = '100%';
 
   @Input() text?: string;
-  @Input() icon?: string;
+  @Input() iconLeft?: string;
+  @Input() iconRight?: string;
 
   @Input() size: 'small' | 'normal' = 'normal';
   @Input() theme: 'default' | 'primary' | 'secondary' = 'default';

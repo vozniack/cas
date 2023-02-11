@@ -37,7 +37,7 @@ export class TablePaginationComponent implements OnInit {
 
     this.reset.pipe(
       tap(() => this.page = 1)
-    ).subscribe()
+    ).subscribe();
   }
 
   /* Counter */
@@ -57,28 +57,18 @@ export class TablePaginationComponent implements OnInit {
 
   /* Page changes */
 
-  firstPage(): void {
-    this.page = 1;
-    this.countPages(true);
-  }
-
   prevPage(): void {
-    if (this.canChangePrev(1)) {
+    if (this.page - 1 > 0) {
       this.page--;
       this.countPages(true);
     }
   }
 
   nextPage(): void {
-    if (this.canChangeNext(1)) {
+    if (this.page + 1 <= this.totalPages) {
       this.page++;
       this.countPages(true);
     }
-  }
-
-  lastPage(): void {
-    this.page = this.totalPages;
-    this.countPages(true);
   }
 
   changePage(page: number): void {
@@ -86,19 +76,5 @@ export class TablePaginationComponent implements OnInit {
       this.page = page;
       this.countPages(true);
     }
-  }
-
-  /* Conditions */
-
-  canChangePrev(amount: number): boolean {
-    return this.page - amount > 0;
-  }
-
-  canChangeNext(amount: number): boolean {
-    return this.page + amount <= this.totalPages;
-  }
-
-  canShowPage(page: number): boolean {
-    return page > 0 && page <= this.totalPages;
   }
 }

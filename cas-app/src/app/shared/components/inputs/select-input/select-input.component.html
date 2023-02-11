@@ -1,16 +1,16 @@
-<div [style.width]="width" class="select-input" fxLayout="column" fxLayoutGap="8px" @fadeInAnimation>
+<div [style.width]="width" class="select-input" fxLayout="column" @fadeInAnimation>
   <div class="label" fxLayout="row" fxLayoutAlign="space-between center">
     <span class="name">{{name + (requiredLabel && isRequired() ? ' *' : '')}}</span>
     <span class="description">{{description}}</span>
   </div>
 
   <div class="form" [class.invalid]="control.touched && control.invalid" [class.active]="active">
-    <ion-icon *ngIf="control.value && !active" class="icon action" name="x" (click)="clear()"
-               @fadeInAnimation>
+    <ion-icon *ngIf="control.value && !active && allowEmpty" class="icon action" name="close-outline" (click)="clear()"
+              @fadeInAnimation>
     </ion-icon>
 
     <ion-icon *ngIf="!control.value || active" class="icon" [class.active]="active" name="chevron-back-outline"
-               @fadeInAnimation>
+              @fadeInAnimation>
     </ion-icon>
 
     <span class="placeholder" *ngIf="placeholder && control.value == null">{{placeholder}}</span>
@@ -20,9 +20,9 @@
     </div>
   </div>
 
-  <div class="select-options" [style.width]="width" *ngIf="active" @fadeInAnimation @fadeOutAnimation>
+  <div class="select-options" [style.width]="width" *ngIf="active && allowEmpty" @fadeInAnimation @fadeOutAnimation>
     <div class="option empty" (click)="setValue(null)" @fadeInAnimation>
-      <span>Empty value</span>
+      <span>...</span>
     </div>
 
     <div class="option" *ngFor="let option of options" (click)="setValue(option.value)" @fadeInAnimation>

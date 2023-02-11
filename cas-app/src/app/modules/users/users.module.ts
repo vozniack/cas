@@ -6,15 +6,18 @@ import {CommonComponentsModule} from '../../shared/components/common/common-comp
 import {ControlsModule} from '../../shared/components/controls/controls.module';
 import {InputsModule} from '../../shared/components/inputs/inputs.module';
 import {TableModule} from '../../shared/components/table/table.module';
+import {UserComponent} from './user/user.component';
 import {UsersRoutingModule} from './users-routing.module';
 import {UsersTableComponent} from './users-table/users-table.component';
 import {UsersComponent} from './users.component';
+import {UsersResolver} from './users.resolver';
 import {UsersService} from './users.service';
 
 @NgModule({
   declarations: [
     UsersComponent,
-    UsersTableComponent
+    UsersTableComponent,
+    UserComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +30,8 @@ import {UsersService} from './users.service';
     ControlsModule
   ],
   providers: [
-    UsersService
+    UsersService,
+    UsersResolver
   ]
 })
 export class UsersModule {

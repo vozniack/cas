@@ -43,14 +43,27 @@
           </span>
         </ng-container>
 
-        <ng-container *ngIf="column.type == columnType.USER">
+        <ng-container *ngIf="column.type == columnType.ORGANIZATION">
           <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
             <span class="avatar" fxLayoutAlign="center center">
-              <ion-icon class="icon" name="person-outline"></ion-icon>
+              <ion-icon [name]="getFieldValue(row, 'icon')"></ion-icon>
             </span>
 
             <div fxLayout="column" fxLayoutGap="4px">
-              <span>{{getFieldValue(row, 'firstName') + ' ' + getFieldValue(row, 'lastName')}}</span>
+              <span>{{getFieldValue(row, 'name')}}</span>
+              <span class="description">{{getFieldValue(row, 'description') }}</span>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="column.type == columnType.USER">
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+            <span class="avatar" fxLayoutAlign="center center">
+              <span>{{getUserInitials(row)}}</span>
+            </span>
+
+            <div fxLayout="column" fxLayoutGap="4px">
+              <span>{{getUserName(row)}}</span>
               <span class="description">{{getFieldValue(row, 'email') }}</span>
             </div>
           </div>
@@ -58,10 +71,23 @@
         </ng-container>
       </th>
 
-      <th *ngIf="actions.length > 0">
+      <th *ngIf="actions.length > 0" fxLayoutAlign="end center">
         <cas-table-actions [actions]="actions" (actionActive)="onActionActive($event, row)"></cas-table-actions>
       </th>
     </tr>
     </tbody>
+
+    <tfoot *ngIf="totalPages > 1" @fadeInAnimation>
+    <tr>
+      <td [colSpan]="columns.length + 1">
+        <cas-table-pagination [pageSize]="requestParam.size"
+                              [totalPages]="totalPages"
+                              [reset]="paginationReset"
+                              (pageChange)="onPageChange($event)">
+        </cas-table-pagination>
+      </td>
+    </tr>
+    </tfoot>
+
   </table>
 </div>
