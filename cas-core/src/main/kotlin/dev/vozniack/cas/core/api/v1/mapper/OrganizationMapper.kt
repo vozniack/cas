@@ -27,6 +27,7 @@ class OrganizationMapper(
         code = entity.code,
         description = entity.description,
         icon = entity.icon,
+        active = entity.active,
         parentId = entity.parent?.id,
         organizations = entity.organizations?.map { mapToDto(it) },
         createdAt = entity.createdAt,
@@ -48,6 +49,7 @@ class OrganizationMapper(
         code = dto.code,
         description = dto.description,
         icon = dto.icon,
+        active = dto.active,
         parent = dto.parentId?.let { organizationService.findById(it) }
     )
 }

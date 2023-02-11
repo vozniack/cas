@@ -29,6 +29,8 @@ class Organization(
     var description: String? = null,
     val icon: String? = null,
 
+    var active: Boolean? = true,
+
     @ManyToOne
     @JoinColumn(name = "parent_id")
     var parent: Organization? = null,

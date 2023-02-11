@@ -16,6 +16,8 @@ class OrganizationDto(
     val description: String?,
     val icon: String?,
 
+    var active: Boolean? = true,
+
     val parentId: UUID?,
 
     val organizations: List<OrganizationDto>?,

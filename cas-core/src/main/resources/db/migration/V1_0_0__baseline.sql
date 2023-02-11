@@ -11,6 +11,8 @@ CREATE TABLE organizations
     description VARCHAR(255),
     icon        VARCHAR(64)  NOT NULL,
 
+    active      BOOLEAN                           DEFAULT TRUE,
+
     parent_id   UUID,
 
     created_at  TIMESTAMP    NOT NULL             DEFAULT now(),
