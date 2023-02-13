@@ -33,7 +33,7 @@
         <ng-container *ngIf="column.type == columnType.ACTIVITY">
           <span class="activity badge"
                 [ngClass]="getFieldValue(row, column?.field).toString() == 'true' ? 'green' : 'orange'">
-            {{getFieldValue(row, column?.field).toString() == 'true' ? 'Yes' : 'No'}}
+            {{getFieldValue(row, column?.field).toString() == 'true' ? 'Active' : 'Inactive'}}
           </span>
         </ng-container>
 
@@ -45,7 +45,7 @@
 
         <ng-container *ngIf="column.type == columnType.ORGANIZATION">
           <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
-            <span class="avatar" fxLayoutAlign="center center">
+            <span class="organization-icon" fxLayoutAlign="center center">
               <ion-icon [name]="getFieldValue(row, 'icon')"></ion-icon>
             </span>
 
@@ -58,16 +58,13 @@
 
         <ng-container *ngIf="column.type == columnType.USER">
           <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
-            <span class="avatar" fxLayoutAlign="center center">
-              <span>{{getUserInitials(row)}}</span>
-            </span>
+            <cas-avatar [user]="getUser(row)" [size]="'small'" [color]="'random'"></cas-avatar>
 
             <div fxLayout="column" fxLayoutGap="4px">
               <span>{{getUserName(row)}}</span>
               <span class="description">{{getFieldValue(row, 'email') }}</span>
             </div>
           </div>
-
         </ng-container>
       </th>
 

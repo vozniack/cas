@@ -1,4 +1,4 @@
 <button class="button-circle" [disabled]="disabled" [ngClass]="'button-theme-' + theme + ' ' + size"
-        fxLayout="row" fxLayoutAlign="center center">
+        [class.rotated]="rotated" fxLayout="row" fxLayoutAlign="center center">
   <ion-icon [name]="icon"></ion-icon>
 </button>

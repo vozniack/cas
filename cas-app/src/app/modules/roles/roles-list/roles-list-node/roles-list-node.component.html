@@ -1,0 +1,12 @@
+<div class="roles-list-node" fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+    <ion-icon class="icon" [name]="'pricetag-outline'"></ion-icon>
+
+    <div fxLayout="column">
+      <span class="name">{{role.name}}</span>
+      <span class="description">{{role.description}}</span>
+    </div>
+  </div>
+
+  <span class="badge cyan">{{role.code}}</span>
+</div>

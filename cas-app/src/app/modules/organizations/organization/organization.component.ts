@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {Store} from '@ngrx/store';
@@ -12,9 +12,11 @@ import {Organization} from '../organizations.interface';
   styleUrls: ['./organization.component.scss'],
   animations: [fadeInAnimation]
 })
-export class OrganizationComponent extends ResourceComponent implements OnInit, OnDestroy {
+export class OrganizationComponent extends ResourceComponent implements OnDestroy {
 
   organization!: Organization;
+
+  showUsers = false;
 
   constructor(store: Store, activatedRoute: ActivatedRoute, formBuilder: FormBuilder) {
     super(store, activatedRoute, formBuilder);
@@ -23,11 +25,12 @@ export class OrganizationComponent extends ResourceComponent implements OnInit, 
     this.initResourceState('organizations', this.organization);
   }
 
-  ngOnInit(): void {
-  }
-
   ngOnDestroy(): void {
     this.destroyed$.next(true);
     this.destroyed$.complete();
+  }
+
+  toggleUsers(): void {
+    this.showUsers = !this.showUsers;
   }
 }

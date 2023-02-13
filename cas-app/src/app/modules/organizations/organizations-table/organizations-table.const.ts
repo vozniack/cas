@@ -9,7 +9,7 @@ export const organizationColumns: TableColumn[] = [
     type: ColumnType.ORGANIZATION
   },
   {
-    label: 'Active',
+    label: 'Status',
     field: 'active',
     sortable: true,
     type: ColumnType.ACTIVITY

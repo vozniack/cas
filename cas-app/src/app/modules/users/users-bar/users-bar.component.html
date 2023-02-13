@@ -1,0 +1,11 @@
+<div class="users-bar" fxLayout="row" fxLayoutAlign="start center">
+  <ng-container *ngFor="let user of users.slice(0, limit)">
+    <cas-avatar [user]="user" [color]="'random'"></cas-avatar>
+  </ng-container>
+
+  <ng-container *ngIf="users.length > limit">
+    <div class="info" fxLayoutAlign="center center">
+      <span>+ {{users.length - limit}}</span>
+    </div>
+  </ng-container>
+</div>

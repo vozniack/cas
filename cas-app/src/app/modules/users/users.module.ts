@@ -7,6 +7,9 @@ import {ControlsModule} from '../../shared/components/controls/controls.module';
 import {InputsModule} from '../../shared/components/inputs/inputs.module';
 import {TableModule} from '../../shared/components/table/table.module';
 import {UserComponent} from './user/user.component';
+import {UsersBarComponent} from './users-bar/users-bar.component';
+import {UsersListNodeComponent} from './users-list/users-list-node/users-list-node.component';
+import {UsersListComponent} from './users-list/users-list.component';
 import {UsersRoutingModule} from './users-routing.module';
 import {UsersTableComponent} from './users-table/users-table.component';
 import {UsersComponent} from './users.component';
@@ -17,7 +20,10 @@ import {UsersService} from './users.service';
   declarations: [
     UsersComponent,
     UsersTableComponent,
-    UserComponent
+    UserComponent,
+    UsersListComponent,
+    UsersListNodeComponent,
+    UsersBarComponent
   ],
   imports: [
     CommonModule,
@@ -28,6 +34,10 @@ import {UsersService} from './users.service';
     CommonComponentsModule,
     IconsModule,
     ControlsModule
+  ],
+  exports: [
+    UsersListComponent,
+    UsersBarComponent
   ],
   providers: [
     UsersService,

@@ -7,6 +7,9 @@ import {CommonComponentsModule} from '../../shared/components/common/common-comp
 import {ControlsModule} from '../../shared/components/controls/controls.module';
 import {InputsModule} from '../../shared/components/inputs/inputs.module';
 import {TableModule} from '../../shared/components/table/table.module';
+import {PrivilegesModule} from '../privileges/privileges.module';
+import {RolesModule} from '../roles/roles.module';
+import {UsersModule} from '../users/users.module';
 import {OrganizationComponent} from './organization/organization.component';
 import {OrganizationsRoutingModule} from './organizations-routing.module';
 import {OrganizationsTableComponent} from './organizations-table/organizations-table.component';
@@ -29,7 +32,10 @@ import {OrganizationsService} from './organizations.service';
     CommonComponentsModule,
     ControlsModule,
     IconsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PrivilegesModule,
+    UsersModule,
+    RolesModule
   ],
   providers: [
     OrganizationsService,

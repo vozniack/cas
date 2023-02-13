@@ -1,0 +1,22 @@
+@import 'src/styles/variables';
+
+.users-list-node {
+  padding: 4px 8px;
+
+  .name {
+    color: $color-dark;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .email {
+    color: $color-light;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .activity:before {
+    content: "• ";
+    margin-right: 4px;
+  }
+}

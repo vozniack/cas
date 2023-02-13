@@ -1,0 +1,23 @@
+@import 'src/styles/variables';
+
+.users-bar {
+
+  cas-avatar {
+    margin-left: -16px;
+
+    border: 4px solid $background-page;
+    border-radius: $radius-rounded;
+  }
+
+  .info {
+    width: 32px;
+    height: 32px;
+
+    font-weight: 600;
+    font-size: 12px;
+
+    border-radius: $radius-rounded;
+
+    color: $color-light;
+  }
+}

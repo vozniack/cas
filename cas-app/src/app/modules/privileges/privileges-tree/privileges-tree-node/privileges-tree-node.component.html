@@ -1,0 +1,26 @@
+<div class="privilege" [style.padding-left.px]="indent" fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+    <div fxLayout="column" fxLayoutGap="4px">
+      <span class="name">{{privilege.name}}</span>
+      <span class="description" *ngIf="privilege.description">{{privilege.description}}</span>
+    </div>
+
+    <span class="badge default">{{privilege.code}}</span>
+  </div>
+
+  <cas-button-circle [icon]="'caret-down-circle-outline'"
+                     [theme]="expanded ? 'primary' : 'default'"
+                     [size]="'small'"
+                     [disabled]="privilege.privileges.length < 1"
+                     [rotated]="expanded"
+                     (click)="expandOrCollapse()">
+  </cas-button-circle>
+</div>
+
+<div class="privilege-children">
+  <div class="privilege-child" fxLayout="column" [class.expanded]="expanded">
+    <ng-container *ngFor="let child of getChildren()">
+      <cas-privileges-tree-node [privilege]="child" [indent]="indent + 24"></cas-privileges-tree-node>
+    </ng-container>
+  </div>
+</div>

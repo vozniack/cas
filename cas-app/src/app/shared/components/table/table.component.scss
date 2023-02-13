@@ -77,20 +77,16 @@
             margin-right: 4px;
           }
 
-          .avatar {
+          .organization-icon {
             height: 38px;
             width: 38px;
 
-            font-size: 10px;
+            font-size: 20px;
             font-weight: 700;
 
             background: $primary;
             color: $primary-dark;
             border-radius: 50%;
-
-            ion-icon {
-              font-size: 20px;
-            }
           }
 
           .description {

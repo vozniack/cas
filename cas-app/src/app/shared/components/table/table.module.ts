@@ -1,12 +1,13 @@
-import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {TableComponent} from './table.component';
-import {FlexModule} from "@angular/flex-layout";
-import {InputsModule} from "../inputs/inputs.module";
-import {IconsModule} from "../../../core/icons/icons.module";
-import {TablePaginationComponent} from './table-pagination/table-pagination.component';
-import {ControlsModule} from "../controls/controls.module";
+import {NgModule} from '@angular/core';
+import {FlexModule} from '@angular/flex-layout';
+import {IconsModule} from '../../../core/icons/icons.module';
+import {CommonComponentsModule} from '../common/common-components.module';
+import {ControlsModule} from '../controls/controls.module';
+import {InputsModule} from '../inputs/inputs.module';
 import {TableActionsComponent} from './table-actions/table-actions.component';
+import {TablePaginationComponent} from './table-pagination/table-pagination.component';
+import {TableComponent} from './table.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {TableActionsComponent} from './table-actions/table-actions.component';
     FlexModule,
     InputsModule,
     IconsModule,
-    ControlsModule
+    ControlsModule,
+    CommonComponentsModule
   ]
 })
 export class TableModule {

@@ -1,0 +1,12 @@
+<div class="users-list-node" fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+    <cas-avatar [user]="user" [size]="'small'"></cas-avatar>
+
+    <div fxLayout="column" fxLayoutAlign="start top">
+      <span class="name">{{user.firstName}} {{user.lastName}}</span>
+      <span class="email">{{user.email}}</span>
+    </div>
+  </div>
+
+  <span class="activity badge" [ngClass]="isActive() ? 'green' : 'orange'">{{isActive() ? 'Active' : 'Inactive'}}</span>
+</div>

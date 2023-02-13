@@ -2,9 +2,7 @@
 
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
-      <div class="user-icon" fxLayoutAlign="center center">
-        <span>{{getUserInitials()}}</span>
-      </div>
+      <cas-avatar [user]="user" [size]="'big'"></cas-avatar>
 
       <div fxLayout="column">
         <h1>{{user.firstName}} {{user.lastName}}</h1>

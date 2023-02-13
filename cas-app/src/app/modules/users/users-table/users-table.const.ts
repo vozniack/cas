@@ -9,7 +9,7 @@ export const userColumns: TableColumn[] = [
     type: ColumnType.USER
   },
   {
-    label: 'Active',
+    label: 'Status',
     field: 'active',
     sortable: true,
     type: ColumnType.ACTIVITY

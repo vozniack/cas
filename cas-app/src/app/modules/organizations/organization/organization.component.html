@@ -1,18 +1,43 @@
 <div fxLayout="column" fxLayoutGap="24px" @fadeInAnimation>
 
   <div fxLayout="row" fxLayoutAlign="space-between center">
-    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
-      <ion-icon class="organization-icon" [name]="organization.icon"></ion-icon>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="56px">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+        <ion-icon class="organization-icon" [name]="organization.icon"></ion-icon>
 
-      <div fxLayout="column">
-        <h1>{{organization.name}}</h1>
-        <h3 class="color-light">{{organization.description}}</h3>
+        <div fxLayout="column">
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+            <h1>{{organization.name}}</h1>
+            <span class="badge default">{{organization.code}}</span>
+          </div>
+
+          <h3 class="color-light">{{organization.description}}</h3>
+        </div>
       </div>
+
+      <cas-users-bar [users]="organization.users" [limit]="10" @fadeInAnimation></cas-users-bar>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
+      <cas-button-rectangle [theme]="'default'" [iconLeft]="'search-outline'"></cas-button-rectangle>
+
+      <cas-button-rectangle [theme]="showUsers ? 'primary' : 'default'" [iconLeft]="'people-outline'"
+                            (click)="toggleUsers()">
+      </cas-button-rectangle>
+
+      <cas-separator [position]="'VERTICAL'" [height]="'24px'"></cas-separator>
+
       <cas-button-rectangle [theme]="'primary'" [iconLeft]="'create-outline'"></cas-button-rectangle>
       <cas-button-rectangle [theme]="'secondary'" [iconLeft]="'trash-outline'"></cas-button-rectangle>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-between top" fxLayoutGap="32px">
+    <cas-privileges-tree [privileges]="organization.privileges" fxFlex="70"></cas-privileges-tree>
+
+    <div fxLayout="column" fxLayoutGap="8px" fxFlex="30">
+      <cas-roles-list [roles]="organization.roles" *ngIf="!showUsers" @fadeInAnimation></cas-roles-list>
+      <cas-users-list [users]="organization.users" *ngIf="showUsers" @fadeInAnimation></cas-users-list>
     </div>
   </div>
 </div>

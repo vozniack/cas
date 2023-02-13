@@ -10,6 +10,7 @@ import {fadeInAnimation} from '../../../animations/fade-in-animation';
 export class ButtonCircleComponent {
 
   @Input() disabled: boolean = false;
+  @Input() rotated: boolean = false;
 
   @Input() icon: string = '';
 

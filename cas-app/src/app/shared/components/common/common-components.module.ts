@@ -4,10 +4,12 @@ import {FlexModule} from '@angular/flex-layout';
 import {IconsModule} from '../../../core/icons/icons.module';
 import {ControlsModule} from '../controls/controls.module';
 import {InputsModule} from '../inputs/inputs.module';
+import {AvatarComponent} from './avatar/avatar.component';
 import {SeparatorComponent} from './separator/separator.component';
 
 const COMPONENTS = [
-  SeparatorComponent
+  SeparatorComponent,
+  AvatarComponent,
 ];
 
 @NgModule({

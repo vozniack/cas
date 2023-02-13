@@ -1,0 +1,25 @@
+@import 'src/styles/variables';
+
+.roles-list-node {
+  padding: 4px 8px;
+
+  .icon {
+    padding: 8px;
+
+    border-radius: $radius-rounded;
+    color: $color-dark;
+    background: $background-gray;
+  }
+
+  .name {
+    color: $color-dark;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .description {
+    color: $color-light;
+    font-size: 12px;
+    font-weight: 500;
+  }
+}

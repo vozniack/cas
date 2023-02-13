@@ -1,6 +1,6 @@
-import {ScopeType} from "../../shared/model/types.interface";
-import {Auditable} from "../../shared/model/auditable.interface";
-import {BasicDetails} from "../../shared/model/basic-details.interface";
+import {Auditable} from '../../shared/model/auditable.interface';
+import {BasicDetails} from '../../shared/model/basic-details.interface';
+import {ScopeType} from '../../shared/model/types.interface';
 
 export interface Privilege extends Auditable {
 
@@ -19,6 +19,8 @@ export interface Privilege extends Auditable {
   privileges: Privilege[];
 
   details: PrivilegeDetails;
+
+  index: number;
 }
 
 export interface PrivilegeDetails extends BasicDetails {

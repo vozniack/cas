@@ -1,0 +1,50 @@
+@import 'src/styles/variables';
+
+.privilege {
+  padding: 8px;
+
+  border-radius: $radius-standard;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: rgba($background-gray, 0.3);
+  }
+
+  .expanded {
+    border-left: 2px solid $primary-dark;
+  }
+
+  .name {
+    font-size: 14px;
+    font-weight: 500;
+    color: $color-dark;
+  }
+
+  .description {
+    font-size: 12px;
+    font-weight: 400;
+    color: $color-light;
+  }
+
+  .badge {
+    font-size: 10px;
+  }
+}
+
+.privilege-children {
+  overflow: hidden;
+
+  .privilege-child {
+    margin-top: -100%;
+
+    transform: scale(0);
+    transform-origin: 100% 0;
+
+    transition: transform 0.2s ease-in-out, margin-top 0.2s ease-in-out;
+
+    &.expanded {
+      margin-top: 0;
+      transform: scale(1);
+    }
+  }
+}

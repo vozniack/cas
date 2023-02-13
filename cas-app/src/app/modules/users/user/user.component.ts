@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {Store} from '@ngrx/store';
@@ -12,7 +12,7 @@ import {User} from '../users.interface';
   styleUrls: ['./user.component.scss'],
   animations: [fadeInAnimation]
 })
-export class UserComponent extends ResourceComponent implements OnInit, OnDestroy {
+export class UserComponent extends ResourceComponent implements OnDestroy {
 
   user!: User;
 
@@ -23,17 +23,8 @@ export class UserComponent extends ResourceComponent implements OnInit, OnDestro
     this.initResourceState('users', this.user);
   }
 
-  ngOnInit(): void {
-  }
-
   ngOnDestroy(): void {
     this.destroyed$.next(true);
     this.destroyed$.complete();
-  }
-
-  /* Getters */
-
-  getUserInitials(): string {
-    return this.user.firstName.charAt(0) + (this.user.lastName != undefined ? this.user.lastName.charAt(0) : '');
   }
 }
