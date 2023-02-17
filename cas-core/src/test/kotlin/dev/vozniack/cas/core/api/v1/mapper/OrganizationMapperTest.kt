@@ -8,11 +8,11 @@ import dev.vozniack.cas.core.entity.Role
 import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.repository.OrganizationRepository
 import dev.vozniack.cas.core.types.ScopeType
+import java.time.LocalDateTime
+import java.util.UUID
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import java.time.LocalDateTime
-import java.util.UUID
 
 class OrganizationMapperTest @Autowired constructor(
     private val organizationMapper: Mapper<Organization, OrganizationDto>,
@@ -25,12 +25,14 @@ class OrganizationMapperTest @Autowired constructor(
         val childOrganization = Organization(id = UUID.randomUUID(), scope = ScopeType.EXTERNAL, name = "child")
 
         val id = UUID.randomUUID()
-        val organization = Organization(id = id, scope = ScopeType.EXTERNAL, name = "Organization",
+        val organization = Organization(
+            id = id, scope = ScopeType.EXTERNAL, name = "Organization",
             code = "ORG", description = "Organization description",
             parent = parentOrganization, organizations = listOf(childOrganization),
             roles = listOf(Role(name = "Role", organization = Organization(id = id))),
             users = listOf(User(firstName = "User", organization = Organization(id = id))),
-            privileges = listOf(Privilege(name = "Privilege", organization = Organization(id = id))))
+            privileges = listOf(Privilege(name = "Privilege", organization = Organization(id = id)))
+        )
 
         val organizationDto = organizationMapper.mapToDto(organization)
 
@@ -54,9 +56,11 @@ class OrganizationMapperTest @Autowired constructor(
             Organization(id = UUID.randomUUID(), scope = ScopeType.EXTERNAL, name = "Parent")
         )
 
-        val organizationDto = OrganizationDto(id = UUID.randomUUID(), scope = ScopeType.EXTERNAL, name = "Organization",
-            code = "ORG", description = "Organization description", createdAt = LocalDateTime.now(),
-            updatedAt = LocalDateTime.now(), parentId = parentOrganization.id, organizations = listOf())
+        val organizationDto = OrganizationDto(
+            id = UUID.randomUUID(), scope = ScopeType.EXTERNAL, name = "Organization",
+            code = "ORG", description = "Organization description", icon = "briefcase", createdAt = LocalDateTime.now(),
+            updatedAt = LocalDateTime.now(), parentId = parentOrganization.id, organizations = listOf()
+        )
 
         val organization = organizationMapper.mapToEntity(organizationDto)
 

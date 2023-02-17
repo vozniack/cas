@@ -16,7 +16,7 @@ export const userColumns: TableColumn[] = [
   },
   {
     label: 'Organization',
-    field: 'details.organizationCode',
+    field: 'organizationCode',
     sortable: false,
     badge: 'cyan'
   },

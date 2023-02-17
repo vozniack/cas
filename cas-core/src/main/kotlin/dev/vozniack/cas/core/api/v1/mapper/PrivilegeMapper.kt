@@ -1,7 +1,6 @@
 package dev.vozniack.cas.core.api.v1.mapper
 
 import dev.vozniack.cas.core.api.v1.dto.entity.PrivilegeDto
-import dev.vozniack.cas.core.api.v1.dto.entity.details.BasicDetailsDto
 import dev.vozniack.cas.core.entity.Privilege
 import dev.vozniack.cas.core.service.OrganizationService
 import dev.vozniack.cas.core.service.PrivilegeService
@@ -25,9 +24,6 @@ class PrivilegeMapper(
         privileges = entity.privileges?.map { mapToDto(it) },
         createdAt = entity.createdAt,
         updatedAt = entity.updatedAt,
-        details = BasicDetailsDto(
-            organizationCode = entity.organization?.code
-        )
     )
 
     override fun mapToEntity(dto: PrivilegeDto): Privilege = Privilege(

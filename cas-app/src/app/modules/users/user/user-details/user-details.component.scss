@@ -1,0 +1,20 @@
+@import 'src/styles/variables';
+
+.user-details {
+
+  .section-name {
+    color: $color-light;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+  }
+
+  .detail-name {
+    color: $color-dark;
+
+    font-size: 12px;
+    font-weight: 500;
+  }
+}

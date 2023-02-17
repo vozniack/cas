@@ -7,11 +7,11 @@ import dev.vozniack.cas.core.entity.Privilege
 import dev.vozniack.cas.core.repository.OrganizationRepository
 import dev.vozniack.cas.core.repository.PrivilegeRepository
 import dev.vozniack.cas.core.types.ScopeType
+import java.util.UUID
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import java.util.UUID
 
 class PrivilegeMapperTest @Autowired constructor(
     private val privilegeMapper: Mapper<Privilege, PrivilegeDto>,
@@ -33,14 +33,21 @@ class PrivilegeMapperTest @Autowired constructor(
             id = UUID.randomUUID(), scope = ScopeType.INTERNAL, name = "Privilege", code = "PRIVILEGE",
             description = "Privilege set", index = 0,
             organization = organization,
-            parent = Privilege(id = UUID.randomUUID(),
-                name = "Parent privilege", code = "PARENT_PRIVILEGE", description = "Parent privilege set"),
+            parent = Privilege(
+                id = UUID.randomUUID(),
+                name = "Parent privilege", code = "PARENT_PRIVILEGE", description = "Parent privilege set"
+            ),
             privileges = listOf(
-                Privilege(id = UUID.randomUUID(), name = "First privilege", code = "FIRST_PRIVILEGE",
-                    organization = organization),
-                Privilege(id = UUID.randomUUID(), name = "Second privilege", code = "SECOND_PRIVILEGE",
-                    organization = organization)
-            ))
+                Privilege(
+                    id = UUID.randomUUID(), name = "First privilege", code = "FIRST_PRIVILEGE",
+                    organization = organization
+                ),
+                Privilege(
+                    id = UUID.randomUUID(), name = "Second privilege", code = "SECOND_PRIVILEGE",
+                    organization = organization
+                )
+            )
+        )
 
         val privilegeDto = privilegeMapper.mapToDto(privilege)
 
@@ -50,12 +57,13 @@ class PrivilegeMapperTest @Autowired constructor(
         assertThat(privilegeDto.code).isEqualTo(privilege.code)
         assertThat(privilegeDto.description).isEqualTo(privilege.description)
         assertThat(privilegeDto.index).isEqualTo(privilege.index)
-        assertThat(privilegeDto.organizationId).isEqualTo(privilege.organization?.id)
         assertThat(privilegeDto.parentId).isEqualTo(privilege.parent?.id)
+
+        assertThat(privilegeDto.organizationId).isEqualTo(privilege.organization?.id)
+
         assertThat(privilegeDto.privileges?.size).isEqualTo(privilege.privileges?.size)
         assertThat(privilegeDto.privileges?.get(0)?.name).isEqualTo(privilege.privileges?.get(0)?.name)
         assertThat(privilegeDto.privileges?.get(0)?.code).isEqualTo(privilege.privileges?.get(0)?.code)
-        assertThat(privilegeDto.details?.organizationCode).isEqualTo(organization.code)
     }
 
     @Test
@@ -68,21 +76,31 @@ class PrivilegeMapperTest @Autowired constructor(
 
         // parent need to exist in repository due to matching by id
 
-        val parentPrivilege = privilegeRepository.save(Privilege(name = "Parent privilege",
-            code = "PARENT_PRIVILEGE", description = "Parent privilege set",
-            organization = organization))
+        val parentPrivilege = privilegeRepository.save(
+            Privilege(
+                name = "Parent privilege",
+                code = "PARENT_PRIVILEGE", description = "Parent privilege set",
+                organization = organization
+            )
+        )
 
-        val privilegeDto = PrivilegeDto(id = UUID.randomUUID(), scope = ScopeType.INTERNAL,
+        val privilegeDto = PrivilegeDto(
+            id = UUID.randomUUID(), scope = ScopeType.INTERNAL,
             name = "Privilege", code = "PRIVILEGE", description = "Privilege set", index = 0,
             organizationId = organization.id!!, parentId = parentPrivilege.id,
             privileges = listOf(
-                PrivilegeDto(id = UUID.randomUUID(), scope = ScopeType.INTERNAL, name = "First privilege",
+                PrivilegeDto(
+                    id = UUID.randomUUID(), scope = ScopeType.INTERNAL, name = "First privilege",
                     code = "FIRST_PRIVILEGE", description = null, index = 0, organizationId = organization.id!!,
-                    parentId = null, privileges = null),
-                PrivilegeDto(id = UUID.randomUUID(), scope = ScopeType.INTERNAL, name = "Second privilege",
+                    parentId = null, privileges = null
+                ),
+                PrivilegeDto(
+                    id = UUID.randomUUID(), scope = ScopeType.INTERNAL, name = "Second privilege",
                     code = "SECOND_PRIVILEGE", description = null, index = 1, organizationId = organization.id!!,
-                    parentId = null, privileges = null)
-            ))
+                    parentId = null, privileges = null
+                )
+            )
+        )
 
         val privilege = privilegeMapper.mapToEntity(privilegeDto)
 

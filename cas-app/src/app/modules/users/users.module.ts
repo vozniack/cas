@@ -6,6 +6,9 @@ import {CommonComponentsModule} from '../../shared/components/common/common-comp
 import {ControlsModule} from '../../shared/components/controls/controls.module';
 import {InputsModule} from '../../shared/components/inputs/inputs.module';
 import {TableModule} from '../../shared/components/table/table.module';
+import {PrivilegesModule} from '../privileges/privileges.module';
+import {RolesModule} from '../roles/roles.module';
+import {UserDetailsComponent} from './user/user-details/user-details.component';
 import {UserComponent} from './user/user.component';
 import {UsersBarComponent} from './users-bar/users-bar.component';
 import {UsersListNodeComponent} from './users-list/users-list-node/users-list-node.component';
@@ -23,7 +26,8 @@ import {UsersService} from './users.service';
     UserComponent,
     UsersListComponent,
     UsersListNodeComponent,
-    UsersBarComponent
+    UsersBarComponent,
+    UserDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +37,9 @@ import {UsersService} from './users.service';
     InputsModule,
     CommonComponentsModule,
     IconsModule,
-    ControlsModule
+    ControlsModule,
+    RolesModule,
+    PrivilegesModule
   ],
   exports: [
     UsersListComponent,

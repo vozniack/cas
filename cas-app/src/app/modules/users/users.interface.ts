@@ -1,7 +1,5 @@
-import {ScopeType} from "../../shared/model/types.interface";
-import {Auditable} from "../../shared/model/auditable.interface";
-import {Role} from "../roles/roles.interface";
-import {BasicDetails} from "../../shared/model/basic-details.interface";
+import {Auditable} from '../../shared/model/auditable.interface';
+import {ScopeType} from '../../shared/model/types.interface';
 
 export interface User extends Auditable {
 
@@ -19,10 +17,7 @@ export interface User extends Auditable {
 
   active: boolean;
 
-  roles: Role[];
+  organizationId: string;
 
-  details: UserDetails;
-}
-
-export interface UserDetails extends BasicDetails {
+  organizationCode: string;
 }

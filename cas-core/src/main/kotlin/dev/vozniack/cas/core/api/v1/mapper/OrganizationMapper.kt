@@ -4,7 +4,6 @@ import dev.vozniack.cas.core.api.v1.dto.entity.OrganizationDto
 import dev.vozniack.cas.core.api.v1.dto.entity.PrivilegeDto
 import dev.vozniack.cas.core.api.v1.dto.entity.RoleDto
 import dev.vozniack.cas.core.api.v1.dto.entity.UserDto
-import dev.vozniack.cas.core.api.v1.dto.entity.details.OrganizationDetailsDto
 import dev.vozniack.cas.core.entity.Organization
 import dev.vozniack.cas.core.entity.Privilege
 import dev.vozniack.cas.core.entity.Role
@@ -34,12 +33,7 @@ class OrganizationMapper(
         updatedAt = entity.updatedAt,
         roles = entity.roles.map { rolesMapper.mapToDto(it) },
         users = entity.users.map { usersMapper.mapToDto(it) },
-        privileges = entity.privileges.map { privilegesMapper.mapToDto(it) },
-        details = OrganizationDetailsDto(
-            users = entity.users.size,
-            roles = entity.roles.size,
-            privileges = entity.privileges.size
-        )
+        privileges = entity.privileges.map { privilegesMapper.mapToDto(it) }
     )
 
     override fun mapToEntity(dto: OrganizationDto): Organization = Organization(

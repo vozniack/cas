@@ -6,10 +6,10 @@ import dev.vozniack.cas.core.entity.Organization
 import dev.vozniack.cas.core.entity.Role
 import dev.vozniack.cas.core.repository.OrganizationRepository
 import dev.vozniack.cas.core.types.ScopeType
+import java.util.UUID
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import java.util.UUID
 
 class RoleMapperTest @Autowired constructor(
     private val roleMapper: Mapper<Role, RoleDto>,
@@ -30,7 +30,6 @@ class RoleMapperTest @Autowired constructor(
         assertThat(roleDto.code).isEqualTo(role.code)
         assertThat(roleDto.description).isEqualTo(role.description)
         assertThat(roleDto.organizationId).isEqualTo(role.organization!!.id!!)
-        assertThat(roleDto.details?.organizationCode).isEqualTo(organization.code)
     }
 
     @Test
