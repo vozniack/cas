@@ -18,8 +18,7 @@ class UserDto(
 
     val active: Boolean?,
 
-    val organizationId: UUID,
-    val organizationCode: String?,
+    val organizations: List<UserOrganizationDto> = listOf(),
 
     val createdAt: LocalDateTime? = null,
     val updatedAt: LocalDateTime? = null

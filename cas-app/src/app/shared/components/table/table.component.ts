@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {Subject} from 'rxjs';
+import {Organization} from '../../../modules/organizations/organizations.interface';
 import {User} from '../../../modules/users/users.interface';
 import {ACTION_VIEW_RESOURCE} from '../../../store/app/app.actions';
 import {fadeInAnimation} from '../../animations/fade-in-animation';
@@ -127,5 +128,9 @@ export class TableComponent {
 
   getUserName(row: any): string {
     return [this.getFieldValue(row, 'firstName'), this.getFieldValue(row, 'lastName')].join(' ');
+  }
+
+  getOrganizations(row: any): Organization[] {
+    return JSON.parse(JSON.stringify(this.getFieldValue(row, 'organizations'))) as Organization[]
   }
 }

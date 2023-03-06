@@ -2,6 +2,7 @@ package dev.vozniack.cas.core.api.v1.mapper
 
 import dev.vozniack.cas.core.CasCoreAbstractTest
 import dev.vozniack.cas.core.api.v1.dto.entity.UserDto
+import dev.vozniack.cas.core.api.v1.dto.entity.UserOrganizationDto
 import dev.vozniack.cas.core.entity.Organization
 import dev.vozniack.cas.core.entity.Role
 import dev.vozniack.cas.core.entity.User
@@ -30,7 +31,7 @@ class UserMapperTest @Autowired constructor(
         val user = User(
             id = UUID.randomUUID(), scope = ScopeType.INTERNAL, email = "john.doe@cas.dev",
             password = "pass123!", firstName = "John", lastName = "Doe",
-            organization = organization, roles = listOf(
+            organizations = listOf(organization), roles = listOf(
                 Role(
                     id = UUID.randomUUID(),
                     name = "ROLE", description = "Description", organization = organization
@@ -48,7 +49,7 @@ class UserMapperTest @Autowired constructor(
         assertThat(userDto.lastName).isEqualTo(user.lastName)
         assertThat(userDto.active).isEqualTo(user.active)
 
-        assertThat(userDto.organizationId).isEqualTo(user.organization?.id)
+        assertThat(userDto.organizations[0].id).isEqualTo(user.organizations[0].id)
     }
 
     @Test
@@ -62,7 +63,7 @@ class UserMapperTest @Autowired constructor(
         val userDto = UserDto(
             id = UUID.randomUUID(), scope = ScopeType.INTERNAL, email = "john.doe@cas.dev",
             password = "pass123!", firstName = "John", lastName = "Doe", active = true,
-            organizationId = organization.id!!, organizationCode = "ORG"
+            organizations = listOf(UserOrganizationDto(organization.id, organization.code)),
         )
 
         val user = userMapper.mapToEntity(userDto)
@@ -75,7 +76,6 @@ class UserMapperTest @Autowired constructor(
         assertThat(user.lastName).isEqualTo(userDto.lastName)
         assertThat(user.active).isEqualTo(userDto.active)
 
-        assertThat(user.organization?.id).isEqualTo(organization.id)
-        assertThat(user.organization?.code).isEqualTo(organization.code)
+        assertThat(user.organizations[0].id).isEqualTo(organization.id)
     }
 }

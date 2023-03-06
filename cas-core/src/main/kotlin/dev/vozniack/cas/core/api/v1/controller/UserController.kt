@@ -8,6 +8,7 @@ import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.repository.specification.UserQuery
 import dev.vozniack.cas.core.service.UserService
 import dev.vozniack.cas.core.types.ScopeType
+import java.util.UUID
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.security.access.prepost.PreAuthorize
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import java.util.UUID
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -36,7 +36,7 @@ class UserController(
         @RequestParam(required = false) organizationId: String?,
         pageable: Pageable,
     ): Page<UserDto> =
-        userService.findAll(UserQuery(ScopeType.EXTERNAL, search, search, search, organizationId), pageable)
+        userService.findAll(UserQuery(ScopeType.EXTERNAL, search, search, search, search, organizationId), pageable)
             .map(userMapper::mapToDto)
 
     @GetMapping("/list")
@@ -45,13 +45,13 @@ class UserController(
         @RequestParam(required = false) search: String?,
         @RequestParam(required = false) organizationId: String?,
     ): List<UserDto> =
-        userService.findAll(UserQuery(ScopeType.EXTERNAL, search, search, search, organizationId))
+        userService.findAll(UserQuery(ScopeType.EXTERNAL, search, search, search, search, organizationId))
             .map(userMapper::mapToDto)
 
     @GetMapping("/internal")
     @PreAuthorize("hasAuthority('READ_USER') and hasRole('ADMIN')")
     fun getAllInternal(@RequestParam(required = false) search: String?, pageable: Pageable): Page<UserDto> =
-        userService.findAll(UserQuery(ScopeType.INTERNAL, search, search, search), pageable)
+        userService.findAll(UserQuery(ScopeType.INTERNAL, search, search, search, search), pageable)
             .map(userMapper::mapToDto)
 
     @GetMapping("/{id}")

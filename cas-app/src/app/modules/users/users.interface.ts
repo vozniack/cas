@@ -17,7 +17,12 @@ export interface User extends Auditable {
 
   active: boolean;
 
-  organizationId: string;
+  organizations: UserOrganization[];
+}
 
-  organizationCode: string;
+export interface UserOrganization {
+
+  id: string;
+
+  code: string;
 }

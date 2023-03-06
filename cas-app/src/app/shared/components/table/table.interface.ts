@@ -14,8 +14,9 @@ export interface TableColumn {
 export enum ColumnType {
   ACTIVITY = 'ACTIVITY',
   DATE = 'DATE',
+  USER = 'USER',
   ORGANIZATION = 'ORGANIZATION',
-  USER = 'USER'
+  ORGANIZATIONS = 'ORGANIZATIONS'
 }
 
 export type BadgeType = 'default' | 'cyan' | 'violet' | 'green' | 'orange'

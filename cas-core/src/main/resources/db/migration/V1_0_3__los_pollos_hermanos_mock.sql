@@ -20,37 +20,27 @@ VALUES ('7d4899af-e885-40fa-8406-92da716babde', 'Chief Executive Officer', 'CEO'
        ('779a918a-b655-4fa5-bcc5-55e63af6e7d9', 'Auxiliary', 'AUXILIARY',
         'Company basic assistant', 'dd4f50ea-786c-409e-9f2f-fe119188edc6');
 
-INSERT INTO users (id, email, password, first_name, last_name, organization_id)
+INSERT INTO users (id, email, password, first_name, last_name)
 VALUES ('dd07df45-8856-48cd-aa4f-8fcdd6043317', 'gustavo.fring@lospolloshermanos.com',
-        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Gustavo', 'Fring',
-        'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
+        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Gustavo', 'Fring'),
        ('24f00550-6a3f-4428-809e-fbdef7e01c2d', 'walter.white@lospolloshermanos.com',
-        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Walter', 'White',
-        'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
+        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Walter', 'White'),
        ('2975c70e-f878-45e6-82df-3a77eb33df05', 'jesse.pinkman@lospolloshermanos.com',
-        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Jesse', 'Pinkman',
-        'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
+        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Jesse', 'Pinkman'),
        ('41dbfa5a-8edd-4193-8809-78e6016d70f6', 'galle.boetticher@lospolloshermanos.com',
-        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Galle', 'Boetticher',
-        'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
+        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Galle', 'Boetticher'),
        ('c722f989-eb6c-4dcc-b6aa-01cca9223823', 'skyler.white@lospolloshermanos.com',
-        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Skyler', 'White',
-        'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
+        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Skyler', 'White'),
        ('5b9b4df3-1765-463b-a9f2-31c9e90fb33b', 'saul.goodman@lospolloshermanos.com',
-        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Saul', 'Goodman',
-        'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
+        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Saul', 'Goodman'),
        ('0352f959-ab10-4f88-b47a-aaeebfd6491e', 'francesca.liddy@lospolloshermanos.com',
-        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Francesca', 'Liddy',
-        'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
+        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Francesca', 'Liddy'),
        ('a3fb4e66-491f-48c9-a623-a6c61740efbd', 'mike.ehrmantraut@lospolloshermanos.com',
-        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Mike', 'Ehrmantraut',
-        'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
+        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Mike', 'Ehrmantraut'),
        ('f29a4f8d-585a-40a2-b11c-83f65f6eb3c8', 'tyrus.kitt@lospolloshermanos.com',
-        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Tyrus', 'Kitt',
-        'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
+        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Tyrus', 'Kitt'),
        ('95a5bf84-8b55-4e72-a07d-3e3b0da4b0e9', 'victor@lospolloshermanos.com',
-        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Victor', null,
-        'dd4f50ea-786c-409e-9f2f-fe119188edc6');
+        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'Victor', null);
 
 INSERT INTO privileges (id, name, code, description, index, organization_id, parent_id)
 VALUES ('9e1f9677-f9c3-4565-9046-ba4ad602163f', 'Manage company', 'MANAGE_COMPANY',
@@ -106,6 +96,18 @@ VALUES ('9e1f9677-f9c3-4565-9046-ba4ad602163f', 'Manage company', 'MANAGE_COMPAN
         '', 1, 'dd4f50ea-786c-409e-9f2f-fe119188edc6', '43a0b7cb-edda-487a-9b20-2f829c9ed925'),
        ('5edbab18-08c2-4d69-ba06-abe117b10a7e', 'Avoid Hank', 'AVOID_HANK',
         '', 2, 'dd4f50ea-786c-409e-9f2f-fe119188edc6', '43a0b7cb-edda-487a-9b20-2f829c9ed925');
+
+INSERT INTO user_organizations(user_id, organization_id)
+VALUES ('dd07df45-8856-48cd-aa4f-8fcdd6043317', 'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
+       ('24f00550-6a3f-4428-809e-fbdef7e01c2d', 'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
+       ('2975c70e-f878-45e6-82df-3a77eb33df05', 'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
+       ('41dbfa5a-8edd-4193-8809-78e6016d70f6', 'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
+       ('c722f989-eb6c-4dcc-b6aa-01cca9223823', 'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
+       ('5b9b4df3-1765-463b-a9f2-31c9e90fb33b', 'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
+       ('0352f959-ab10-4f88-b47a-aaeebfd6491e', 'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
+       ('a3fb4e66-491f-48c9-a623-a6c61740efbd', 'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
+       ('f29a4f8d-585a-40a2-b11c-83f65f6eb3c8', 'dd4f50ea-786c-409e-9f2f-fe119188edc6'),
+       ('95a5bf84-8b55-4e72-a07d-3e3b0da4b0e9', 'dd4f50ea-786c-409e-9f2f-fe119188edc6');
 
 INSERT INTO user_roles (user_id, role_id)
 VALUES ('dd07df45-8856-48cd-aa4f-8fcdd6043317', '7d4899af-e885-40fa-8406-92da716babde'),

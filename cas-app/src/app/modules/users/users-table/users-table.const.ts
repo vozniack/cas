@@ -15,10 +15,10 @@ export const userColumns: TableColumn[] = [
     type: ColumnType.ACTIVITY
   },
   {
-    label: 'Organization',
-    field: 'organizationCode',
+    label: 'Organizations',
+    field: 'organizations',
     sortable: false,
-    badge: 'cyan'
+    type: ColumnType.ORGANIZATIONS
   },
   {
     label: 'Created at',

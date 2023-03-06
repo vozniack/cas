@@ -12,7 +12,6 @@ import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.JoinTable
 import javax.persistence.ManyToMany
-import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 import javax.persistence.Table
 
@@ -34,9 +33,13 @@ class User(
 
     var active: Boolean? = true,
 
-    @ManyToOne
-    @JoinColumn(name = "organization_id")
-    var organization: Organization? = null,
+    @ManyToMany
+    @JoinTable(
+        name = "user_organizations",
+        joinColumns = [JoinColumn(name = "user_id")],
+        inverseJoinColumns = [JoinColumn(name = "organization_id")]
+    )
+    var organizations: List<Organization> = listOf(),
 
     @ManyToMany
     @JoinTable(

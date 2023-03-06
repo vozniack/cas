@@ -30,7 +30,7 @@ class OrganizationMapperTest @Autowired constructor(
             code = "ORG", description = "Organization description",
             parent = parentOrganization, organizations = listOf(childOrganization),
             roles = listOf(Role(name = "Role", organization = Organization(id = id))),
-            users = listOf(User(firstName = "User", organization = Organization(id = id))),
+            users = listOf(User(firstName = "User", organizations = listOf(Organization(id = id)))),
             privileges = listOf(Privilege(name = "Privilege", organization = Organization(id = id)))
         )
 

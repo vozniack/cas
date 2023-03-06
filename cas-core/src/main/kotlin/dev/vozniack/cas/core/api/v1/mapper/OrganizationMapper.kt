@@ -29,11 +29,11 @@ class OrganizationMapper(
         active = entity.active,
         parentId = entity.parent?.id,
         organizations = entity.organizations?.map { mapToDto(it) },
+        roles = entity.roles.map { rolesMapper.mapToDto(it) },
+        privileges = entity.privileges.map { privilegesMapper.mapToDto(it) },
+        users = entity.users.map { usersMapper.mapToDto(it) },
         createdAt = entity.createdAt,
         updatedAt = entity.updatedAt,
-        roles = entity.roles.map { rolesMapper.mapToDto(it) },
-        users = entity.users.map { usersMapper.mapToDto(it) },
-        privileges = entity.privileges.map { privilegesMapper.mapToDto(it) }
     )
 
     override fun mapToEntity(dto: OrganizationDto): Organization = Organization(

@@ -28,7 +28,7 @@ class UserQueryTest @Autowired constructor(
 
         userRepository.saveAll(listOf(
             User(firstName = "John", lastName = "Doe", email = "john.doe1@cas.dev", roles = listOf(),
-                scope = ScopeType.INTERNAL, organization = organization),
+                scope = ScopeType.INTERNAL, organizations = listOf(organization)),
             User(firstName = "Johannes", lastName = "Doe", email = "john.doe2@cas.dev", roles = listOf(),
                 scope = ScopeType.EXTERNAL)
         ))
@@ -46,6 +46,9 @@ class UserQueryTest @Autowired constructor(
         Assertions.assertThat(users.size).isEqualTo(1)
 
         users = userRepository.findAll(UserQuery(organizationId = organization.id.toString()).toSpecification())
+        Assertions.assertThat(users.size).isEqualTo(1)
+
+        users = userRepository.findAll(UserQuery(organizationCode = organization.code).toSpecification())
         Assertions.assertThat(users.size).isEqualTo(1)
     }
 }

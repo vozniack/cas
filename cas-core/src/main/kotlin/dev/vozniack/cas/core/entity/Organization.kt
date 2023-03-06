@@ -10,6 +10,8 @@ import javax.persistence.Enumerated
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.JoinColumn
+import javax.persistence.JoinTable
+import javax.persistence.ManyToMany
 import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 import javax.persistence.Table
@@ -39,12 +41,17 @@ class Organization(
     var organizations: List<Organization>? = listOf(),
 
     @OneToMany(mappedBy = "organization")
-    var users: List<User> = listOf(),
-
-    @OneToMany(mappedBy = "organization")
     var roles: List<Role> = listOf(),
 
     @OneToMany(mappedBy = "organization")
     var privileges: List<Privilege> = listOf(),
+
+    @ManyToMany
+    @JoinTable(
+        name = "user_organizations",
+        joinColumns = [JoinColumn(name = "organization_id")],
+        inverseJoinColumns = [JoinColumn(name = "user_id")]
+    )
+    var users: List<User> = listOf(),
 
     ) : Auditable()

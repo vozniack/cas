@@ -4,7 +4,6 @@ INSERT INTO organizations (id, name, description, code, icon, parent_id)
 VALUES ('dd6f01cf-9fca-4e7b-9da3-047dd7004494', 'Dunder Mifflin Paper Company',
         'Paper Company management actions', 'DMPC', 'document-outline', null);
 
-
 INSERT INTO roles (id, name, code, description, organization_id)
 VALUES ('5dc26691-7582-4603-b7df-c81be19bb47f', 'Chief Executive Officer', 'CEO', '',
         'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
@@ -23,54 +22,37 @@ VALUES ('5dc26691-7582-4603-b7df-c81be19bb47f', 'Chief Executive Officer', 'CEO'
        ('8bd91e7b-7855-4e00-a60b-e840ccb58fdc', 'Internship', 'TEMP', '',
         'dd6f01cf-9fca-4e7b-9da3-047dd7004494');
 
-
-INSERT INTO users (id, email, password, first_name, last_name, organization_id)
+INSERT INTO users (id, email, password, first_name, last_name)
 VALUES ('eb613176-2ebf-4756-adef-5694761ecc65', 'david.wallace@dundermifflin.com',
-        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'David', 'Wallace',
-        'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+        '$2y$10$gEyH9IsPlWtJhc272Obu3uxv8mXXEPyVWG0MLUTsRfe6sNqSRlJFy', 'David', 'Wallace'),
        ('c6ac2055-9911-409a-9557-dcf750fdac97', 'michael.scott@dundermifflin.com',
-        '$2y$10$0r.mQCdmZiJ5E4qiqKRal.5LsIXtqZG6B5ILadVaFj6cez08wi1Pm', 'Michael', 'Scott',
-        'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+        '$2y$10$0r.mQCdmZiJ5E4qiqKRal.5LsIXtqZG6B5ILadVaFj6cez08wi1Pm', 'Michael', 'Scott'),
        ('919dacea-a0fb-4202-87a3-bb2508f0e332', 'dwight.schrute@dundermifflin.com',
-        '$2y$10$.qBVbUeY7vg0gvaIoQYlMOwPXjXqXoJrS9/omKPmI6yVQfuYonJHy', 'Dwight', 'Schrute',
-        'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+        '$2y$10$.qBVbUeY7vg0gvaIoQYlMOwPXjXqXoJrS9/omKPmI6yVQfuYonJHy', 'Dwight', 'Schrute'),
        ('683fd7de-ee87-4ac4-9968-e398674e99b5', 'jim.halpert@dundermifflin.com',
-        '$2y$10$KorHPHsqoN06dkyYJR/JxeVqsFfzlsqlKeL2WFhRTjs/qOn14TyFa', 'Jim', 'Halpert',
-        'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+        '$2y$10$KorHPHsqoN06dkyYJR/JxeVqsFfzlsqlKeL2WFhRTjs/qOn14TyFa', 'Jim', 'Halpert'),
        ('9a7079b4-138f-4c0a-b73c-2469e33bcc0f', 'andy.bernard@dundermifflin.com',
-        '$2y$10$i8Y6t1PukFsc8kVUePfDZ.1KSF3Cx/BYJqW7lbiduqmAAxjr7BC/m', 'Andy', 'Bernard',
-        'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+        '$2y$10$i8Y6t1PukFsc8kVUePfDZ.1KSF3Cx/BYJqW7lbiduqmAAxjr7BC/m', 'Andy', 'Bernard'),
        ('d6986ced-3e15-49eb-a958-e26c695afae1', 'stanley.hudson@dundermifflin.com',
-        '$2y$10$7BydkpSBffUekfAY4UeScuvmsBG8Sp3mhlxfpfORs3CmPadhCKv1q', 'Stanley', 'Hudson',
-        'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+        '$2y$10$7BydkpSBffUekfAY4UeScuvmsBG8Sp3mhlxfpfORs3CmPadhCKv1q', 'Stanley', 'Hudson'),
        ('f6420b98-63ec-4d5f-a641-11df56a951b6', 'phyllis.vance@dundermifflin.com',
-        '$2y$10$lLW/w23bNAXI2If4012FP.0WHkG8GfI.XcJeKpqVdcKRzugKLOoju', 'Phyllis', 'Vance',
-        'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+        '$2y$10$lLW/w23bNAXI2If4012FP.0WHkG8GfI.XcJeKpqVdcKRzugKLOoju', 'Phyllis', 'Vance'),
        ('62c66369-7716-4b0d-9fd0-f008d23b9998', 'pam.beesly@dundermifflin.com',
-        '$2y$10$/t896gqZB0VEl/Pu2h7bBudoDH5Ar2NhfF/l3SVvTfFNlDEw5k18S', 'Pam', 'Beesly',
-        'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+        '$2y$10$/t896gqZB0VEl/Pu2h7bBudoDH5Ar2NhfF/l3SVvTfFNlDEw5k18S', 'Pam', 'Beesly'),
        ('e24d07c5-4504-4254-8904-9d4e0bd50ec9', 'erin.hannon@dundermifflin.com',
-        '$2y$10$3JPBra5B2/bQ7vsFtcF/zOHLwfX1QJ52h1ton9TiL0n1qGn2tMvIO', 'Erin', 'Hannon',
-        'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+        '$2y$10$3JPBra5B2/bQ7vsFtcF/zOHLwfX1QJ52h1ton9TiL0n1qGn2tMvIO', 'Erin', 'Hannon'),
        ('b372bc94-4f99-42e3-900c-0e3b3045707d', 'kevin.malone@dundermifflin.com',
-        '$2y$10$3FvBcE/v.qh6giwjyQ5MpOMcWq8yP1NO83keD/LZhZ3awDkbnHpBu', 'Kevin', 'Malone',
-        'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+        '$2y$10$3FvBcE/v.qh6giwjyQ5MpOMcWq8yP1NO83keD/LZhZ3awDkbnHpBu', 'Kevin', 'Malone'),
        ('b8092073-d220-434b-8956-8cc9760606cd', 'angela.martin@dundermifflin.com',
-        '$2y$10$IPfzppVysjVBheeIpocZr.u5xoldQPbRLXc7JETAIEWKejOjvmLNa', 'Angela', 'Martin',
-        'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+        '$2y$10$IPfzppVysjVBheeIpocZr.u5xoldQPbRLXc7JETAIEWKejOjvmLNa', 'Angela', 'Martin'),
        ('74dbc02d-c420-41b8-bd14-0f5b3ffdb76f', 'oscar.martinez@dundermifflin.com',
-        '$2y$10$07R3WeaGPpmuvn9V7uGc1e43cMwm9eaQ.BotViCDWoPL0BxjOLKym', 'Oscar', 'Martinez',
-        'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+        '$2y$10$07R3WeaGPpmuvn9V7uGc1e43cMwm9eaQ.BotViCDWoPL0BxjOLKym', 'Oscar', 'Martinez'),
        ('9b7a24d8-3e9c-4732-869e-b0aaf50f0fb8', 'kelly.kapour@dundermifflin.com',
-        '$2y$10$Mck8IEDFnggLroOziZMNvOIUBHRotmfFXyNohTD3S6KusLfimJ0hK', 'Kelly', 'Kapour',
-        'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+        '$2y$10$Mck8IEDFnggLroOziZMNvOIUBHRotmfFXyNohTD3S6KusLfimJ0hK', 'Kelly', 'Kapour'),
        ('4a032d84-9f26-451f-b3f4-62d467c45fc7', 'ryan.howard@dundermifflin.com',
-        '$2y$10$Ls3ihyncMJK6GrIcVwrha.9/zn3KNA8ifHQDk2/vlTdXusvwOjVw6', 'Ryan', 'Howard',
-        'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+        '$2y$10$Ls3ihyncMJK6GrIcVwrha.9/zn3KNA8ifHQDk2/vlTdXusvwOjVw6', 'Ryan', 'Howard'),
        ('28568702-0e7d-4094-97e3-1205caf47f9a', 'creed.bratton@dundermifflin.com',
-        '$2y$10$TDBB3vP1zDCb1BTVIEJVxODSQJsQjzGy4nlo2bWrDQyKZWDUl1WXi', 'Creed', 'Bratton',
-        'dd6f01cf-9fca-4e7b-9da3-047dd7004494');
-
+        '$2y$10$TDBB3vP1zDCb1BTVIEJVxODSQJsQjzGy4nlo2bWrDQyKZWDUl1WXi', 'Creed', 'Bratton');
 
 INSERT INTO privileges (id, name, code, description, index, organization_id, parent_id)
 VALUES ('b7d72a65-4fbc-43d3-b81e-724bf4a8145e', 'Manage company', 'MANAGE_COMPANY',
@@ -167,6 +149,23 @@ VALUES ('b7d72a65-4fbc-43d3-b81e-724bf4a8145e', 'Manage company', 'MANAGE_COMPAN
        ('8550a237-ce71-4d76-a3b4-79bd4a955618', 'Be a christmas belsnickel', 'BE_BELSNICKEL',
         '', 12, 'dd6f01cf-9fca-4e7b-9da3-047dd7004494', null);
 
+INSERT INTO user_organizations(user_id, organization_id)
+VALUES ('eb613176-2ebf-4756-adef-5694761ecc65', 'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+       ('c6ac2055-9911-409a-9557-dcf750fdac97', 'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+       ('919dacea-a0fb-4202-87a3-bb2508f0e332', 'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+       ('683fd7de-ee87-4ac4-9968-e398674e99b5', 'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+       ('9a7079b4-138f-4c0a-b73c-2469e33bcc0f', 'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+       ('d6986ced-3e15-49eb-a958-e26c695afae1', 'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+       ('f6420b98-63ec-4d5f-a641-11df56a951b6', 'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+       ('62c66369-7716-4b0d-9fd0-f008d23b9998', 'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+       ('e24d07c5-4504-4254-8904-9d4e0bd50ec9', 'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+       ('b372bc94-4f99-42e3-900c-0e3b3045707d', 'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+       ('b8092073-d220-434b-8956-8cc9760606cd', 'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+       ('74dbc02d-c420-41b8-bd14-0f5b3ffdb76f', 'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+       ('9b7a24d8-3e9c-4732-869e-b0aaf50f0fb8', 'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+       ('4a032d84-9f26-451f-b3f4-62d467c45fc7', 'dd6f01cf-9fca-4e7b-9da3-047dd7004494'),
+       ('28568702-0e7d-4094-97e3-1205caf47f9a', 'dd6f01cf-9fca-4e7b-9da3-047dd7004494');
+
 INSERT INTO user_roles (user_id, role_id)
 VALUES ('eb613176-2ebf-4756-adef-5694761ecc65', '5dc26691-7582-4603-b7df-c81be19bb47f'),
 
@@ -194,7 +193,6 @@ VALUES ('eb613176-2ebf-4756-adef-5694761ecc65', '5dc26691-7582-4603-b7df-c81be19
 
        ('4a032d84-9f26-451f-b3f4-62d467c45fc7', '8bd91e7b-7855-4e00-a60b-e840ccb58fdc');
 
-
 INSERT INTO role_privileges (role_id, privilege_id, excluded)
 VALUES ('5dc26691-7582-4603-b7df-c81be19bb47f', 'b7d72a65-4fbc-43d3-b81e-724bf4a8145e', false),
 
@@ -212,7 +210,6 @@ VALUES ('5dc26691-7582-4603-b7df-c81be19bb47f', 'b7d72a65-4fbc-43d3-b81e-724bf4a
        ('8bd91e7b-7855-4e00-a60b-e840ccb58fdc', '9734ca12-e63f-48b5-ad26-816c56608b0d', false),
        ('8bd91e7b-7855-4e00-a60b-e840ccb58fdc', '8459b796-4bce-4fbb-ab39-ba8c21f0d2a4', false),
        ('8bd91e7b-7855-4e00-a60b-e840ccb58fdc', 'e2a5ddc8-8764-43cc-9c6a-32fd8847a86e', true);
-
 
 INSERT INTO user_privileges (user_id, privilege_id, excluded)
 VALUES ('c6ac2055-9911-409a-9557-dcf750fdac97', 'fd34db12-af91-4817-9fd4-6cc052d55987', false),

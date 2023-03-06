@@ -1,6 +1,7 @@
 package dev.vozniack.cas.core.api.v1.mapper
 
 import dev.vozniack.cas.core.api.v1.dto.entity.UserDto
+import dev.vozniack.cas.core.api.v1.dto.entity.UserOrganizationDto
 import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.service.OrganizationService
 import org.springframework.stereotype.Component
@@ -18,8 +19,7 @@ class UserMapper(
         firstName = entity.firstName,
         lastName = entity.lastName,
         active = entity.active,
-        organizationId = entity.organization!!.id!!,
-        organizationCode = entity.organization!!.code,
+        organizations = entity.organizations.map { UserOrganizationDto(it.id, it.code) },
         createdAt = entity.createdAt,
         updatedAt = entity.updatedAt,
     )
@@ -32,6 +32,6 @@ class UserMapper(
         firstName = dto.firstName,
         lastName = dto.lastName,
         active = dto.active,
-        organization = dto.organizationId.let { organizationService.findById(it) },
+        organizations = dto.organizations.map { organizationService.findById(it.id!!) },
     )
 }

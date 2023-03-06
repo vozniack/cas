@@ -43,6 +43,17 @@
           </span>
         </ng-container>
 
+        <ng-container *ngIf="column.type == columnType.USER">
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+            <cas-avatar [user]="getUser(row)" [size]="'small'" [color]="'random'"></cas-avatar>
+
+            <div fxLayout="column" fxLayoutGap="4px">
+              <span>{{getUserName(row)}}</span>
+              <span class="description">{{getFieldValue(row, 'email') }}</span>
+            </div>
+          </div>
+        </ng-container>
+
         <ng-container *ngIf="column.type == columnType.ORGANIZATION">
           <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
             <span class="organization-icon" fxLayoutAlign="center center">
@@ -56,14 +67,11 @@
           </div>
         </ng-container>
 
-        <ng-container *ngIf="column.type == columnType.USER">
+        <ng-container *ngIf="column.type == columnType.ORGANIZATIONS">
           <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
-            <cas-avatar [user]="getUser(row)" [size]="'small'" [color]="'random'"></cas-avatar>
-
-            <div fxLayout="column" fxLayoutGap="4px">
-              <span>{{getUserName(row)}}</span>
-              <span class="description">{{getFieldValue(row, 'email') }}</span>
-            </div>
+            <ng-container *ngFor="let organization of getOrganizations(row)">
+              <span class="badge cyan">{{organization.code}}</span>
+            </ng-container>
           </div>
         </ng-container>
       </th>

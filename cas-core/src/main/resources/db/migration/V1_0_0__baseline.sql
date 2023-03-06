@@ -23,24 +23,20 @@ CREATE TABLE organizations
 
 CREATE TABLE users
 (
-    id              UUID         NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
+    id         UUID         NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
 
-    scope           VARCHAR(255) NOT NULL             DEFAULT 'EXTERNAL',
+    scope      VARCHAR(255) NOT NULL             DEFAULT 'EXTERNAL',
 
-    email           VARCHAR(255) NOT NULL UNIQUE,
-    password        VARCHAR(255),
+    email      VARCHAR(255) NOT NULL UNIQUE,
+    password   VARCHAR(255),
 
-    first_name      VARCHAR(255) NOT NULL,
-    last_name       VARCHAR(255),
+    first_name VARCHAR(255) NOT NULL,
+    last_name  VARCHAR(255),
 
-    active          BOOLEAN                           DEFAULT TRUE,
+    active     BOOLEAN                           DEFAULT TRUE,
 
-    organization_id UUID         NOT NULL,
-
-    created_at      TIMESTAMP    NOT NULL             DEFAULT now(),
-    updated_at      TIMESTAMP    NOT NULL             DEFAULT now(),
-
-    CONSTRAINT user_organization_fk FOREIGN KEY (organization_id) REFERENCES organizations (id)
+    created_at TIMESTAMP    NOT NULL             DEFAULT now(),
+    updated_at TIMESTAMP    NOT NULL             DEFAULT now()
 );
 
 CREATE TABLE roles
@@ -99,6 +95,18 @@ CREATE TABLE user_roles
     CONSTRAINT user_role_role_fk FOREIGN KEY (role_id) REFERENCES roles (id)
 );
 
+
+CREATE TABLE user_organizations
+(
+    user_id         UUID NOT NULL,
+    organization_id UUID NOT NULL,
+
+    PRIMARY KEY (user_id, organization_id),
+
+    CONSTRAINT user_organization_user_fk FOREIGN KEY (user_id) REFERENCES users (id),
+    CONSTRAINT user_organization_organization_fk FOREIGN KEY (organization_id) REFERENCES organizations (id)
+);
+
 CREATE TABLE user_privileges
 (
     id           UUID      NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -138,7 +146,6 @@ CREATE TABLE role_privileges
 INSERT INTO organizations (id, scope, name, code, icon)
 VALUES ('3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5', 'INTERNAL', 'Central Authorization System', 'CAS', 'aperture-outline');
 
-
 INSERT INTO roles (id, scope, name, code, description, organization_id)
 VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', 'INTERNAL', 'Admin', 'ADMIN',
         'Central Authorization System administrator role',
@@ -146,20 +153,11 @@ VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', 'INTERNAL', 'Admin', 'ADMIN',
        ('451adc34-f819-46d5-9e35-719ee343fb73', 'INTERNAL', 'User', 'USER', 'Central Authorization System user role',
         '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5');
 
-
-INSERT INTO users (id, scope, email, password, first_name, last_name, organization_id)
+INSERT INTO users (id, scope, email, password, first_name, last_name)
 VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', 'INTERNAL', 'thomas.vozniack@cas.dev',
-        '$2y$10$xQmgOI21SYQllSWhAwEe6uzKihvrGmhaMycrJp2Unv.tnnXPHuUz.', 'Thomas', 'Vozniack',
-        '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5'),
+        '$2y$10$xQmgOI21SYQllSWhAwEe6uzKihvrGmhaMycrJp2Unv.tnnXPHuUz.', 'Thomas', 'Vozniack'),
        ('055cb1f2-162a-4f14-a445-883539a60002', 'INTERNAL', 'john.doe@cas.dev',
-        '$2y$10$mbXVHXCEUCufdWQzkd2wNee7A5wx2hr2y6nRkLbWjx/lr.JdeF81y', 'John', 'Doe',
-        '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5');
-
-
-INSERT INTO user_roles (user_id, role_id)
-VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', '98fa7b2c-6caa-4852-b632-e5c05b507021'),
-       ('055cb1f2-162a-4f14-a445-883539a60002', '451adc34-f819-46d5-9e35-719ee343fb73');
-
+        '$2y$10$mbXVHXCEUCufdWQzkd2wNee7A5wx2hr2y6nRkLbWjx/lr.JdeF81y', 'John', 'Doe');
 
 INSERT INTO privileges (id, scope, name, code, description, index, organization_id, parent_id)
 VALUES ('39798f2b-df6f-4239-9736-138b245b151c', 'INTERNAL', 'Login', 'LOGIN',
@@ -249,11 +247,17 @@ VALUES ('39798f2b-df6f-4239-9736-138b245b151c', 'INTERNAL', 'Login', 'LOGIN',
         'Right to delete privileges', 3, '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5',
         '32cb0e0a-4368-447c-ad00-2affe47e7d1d');
 
+INSERT INTO user_organizations(user_id, organization_id)
+VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5'),
+       ('055cb1f2-162a-4f14-a445-883539a60002', '3f9b1f2c-fa15-4cd0-94ab-e5a9588d42d5');
+
+INSERT INTO user_roles (user_id, role_id)
+VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', '98fa7b2c-6caa-4852-b632-e5c05b507021'),
+       ('055cb1f2-162a-4f14-a445-883539a60002', '451adc34-f819-46d5-9e35-719ee343fb73');
 
 INSERT INTO user_privileges (user_id, privilege_id)
 VALUES ('4c054a99-83c8-49b1-8877-0b27822ed2a3', '39798f2b-df6f-4239-9736-138b245b151c'),
        ('055cb1f2-162a-4f14-a445-883539a60002', '39798f2b-df6f-4239-9736-138b245b151c');
-
 
 INSERT INTO role_privileges (role_id, privilege_id)
 VALUES ('98fa7b2c-6caa-4852-b632-e5c05b507021', '9d31e72b-2d3a-4984-8e19-fec0b67857ef'),
