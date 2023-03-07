@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 
 class PrivilegeMapperTest @Autowired constructor(
-    private val privilegeMapper: Mapper<Privilege, PrivilegeDto>,
     private val privilegeRepository: PrivilegeRepository,
     private val organizationRepository: OrganizationRepository,
 ) : CasCoreAbstractTest() {
@@ -49,7 +48,7 @@ class PrivilegeMapperTest @Autowired constructor(
             )
         )
 
-        val privilegeDto = privilegeMapper.mapToDto(privilege)
+        val privilegeDto = privilege.toDto()
 
         assertThat(privilegeDto.id).isEqualTo(privilege.id)
         assertThat(privilegeDto.scope).isEqualTo(privilege.scope)
@@ -102,7 +101,7 @@ class PrivilegeMapperTest @Autowired constructor(
             )
         )
 
-        val privilege = privilegeMapper.mapToEntity(privilegeDto)
+        val privilege = privilegeDto.toEntity()
 
         assertThat(privilege.id).isEqualTo(privilegeDto.id)
         assertThat(privilege.scope).isEqualTo(privilegeDto.scope)

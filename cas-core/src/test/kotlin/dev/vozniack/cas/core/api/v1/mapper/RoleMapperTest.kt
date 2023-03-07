@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 
 class RoleMapperTest @Autowired constructor(
-    private val roleMapper: Mapper<Role, RoleDto>,
     private val organizationRepository: OrganizationRepository,
 ) : CasCoreAbstractTest() {
 
@@ -22,7 +21,8 @@ class RoleMapperTest @Autowired constructor(
 
         val role = Role(id = UUID.randomUUID(), scope = ScopeType.EXTERNAL,
             name = "ROLE", description = "Description", organization = organization)
-        val roleDto = roleMapper.mapToDto(role)
+
+        val roleDto = role.toDto()
 
         assertThat(roleDto.id).isEqualTo(role.id)
         assertThat(roleDto.scope).isEqualTo(role.scope)
@@ -42,7 +42,8 @@ class RoleMapperTest @Autowired constructor(
 
         val roleDto = RoleDto(id = UUID.randomUUID(), scope = ScopeType.EXTERNAL,
             name = "ROLE", code = "ROLE", description = "Description", organizationId = organization.id!!)
-        val role = roleMapper.mapToEntity(roleDto)
+
+        val role = roleDto.toEntity()
 
         assertThat(role.id).isEqualTo(roleDto.id)
         assertThat(role.scope).isEqualTo(roleDto.scope)

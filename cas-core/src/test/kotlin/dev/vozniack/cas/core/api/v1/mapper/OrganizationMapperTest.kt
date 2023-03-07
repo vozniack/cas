@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 
 class OrganizationMapperTest @Autowired constructor(
-    private val organizationMapper: Mapper<Organization, OrganizationDto>,
     private val organizationRepository: OrganizationRepository,
 ) : CasCoreAbstractTest() {
 
@@ -34,7 +33,7 @@ class OrganizationMapperTest @Autowired constructor(
             privileges = listOf(Privilege(name = "Privilege", organization = Organization(id = id)))
         )
 
-        val organizationDto = organizationMapper.mapToDto(organization)
+        val organizationDto = organization.toDto()
 
         assertThat(organizationDto.id).isEqualTo(organization.id)
         assertThat(organizationDto.scope).isEqualTo(organization.scope)
@@ -62,7 +61,7 @@ class OrganizationMapperTest @Autowired constructor(
             updatedAt = LocalDateTime.now(), parentId = parentOrganization.id, organizations = listOf()
         )
 
-        val organization = organizationMapper.mapToEntity(organizationDto)
+        val organization = organizationDto.toEntity()
 
         assertThat(organization.id).isEqualTo(organizationDto.id)
         assertThat(organization.scope).isEqualTo(organizationDto.scope)

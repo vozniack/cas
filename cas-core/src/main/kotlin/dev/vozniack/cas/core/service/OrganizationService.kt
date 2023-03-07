@@ -6,15 +6,18 @@ import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.OrganizationRepository
 import dev.vozniack.cas.core.repository.specification.OrganizationQuery
 import dev.vozniack.cas.core.repository.specification.Specificable
+import dev.vozniack.cas.core.service.common.ContextAwareService
 import dev.vozniack.cas.core.types.ScopeType
+import java.util.Optional
+import java.util.UUID
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
-import java.util.Optional
-import java.util.UUID
 
 @Service
-class OrganizationService(private val organizationRepository: OrganizationRepository) {
+class OrganizationService(
+    private val organizationRepository: OrganizationRepository
+) : ContextAwareService<OrganizationService>() {
 
     fun findAll(query: Specificable<Organization>, pageable: Pageable): Page<Organization> =
         organizationRepository.findAll(query.toSpecification(), pageable)
@@ -47,4 +50,8 @@ class OrganizationService(private val organizationRepository: OrganizationReposi
         Optional.ofNullable(findById(id).takeIf { organization -> organization.scope == ScopeType.EXTERNAL })
             .orElseThrow { ConflictException("Can't delete internal organization") }
     )
+
+    companion object {
+        fun get() = get(OrganizationService::class.java)
+    }
 }

@@ -3,8 +3,8 @@ package dev.vozniack.cas.core.api.v1.controller
 import dev.vozniack.cas.core.api.v1.dto.entity.UserDto
 import dev.vozniack.cas.core.api.v1.dto.request.UserEmailRequestDto
 import dev.vozniack.cas.core.api.v1.dto.request.UserPasswordRequestDto
-import dev.vozniack.cas.core.api.v1.mapper.Mapper
-import dev.vozniack.cas.core.entity.User
+import dev.vozniack.cas.core.api.v1.mapper.toDto
+import dev.vozniack.cas.core.api.v1.mapper.toEntity
 import dev.vozniack.cas.core.repository.specification.UserQuery
 import dev.vozniack.cas.core.service.UserService
 import dev.vozniack.cas.core.types.ScopeType
@@ -25,8 +25,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/v1/users")
 class UserController(
-    val userService: UserService,
-    val userMapper: Mapper<User, UserDto>,
+    val userService: UserService
 ) {
 
     @GetMapping("/page")
@@ -37,7 +36,7 @@ class UserController(
         pageable: Pageable,
     ): Page<UserDto> =
         userService.findAll(UserQuery(ScopeType.EXTERNAL, search, search, search, search, organizationId), pageable)
-            .map(userMapper::mapToDto)
+            .map { it.toDto() }
 
     @GetMapping("/list")
     @PreAuthorize("hasAuthority('READ_USER') and hasAnyRole('ADMIN', 'USER')")
@@ -46,37 +45,37 @@ class UserController(
         @RequestParam(required = false) organizationId: String?,
     ): List<UserDto> =
         userService.findAll(UserQuery(ScopeType.EXTERNAL, search, search, search, search, organizationId))
-            .map(userMapper::mapToDto)
+            .map { it.toDto() }
 
     @GetMapping("/internal")
     @PreAuthorize("hasAuthority('READ_USER') and hasRole('ADMIN')")
     fun getAllInternal(@RequestParam(required = false) search: String?, pageable: Pageable): Page<UserDto> =
         userService.findAll(UserQuery(ScopeType.INTERNAL, search, search, search, search), pageable)
-            .map(userMapper::mapToDto)
+            .map { it.toDto() }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('READ_USER') and hasAnyRole('ADMIN', 'USER')")
-    fun getById(@PathVariable id: UUID): UserDto = userMapper.mapToDto(userService.findById(id))
+    fun getById(@PathVariable id: UUID): UserDto = userService.findById(id).toDto()
 
     @PostMapping
     @PreAuthorize("hasAuthority('CREATE_USER') and hasAnyRole('ADMIN', 'USER')")
     fun create(@RequestBody userDto: UserDto): UserDto =
-        userMapper.mapToDto(userService.create(userMapper.mapToEntity(userDto)))
+        userService.create(userDto.toEntity()).toDto()
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('UPDATE_USER') and hasAnyRole('ADMIN', 'USER')")
     fun update(@PathVariable id: UUID, @RequestBody userDto: UserDto): UserDto =
-        userMapper.mapToDto(userService.update(id, userMapper.mapToEntity(userDto)))
+        userService.update(id, userDto.toEntity()).toDto()
 
     @PutMapping("/{id}/email")
     @PreAuthorize("hasAnyAuthority('UPDATE_USER', 'UPDATE_EMAIL') and hasAnyRole('ADMIN', 'USER')")
     fun updateEmail(@PathVariable id: UUID, @RequestBody request: UserEmailRequestDto): UserDto =
-        userMapper.mapToDto(userService.updateEmail(id, request))
+        userService.updateEmail(id, request).toDto()
 
     @PutMapping("/{id}/password")
     @PreAuthorize("hasAnyAuthority('UPDATE_USER', 'UPDATE_PASSWORD') and hasAnyRole('ADMIN', 'USER')")
     fun updatePassword(@PathVariable id: UUID, @RequestBody request: UserPasswordRequestDto): UserDto =
-        userMapper.mapToDto(userService.updatePassword(id, request))
+        userService.updatePassword(id, request).toDto()
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('REMOVE_USER') and hasRole('ADMIN')")

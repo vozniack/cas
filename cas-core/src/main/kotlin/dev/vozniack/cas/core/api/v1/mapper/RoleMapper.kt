@@ -3,30 +3,23 @@ package dev.vozniack.cas.core.api.v1.mapper
 import dev.vozniack.cas.core.api.v1.dto.entity.RoleDto
 import dev.vozniack.cas.core.entity.Role
 import dev.vozniack.cas.core.service.OrganizationService
-import org.springframework.stereotype.Component
 
-@Component
-class RoleMapper(
-    private val organizationService: OrganizationService,
-) : Mapper<Role, RoleDto> {
+fun Role.toDto(): RoleDto = RoleDto(
+    id = this.id,
+    scope = this.scope,
+    name = this.name,
+    code = this.code,
+    description = this.description,
+    organizationId = this.organization!!.id!!,
+    createdAt = this.createdAt,
+    updatedAt = this.updatedAt
+)
 
-    override fun mapToDto(entity: Role): RoleDto = RoleDto(
-        id = entity.id,
-        scope = entity.scope,
-        name = entity.name,
-        code = entity.code,
-        description = entity.description,
-        organizationId = entity.organization!!.id!!,
-        createdAt = entity.createdAt,
-        updatedAt = entity.updatedAt
-    )
-
-    override fun mapToEntity(dto: RoleDto): Role = Role(
-        id = dto.id,
-        scope = dto.scope,
-        name = dto.name,
-        code = dto.code,
-        description = dto.description,
-        organization = dto.organizationId.let { organizationService.findById(it) }
-    )
-}
+fun RoleDto.toEntity(): Role = Role(
+    id = this.id,
+    scope = this.scope,
+    name = this.name,
+    code = this.code,
+    description = this.description,
+    organization = this.organizationId.let { OrganizationService.get().findById(it) }
+)
