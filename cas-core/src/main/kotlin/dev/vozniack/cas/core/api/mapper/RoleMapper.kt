@@ -1,6 +1,6 @@
-package dev.vozniack.cas.core.api.v1.mapper
+package dev.vozniack.cas.core.api.mapper
 
-import dev.vozniack.cas.core.api.v1.dto.entity.RoleDto
+import dev.vozniack.cas.core.api.dto.entity.RoleDto
 import dev.vozniack.cas.core.entity.Role
 import dev.vozniack.cas.core.service.OrganizationService
 

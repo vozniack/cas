@@ -1,4 +1,4 @@
-package dev.vozniack.cas.core.api.v1.dto.request
+package dev.vozniack.cas.core.api.dto.request
 
 class UserEmailRequestDto(
     val email: String,

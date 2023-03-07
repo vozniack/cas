@@ -1,13 +1,14 @@
 package dev.vozniack.cas.core.service
 
 import dev.vozniack.cas.core.CasCoreAbstractTest
-import dev.vozniack.cas.core.api.v1.dto.request.UserEmailRequestDto
-import dev.vozniack.cas.core.api.v1.dto.request.UserPasswordRequestDto
+import dev.vozniack.cas.core.api.dto.request.UserEmailRequestDto
+import dev.vozniack.cas.core.api.dto.request.UserPasswordRequestDto
 import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.UserRepository
 import dev.vozniack.cas.core.repository.specification.UserQuery
 import dev.vozniack.cas.core.types.ScopeType
+import java.util.UUID
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.AfterEach
@@ -16,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.security.crypto.password.PasswordEncoder
-import java.util.UUID
 
 class UserServiceTest @Autowired constructor(
     private val userService: UserService,

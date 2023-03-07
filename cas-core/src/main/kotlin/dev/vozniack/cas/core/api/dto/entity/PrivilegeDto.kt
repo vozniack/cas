@@ -1,4 +1,4 @@
-package dev.vozniack.cas.core.api.v1.dto.entity
+package dev.vozniack.cas.core.api.dto.entity
 
 import dev.vozniack.cas.core.types.ScopeType
 import java.time.LocalDateTime

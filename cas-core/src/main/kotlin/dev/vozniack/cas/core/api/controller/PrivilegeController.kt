@@ -1,8 +1,8 @@
-package dev.vozniack.cas.core.api.v1.controller
+package dev.vozniack.cas.core.api.controller
 
-import dev.vozniack.cas.core.api.v1.dto.entity.PrivilegeDto
-import dev.vozniack.cas.core.api.v1.mapper.toDto
-import dev.vozniack.cas.core.api.v1.mapper.toEntity
+import dev.vozniack.cas.core.api.dto.entity.PrivilegeDto
+import dev.vozniack.cas.core.api.mapper.toDto
+import dev.vozniack.cas.core.api.mapper.toEntity
 import dev.vozniack.cas.core.repository.specification.PrivilegeQuery
 import dev.vozniack.cas.core.service.PrivilegeService
 import dev.vozniack.cas.core.types.ScopeType

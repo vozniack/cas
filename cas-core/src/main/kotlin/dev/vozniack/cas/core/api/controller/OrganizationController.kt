@@ -1,8 +1,8 @@
-package dev.vozniack.cas.core.api.v1.controller
+package dev.vozniack.cas.core.api.controller
 
-import dev.vozniack.cas.core.api.v1.dto.entity.OrganizationDto
-import dev.vozniack.cas.core.api.v1.mapper.toDto
-import dev.vozniack.cas.core.api.v1.mapper.toEntity
+import dev.vozniack.cas.core.api.dto.entity.OrganizationDto
+import dev.vozniack.cas.core.api.mapper.toDto
+import dev.vozniack.cas.core.api.mapper.toEntity
 import dev.vozniack.cas.core.repository.specification.OrganizationQuery
 import dev.vozniack.cas.core.service.OrganizationService
 import dev.vozniack.cas.core.types.ScopeType

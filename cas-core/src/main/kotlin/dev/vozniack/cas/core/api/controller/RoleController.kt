@@ -1,9 +1,9 @@
-package dev.vozniack.cas.core.api.v1.controller
+package dev.vozniack.cas.core.api.controller
 
-import dev.vozniack.cas.core.api.v1.dto.entity.RoleDto
-import dev.vozniack.cas.core.api.v1.dto.entity.UserDto
-import dev.vozniack.cas.core.api.v1.mapper.toDto
-import dev.vozniack.cas.core.api.v1.mapper.toEntity
+import dev.vozniack.cas.core.api.dto.entity.RoleDto
+import dev.vozniack.cas.core.api.dto.entity.UserDto
+import dev.vozniack.cas.core.api.mapper.toDto
+import dev.vozniack.cas.core.api.mapper.toEntity
 import dev.vozniack.cas.core.repository.specification.RoleQuery
 import dev.vozniack.cas.core.service.RoleService
 import dev.vozniack.cas.core.types.ScopeType

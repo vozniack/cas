@@ -1,7 +1,7 @@
-package dev.vozniack.cas.core.api.v1.mapper
+package dev.vozniack.cas.core.api.mapper
 
-import dev.vozniack.cas.core.api.v1.dto.entity.OrganizationDto
-import dev.vozniack.cas.core.api.v1.dto.entity.UserOrganizationDto
+import dev.vozniack.cas.core.api.dto.entity.OrganizationDto
+import dev.vozniack.cas.core.api.dto.entity.UserOrganizationDto
 import dev.vozniack.cas.core.entity.Organization
 import dev.vozniack.cas.core.service.OrganizationService
 

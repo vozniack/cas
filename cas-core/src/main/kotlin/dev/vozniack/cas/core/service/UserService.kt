@@ -1,16 +1,16 @@
 package dev.vozniack.cas.core.service
 
-import dev.vozniack.cas.core.api.v1.dto.request.UserEmailRequestDto
-import dev.vozniack.cas.core.api.v1.dto.request.UserPasswordRequestDto
+import dev.vozniack.cas.core.api.dto.request.UserEmailRequestDto
+import dev.vozniack.cas.core.api.dto.request.UserPasswordRequestDto
 import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.UserRepository
 import dev.vozniack.cas.core.repository.specification.Specificable
+import java.util.UUID
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
-import java.util.UUID
 
 @Service
 class UserService(private val userRepository: UserRepository, private val passwordEncoder: PasswordEncoder) {

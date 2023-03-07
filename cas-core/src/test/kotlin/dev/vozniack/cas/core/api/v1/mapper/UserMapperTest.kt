@@ -1,8 +1,10 @@
 package dev.vozniack.cas.core.api.v1.mapper
 
 import dev.vozniack.cas.core.CasCoreAbstractTest
-import dev.vozniack.cas.core.api.v1.dto.entity.UserDto
-import dev.vozniack.cas.core.api.v1.dto.entity.UserOrganizationDto
+import dev.vozniack.cas.core.api.dto.entity.UserDto
+import dev.vozniack.cas.core.api.dto.entity.UserOrganizationDto
+import dev.vozniack.cas.core.api.mapper.toDto
+import dev.vozniack.cas.core.api.mapper.toEntity
 import dev.vozniack.cas.core.entity.Organization
 import dev.vozniack.cas.core.entity.Role
 import dev.vozniack.cas.core.entity.User
