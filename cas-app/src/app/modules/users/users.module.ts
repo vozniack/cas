@@ -9,6 +9,7 @@ import {TableModule} from '../../shared/components/table/table.module';
 import {PrivilegesModule} from '../privileges/privileges.module';
 import {RolesModule} from '../roles/roles.module';
 import {UserDetailsComponent} from './user/user-details/user-details.component';
+import {UserPrivilegesComponent} from './user/user-privileges/user-privileges.component';
 import {UserComponent} from './user/user.component';
 import {UsersBarComponent} from './users-bar/users-bar.component';
 import {UsersListNodeComponent} from './users-list/users-list-node/users-list-node.component';
@@ -27,7 +28,8 @@ import {UsersService} from './users.service';
     UsersListComponent,
     UsersListNodeComponent,
     UsersBarComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    UserPrivilegesComponent
   ],
   imports: [
     CommonModule,

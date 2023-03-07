@@ -57,13 +57,13 @@ class UserMapperTest @Autowired constructor(
         // organization need to exist in repository due to matching by id
 
         val organization = organizationRepository.save(
-            Organization(id = UUID.randomUUID(), name = "Organization", code = "ORG")
+            Organization(id = UUID.randomUUID(), name = "Organization", code = "ORG", icon = "icon")
         )
 
         val userDto = UserDto(
             id = UUID.randomUUID(), scope = ScopeType.INTERNAL, email = "john.doe@cas.dev",
             password = "pass123!", firstName = "John", lastName = "Doe", active = true,
-            organizations = listOf(UserOrganizationDto(organization.id, organization.code)),
+            organizations = listOf(UserOrganizationDto(organization.id, organization.name, organization.code, organization.icon)),
         )
 
         val user = userMapper.mapToEntity(userDto)
@@ -77,5 +77,8 @@ class UserMapperTest @Autowired constructor(
         assertThat(user.active).isEqualTo(userDto.active)
 
         assertThat(user.organizations[0].id).isEqualTo(organization.id)
+        assertThat(user.organizations[0].name).isEqualTo(organization.name)
+        assertThat(user.organizations[0].code).isEqualTo(organization.code)
+        assertThat(user.organizations[0].icon).isEqualTo(organization.icon)
     }
 }

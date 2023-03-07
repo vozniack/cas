@@ -24,5 +24,9 @@ export interface UserOrganization {
 
   id: string;
 
+  name: string;
+
   code: string;
+
+  icon: string;
 }

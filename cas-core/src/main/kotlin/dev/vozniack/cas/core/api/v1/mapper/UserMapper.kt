@@ -19,7 +19,7 @@ class UserMapper(
         firstName = entity.firstName,
         lastName = entity.lastName,
         active = entity.active,
-        organizations = entity.organizations.map { UserOrganizationDto(it.id, it.code) },
+        organizations = entity.organizations.map { UserOrganizationDto(it.id, it.name, it.code, it.icon) },
         createdAt = entity.createdAt,
         updatedAt = entity.updatedAt,
     )
