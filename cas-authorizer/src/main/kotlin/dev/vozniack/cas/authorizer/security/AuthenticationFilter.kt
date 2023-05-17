@@ -1,4 +1,4 @@
-package dev.vozniack.cas.core.security
+package dev.vozniack.cas.authorizer.security
 
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jws
@@ -8,10 +8,13 @@ import java.nio.charset.StandardCharsets
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
+import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.User
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher
+import org.springframework.security.web.util.matcher.NegatedRequestMatcher
 import org.springframework.web.filter.OncePerRequestFilter
 
 class AuthenticationFilter(private val jwtSecret: String) : OncePerRequestFilter() {
@@ -26,6 +29,10 @@ class AuthenticationFilter(private val jwtSecret: String) : OncePerRequestFilter
 
         SecurityContextHolder.getContext().authentication = loggedUser
         filterChain.doFilter(request, response)
+    }
+
+    override fun shouldNotFilter(request: HttpServletRequest): Boolean {
+        return NegatedRequestMatcher(AntPathRequestMatcher("api/auth", HttpMethod.POST.name)).matches(request)
     }
 
     private fun parseJwtToken(request: HttpServletRequest): String? =

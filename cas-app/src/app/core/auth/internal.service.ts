@@ -2,19 +2,18 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
-import {LoginRequest, LoginResponse} from './auth.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class InternalService {
 
-  baseUrl = `${environment.authorizerUrl}/auth`;
+  baseUrl = `${environment.authorizerUrl}/internal`;
 
   constructor(private httpClient: HttpClient) {
   }
 
-  login(loginRequest: LoginRequest): Observable<LoginResponse> {
-    return this.httpClient.post<LoginResponse>(this.baseUrl, loginRequest)
+  getUserPrivileges(userId: String): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + "/user/" + userId + "/privileges");
   }
 }

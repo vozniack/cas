@@ -1,5 +1,6 @@
 import {Auditable} from '../../shared/model/auditable.interface';
 import {ScopeType} from '../../shared/model/types.interface';
+import {MappedPrivilege, Privilege} from '../privileges/privileges.interface';
 
 export interface User extends Auditable {
 
@@ -29,4 +30,11 @@ export interface UserOrganization {
   code: string;
 
   icon: string;
+}
+
+export interface UserPrivileges {
+
+  mappedPrivileges: MappedPrivilege[];
+
+  privileges: Privilege[];
 }

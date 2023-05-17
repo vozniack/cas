@@ -213,6 +213,8 @@ VALUES ('5dc26691-7582-4603-b7df-c81be19bb47f', 'b7d72a65-4fbc-43d3-b81e-724bf4a
 
 INSERT INTO user_privileges (user_id, privilege_id, excluded)
 VALUES ('c6ac2055-9911-409a-9557-dcf750fdac97', 'fd34db12-af91-4817-9fd4-6cc052d55987', false),
+       ('c6ac2055-9911-409a-9557-dcf750fdac97', '3bba991b-0324-44c4-8bf0-602feba5e840', false),
+       ('c6ac2055-9911-409a-9557-dcf750fdac97', '9734ca12-e63f-48b5-ad26-816c56608b0d', false),
 
        ('683fd7de-ee87-4ac4-9968-e398674e99b5', 'fd34db12-af91-4817-9fd4-6cc052d55987', false),
        ('683fd7de-ee87-4ac4-9968-e398674e99b5', 'e23eabff-074f-4fa9-86c3-ccce5f9878bf', false),

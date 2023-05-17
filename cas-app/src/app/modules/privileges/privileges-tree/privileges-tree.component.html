@@ -1,5 +1,6 @@
-<div class="privileges-tree" fxLayout="column" fxLayoutGap="4px">
+<div class="privileges-tree" fxLayout="column">
   <ng-container *ngFor="let privilege of privilegesTree">
-    <cas-privileges-tree-node [privilege]="privilege" @fadeInAnimation></cas-privileges-tree-node>
+    <cas-privileges-tree-node [privilege]="privilege" [userPrivileges]="userPrivileges" @fadeInAnimation>
+    </cas-privileges-tree-node>
   </ng-container>
 </div>

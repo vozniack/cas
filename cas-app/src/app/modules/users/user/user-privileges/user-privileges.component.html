@@ -2,16 +2,19 @@
 
   <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
     <ng-container *ngFor="let organization of user.organizations">
-      <div class="user-organization" [class.active]="selectedOrganization?.id == organization.id"
-           fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px"
-           (click)="selectOrganization(organization.id)">
-        <ion-icon [name]="organization.icon"></ion-icon>
-        <span>{{organization.name}}</span>
-      </div>
+      <ng-container *ngIf="selectedOrganization">
+        <div class="user-organization" [class.active]="selectedOrganization.id == organization.id"
+             fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px"
+             (click)="selectOrganization(organization.id)">
+          <ion-icon [name]="organization.icon"></ion-icon>
+          <span>{{organization.name}}</span>
+        </div>
+      </ng-container>
     </ng-container>
   </div>
 
   <ng-container *ngIf="selectedOrganization">
-    <cas-privileges-tree [privileges]="selectedOrganization.privileges"></cas-privileges-tree>
+    <cas-privileges-tree [privileges]="selectedOrganization.privileges" [userPrivileges]="userPrivileges">
+    </cas-privileges-tree>
   </ng-container>
 </div>

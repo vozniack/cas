@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {tap} from 'rxjs/operators';
 import {Organization} from '../../../organizations/organizations.interface';
 import {OrganizationsService} from '../../../organizations/organizations.service';
-import {User} from '../../users.interface';
+import {User, UserPrivileges} from '../../users.interface';
 
 @Component({
   selector: 'cas-user-privileges',
@@ -13,6 +13,9 @@ export class UserPrivilegesComponent implements OnInit {
 
   @Input()
   user!: User;
+
+  @Input()
+  userPrivileges!: UserPrivileges;
 
   selectedOrganization!: Organization;
 

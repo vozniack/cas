@@ -21,3 +21,10 @@ export interface Privilege extends Auditable {
 
   organizationId: string;
 }
+
+export interface MappedPrivilege {
+
+  id: string;
+
+  code: String;
+}

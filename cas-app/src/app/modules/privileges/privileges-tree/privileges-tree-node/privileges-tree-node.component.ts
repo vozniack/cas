@@ -1,4 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, Input, QueryList, ViewChildren} from '@angular/core';
+import {UserPrivileges} from '../../../users/users.interface';
 import {Privilege} from '../../privileges.interface';
 
 @Component({
@@ -6,15 +7,28 @@ import {Privilege} from '../../privileges.interface';
   templateUrl: './privileges-tree-node.component.html',
   styleUrls: ['./privileges-tree-node.component.scss']
 })
-export class PrivilegesTreeNodeComponent {
+export class PrivilegesTreeNodeComponent implements AfterViewInit {
 
   @Input()
   privilege!: Privilege;
 
   @Input()
-  indent = 24;
+  userPrivileges?: UserPrivileges | undefined;
 
-  expanded = false;
+  @Input()
+  indent: number = 24;
+
+  @ViewChildren('childNode')
+  components?: QueryList<PrivilegesTreeNodeComponent>;
+
+  expanded: boolean = false;
+
+  constructor(private cdr: ChangeDetectorRef) {
+  }
+
+  ngAfterViewInit(): void {
+    this.cdr.detectChanges();
+  }
 
   expandOrCollapse(): void {
     if (this.privilege.privileges?.length > 0) {
@@ -24,5 +38,15 @@ export class PrivilegesTreeNodeComponent {
 
   getChildren(): Privilege[] {
     return [...this.privilege.privileges].sort((p1, p2) => p1.index - p2.index);
+  }
+
+  isSelected(): boolean {
+    return this.userPrivileges ? this.userPrivileges?.mappedPrivileges.map(p => p.id).includes(this.privilege.id) : false;
+  }
+
+  isParentSelected(): boolean {
+    if (this.privilege.privileges != null && this.privilege.privileges.length > 0 && this.components) {
+      return this.components.map(c => c.isSelected() || c.isParentSelected()).every(selected => selected);
+    } else return false;
   }
 }

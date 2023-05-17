@@ -1,5 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {fadeInAnimation} from '../../../shared/animations/fade-in-animation';
+import {UserPrivileges} from '../../users/users.interface';
 import {Privilege} from '../privileges.interface';
 
 @Component({
@@ -12,6 +13,9 @@ export class PrivilegesTreeComponent implements OnInit, OnChanges {
 
   @Input()
   privileges!: Privilege[];
+
+  @Input()
+  userPrivileges?: UserPrivileges;
 
   privilegesTree: Privilege[] = [];
 

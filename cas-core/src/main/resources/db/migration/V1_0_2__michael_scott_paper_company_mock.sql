@@ -35,3 +35,10 @@ VALUES ('c6ac2055-9911-409a-9557-dcf750fdac97', 'f11159da-2628-448b-979b-bf814be
 
        ('62c66369-7716-4b0d-9fd0-f008d23b9998', 'ee2c29e9-bbdd-45db-b8c7-ba86dddf0eed'),
        ('4a032d84-9f26-451f-b3f4-62d467c45fc7', 'ee2c29e9-bbdd-45db-b8c7-ba86dddf0eed');
+
+INSERT INTO role_privileges (role_id, privilege_id, excluded)
+VALUES ('f11159da-2628-448b-979b-bf814beebcdf', '217d3f9d-d22d-4192-9c7a-0cfc93a8a549', false),
+       ('ee2c29e9-bbdd-45db-b8c7-ba86dddf0eed', '7005a4fd-7ac3-4579-9556-b5b13f56c6e5', false);
+
+INSERT INTO user_privileges (user_id, privilege_id, excluded)
+VALUES ('c6ac2055-9911-409a-9557-dcf750fdac97', '459aa79d-a41a-4b73-8b08-9d6f25417ca4', false);

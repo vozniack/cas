@@ -1,6 +1,6 @@
 package dev.vozniack.cas.authorizer.aspects
 
-import dev.vozniack.cas.authorizer.api.v1.dto.LoginRequest
+import dev.vozniack.cas.authorizer.api.dto.login.LoginRequest
 import dev.vozniack.cas.authorizer.entity.history.AuthorizationHistory
 import dev.vozniack.cas.authorizer.repository.AuthorizationHistoryRepository
 import dev.vozniack.cas.authorizer.types.AuthorizationHistoryStatus

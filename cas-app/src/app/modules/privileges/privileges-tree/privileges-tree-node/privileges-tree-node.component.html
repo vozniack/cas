@@ -1,5 +1,10 @@
 <div class="privilege" [style.padding-left.px]="indent" fxLayout="row" fxLayoutAlign="space-between center">
   <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+    <ion-icon
+      [class]="'icon ' + ((isSelected() || isParentSelected()) ? 'visible' : '')"
+      [name]="isParentSelected() ? 'checkmark-done-outline' : 'checkmark-outline'">
+    </ion-icon>
+
     <div fxLayout="column" fxLayoutGap="4px">
       <span class="name">{{privilege.name}}</span>
       <span class="description" *ngIf="privilege.description">{{privilege.description}}</span>
@@ -20,7 +25,8 @@
 <div class="privilege-children">
   <div class="privilege-child" fxLayout="column" [class.expanded]="expanded">
     <ng-container *ngFor="let child of getChildren()">
-      <cas-privileges-tree-node [privilege]="child" [indent]="indent + 24"></cas-privileges-tree-node>
+      <cas-privileges-tree-node #childNode [privilege]="child" [userPrivileges]="userPrivileges" [indent]="indent + 24">
+      </cas-privileges-tree-node>
     </ng-container>
   </div>
 </div>

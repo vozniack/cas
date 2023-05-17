@@ -2,22 +2,21 @@ package dev.vozniack.cas.authorizer.service
 
 import dev.vozniack.cas.authorizer.entity.privilege.Privilege
 import dev.vozniack.cas.authorizer.entity.privilege.RelatedPrivilege
-import dev.vozniack.cas.authorizer.entity.privilege.addPrivilegeIfNotExist
-import dev.vozniack.cas.authorizer.entity.privilege.collectCodes
 import dev.vozniack.cas.authorizer.entity.user.User
+import dev.vozniack.cas.authorizer.extensions.addPrivilegeIfNotExist
 import java.util.UUID
 import org.springframework.stereotype.Service
 
 @Service
 class PrivilegeService {
 
-    fun collectPrivileges(user: User): List<String> {
+    fun collectPrivileges(user: User): List<Privilege> {
         val privileges: MutableList<Privilege> = mutableListOf()
 
         user.roles.forEach { collectPrivileges(it.privileges, privileges) }
         collectPrivileges(user.privileges, privileges)
 
-        return privileges.collectCodes(mutableListOf()).distinct()
+        return privileges
     }
 
     private fun collectPrivileges(relatedPrivileges: List<RelatedPrivilege>, privileges: MutableList<Privilege>) {
