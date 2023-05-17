@@ -4,7 +4,6 @@ import dev.vozniack.cas.core.CasCoreAbstractTest
 import dev.vozniack.cas.core.api.dto.request.UserEmailRequestDto
 import dev.vozniack.cas.core.api.dto.request.UserPasswordRequestDto
 import dev.vozniack.cas.core.entity.User
-import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.UserRepository
 import dev.vozniack.cas.core.repository.specification.UserQuery
 import dev.vozniack.cas.core.types.ScopeType
@@ -17,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.web.server.ResponseStatusException
 
 class UserServiceTest @Autowired constructor(
     private val userService: UserService,
@@ -64,7 +64,7 @@ class UserServiceTest @Autowired constructor(
     @Test
     fun `find user by not existing id`() {
         assertThatThrownBy { userService.findById(UUID.randomUUID()) }
-            .isInstanceOf(NotFoundException::class.java)
+            .isInstanceOf(ResponseStatusException::class.java)
     }
 
     @Test
@@ -115,7 +115,7 @@ class UserServiceTest @Autowired constructor(
         }
 
         assertThatThrownBy { userService.update(UUID.randomUUID(), user) }
-            .isInstanceOf(NotFoundException::class.java)
+            .isInstanceOf(ResponseStatusException::class.java)
     }
 
     @Test
@@ -135,7 +135,7 @@ class UserServiceTest @Autowired constructor(
     fun `update not existing user email`() {
         assertThatThrownBy {
             userService.updateEmail(UUID.randomUUID(), UserEmailRequestDto(email = "updated.john.doe@cas.dev"))
-        }.isInstanceOf(NotFoundException::class.java)
+        }.isInstanceOf(ResponseStatusException::class.java)
     }
 
     @Test
@@ -155,7 +155,7 @@ class UserServiceTest @Autowired constructor(
     fun `update not existing user password`() {
         assertThatThrownBy {
             userService.updatePassword(UUID.randomUUID(), UserPasswordRequestDto(password = "updatedPass123!"))
-        }.isInstanceOf(NotFoundException::class.java)
+        }.isInstanceOf(ResponseStatusException::class.java)
     }
 
     @Test
@@ -171,6 +171,6 @@ class UserServiceTest @Autowired constructor(
     @Test
     fun `delete not existing user`() {
         assertThatThrownBy { userService.delete(UUID.randomUUID()) }
-            .isInstanceOf(NotFoundException::class.java)
+            .isInstanceOf(ResponseStatusException::class.java)
     }
 }

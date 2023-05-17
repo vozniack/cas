@@ -2,11 +2,10 @@ package dev.vozniack.cas.core.service
 
 import dev.vozniack.cas.core.CasCoreAbstractTest
 import dev.vozniack.cas.core.entity.Privilege
-import dev.vozniack.cas.core.exception.ConflictException
-import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.PrivilegeRepository
 import dev.vozniack.cas.core.repository.specification.PrivilegeQuery
 import dev.vozniack.cas.core.types.ScopeType
+import java.util.UUID
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.AfterEach
@@ -16,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.transaction.annotation.Transactional
-import java.util.UUID
+import org.springframework.web.server.ResponseStatusException
 
 class PrivilegeServiceTest @Autowired constructor(
     private val privilegeService: PrivilegeService,
@@ -66,7 +65,7 @@ class PrivilegeServiceTest @Autowired constructor(
     @Test
     fun `find privilege by not existing id`() {
         assertThatThrownBy { privilegeService.findById(UUID.randomUUID()) }
-            .isInstanceOf(NotFoundException::class.java)
+            .isInstanceOf(ResponseStatusException::class.java)
     }
 
     @Test
@@ -150,7 +149,7 @@ class PrivilegeServiceTest @Autowired constructor(
     @Test
     fun `update not existing privilege`() {
         assertThatThrownBy { privilegeService.update(UUID.randomUUID(), Privilege()) }
-            .isInstanceOf(NotFoundException::class.java)
+            .isInstanceOf(ResponseStatusException::class.java)
     }
 
     @Test
@@ -168,12 +167,12 @@ class PrivilegeServiceTest @Autowired constructor(
             code = "PRIVILEGE", description = "Privilege set"))
 
         assertThatThrownBy { privilegeService.delete(privilege.id!!) }
-            .isInstanceOf(ConflictException::class.java)
+            .isInstanceOf(ResponseStatusException::class.java)
     }
 
     @Test
     fun `delete not existing privilege`() {
         assertThatThrownBy { privilegeService.delete(UUID.randomUUID()) }
-            .isInstanceOf(NotFoundException::class.java)
+            .isInstanceOf(ResponseStatusException::class.java)
     }
 }

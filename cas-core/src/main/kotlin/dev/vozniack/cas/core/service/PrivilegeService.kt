@@ -1,8 +1,6 @@
 package dev.vozniack.cas.core.service
 
 import dev.vozniack.cas.core.entity.Privilege
-import dev.vozniack.cas.core.exception.ConflictException
-import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.PrivilegeRepository
 import dev.vozniack.cas.core.repository.specification.PrivilegeQuery
 import dev.vozniack.cas.core.repository.specification.Specificable
@@ -12,7 +10,9 @@ import java.util.Optional
 import java.util.UUID
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
+import org.springframework.web.server.ResponseStatusException
 
 @Service
 class PrivilegeService(
@@ -26,7 +26,8 @@ class PrivilegeService(
         privilegeRepository.findAll(query.apply { isParent = true }.toSpecification())
             .sortedBy { it.index }
 
-    fun findById(id: UUID): Privilege = privilegeRepository.findById(id).orElseThrow { NotFoundException() }
+    fun findById(id: UUID): Privilege = privilegeRepository.findById(id)
+        .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "Not found privilege with id $id") }
 
     fun create(privilege: Privilege): Privilege = privilegeRepository.save(
         privilege.apply { scope = ScopeType.EXTERNAL }
@@ -44,7 +45,7 @@ class PrivilegeService(
 
     fun delete(id: UUID) = privilegeRepository.delete(
         Optional.ofNullable(findById(id).takeIf { privilege -> privilege.scope == ScopeType.EXTERNAL })
-            .orElseThrow { ConflictException("Can't delete internal privilege") }
+            .orElseThrow { ResponseStatusException(HttpStatus.CONFLICT, "Can't delete internal privilege") }
     )
 
     companion object {

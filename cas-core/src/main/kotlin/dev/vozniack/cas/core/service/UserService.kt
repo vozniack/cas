@@ -3,14 +3,15 @@ package dev.vozniack.cas.core.service
 import dev.vozniack.cas.core.api.dto.request.UserEmailRequestDto
 import dev.vozniack.cas.core.api.dto.request.UserPasswordRequestDto
 import dev.vozniack.cas.core.entity.User
-import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.UserRepository
 import dev.vozniack.cas.core.repository.specification.Specificable
 import java.util.UUID
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
+import org.springframework.http.HttpStatus
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
+import org.springframework.web.server.ResponseStatusException
 
 @Service
 class UserService(private val userRepository: UserRepository, private val passwordEncoder: PasswordEncoder) {
@@ -21,7 +22,8 @@ class UserService(private val userRepository: UserRepository, private val passwo
     fun findAll(query: Specificable<User>): List<User> =
         userRepository.findAll(query.toSpecification())
 
-    fun findById(id: UUID): User = userRepository.findById(id).orElseThrow { NotFoundException() }
+    fun findById(id: UUID): User = userRepository.findById(id)
+        .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "Not found user with id $id") }
 
     fun create(user: User): User = userRepository.save(user.apply { password = passwordEncoder.encode(user.password) })
 

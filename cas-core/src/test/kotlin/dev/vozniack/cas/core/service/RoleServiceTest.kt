@@ -3,10 +3,10 @@ package dev.vozniack.cas.core.service
 import dev.vozniack.cas.core.CasCoreAbstractTest
 import dev.vozniack.cas.core.entity.Role
 import dev.vozniack.cas.core.entity.User
-import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.RoleRepository
 import dev.vozniack.cas.core.repository.UserRepository
 import dev.vozniack.cas.core.repository.specification.RoleQuery
+import java.util.UUID
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.AfterEach
@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.transaction.annotation.Transactional
-import java.util.UUID
+import org.springframework.web.server.ResponseStatusException
 
 class RoleServiceTest @Autowired constructor(
     private val roleService: RoleService,
@@ -53,7 +53,7 @@ class RoleServiceTest @Autowired constructor(
     @Test
     fun `find role by not existing id`() {
         assertThatThrownBy { roleService.findById(UUID.randomUUID()) }
-            .isInstanceOf(NotFoundException::class.java)
+            .isInstanceOf(ResponseStatusException::class.java)
     }
 
     @Test
@@ -104,7 +104,7 @@ class RoleServiceTest @Autowired constructor(
         role.apply { name = "UPDATED_ROLE"; description = "Updated description" }
 
         assertThatThrownBy { roleService.update(UUID.randomUUID(), role) }
-            .isInstanceOf(NotFoundException::class.java)
+            .isInstanceOf(ResponseStatusException::class.java)
     }
 
     @Test
@@ -118,6 +118,6 @@ class RoleServiceTest @Autowired constructor(
     @Test
     fun `delete not existing role`() {
         assertThatThrownBy { roleService.delete(UUID.randomUUID()) }
-            .isInstanceOf(NotFoundException::class.java)
+            .isInstanceOf(ResponseStatusException::class.java)
     }
 }

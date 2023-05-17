@@ -2,11 +2,10 @@ package dev.vozniack.cas.core.service
 
 import dev.vozniack.cas.core.CasCoreAbstractTest
 import dev.vozniack.cas.core.entity.Organization
-import dev.vozniack.cas.core.exception.ConflictException
-import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.OrganizationRepository
 import dev.vozniack.cas.core.repository.specification.OrganizationQuery
 import dev.vozniack.cas.core.types.ScopeType
+import java.util.UUID
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
@@ -14,7 +13,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
-import java.util.UUID
+import org.springframework.web.server.ResponseStatusException
 
 class OrganizationServiceTest @Autowired constructor(
     private val organizationService: OrganizationService,
@@ -92,7 +91,7 @@ class OrganizationServiceTest @Autowired constructor(
     @Test
     fun `find organization by not existing id`() {
         Assertions.assertThatThrownBy { organizationService.findById(UUID.randomUUID()) }
-            .isInstanceOf(NotFoundException::class.java)
+            .isInstanceOf(ResponseStatusException::class.java)
     }
 
     @Test
@@ -130,7 +129,7 @@ class OrganizationServiceTest @Autowired constructor(
     @Test
     fun `update not existing organization`() {
         Assertions.assertThatThrownBy { organizationService.update(UUID.randomUUID(), Organization()) }
-            .isInstanceOf(NotFoundException::class.java)
+            .isInstanceOf(ResponseStatusException::class.java)
     }
 
     @Test
@@ -150,12 +149,12 @@ class OrganizationServiceTest @Autowired constructor(
         ))
 
         Assertions.assertThatThrownBy { organizationService.delete(organization.id!!) }
-            .isInstanceOf(ConflictException::class.java)
+            .isInstanceOf(ResponseStatusException::class.java)
     }
 
     @Test
     fun `delete not existing organization`() {
         Assertions.assertThatThrownBy { organizationService.delete(UUID.randomUUID()) }
-            .isInstanceOf(NotFoundException::class.java)
+            .isInstanceOf(ResponseStatusException::class.java)
     }
 }

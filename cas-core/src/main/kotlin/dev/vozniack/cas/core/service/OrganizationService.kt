@@ -1,8 +1,6 @@
 package dev.vozniack.cas.core.service
 
 import dev.vozniack.cas.core.entity.Organization
-import dev.vozniack.cas.core.exception.ConflictException
-import dev.vozniack.cas.core.exception.NotFoundException
 import dev.vozniack.cas.core.repository.OrganizationRepository
 import dev.vozniack.cas.core.repository.specification.OrganizationQuery
 import dev.vozniack.cas.core.repository.specification.Specificable
@@ -12,7 +10,9 @@ import java.util.Optional
 import java.util.UUID
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
+import org.springframework.web.server.ResponseStatusException
 
 @Service
 class OrganizationService(
@@ -32,7 +32,8 @@ class OrganizationService(
         OrganizationQuery(scope = ScopeType.INTERNAL).toSpecification()
     ).first()
 
-    fun findById(id: UUID): Organization = organizationRepository.findById(id).orElseThrow { NotFoundException() }
+    fun findById(id: UUID): Organization = organizationRepository.findById(id)
+        .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "Not found organization with id $id") }
 
     fun create(organization: Organization): Organization = organizationRepository.save(
         organization.apply { scope = ScopeType.EXTERNAL }
@@ -48,7 +49,7 @@ class OrganizationService(
 
     fun delete(id: UUID) = organizationRepository.delete(
         Optional.ofNullable(findById(id).takeIf { organization -> organization.scope == ScopeType.EXTERNAL })
-            .orElseThrow { ConflictException("Can't delete internal organization") }
+            .orElseThrow { ResponseStatusException(HttpStatus.CONFLICT, "Can't delete internal organization") }
     )
 
     companion object {

@@ -4,7 +4,6 @@ import dev.vozniack.cas.authorizer.api.dto.login.LoginRequest
 import dev.vozniack.cas.authorizer.aspects.LogAuthorizationHistory
 import dev.vozniack.cas.authorizer.entity.user.Role
 import dev.vozniack.cas.authorizer.entity.user.User
-import dev.vozniack.cas.authorizer.exception.UnauthorizedException
 import dev.vozniack.cas.authorizer.extensions.collectCodes
 import dev.vozniack.cas.authorizer.repository.UserRepository
 import io.jsonwebtoken.Jwts
@@ -12,8 +11,10 @@ import io.jsonwebtoken.security.Keys
 import java.nio.charset.StandardCharsets
 import java.util.Date
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.http.HttpStatus
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
+import org.springframework.web.server.ResponseStatusException
 
 @Service
 class AuthorizationService(
@@ -29,7 +30,7 @@ class AuthorizationService(
     fun login(loginRequest: LoginRequest): String = userRepository.findUserByEmail(loginRequest.email)
         .filter { user -> passwordEncoder.matches(loginRequest.password, user.password) }
         .map { user -> buildToken(user) }
-        .orElseThrow { UnauthorizedException() }
+        .orElseThrow { ResponseStatusException(HttpStatus.UNAUTHORIZED, "User has not been authorized") }
 
     private fun buildToken(user: User): String = Jwts.builder()
         .setSubject(user.email)
