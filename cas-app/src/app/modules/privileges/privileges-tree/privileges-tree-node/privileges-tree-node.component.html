@@ -1,9 +1,6 @@
 <div class="privilege" [style.padding-left.px]="indent" fxLayout="row" fxLayoutAlign="space-between center">
-  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
-    <ion-icon
-      [class]="'icon ' + ((isSelected() || isParentSelected()) ? 'visible' : '')"
-      [name]="isParentSelected() ? 'checkmark-done-outline' : 'checkmark-outline'">
-    </ion-icon>
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+    <ion-icon [class]="'icon ' + getClass()" [name]="getIconName()"></ion-icon>
 
     <div fxLayout="column" fxLayoutGap="4px">
       <span class="name">{{privilege.name}}</span>

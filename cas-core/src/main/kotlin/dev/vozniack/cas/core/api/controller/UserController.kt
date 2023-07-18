@@ -78,6 +78,6 @@ class UserController(
         userService.updatePassword(id, request).toDto()
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('REMOVE_USER') and hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('DELETE_USER') and hasRole('ADMIN')")
     fun delete(@PathVariable id: UUID) = userService.delete(id)
 }

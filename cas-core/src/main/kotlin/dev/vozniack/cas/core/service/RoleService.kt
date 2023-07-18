@@ -5,6 +5,8 @@ import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.repository.RoleRepository
 import dev.vozniack.cas.core.repository.UserRepository
 import dev.vozniack.cas.core.repository.specification.Specificable
+import dev.vozniack.cas.core.types.ScopeType
+import io.github.oshai.KLogging
 import java.util.UUID
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -34,5 +36,14 @@ class RoleService(private val roleRepository: RoleRepository, private val userRe
         }
     )
 
-    fun delete(id: UUID) = roleRepository.delete(findById(id))
+    fun delete(id: UUID) {
+        logger.debug { "Deleting role with id $id" }
+
+        roleRepository.delete(
+            findById(id).takeIf { it.scope == ScopeType.EXTERNAL }
+                ?: throw ResponseStatusException(HttpStatus.CONFLICT, "Can't delete internal role")
+        )
+    }
+
+    companion object : KLogging()
 }

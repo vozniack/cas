@@ -5,6 +5,7 @@ import dev.vozniack.cas.core.api.dto.request.UserPasswordRequestDto
 import dev.vozniack.cas.core.entity.User
 import dev.vozniack.cas.core.repository.UserRepository
 import dev.vozniack.cas.core.repository.specification.Specificable
+import io.github.oshai.KLogging
 import java.util.UUID
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -42,5 +43,11 @@ class UserService(private val userRepository: UserRepository, private val passwo
         findById(id).apply { password = passwordEncoder.encode(request.password) }
     )
 
-    fun delete(id: UUID) = userRepository.delete(findById(id))
+    fun delete(id: UUID) {
+        logger.debug { "Deleting user with id $id" }
+
+        userRepository.delete(findById(id))
+    }
+
+    companion object : KLogging()
 }

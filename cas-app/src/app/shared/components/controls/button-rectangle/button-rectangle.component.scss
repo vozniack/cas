@@ -12,12 +12,17 @@
   transition: filter 0.2s ease-in-out, transform 0.2s ease-in-out, background-color 0.2s ease-out, color 0.2s ease-in-out;
 
   ion-icon {
+    transition: transform 0.1s ease-in-out;
     transform: scale(1.5);
   }
 
   &:disabled {
     cursor: default;
     color: rgba($color-dark-disabled, 0.5);
+  }
+
+  &:hover:not([disabled]) ion-icon {
+    transform: scale(1.7);
   }
 
   /* Sizes */

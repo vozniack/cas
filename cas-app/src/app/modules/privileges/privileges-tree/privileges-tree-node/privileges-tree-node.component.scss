@@ -1,7 +1,7 @@
 @import 'src/styles/variables';
 
 .privilege {
-  padding: 8px;
+  padding: 8px 16px;
 
   border-radius: $radius-standard;
   transition: background-color 0.2s ease-in-out;
@@ -15,15 +15,17 @@
   }
 
   .icon {
-    font-size: 20px;
-    padding: 4px;
+    font-size: 18px;
 
-    background: $white;
-    color: $white;
+    padding: 6px;
+    margin-left: -6px;
+
+    background: rgba($background-gray, 0.3);
+    color: rgba($color-light, 0.3);
 
     border-radius: $radius-rounded;
 
-    &.visible {
+    &.selected {
       color: $green-dark;
       background: $green;
     }

@@ -44,9 +44,27 @@ export class PrivilegesTreeNodeComponent implements AfterViewInit {
     return this.userPrivileges ? this.userPrivileges?.mappedPrivileges.map(p => p.id).includes(this.privilege.id) : false;
   }
 
-  isParentSelected(): boolean {
+  areChildrenSelected(): boolean {
     if (this.privilege.privileges != null && this.privilege.privileges.length > 0 && this.components) {
-      return this.components.map(c => c.isSelected() || c.isParentSelected()).every(selected => selected);
+      return this.components.map(c => c.isSelected() || c.areChildrenSelected()).every(selected => selected);
     } else return false;
+  }
+
+  isChildSelected(): boolean {
+    if (this.privilege.privileges != null && this.privilege.privileges.length > 0 && this.components) {
+      return this.components.find(c => c.isSelected()) != null;
+    } else return false;
+  }
+
+  getClass(): string {
+    if (this.isSelected() || this.areChildrenSelected() || this.isChildSelected()) return 'selected';
+    else return '';
+  }
+
+  getIconName(): string {
+    if (this.areChildrenSelected()) return 'checkmark-done-outline';
+    else if (this.isChildSelected()) return 'checkmark-outline';
+    else if (this.isSelected()) return 'checkmark-outline';
+    else return 'key-outline';
   }
 }

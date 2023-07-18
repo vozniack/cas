@@ -6,7 +6,7 @@ import dev.vozniack.cas.core.repository.specification.PrivilegeQuery
 import dev.vozniack.cas.core.repository.specification.Specificable
 import dev.vozniack.cas.core.service.common.ContextAwareService
 import dev.vozniack.cas.core.types.ScopeType
-import java.util.Optional
+import io.github.oshai.KLogging
 import java.util.UUID
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -43,12 +43,16 @@ class PrivilegeService(
         }
     )
 
-    fun delete(id: UUID) = privilegeRepository.delete(
-        Optional.ofNullable(findById(id).takeIf { privilege -> privilege.scope == ScopeType.EXTERNAL })
-            .orElseThrow { ResponseStatusException(HttpStatus.CONFLICT, "Can't delete internal privilege") }
-    )
+    fun delete(id: UUID) {
+        logger.debug { "Deleting privilege with id $id" }
 
-    companion object {
+        privilegeRepository.delete(
+            findById(id).takeIf { it.scope == ScopeType.EXTERNAL }
+                ?: throw ResponseStatusException(HttpStatus.CONFLICT, "Can't delete internal privilege")
+        )
+    }
+
+    companion object : KLogging() {
         fun get() = get(PrivilegeService::class.java)
     }
 }

@@ -1,6 +1,10 @@
 @import 'src/styles/variables';
 
 .user-details {
+  background: $white;
+  border-radius: $radius-standard;
+
+  padding: 16px;
 
   .section-name {
     color: $color-light;

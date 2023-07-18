@@ -6,7 +6,7 @@ import dev.vozniack.cas.core.repository.specification.OrganizationQuery
 import dev.vozniack.cas.core.repository.specification.Specificable
 import dev.vozniack.cas.core.service.common.ContextAwareService
 import dev.vozniack.cas.core.types.ScopeType
-import java.util.Optional
+import io.github.oshai.KLogging
 import java.util.UUID
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -47,12 +47,16 @@ class OrganizationService(
         }
     )
 
-    fun delete(id: UUID) = organizationRepository.delete(
-        Optional.ofNullable(findById(id).takeIf { organization -> organization.scope == ScopeType.EXTERNAL })
-            .orElseThrow { ResponseStatusException(HttpStatus.CONFLICT, "Can't delete internal organization") }
-    )
+    fun delete(id: UUID) {
+        logger.debug { "Deleting organization with id $id" }
 
-    companion object {
+        organizationRepository.delete(
+            findById(id).takeIf { it.scope == ScopeType.EXTERNAL }
+                ?: throw ResponseStatusException(HttpStatus.CONFLICT, "Can't delete internal organization")
+        )
+    }
+
+    companion object : KLogging() {
         fun get() = get(OrganizationService::class.java)
     }
 }

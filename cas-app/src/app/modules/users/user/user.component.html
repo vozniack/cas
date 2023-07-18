@@ -12,13 +12,31 @@
 
     <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
       <cas-button-rectangle [theme]="'primary'" [iconLeft]="'create-outline'"></cas-button-rectangle>
-      <cas-button-rectangle [theme]="'secondary'" [iconLeft]="'trash-outline'"></cas-button-rectangle>
+
+      <cas-button-rectangle [theme]="'secondary'" [iconLeft]="'trash-outline'"
+                            (click)="deleteUser()">
+      </cas-button-rectangle>
     </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+    <ng-container *ngFor="let organization of user.organizations">
+      <ng-container *ngIf="selectedOrganization">
+        <div class="user-organization" [class.active]="selectedOrganization.id == organization.id"
+             fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px"
+             (click)="selectOrganization(organization.id)">
+          <ion-icon [name]="organization.icon"></ion-icon>
+          <span>{{organization.name}}</span>
+        </div>
+      </ng-container>
+    </ng-container>
   </div>
 
   <div fxLayout="row" fxLayoutAlign="space-between top" fxLayoutGap="32px">
     <div fxLayout="column" fxFlex="70">
-      <cas-user-privileges [user]="user" [userPrivileges]="userPrivileges"></cas-user-privileges>
+      <cas-user-privileges [user]="user" [userPrivileges]="userPrivileges"
+                           [selectedOrganization]="selectedOrganization">
+      </cas-user-privileges>
     </div>
 
     <div fxLayout="column" fxLayoutGap="32px" fxFlex="30">

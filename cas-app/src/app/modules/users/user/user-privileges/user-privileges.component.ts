@@ -1,7 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {tap} from 'rxjs/operators';
+import {Component, Input} from '@angular/core';
 import {Organization} from '../../../organizations/organizations.interface';
-import {OrganizationsService} from '../../../organizations/organizations.service';
 import {User, UserPrivileges} from '../../users.interface';
 
 @Component({
@@ -9,7 +7,7 @@ import {User, UserPrivileges} from '../../users.interface';
   templateUrl: './user-privileges.component.html',
   styleUrls: ['./user-privileges.component.scss']
 })
-export class UserPrivilegesComponent implements OnInit {
+export class UserPrivilegesComponent {
 
   @Input()
   user!: User;
@@ -17,18 +15,6 @@ export class UserPrivilegesComponent implements OnInit {
   @Input()
   userPrivileges!: UserPrivileges;
 
+  @Input()
   selectedOrganization!: Organization;
-
-  constructor(private organizationService: OrganizationsService) {
-  }
-
-  ngOnInit(): void {
-    this.selectOrganization(this.user.organizations[0].id);
-  }
-
-  selectOrganization(id: string) {
-    this.organizationService.getOrganization(id).pipe(
-      tap((organization: Organization) => this.selectedOrganization = organization)
-    ).subscribe();
-  }
 }

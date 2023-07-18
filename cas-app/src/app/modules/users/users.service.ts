@@ -24,4 +24,8 @@ export class UsersService {
   getUser(id: string): Observable<User> {
     return this.httpClient.get<User>(`${this.baseUrl}/${id}`);
   }
+
+  deleteUser(id: string): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}/${id}`);
+  }
 }
